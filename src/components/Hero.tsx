@@ -10,17 +10,18 @@ const Hero = () => {
         <Navigation />
       </div>
       
+      {/* Background image */}
       <div 
-        className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/50 z-0"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat"
+          backgroundImage: "url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format')"
         }}
       />
       
-      <div className="container-custom min-h-[90vh] relative z-10 flex flex-col justify-center pt-20">
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-black bg-opacity-70 z-10"></div>
+      
+      <div className="container-custom min-h-[90vh] relative z-20 flex flex-col justify-center pt-20">
         <div className="max-w-3xl">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
             Clean Combustion Across Industries
