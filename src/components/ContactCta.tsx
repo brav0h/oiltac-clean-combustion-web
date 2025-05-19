@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -89,12 +88,7 @@ const ContactCta = () => {
                 
                 <div className="flex items-center">
                   <Mail className="text-oiltac-forest mr-3" />
-                  <span>info@oiltac.com</span>
-                </div>
-                
-                <div className="flex items-center">
-                  <Phone className="text-oiltac-forest mr-3" />
-                  <span>+1 (888) 555-FUEL</span>
+                  <span>info@chie-tsiang.com</span>
                 </div>
               </div>
             </div>

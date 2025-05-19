@@ -1,3 +1,4 @@
+
 import { FileText } from "lucide-react";
 
 const Footer = () => {
@@ -71,13 +72,9 @@ const Footer = () => {
           
           <div className="md:col-span-1">
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
-            <address className="not-italic text-gray-300">
-              <p>123 Green Tech Way</p>
-              <p>Suite 400</p>
-              <p>Houston, TX 77002</p>
-              <p className="mt-4">info@oiltac.com</p>
-              <p>+1 (888) 555-FUEL</p>
-            </address>
+            <div className="text-gray-300">
+              <p className="mb-2">info@chie-tsiang.com</p>
+            </div>
           </div>
         </div>
         
