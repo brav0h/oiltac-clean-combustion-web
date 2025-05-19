@@ -123,4 +123,26 @@
   .section-subtitle {
     @apply text-xl text-oiltac-gray mb-12 max-w-3xl mx-auto;
   }
+  
+  /* New gradients and background styles */
+  .bg-gradient-soft {
+    @apply bg-gradient-to-b from-oiltac-light/50 to-white;
+  }
+  
+  .bg-gradient-earth {
+    @apply bg-gradient-to-br from-oiltac-light to-white;
+  }
+  
+  .bg-gradient-copper {
+    @apply bg-gradient-to-r from-oiltac-copper/5 to-white;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  .glass-effect {
+    @apply backdrop-blur-sm bg-white/70 shadow-md;
+  }
 }
+

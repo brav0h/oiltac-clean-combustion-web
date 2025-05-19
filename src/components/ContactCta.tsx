@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -67,7 +68,7 @@ const ContactCta = () => {
   };
 
   return (
-    <section id="contact" className="section-padding bg-white">
+    <section id="contact" className="section-padding bg-gradient-soft">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto">
           <h2 className="section-title text-center">Get In Touch</h2>
@@ -94,7 +95,7 @@ const ContactCta = () => {
             </div>
             
             <div className="md:col-span-3">
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4 p-6 bg-white/80 backdrop-blur-sm rounded-lg shadow-md">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-oiltac-gray mb-1">

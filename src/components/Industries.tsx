@@ -9,7 +9,7 @@ const IndustryCard = ({ icon: Icon, title, description, imageSrc }: {
   imageSrc: string
 }) => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col items-center hover:shadow-xl transition-shadow">
+    <div className="bg-gradient-to-br from-white to-gray-50 p-6 rounded-lg shadow-md text-center flex flex-col items-center hover:shadow-xl transition-shadow card-hover">
       <div className="w-full mb-4">
         <AspectRatio ratio={16/9} className="bg-gray-100 rounded-md overflow-hidden">
           <img 
@@ -62,7 +62,7 @@ const Industries = () => {
   ];
 
   return (
-    <section id="industries" className="section-padding bg-gray-50">
+    <section id="industries" className="section-padding bg-gradient-earth">
       <div className="container-custom">
         <h2 className="section-title text-center">Who It's For</h2>
         <p className="section-subtitle text-center">

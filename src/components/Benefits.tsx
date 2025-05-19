@@ -20,7 +20,7 @@ const Benefits = () => {
   ];
 
   return (
-    <section id="benefits" className="section-padding">
+    <section id="benefits" className="section-padding bg-gradient-copper">
       <div className="container-custom">
         <div className="flex flex-col md:flex-row gap-12 items-center">
           <div className="md:w-1/2">
