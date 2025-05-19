@@ -73,7 +73,7 @@ const Footer = () => {
           <div className="md:col-span-1">
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <div className="text-gray-300">
-              <p className="mb-2">info@chie-tsiang.com</p>
+              <p className="mb-2">info@oiltacfuel.com</p>
             </div>
           </div>
         </div>

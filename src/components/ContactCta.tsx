@@ -89,7 +89,7 @@ const ContactCta = () => {
                 
                 <div className="flex items-center">
                   <Mail className="text-oiltac-forest mr-3" />
-                  <span>info@chie-tsiang.com</span>
+                  <span>info@oiltacfuel.com</span>
                 </div>
               </div>
             </div>
