@@ -27,7 +27,7 @@ const Hero = () => {
             Clean Combustion Across Industries
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-200">
-            From diesel to bunker fuel, OILTAC optimizes performance and cuts emissions — naturally.
+            From diesel to bunker fuel, <span className="text-white">OIL</span><span className="text-oiltac-copper">TAC</span> optimizes performance and cuts emissions — naturally.
           </p>
           <Button 
             className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white py-6 px-8 text-lg rounded-md flex items-center gap-2"
