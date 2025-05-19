@@ -66,7 +66,7 @@ const Industries = () => {
       <div className="container-custom">
         <h2 className="section-title text-center">Who It's For</h2>
         <p className="section-subtitle text-center">
-          <span className="text-oiltac-dark">OIL</span><span className="text-oiltac-copper">TAC</span> delivers measurable benefits across multiple industries and applications.
+          <span className="text-black">OIL</span><span className="text-black">TAC</span> delivers measurable benefits across multiple industries and applications.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">

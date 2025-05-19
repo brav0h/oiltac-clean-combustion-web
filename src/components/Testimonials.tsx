@@ -15,7 +15,7 @@ const Testimonials = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-          <Card className="bg-white/10 backdrop-blur-sm border-0">
+          <Card className="bg-white/20 backdrop-blur-sm border-0">
             <CardContent className="pt-6">
               <div className="mb-4">
                 <div className="flex space-x-1">
@@ -26,19 +26,19 @@ const Testimonials = () => {
                   ))}
                 </div>
               </div>
-              <p className="italic mb-4">
+              <p className="italic mb-4 text-white font-medium">
                 "After implementing OILTAC across our vessel fleet, we've seen a consistent 4% reduction in fuel consumption and significant improvement in engine cleanliness during inspections."
               </p>
               <div className="flex items-center">
                 <div>
-                  <p className="font-semibold">Marine Fleet Manager</p>
-                  <p className="text-sm text-white/70">International Shipping Company</p>
+                  <p className="font-semibold text-white">Marine Fleet Manager</p>
+                  <p className="text-sm text-white/90">International Shipping Company</p>
                 </div>
               </div>
             </CardContent>
           </Card>
           
-          <Card className="bg-white/10 backdrop-blur-sm border-0">
+          <Card className="bg-white/20 backdrop-blur-sm border-0">
             <CardContent className="pt-6">
               <div className="mb-4">
                 <div className="flex space-x-1">
@@ -49,19 +49,19 @@ const Testimonials = () => {
                   ))}
                 </div>
               </div>
-              <p className="italic mb-4">
+              <p className="italic mb-4 text-white font-medium">
                 "OILTAC helped us achieve our emissions targets ahead of schedule. The reduction in maintenance costs alone justified the investment."
               </p>
               <div className="flex items-center">
                 <div>
-                  <p className="font-semibold">Chief Engineer</p>
-                  <p className="text-sm text-white/70">Regional Rail Authority</p>
+                  <p className="font-semibold text-white">Chief Engineer</p>
+                  <p className="text-sm text-white/90">Regional Rail Authority</p>
                 </div>
               </div>
             </CardContent>
           </Card>
           
-          <Card className="bg-white/10 backdrop-blur-sm border-0">
+          <Card className="bg-white/20 backdrop-blur-sm border-0">
             <CardContent className="pt-6">
               <div className="mb-4">
                 <div className="flex space-x-1">
@@ -72,13 +72,13 @@ const Testimonials = () => {
                   ))}
                 </div>
               </div>
-              <p className="italic mb-4">
+              <p className="italic mb-4 text-white font-medium">
                 "We've documented a 15% reduction in soot and particulate matter since implementing OILTAC. The results were visible within the first month."
               </p>
               <div className="flex items-center">
                 <div>
-                  <p className="font-semibold">Maintenance Director</p>
-                  <p className="text-sm text-white/70">Industrial Manufacturing Plant</p>
+                  <p className="font-semibold text-white">Maintenance Director</p>
+                  <p className="text-sm text-white/90">Industrial Manufacturing Plant</p>
                 </div>
               </div>
             </CardContent>
