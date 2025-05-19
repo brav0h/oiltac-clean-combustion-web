@@ -31,7 +31,12 @@ const Hero = () => {
           </p>
           <Button 
             className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white py-6 px-8 text-lg rounded-md flex items-center gap-2"
-            onClick={() => document.getElementById('industries')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => {
+              const industriesSection = document.getElementById('industries');
+              if (industriesSection) {
+                industriesSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
           >
             Explore Use Cases
             <ArrowRight size={20} />

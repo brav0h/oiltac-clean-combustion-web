@@ -6,6 +6,14 @@ import { Menu, X } from "lucide-react";
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+      setIsOpen(false);
+    }
+  };
+  
   return (
     <nav className="bg-oiltac-dark py-4 sticky top-0 z-50 shadow-sm">
       <div className="container-custom flex items-center justify-between">
@@ -20,7 +28,10 @@ const Navigation = () => {
           <a href="#benefits" className="text-white hover:text-oiltac-light transition-colors">Benefits</a>
           <a href="#proven" className="text-white hover:text-oiltac-light transition-colors">Results</a>
           <a href="#why-now" className="text-white hover:text-oiltac-light transition-colors">Why Now</a>
-          <Button className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white">
+          <Button 
+            className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white"
+            onClick={scrollToContact}
+          >
             Contact Us
           </Button>
         </div>
@@ -70,7 +81,7 @@ const Navigation = () => {
             </a>
             <Button 
               className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white w-full"
-              onClick={() => setIsOpen(false)}
+              onClick={scrollToContact}
             >
               Contact Us
             </Button>
