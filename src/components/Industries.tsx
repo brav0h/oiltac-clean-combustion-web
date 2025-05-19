@@ -1,4 +1,3 @@
-
 import { Ship, TrainFront, Factory, Truck } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 

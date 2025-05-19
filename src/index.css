@@ -124,17 +124,17 @@
     @apply text-xl text-oiltac-gray mb-12 max-w-3xl mx-auto;
   }
   
-  /* New gradients and background styles with darker green */
+  /* Updated gradients and background styles to complement black hero */
   .bg-gradient-soft {
-    @apply bg-gradient-to-b from-oiltac-light-dark/70 to-white;
+    @apply bg-gradient-to-b from-gray-100 to-white;
   }
   
   .bg-gradient-earth {
-    @apply bg-gradient-to-br from-oiltac-light-dark to-white;
+    @apply bg-gradient-to-br from-gray-100 to-white;
   }
   
   .bg-gradient-copper {
-    @apply bg-gradient-to-r from-oiltac-copper/10 to-white;
+    @apply bg-gradient-to-r from-gray-200/80 to-white;
   }
   
   .card-hover {
@@ -145,3 +145,4 @@
     @apply backdrop-blur-sm bg-white/70 shadow-md;
   }
 }
+

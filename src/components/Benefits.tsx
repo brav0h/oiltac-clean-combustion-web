@@ -38,7 +38,7 @@ const Benefits = () => {
           </div>
           
           <div className="md:w-1/2">
-            <div className="bg-gradient-to-br from-oiltac-light-dark/20 to-oiltac-light-dark p-6 rounded-lg">
+            <div className="bg-gradient-to-br from-gray-100 to-gray-50 p-6 rounded-lg">
               <div className="relative">
                 <img 
                   src="https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?q=80&w=2070&auto=format" 
@@ -60,3 +60,4 @@ const Benefits = () => {
 };
 
 export default Benefits;
+

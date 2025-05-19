@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const WhyNow = () => {
   return (
-    <section id="why-now" className="section-padding bg-gradient-to-b from-gray-100 to-white">
+    <section id="why-now" className="section-padding bg-gradient-soft">
       <div className="container-custom">
         <h2 className="section-title text-center">Why Now</h2>
         
@@ -48,3 +48,4 @@ const WhyNow = () => {
 };
 
 export default WhyNow;
+
