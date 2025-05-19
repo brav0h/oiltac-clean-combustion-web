@@ -5,9 +5,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactCta = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,23 +22,49 @@ const ContactCta = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
     
-    // In a real implementation, you would send this data to your server
-    // For now, we'll just show a success message
-    toast({
-      title: "Information request sent",
-      description: "Thank you for your interest. We'll be in touch shortly.",
-    });
-    
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      message: ""
-    });
+    setIsSubmitting(true);
+    try {
+      // Insert the form data into the Supabase database
+      const { error } = await supabase
+        .from('contact_requests')
+        .insert([formData]);
+      
+      if (error) {
+        console.error('Error submitting form:', error);
+        toast({
+          title: "Submission failed",
+          description: "There was an error submitting your request. Please try again.",
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      // Show success message
+      toast({
+        title: "Information request sent",
+        description: "Thank you for your interest. We'll be in touch shortly.",
+      });
+      
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        message: ""
+      });
+    } catch (err) {
+      console.error('Exception when submitting form:', err);
+      toast({
+        title: "Submission failed",
+        description: "There was an error submitting your request. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -140,8 +168,9 @@ const ContactCta = () => {
                 <Button 
                   type="submit"
                   className="bg-oiltac-forest hover:bg-oiltac-forest/90 text-white w-full py-6"
+                  disabled={isSubmitting}
                 >
-                  Request Information
+                  {isSubmitting ? "Submitting..." : "Request Information"}
                 </Button>
               </form>
             </div>
