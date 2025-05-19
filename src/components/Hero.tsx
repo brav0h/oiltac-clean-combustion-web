@@ -11,13 +11,12 @@ const Hero = () => {
       </div>
       
       <div 
-        className="absolute inset-0 bg-black opacity-60 z-0"
+        className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/50 z-0"
         style={{
           backgroundImage: "url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format')",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundBlendMode: "multiply",
-          mixBlendMode: "multiply"
+          backgroundRepeat: "no-repeat"
         }}
       />
       
