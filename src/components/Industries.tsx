@@ -1,33 +1,36 @@
+
 import { Ship, TrainFront, Factory, Truck } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
-const IndustryCard = ({ icon: Icon, title, description, imageSrc }: { 
+const IndustryCard = ({ 
+  icon: Icon, 
+  title, 
+  subtitle,
+  imageSrc 
+}: { 
   icon: typeof Ship, 
   title: string, 
-  description: string,
+  subtitle: string,
   imageSrc: string
 }) => {
   return (
-    <div className="bg-gradient-to-br from-white to-gray-50 p-6 rounded-lg shadow-md text-center flex flex-col items-center hover:shadow-xl transition-shadow card-hover">
-      <div className="w-full mb-4">
-        <AspectRatio ratio={16/9} className="bg-gray-100 rounded-md overflow-hidden">
-          <img 
-            src={imageSrc} 
-            alt={title} 
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.onerror = null;
-              target.src = "https://images.unsplash.com/photo-1577127279774-cb49232da6d0?w=800&auto=format&fit=crop";
-            }}
-          />
-        </AspectRatio>
-      </div>
-      <div className="bg-oiltac-light p-4 rounded-full mb-4">
-        <Icon size={32} className="text-oiltac-forest" />
-      </div>
-      <h3 className="text-xl font-semibold mb-2 text-oiltac-dark">{title}</h3>
-      <p className="text-oiltac-gray">{description}</p>
+    <div className="relative overflow-hidden rounded-md">
+      <AspectRatio ratio={16/9} className="bg-black rounded-md overflow-hidden">
+        <img 
+          src={imageSrc} 
+          alt={title} 
+          className="w-full h-full object-cover opacity-80"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.onerror = null;
+            target.src = "https://images.unsplash.com/photo-1577127279774-cb49232da6d0?w=800&auto=format&fit=crop";
+          }}
+        />
+        <div className="absolute inset-0 bg-black/50 flex flex-col justify-end p-6">
+          <h3 className="text-2xl font-semibold mb-1 text-white">{title}</h3>
+          <p className="text-white/80 text-lg">{subtitle}</p>
+        </div>
+      </AspectRatio>
     </div>
   );
 };
@@ -37,44 +40,44 @@ const Industries = () => {
     {
       icon: Ship,
       title: "Maritime Operators",
-      description: "Reduce bunker fuel emissions and improve engine performance at sea.",
+      subtitle: "Reduce bunker fuel emissions and improve engine performance at sea.",
       imageSrc: "/lovable-uploads/50f3319d-544b-409b-a101-93cd0d7804d2.png"
     },
     {
       icon: TrainFront,
       title: "Rail Engine Managers",
-      description: "Optimize locomotive fuel efficiency and reduce maintenance costs.",
+      subtitle: "Optimize locomotive fuel efficiency and reduce maintenance costs.",
       imageSrc: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&auto=format&fit=crop"
     },
     {
       icon: Factory,
       title: "Industrial Plant Engineers",
-      description: "Enhance boiler efficiency and meet stringent emissions requirements.",
+      subtitle: "Enhance boiler efficiency and meet stringent emissions requirements.",
       imageSrc: "/lovable-uploads/2af66211-fc6e-46c5-9eed-1b491d2091e6.png"
     },
     {
       icon: Truck,
       title: "Diesel Fleet Owners",
-      description: "Extend engine life and reduce operational costs across your fleet.",
+      subtitle: "Extend engine life and reduce operational costs across your fleet.",
       imageSrc: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&auto=format&fit=crop"
     },
   ];
 
   return (
-    <section id="industries" className="section-padding bg-gradient-earth">
+    <section id="industries" className="section-padding bg-black text-white">
       <div className="container-custom">
-        <h2 className="section-title text-center">Who It's For</h2>
-        <p className="section-subtitle text-center">
-          <span className="text-black">OIL</span><span className="text-black">TAC</span> delivers measurable benefits across multiple industries and applications.
+        <h2 className="section-title text-center text-white mb-8">Who It's For</h2>
+        <p className="section-subtitle text-center text-white/80 mb-16">
+          <span className="text-white">OILTAC</span> delivers measurable benefits across multiple industries and applications.
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
           {industries.map((industry, index) => (
             <IndustryCard 
               key={index} 
               icon={industry.icon} 
               title={industry.title} 
-              description={industry.description}
+              subtitle={industry.subtitle}
               imageSrc={industry.imageSrc}
             />
           ))}
