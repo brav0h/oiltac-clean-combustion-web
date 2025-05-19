@@ -5,8 +5,10 @@ import Navigation from "./Navigation";
 
 const Hero = () => {
   return (
-    <div className="relative bg-gradient-to-r from-oiltac-dark to-oiltac-gray text-white">
-      <Navigation />
+    <div className="relative">
+      <div className="absolute inset-0 z-50">
+        <Navigation />
+      </div>
       
       <div 
         className="absolute inset-0 bg-black opacity-60 z-0"
@@ -19,9 +21,9 @@ const Hero = () => {
         }}
       />
       
-      <div className="container-custom min-h-[80vh] relative z-10 flex flex-col justify-center">
+      <div className="container-custom min-h-[90vh] relative z-10 flex flex-col justify-center pt-20">
         <div className="max-w-3xl">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
             Clean Combustion Across Industries
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-200">

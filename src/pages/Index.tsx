@@ -1,6 +1,4 @@
 
-import { ArrowRight, Ship, TrainFront, Factory, Truck, CircleCheck, FileText, Mail, Phone } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import Hero from "@/components/Hero";
 import Industries from "@/components/Industries";
 import Benefits from "@/components/Benefits";
