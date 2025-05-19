@@ -124,17 +124,17 @@
     @apply text-xl text-oiltac-gray mb-12 max-w-3xl mx-auto;
   }
   
-  /* New gradients and background styles */
+  /* New gradients and background styles with darker green */
   .bg-gradient-soft {
-    @apply bg-gradient-to-b from-oiltac-light/50 to-white;
+    @apply bg-gradient-to-b from-oiltac-light-dark/70 to-white;
   }
   
   .bg-gradient-earth {
-    @apply bg-gradient-to-br from-oiltac-light to-white;
+    @apply bg-gradient-to-br from-oiltac-light-dark to-white;
   }
   
   .bg-gradient-copper {
-    @apply bg-gradient-to-r from-oiltac-copper/5 to-white;
+    @apply bg-gradient-to-r from-oiltac-copper/10 to-white;
   }
   
   .card-hover {
@@ -145,4 +145,3 @@
     @apply backdrop-blur-sm bg-white/70 shadow-md;
   }
 }
-

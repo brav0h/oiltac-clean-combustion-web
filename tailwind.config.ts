@@ -58,6 +58,7 @@ export default {
 					earth: '#7D5A3C',
 					copper: '#B87333',
 					light: '#F2FCE2',
+					'light-dark': '#D9EFC0',  // New darker light green color
 					dark: '#333333',
 					gray: '#555555'
 				},
