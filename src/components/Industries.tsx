@@ -39,7 +39,7 @@ const Industries = () => {
       icon: Ship,
       title: "Maritime Operators",
       description: "Reduce bunker fuel emissions and improve engine performance at sea.",
-      imageSrc: "https://images.unsplash.com/photo-1518877593221-1f28583780b4?w=800&auto=format&fit=crop"
+      imageSrc: "/lovable-uploads/50f3319d-544b-409b-a101-93cd0d7804d2.png"
     },
     {
       icon: TrainFront,
@@ -51,7 +51,7 @@ const Industries = () => {
       icon: Factory,
       title: "Industrial Plant Engineers",
       description: "Enhance boiler efficiency and meet stringent emissions requirements.",
-      imageSrc: "https://images.unsplash.com/photo-1460574283810-2aab119d8511?w=800&auto=format&fit=crop"
+      imageSrc: "/lovable-uploads/2af66211-fc6e-46c5-9eed-1b491d2091e6.png"
     },
     {
       icon: Truck,
