@@ -15,7 +15,7 @@ const IndustryCard = ({
 }) => {
   return (
     <div className="relative overflow-hidden rounded-md">
-      <AspectRatio ratio={16/9} className="bg-oiltac-dark rounded-md overflow-hidden">
+      <AspectRatio ratio={16/9} className="bg-black rounded-md overflow-hidden">
         <img 
           src={imageSrc} 
           alt={title} 
@@ -26,7 +26,7 @@ const IndustryCard = ({
             target.src = "https://images.unsplash.com/photo-1577127279774-cb49232da6d0?w=800&auto=format&fit=crop";
           }}
         />
-        <div className="absolute inset-0 bg-oiltac-primary/60 flex flex-col justify-end p-6">
+        <div className="absolute inset-0 bg-black/50 flex flex-col justify-end p-6">
           <h3 className="text-2xl font-semibold mb-1 text-white">{title}</h3>
           <p className="text-white/80 text-lg">{subtitle}</p>
         </div>
@@ -64,7 +64,7 @@ const Industries = () => {
   ];
 
   return (
-    <section id="industries" className="section-padding bg-oiltac-secondary text-white">
+    <section id="industries" className="section-padding bg-black text-white">
       <div className="container-custom">
         <h2 className="section-title text-center text-white mb-8">Who It's For</h2>
         <p className="section-subtitle text-center text-white/80 mb-16">

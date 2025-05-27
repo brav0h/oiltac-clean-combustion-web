@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import Logo from "./Logo";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,8 +18,8 @@ const Navigation = () => {
     <nav className="bg-oiltac-dark py-4 sticky top-0 z-50 shadow-sm">
       <div className="container-custom flex items-center justify-between">
         <div className="flex items-center">
-          <a href="/" className="block">
-            <Logo size="sm" />
+          <a href="/" className="font-display font-bold text-xl">
+            <span className="text-white">OIL</span><span className="text-oiltac-copper">TAC</span>
           </a>
         </div>
         
@@ -30,7 +29,7 @@ const Navigation = () => {
           <a href="#proven" className="text-white hover:text-oiltac-light transition-colors">Results</a>
           <a href="#why-now" className="text-white hover:text-oiltac-light transition-colors">Why Now</a>
           <Button 
-            className="bg-oiltac-primary hover:bg-oiltac-secondary text-white"
+            className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white"
             onClick={scrollToContact}
           >
             Contact Us
@@ -81,7 +80,7 @@ const Navigation = () => {
               Why Now
             </a>
             <Button 
-              className="bg-oiltac-primary hover:bg-oiltac-secondary text-white w-full"
+              className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white w-full"
               onClick={scrollToContact}
             >
               Contact Us

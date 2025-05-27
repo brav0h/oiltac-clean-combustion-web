@@ -20,7 +20,7 @@ const Benefits = () => {
   ];
 
   return (
-    <section id="benefits" className="section-padding bg-oiltac-dark">
+    <section id="benefits" className="section-padding bg-zinc-900">
       <div className="container-custom">
         <div className="flex flex-col md:flex-row gap-12 items-center">
           <div className="md:w-1/2">
@@ -45,7 +45,7 @@ const Benefits = () => {
                   alt="Natural enzyme technology" 
                   className="rounded-lg shadow-lg object-cover h-[400px] w-full"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-oiltac-primary/90 text-white p-4 rounded-b-lg">
+                <div className="absolute bottom-0 left-0 right-0 bg-black/80 text-white p-4 rounded-b-lg">
                   <p className="text-center font-semibold">
                     Plant-based enzymes that enhance combustion naturally
                   </p>

@@ -54,13 +54,13 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				oiltac: {
-					primary: '#1e40af',     // Blue-800 for primary elements
-					secondary: '#2563eb',   // Blue-600 for secondary elements  
-					accent: '#3b82f6',      // Blue-500 for accents
-					light: '#dbeafe',       // Blue-100 for light backgrounds
-					'light-dark': '#93c5fd', // Blue-300 for medium backgrounds
-					dark: '#1e3a8a',        // Blue-900 for dark backgrounds
-					gray: '#374151'         // Gray-700 for text
+					forest: '#2B6D3A',
+					earth: '#7D5A3C',
+					copper: '#B87333',
+					light: '#F2FCE2',
+					'light-dark': '#E2E6EA',  // Changed to a light gray/blue tone
+					dark: '#333333',
+					gray: '#555555'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -108,3 +108,4 @@ export default {
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+

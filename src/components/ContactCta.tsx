@@ -68,7 +68,7 @@ const ContactCta = () => {
   };
 
   return (
-    <section id="contact" className="section-padding bg-gradient-to-b from-oiltac-light to-white">
+    <section id="contact" className="section-padding bg-gradient-soft">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto">
           <h2 className="section-title text-center">Get In Touch</h2>
@@ -88,14 +88,14 @@ const ContactCta = () => {
                 </div>
                 
                 <div className="flex items-center">
-                  <Mail className="text-oiltac-primary mr-3" />
+                  <Mail className="text-oiltac-forest mr-3" />
                   <span>info@oiltacfuel.com</span>
                 </div>
               </div>
             </div>
             
             <div className="md:col-span-3">
-              <form onSubmit={handleSubmit} className="space-y-4 p-6 bg-white/80 backdrop-blur-sm rounded-lg shadow-md border border-oiltac-light-dark/30">
+              <form onSubmit={handleSubmit} className="space-y-4 p-6 bg-white/80 backdrop-blur-sm rounded-lg shadow-md">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-oiltac-gray mb-1">
@@ -162,7 +162,7 @@ const ContactCta = () => {
                 
                 <Button 
                   type="submit"
-                  className="bg-oiltac-primary hover:bg-oiltac-secondary text-white w-full py-6"
+                  className="bg-oiltac-forest hover:bg-oiltac-forest/90 text-white w-full py-6"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Submitting..." : "Request Information"}
