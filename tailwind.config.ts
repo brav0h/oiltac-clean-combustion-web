@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -56,7 +55,7 @@ export default {
 				oiltac: {
 					forest: '#2B6D3A',
 					earth: '#7D5A3C',
-					copper: '#22C55E',  // Changed from '#B87333' to green
+					copper: '#2B6D3A',  // Changed to match the forest green
 					light: '#F2FCE2',
 					'light-dark': '#E2E6EA',
 					dark: '#333333',
