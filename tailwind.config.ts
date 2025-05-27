@@ -55,7 +55,7 @@ export default {
 				oiltac: {
 					forest: '#2B6D3A',
 					earth: '#7D5A3C',
-					copper: '#2B6D3A',  // Changed to match the forest green
+					copper: '#16A34A',  // Slightly darker version of #22C55E
 					light: '#F2FCE2',
 					'light-dark': '#E2E6EA',
 					dark: '#333333',
