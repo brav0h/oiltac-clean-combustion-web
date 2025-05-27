@@ -3,12 +3,12 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const WhyNow = () => {
   return (
-    <section id="why-now" className="section-padding bg-zinc-800">
+    <section id="why-now" className="section-padding bg-oiltac-primary">
       <div className="container-custom">
         <h2 className="section-title text-center text-white">Why Now</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
-          <Card className="shadow-md bg-zinc-900 border-0">
+          <Card className="shadow-md bg-oiltac-secondary border-0">
             <CardContent className="pt-6">
               <h3 className="text-xl font-semibold mb-4 text-white">
                 Global Regulations Tightening
@@ -25,7 +25,7 @@ const WhyNow = () => {
             </CardContent>
           </Card>
           
-          <Card className="shadow-md bg-zinc-900 border-0">
+          <Card className="shadow-md bg-oiltac-secondary border-0">
             <CardContent className="pt-6">
               <h3 className="text-xl font-semibold mb-4 text-white">
                 Bridge Solution for Legacy Equipment

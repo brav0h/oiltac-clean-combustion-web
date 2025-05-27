@@ -30,7 +30,7 @@ const Navigation = () => {
           <a href="#proven" className="text-white hover:text-oiltac-light transition-colors">Results</a>
           <a href="#why-now" className="text-white hover:text-oiltac-light transition-colors">Why Now</a>
           <Button 
-            className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white"
+            className="bg-oiltac-primary hover:bg-oiltac-secondary text-white"
             onClick={scrollToContact}
           >
             Contact Us
@@ -81,7 +81,7 @@ const Navigation = () => {
               Why Now
             </a>
             <Button 
-              className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white w-full"
+              className="bg-oiltac-primary hover:bg-oiltac-secondary text-white w-full"
               onClick={scrollToContact}
             >
               Contact Us

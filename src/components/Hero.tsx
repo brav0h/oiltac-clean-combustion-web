@@ -19,11 +19,11 @@ const Hero = () => {
         }}
       />
       
-      {/* Dark overlay with reduced opacity for better image visibility */}
-      <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+      {/* Dark overlay with blue tint */}
+      <div className="absolute inset-0 bg-gradient-to-b from-oiltac-dark/60 to-black/70 z-10"></div>
       
       <div className="container-custom min-h-[90vh] relative z-20 flex flex-col justify-center pt-20">
-        <div className="max-w-3xl backdrop-blur-sm bg-black/30 p-8 rounded-lg">
+        <div className="max-w-3xl backdrop-blur-sm bg-oiltac-dark/40 p-8 rounded-lg border border-oiltac-primary/20">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
             Clean Combustion Across Industries
           </h1>
@@ -31,7 +31,7 @@ const Hero = () => {
             From diesel to bunker fuel, <span className="text-white font-semibold">OIL</span><span className="text-white font-semibold">TAC</span> optimizes performance and cuts emissions — naturally.
           </p>
           <Button 
-            className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white py-6 px-8 text-lg rounded-md flex items-center gap-2"
+            className="bg-oiltac-primary hover:bg-oiltac-secondary text-white py-6 px-8 text-lg rounded-md flex items-center gap-2"
             onClick={() => {
               const industriesSection = document.getElementById('industries');
               if (industriesSection) {

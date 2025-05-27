@@ -20,11 +20,11 @@ const Logo: React.FC<LogoProps> = ({ className = '', size = 'md' }) => {
         OILTAC
       </div>
       
-      {/* Layered stripe effects */}
+      {/* Blue striped effects inspired by the uploaded logo */}
       <div className="absolute inset-0 z-0">
-        {/* Layer 1 - Dark copper stripes */}
+        {/* Layer 1 - Dark blue stripes */}
         <div 
-          className="absolute inset-0 text-oiltac-copper opacity-80"
+          className="absolute inset-0 text-blue-800 opacity-90"
           style={{
             background: `repeating-linear-gradient(
               0deg,
@@ -35,12 +35,12 @@ const Logo: React.FC<LogoProps> = ({ className = '', size = 'md' }) => {
             )`
           }}
         >
-          <div className="opacity-60">OILTAC</div>
+          <div className="opacity-70">OILTAC</div>
         </div>
         
-        {/* Layer 2 - Forest green stripes */}
+        {/* Layer 2 - Medium blue stripes */}
         <div 
-          className="absolute inset-0 text-oiltac-forest opacity-60"
+          className="absolute inset-0 text-blue-600 opacity-70"
           style={{
             background: `repeating-linear-gradient(
               0deg,
@@ -51,12 +51,12 @@ const Logo: React.FC<LogoProps> = ({ className = '', size = 'md' }) => {
             )`
           }}
         >
-          <div className="opacity-70">OILTAC</div>
+          <div className="opacity-80">OILTAC</div>
         </div>
         
-        {/* Layer 3 - Earth tone stripes */}
+        {/* Layer 3 - Light blue stripes */}
         <div 
-          className="absolute inset-0 text-oiltac-earth opacity-50"
+          className="absolute inset-0 text-blue-500 opacity-60"
           style={{
             background: `repeating-linear-gradient(
               0deg,
