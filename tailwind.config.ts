@@ -56,9 +56,9 @@ export default {
 				oiltac: {
 					forest: '#2B6D3A',
 					earth: '#7D5A3C',
-					copper: '#B87333',
+					copper: '#22C55E',  // Changed from '#B87333' to green
 					light: '#F2FCE2',
-					'light-dark': '#E2E6EA',  // Changed to a light gray/blue tone
+					'light-dark': '#E2E6EA',
 					dark: '#333333',
 					gray: '#555555'
 				},
@@ -108,4 +108,3 @@ export default {
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
-
