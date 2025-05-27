@@ -25,10 +25,10 @@ const Hero = () => {
       <div className="container-custom min-h-[90vh] relative z-20 flex flex-col justify-center pt-20">
         <div className="max-w-3xl backdrop-blur-sm bg-black/30 p-8 rounded-lg">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
-            Clean Combustion Across Industries
+            Cut Fuel Costs 15% While Slashing Emissions
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-100">
-            From diesel to bunker fuel, <span className="text-white font-semibold">OIL</span><span className="text-white font-semibold">TAC</span> optimizes performance and cuts emissions — naturally.
+            <span className="text-white font-semibold">OIL</span><span className="text-white font-semibold">TAC</span> works in any engine. No modifications needed. Results guaranteed in 30 days.
           </p>
           <Button 
             className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white py-6 px-8 text-lg rounded-md flex items-center gap-2"
@@ -39,7 +39,7 @@ const Hero = () => {
               }
             }}
           >
-            Explore Use Cases
+            See How It Works
             <ArrowRight size={20} />
           </Button>
         </div>

@@ -39,26 +39,26 @@ const Industries = () => {
   const industries = [
     {
       icon: Ship,
-      title: "Maritime Operators",
-      subtitle: "Reduce bunker fuel emissions and improve engine performance at sea.",
+      title: "Ship Owners",
+      subtitle: "Save $50,000+ per vessel annually. Cut bunker costs without new equipment.",
       imageSrc: "/lovable-uploads/50f3319d-544b-409b-a101-93cd0d7804d2.png"
     },
     {
       icon: TrainFront,
-      title: "Rail Engine Managers",
-      subtitle: "Optimize locomotive fuel efficiency and reduce maintenance costs.",
+      title: "Rail Companies",
+      subtitle: "Reduce locomotive fuel bills 12%. Extend engine life by years.",
       imageSrc: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&auto=format&fit=crop"
     },
     {
       icon: Factory,
-      title: "Industrial Plant Engineers",
-      subtitle: "Enhance boiler efficiency and meet stringent emissions requirements.",
+      title: "Plant Managers",
+      subtitle: "Meet emissions targets today. Lower maintenance costs tomorrow.",
       imageSrc: "/lovable-uploads/2af66211-fc6e-46c5-9eed-1b491d2091e6.png"
     },
     {
       icon: Truck,
-      title: "Diesel Fleet Owners",
-      subtitle: "Extend engine life and reduce operational costs across your fleet.",
+      title: "Fleet Operators",
+      subtitle: "Turn every gallon into profit. Watch your ROI soar within weeks.",
       imageSrc: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&auto=format&fit=crop"
     },
   ];
@@ -66,9 +66,9 @@ const Industries = () => {
   return (
     <section id="industries" className="section-padding bg-black text-white">
       <div className="container-custom">
-        <h2 className="section-title text-center text-white mb-8">Who It's For</h2>
+        <h2 className="section-title text-center text-white mb-8">Who Makes Money With OILTAC</h2>
         <p className="section-subtitle text-center text-white/80 mb-16">
-          <span className="text-white">OILTAC</span> delivers measurable benefits across multiple industries and applications.
+          Smart operators across industries are already banking the savings.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">

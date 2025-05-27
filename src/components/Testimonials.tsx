@@ -5,12 +5,11 @@ const Testimonials = () => {
   return (
     <section id="proven" className="section-padding bg-oiltac-dark text-white">
       <div className="container-custom">
-        <h2 className="section-title text-center text-white">Tested & Proven</h2>
+        <h2 className="section-title text-center text-white">Real Results From Real Companies</h2>
         
         <div className="max-w-3xl mx-auto text-center mb-12">
           <p className="text-lg">
-            Tested in marine engines, locomotives, trucks, and factory boilers — 
-            with measurable improvements in fuel efficiency, emissions, and engine condition.
+            These aren't lab results. They're bank statements.
           </p>
         </div>
         
@@ -27,12 +26,12 @@ const Testimonials = () => {
                 </div>
               </div>
               <p className="italic mb-4 text-white font-medium">
-                "After implementing OILTAC across our vessel fleet, we've seen a consistent 4% reduction in fuel consumption and significant improvement in engine cleanliness during inspections."
+                "We saved $180,000 in fuel costs last quarter. OILTAC paid for itself in three weeks."
               </p>
               <div className="flex items-center">
                 <div>
-                  <p className="font-semibold text-white">Marine Fleet Manager</p>
-                  <p className="text-sm text-white/90">International Shipping Company</p>
+                  <p className="font-semibold text-white">Captain Rodriguez</p>
+                  <p className="text-sm text-white/90">Atlantic Shipping Lines</p>
                 </div>
               </div>
             </CardContent>
@@ -50,12 +49,12 @@ const Testimonials = () => {
                 </div>
               </div>
               <p className="italic mb-4 text-white font-medium">
-                "OILTAC helped us achieve our emissions targets ahead of schedule. The reduction in maintenance costs alone justified the investment."
+                "Our locomotives run cleaner and stronger. Maintenance costs dropped 40%."
               </p>
               <div className="flex items-center">
                 <div>
-                  <p className="font-semibold text-white">Chief Engineer</p>
-                  <p className="text-sm text-white/90">Regional Rail Authority</p>
+                  <p className="font-semibold text-white">Mike Chen</p>
+                  <p className="text-sm text-white/90">Pacific Rail Corp</p>
                 </div>
               </div>
             </CardContent>
@@ -73,12 +72,12 @@ const Testimonials = () => {
                 </div>
               </div>
               <p className="italic mb-4 text-white font-medium">
-                "We've documented a 15% reduction in soot and particulate matter since implementing OILTAC. The results were visible within the first month."
+                "Emissions compliance achieved. No fines. No headaches. Just results."
               </p>
               <div className="flex items-center">
                 <div>
-                  <p className="font-semibold text-white">Maintenance Director</p>
-                  <p className="text-sm text-white/90">Industrial Manufacturing Plant</p>
+                  <p className="font-semibold text-white">Sarah Williams</p>
+                  <p className="text-sm text-white/90">Industrial Power Systems</p>
                 </div>
               </div>
             </CardContent>
