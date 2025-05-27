@@ -162,7 +162,7 @@ const ContactCta = () => {
                 
                 <Button 
                   type="submit"
-                  className="bg-oiltac-forest hover:bg-oiltac-forest/90 text-white w-full py-6"
+                  className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white w-full py-6"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Submitting..." : "Request Information"}
