@@ -26,7 +26,7 @@ const IndustryCard = ({
             target.src = "https://images.unsplash.com/photo-1577127279774-cb49232da6d0?w=800&auto=format&fit=crop";
           }}
         />
-        <div className="absolute inset-0 bg-black/50 flex flex-col justify-end p-6">
+        <div className="absolute inset-0 bg-black/30 flex flex-col justify-end p-6">
           <h3 className="text-2xl font-semibold mb-1 text-white">{title}</h3>
           <p className="text-white/80 text-lg">{subtitle}</p>
         </div>
