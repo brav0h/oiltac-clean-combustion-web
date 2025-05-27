@@ -1,6 +1,5 @@
 
 import { FileText } from "lucide-react";
-import Logo from "./Logo";
 
 const Footer = () => {
   return (
@@ -8,8 +7,8 @@ const Footer = () => {
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
-            <a href="/">
-              <Logo size="lg" className="mb-4" />
+            <a href="/" className="text-2xl font-display font-bold">
+              <span className="text-white">OIL</span><span className="text-oiltac-copper">TAC</span>
             </a>
             <p className="mt-4 text-gray-300">
               Plant-based fuel additive technology for cleaner, more efficient combustion.
@@ -80,7 +79,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
-          <p>© {new Date().getFullYear()} <Logo size="sm" className="inline-block mx-1" />. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} <span className="text-white">OIL</span><span className="text-oiltac-copper">TAC</span>. All rights reserved.</p>
         </div>
       </div>
     </footer>
