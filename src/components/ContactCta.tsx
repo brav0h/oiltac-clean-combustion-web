@@ -71,19 +71,19 @@ const ContactCta = () => {
     <section id="contact" className="section-padding bg-gradient-soft">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto">
-          <h2 className="section-title text-center">Start Saving Money Tomorrow</h2>
+          <h2 className="section-title text-center">Get In Touch</h2>
           <p className="section-subtitle text-center">
-            Get your custom fuel savings calculation. No obligations. Just results.
+            Let's discuss how OILTAC can benefit your specific equipment and operations.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mt-12">
             <div className="md:col-span-2">
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-xl font-semibold mb-3 text-oiltac-dark">Ready to cut costs?</h3>
+                  <h3 className="text-xl font-semibold mb-3 text-oiltac-dark">Ready to improve performance?</h3>
                   <p className="text-oiltac-gray">
-                    We'll calculate your exact savings potential and show you 
-                    how OILTAC pays for itself in weeks, not years.
+                    Whether you want to schedule a consultation, request technical data, 
+                    or discuss implementation options, our team is ready to help.
                   </p>
                 </div>
                 
@@ -146,7 +146,7 @@ const ContactCta = () => {
                 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-oiltac-gray mb-1">
-                    Tell us about your fuel costs
+                    Message
                   </label>
                   <Textarea 
                     id="message"
@@ -154,7 +154,7 @@ const ContactCta = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    placeholder="How much do you spend on fuel monthly? What type of equipment do you operate?"
+                    placeholder="Tell us about your needs and how we can help"
                     className="w-full"
                     rows={4}
                   />
@@ -165,7 +165,7 @@ const ContactCta = () => {
                   className="bg-oiltac-forest hover:bg-oiltac-forest/90 text-white w-full py-6"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Calculating..." : "Get My Savings Calculation"}
+                  {isSubmitting ? "Submitting..." : "Request Information"}
                 </Button>
               </form>
             </div>
