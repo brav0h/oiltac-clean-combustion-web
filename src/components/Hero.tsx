@@ -44,10 +44,10 @@ const Hero = () => {
             <span className="text-white font-semibold">OILTAC</span> is a natural enzyme fuel additive that enhances combustion, reduces soot and emissions, and helps engines run cleaner — from diesel to bunker fuel.
           </p>
           <Button 
-            className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white py-6 px-8 text-lg rounded-md flex items-center gap-2 relative z-30"
+            className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white py-6 px-8 text-lg rounded-md flex items-center gap-2"
             onClick={scrollToIndustries}
           >
-            See Use Cases for Your Industry
+            See How Much You Could Save
             <ArrowRight size={20} />
           </Button>
         </div>
