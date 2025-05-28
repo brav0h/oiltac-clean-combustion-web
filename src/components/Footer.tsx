@@ -56,7 +56,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors flex items-center">
+                <a href="/msds" className="text-gray-300 hover:text-white transition-colors flex items-center">
                   <FileText size={16} className="mr-2" />
                   Safety Data Sheet
                 </a>
