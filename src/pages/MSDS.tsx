@@ -1,4 +1,5 @@
-import { AlertTriangle, Shield, ThermometerSun, Droplets, Eye, Wind, Phone } from "lucide-react";
+
+import { AlertTriangle, Shield, ThermometerSun, Droplets, Eye, Wind, Phone, FileText } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const MSDS = () => {
@@ -9,17 +10,23 @@ const MSDS = () => {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-oiltac-dark mb-4">
-              Material Safety Data Sheet
+              MATERIAL SAFETY DATA SHEET
             </h1>
             <div className="text-2xl font-semibold text-oiltac-copper mb-2">
-              OILTAC-NP Fuel Additive
+              OILTAC-NP
             </div>
-            <div className="text-gray-600">
-              Document Version: 2.1 | Issue Date: March 11, 2019 | Review Date: March 2025
+            <div className="text-lg text-gray-700 mb-2">
+              FUKASAWA CHEMICAL LABORATORY INC.
+            </div>
+            <div className="text-sm text-gray-600">
+              14-24, Tamagawagakuen 8-chome, Machida-shi, Tokyo, 194-0041 JAPAN
+            </div>
+            <div className="text-sm text-gray-600">
+              Date Issued: MAR. 1st, 2019
             </div>
           </div>
 
-          {/* Product Identification */}
+          {/* Section 1: Product and Company Identification */}
           <Card className="mb-8">
             <CardHeader>
               <CardTitle className="text-xl text-oiltac-dark flex items-center">
@@ -30,27 +37,25 @@ const MSDS = () => {
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-semibold mb-2">Product Information</h4>
-                  <div className="space-y-1 text-sm">
+                  <h4 className="font-semibold mb-3">Product Information</h4>
+                  <div className="space-y-2 text-sm">
                     <p><strong>Product Name:</strong> OILTAC-NP</p>
                     <p><strong>Product Use Description:</strong> FUEL ADDITIVE</p>
-                    <p><strong>Date Issued:</strong> MAR. 11, 2019</p>
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-2">Manufacturer Information</h4>
-                  <div className="space-y-1 text-sm">
-                    <p><strong>Company:</strong> [Manufacturer Name]</p>
-                    <p><strong>Address:</strong> [Manufacturer Address]</p>
-                    <p><strong>Phone:</strong> [Manufacturer Phone]</p>
-                    <p><strong>Email:</strong> info@oiltacfuel.com</p>
+                  <h4 className="font-semibold mb-3">Company Information</h4>
+                  <div className="space-y-2 text-sm">
+                    <p><strong>Company:</strong> FUKASAWA CHEMICAL LABORATORY INC.</p>
+                    <p><strong>Address:</strong> 14-24, Tamagawagakuen 8-chome, Machida-shi, Tokyo, 194-0041 JAPAN</p>
+                    <p><strong>Phone:</strong> +81-0427-26-9201</p>
                   </div>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Hazard Identification */}
+          {/* Section 2: Hazards Identification */}
           <Card className="mb-8">
             <CardHeader>
               <CardTitle className="text-xl text-oiltac-dark flex items-center">
@@ -79,31 +84,145 @@ const MSDS = () => {
                   <h4 className="font-semibold mb-3">Hazard Statements</h4>
                   <ul className="list-disc list-inside text-sm space-y-1">
                     <li>Flammable liquid and vapor</li>
-                    <li>May be fatal if swallowed and enters airways</li>
-                    <li>Causes skin irritation and serious eye irritation</li>
-                    <li>May cause drowsiness or dizziness</li>
+                    <li>May be fatal if swallowed and enters airways - do not siphon by mouth</li>
+                    <li>Causes skin irritation. Repeated or prolonged skin contact can cause dermatitis</li>
+                    <li>May cause drowsiness or dizziness by inhalation</li>
+                    <li>May cause irritation to respiratory system</li>
                     <li>Toxic to aquatic life with long lasting effects</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-3">Precautionary Statements</h4>
+                  <h4 className="font-semibold mb-3">Precautionary Statements - Prevention</h4>
                   <ul className="list-disc list-inside text-sm space-y-1">
                     <li>Keep away from heat, sparks, open flames, welding, and hot surfaces</li>
-                    <li>No smoking. Use explosion-proof electrical equipment</li>
-                    <li>Wear protective gloves, clothing, and eye/face protection</li>
-                    <li>Avoid release into the environment</li>
+                    <li>No smoking</li>
+                    <li>Keep container capped. Keep away from heat and sources of ignition</li>
+                    <li>Use explosion-proof electric apparatus and non-sparking tools</li>
+                    <li>Provide antistatic measures. Do earth if transferred to other containers</li>
                   </ul>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Physical & Chemical Properties */}
+          {/* Section 6: Accidental Release Measures */}
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="text-xl text-oiltac-dark flex items-center">
+                <AlertTriangle className="mr-2 text-yellow-500" size={24} />
+                Section 6: Accidental Release Measures
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold mb-3">Personal Precautions</h4>
+                  <div className="text-sm space-y-1">
+                    <p>Activate emergency response plan. Stay upwind and evacuate non-essential personnel. Eliminate ignition sources. Prevent product from entering sewers or waterways.</p>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-3">Environmental Precautions</h4>
+                  <div className="text-sm space-y-1">
+                    <p>Contain spills. Avoid contamination of water sources. Use foam or water spray to suppress vapors.</p>
+                  </div>
+                  <h4 className="font-semibold mb-3 mt-4">Methods for Cleaning Up</h4>
+                  <div className="text-sm space-y-1">
+                    <p>Use absorbent materials. Scoop into suitable waste container. Ensure proper PPE is worn.</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Section 7: Handling and Storage */}
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="text-xl text-oiltac-dark flex items-center">
+                <Wind className="mr-2 text-green-500" size={24} />
+                Section 7: Handling and Storage
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold mb-3">Precautions for Safe Handling</h4>
+                  <ul className="list-disc list-inside text-sm space-y-1">
+                    <li>Keep away from heat and open flame</li>
+                    <li>Ground/bond containers. Use non-sparking tools</li>
+                    <li>Handle in well-ventilated areas</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-3">Conditions for Safe Storage</h4>
+                  <ul className="list-disc list-inside text-sm space-y-1">
+                    <li>Store in cool, ventilated area away from oxidizers and acids</li>
+                    <li>Keep container tightly closed</li>
+                    <li>Avoid static discharge</li>
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Section 8: Exposure Controls / Personal Protection */}
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="text-xl text-oiltac-dark flex items-center">
+                <Shield className="mr-2 text-purple-500" size={24} />
+                Section 8: Exposure Controls / Personal Protection
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="mb-6">
+                <h4 className="font-semibold mb-3">Exposure Limits</h4>
+                <p className="text-sm">TLV-TWA (ACGIH): 200 mg/m³ (iso-paraffins)</p>
+              </div>
+              
+              <div className="mb-6">
+                <h4 className="font-semibold mb-3">Engineering Controls</h4>
+                <p className="text-sm">Use local exhaust ventilation. Provide eyewash station nearby.</p>
+              </div>
+
+              <div className="grid md:grid-cols-4 gap-4">
+                <div className="text-center">
+                  <div className="bg-blue-50 rounded-lg p-4 mb-2">
+                    <Eye className="mx-auto text-blue-600" size={32} />
+                  </div>
+                  <p className="font-semibold text-sm">Eye Protection</p>
+                  <p className="text-xs">Chemical safety goggles and full face shield</p>
+                </div>
+                <div className="text-center">
+                  <div className="bg-green-50 rounded-lg p-4 mb-2">
+                    <Shield className="mx-auto text-green-600" size={32} />
+                  </div>
+                  <p className="font-semibold text-sm">Hand Protection</p>
+                  <p className="text-xs">Nitrile, neoprene, or PVC gloves</p>
+                </div>
+                <div className="text-center">
+                  <div className="bg-purple-50 rounded-lg p-4 mb-2">
+                    <Wind className="mx-auto text-purple-600" size={32} />
+                  </div>
+                  <p className="font-semibold text-sm">Respiratory</p>
+                  <p className="text-xs">NIOSH-approved vapor respirator when exposure limits are exceeded</p>
+                </div>
+                <div className="text-center">
+                  <div className="bg-orange-50 rounded-lg p-4 mb-2">
+                    <Shield className="mx-auto text-orange-600" size={32} />
+                  </div>
+                  <p className="font-semibold text-sm">Clothing</p>
+                  <p className="text-xs">Lab coat, gloves, boots, vapor respirator</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Section 9: Physical and Chemical Properties */}
           <Card className="mb-8">
             <CardHeader>
               <CardTitle className="text-xl text-oiltac-dark flex items-center">
                 <ThermometerSun className="mr-2 text-red-500" size={24} />
-                Section 9: Physical & Chemical Properties
+                Section 9: Physical and Chemical Properties
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -111,11 +230,11 @@ const MSDS = () => {
                 <div className="space-y-3">
                   <div>
                     <p className="font-semibold text-sm">Appearance</p>
-                    <p className="text-sm">Clear to straw-colored liquid</p>
+                    <p className="text-sm">Clear to straw colored liquid</p>
                   </div>
                   <div>
                     <p className="font-semibold text-sm">Odor</p>
-                    <p className="text-sm">Characteristic petroleum or kerosene-like</p>
+                    <p className="text-sm">Characteristic petroleum or kerosene-like odor</p>
                   </div>
                   <div>
                     <p className="font-semibold text-sm">Odor Threshold</p>
@@ -127,50 +246,42 @@ const MSDS = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-sm">Melting/Freezing Point</p>
-                    <p className="text-sm">&lt; -20°C</p>
+                    <p className="text-sm">&lt; -40°C</p>
                   </div>
                 </div>
                 <div className="space-y-3">
                   <div>
-                    <p className="font-semibold text-sm">Initial Boiling Point</p>
+                    <p className="font-semibold text-sm">Boiling Point & Range</p>
                     <p className="text-sm">150 - 370°C</p>
                   </div>
                   <div>
                     <p className="font-semibold text-sm">Flash Point</p>
-                    <p className="text-sm text-red-600">62°C</p>
+                    <p className="text-sm text-red-600">62.5°C</p>
                   </div>
                   <div>
-                    <p className="font-semibold text-sm">Explosive Limits</p>
-                    <p className="text-sm">Upper 7.0% (Vol.), Lower 1.0% (Vol.)</p>
+                    <p className="font-semibold text-sm">Upper Explosive Limit</p>
+                    <p className="text-sm">7.0% (Vol.)</p>
                   </div>
                   <div>
-                    <p className="font-semibold text-sm">Vapor Density</p>
-                    <p className="text-sm">4 - 5 (air = 1)</p>
+                    <p className="font-semibold text-sm">Lower Explosive Limit</p>
+                    <p className="text-sm">1.0% (Vol.)</p>
                   </div>
                   <div>
-                    <p className="font-semibold text-sm">Density</p>
-                    <p className="text-sm">0.77 g/cm³</p>
+                    <p className="font-semibold text-sm">Vapor Pressure</p>
+                    <p className="text-sm">&lt; 0.35 kPa (37.8°C)</p>
                   </div>
                 </div>
                 <div className="space-y-3">
                   <div>
-                    <p className="font-semibold text-sm">Water Solubility</p>
-                    <p className="text-sm">Negligible</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm">Partition Coefficient</p>
-                    <p className="text-sm">Not determined</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm">Ignition Point</p>
-                    <p className="text-sm text-red-600">240°C</p>
+                    <p className="font-semibold text-sm">Vapor Density</p>
+                    <p className="text-sm">4-5 (air = 1)</p>
                   </div>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Stability and Reactivity */}
+          {/* Section 10: Stability and Reactivity */}
           <Card className="mb-8">
             <CardHeader>
               <CardTitle className="text-xl text-oiltac-dark flex items-center">
@@ -181,28 +292,27 @@ const MSDS = () => {
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-semibold mb-3">Chemical Stability & Reactivity</h4>
-                  <ul className="list-disc list-inside text-sm space-y-1">
-                    <li>Vapor may form explosive mixture with air</li>
-                    <li>Stable under normal conditions</li>
-                    <li>Can react with strong oxidizers, peroxides, acids, and alkalis</li>
-                  </ul>
+                  <h4 className="font-semibold mb-3">Reactivity</h4>
+                  <p className="text-sm mb-3">Vapors may form explosive mixtures with air. No hazardous polymerization expected.</p>
+                  
+                  <h4 className="font-semibold mb-3">Chemical Stability</h4>
+                  <p className="text-sm mb-3">Stable under normal conditions.</p>
+                  
+                  <h4 className="font-semibold mb-3">Incompatible Materials</h4>
+                  <p className="text-sm">Strong oxidizers, acids, alkalis.</p>
                 </div>
                 <div>
                   <h4 className="font-semibold mb-3">Conditions to Avoid</h4>
-                  <ul className="list-disc list-inside text-sm space-y-1">
-                    <li>Heat, sparks, flame, smoking, and static discharge</li>
-                  </ul>
-                  <h4 className="font-semibold mb-3 mt-4">Hazardous Decomposition Products</h4>
-                  <ul className="list-disc list-inside text-sm space-y-1">
-                    <li>Carbon monoxide, CO2, hydrocarbons, sulfur dioxide</li>
-                  </ul>
+                  <p className="text-sm mb-3">Heat, sparks, flames, static discharge.</p>
+                  
+                  <h4 className="font-semibold mb-3">Hazardous Decomposition Products</h4>
+                  <p className="text-sm">Carbon monoxide, carbon dioxide, hydrocarbons, sulfur dioxide.</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Toxicological Information */}
+          {/* Section 11: Toxicological Information */}
           <Card className="mb-8">
             <CardHeader>
               <CardTitle className="text-xl text-oiltac-dark flex items-center">
@@ -215,195 +325,122 @@ const MSDS = () => {
                 <div>
                   <h4 className="font-semibold mb-3">Acute Effects</h4>
                   <div className="space-y-2 text-sm">
-                    <p><strong>Skin Irritation:</strong> Causes skin dryness, cracking, and dermatitis</p>
-                    <p><strong>Eye Irritation:</strong> May cause eye irritation</p>
-                    <p><strong>Inhalation:</strong> Vapors may affect respiratory system and central nervous system</p>
+                    <p><strong>Skin Irritation:</strong> Irritating. Repeated contact may cause dermatitis.</p>
+                    <p><strong>Eye Irritation:</strong> May cause irritation.</p>
+                    <p><strong>Inhalation:</strong> May cause dizziness, headache, respiratory irritation.</p>
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-3">Chronic Effects</h4>
+                  <h4 className="font-semibold mb-3">Chronic Effects & Toxicity Data</h4>
                   <div className="space-y-2 text-sm">
-                    <p><strong>Chronic Exposure:</strong> Long-term exposure may cause systemic toxicity in lab animals</p>
+                    <p><strong>Chronic Effects:</strong> Prolonged skin contact linked to cancer in lab animals.</p>
+                    <p><strong>Oral Toxicity (LD₅₀, rat):</strong> &gt; 5,000 mg/kg</p>
+                    <p><strong>Dermal Toxicity (LD₅₀, rabbit):</strong> &gt; 2,000 mg/kg</p>
                   </div>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Safety Measures */}
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
-            {/* First Aid */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg text-oiltac-dark flex items-center">
-                  <Eye className="mr-2 text-blue-500" size={20} />
-                  Section 4: First Aid Measures
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <div>
-                    <p className="font-semibold text-sm">Eye Contact</p>
-                    <p className="text-sm">Flush with clean water for 15 minutes. Seek medical attention if irritation persists.</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm">Skin Contact</p>
-                    <p className="text-sm">Wash with soap and water. Remove contaminated clothing.</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm">Inhalation</p>
-                    <p className="text-sm">Move to fresh air. Seek medical attention if symptoms persist.</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm">Ingestion</p>
-                    <p className="text-sm">Do not induce vomiting. Seek immediate medical attention.</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Fire Fighting */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg text-oiltac-dark flex items-center">
-                  <Droplets className="mr-2 text-red-500" size={20} />
-                  Section 5: Fire Fighting Measures
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <div>
-                    <p className="font-semibold text-sm">Suitable Extinguishing Media</p>
-                    <p className="text-sm">Foam, dry chemical, CO2, water spray</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm">Unsuitable Media</p>
-                    <p className="text-sm">Direct water stream</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm">Special Hazards</p>
-                    <p className="text-sm">May produce toxic gases when heated</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm">Protection</p>
-                    <p className="text-sm">Use self-contained breathing apparatus</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Handling & Storage */}
+          {/* Section 12: Ecological Information */}
           <Card className="mb-8">
             <CardHeader>
               <CardTitle className="text-xl text-oiltac-dark flex items-center">
-                <Wind className="mr-2 text-green-500" size={24} />
-                Section 6: Handling & Storage
+                <Droplets className="mr-2 text-blue-500" size={24} />
+                Section 12: Ecological Information
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-semibold mb-3">Safe Handling</h4>
-                  <ul className="list-disc list-inside text-sm space-y-1">
-                    <li>Use only with adequate ventilation</li>
-                    <li>Avoid contact with eyes and skin</li>
-                    <li>Keep away from heat, sparks, and open flames</li>
-                    <li>Use explosion-proof electrical equipment</li>
-                    <li>Ground and bond containers during transfer</li>
-                  </ul>
+                  <div className="space-y-2 text-sm">
+                    <p><strong>Ecotoxicity:</strong> Unknown</p>
+                    <p><strong>Persistence and Degradability:</strong> Unknown</p>
+                  </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-3">Storage Conditions</h4>
-                  <ul className="list-disc list-inside text-sm space-y-1">
-                    <li>Store in cool, dry, well-ventilated area</li>
-                    <li>Keep containers tightly closed</li>
-                    <li>Store away from incompatible materials</li>
-                    <li>Temperature range: 5°C to 35°C</li>
-                    <li>Protect from direct sunlight</li>
-                  </ul>
+                  <div className="space-y-2 text-sm">
+                    <p><strong>Bioaccumulative Potential:</strong> Unknown</p>
+                    <p><strong>Mobility in Soil:</strong> Unknown</p>
+                  </div>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Personal Protection */}
+          {/* Section 13: Disposal Considerations */}
           <Card className="mb-8">
             <CardHeader>
               <CardTitle className="text-xl text-oiltac-dark flex items-center">
-                <Shield className="mr-2 text-purple-500" size={24} />
-                Section 7: Personal Protective Equipment
+                <FileText className="mr-2 text-gray-500" size={24} />
+                Section 13: Disposal Considerations
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid md:grid-cols-4 gap-4">
-                <div className="text-center">
-                  <div className="bg-blue-50 rounded-lg p-4 mb-2">
-                    <Eye className="mx-auto text-blue-600" size={32} />
-                  </div>
-                  <p className="font-semibold text-sm">Eye Protection</p>
-                  <p className="text-xs">Safety glasses or goggles</p>
+              <p className="text-sm">
+                Dispose of in accordance with local, regional, national, and international regulations. Do not 
+                release into the environment. Use licensed waste disposal contractors.
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Section 14: Transport Information */}
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="text-xl text-oiltac-dark flex items-center">
+                <Wind className="mr-2 text-blue-500" size={24} />
+                Section 14: Transport Information
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold mb-3">Precautions</h4>
+                  <p className="text-sm">Keep away from sources of ignition. Ensure proper labeling and containment.</p>
                 </div>
-                <div className="text-center">
-                  <div className="bg-green-50 rounded-lg p-4 mb-2">
-                    <Shield className="mx-auto text-green-600" size={32} />
-                  </div>
-                  <p className="font-semibold text-sm">Hand Protection</p>
-                  <p className="text-xs">Chemical resistant gloves</p>
-                </div>
-                <div className="text-center">
-                  <div className="bg-purple-50 rounded-lg p-4 mb-2">
-                    <Wind className="mx-auto text-purple-600" size={32} />
-                  </div>
-                  <p className="font-semibold text-sm">Respiratory</p>
-                  <p className="text-xs">When ventilation inadequate</p>
-                </div>
-                <div className="text-center">
-                  <div className="bg-orange-50 rounded-lg p-4 mb-2">
-                    <Shield className="mx-auto text-orange-600" size={32} />
-                  </div>
-                  <p className="font-semibold text-sm">Clothing</p>
-                  <p className="text-xs">Chemical resistant apron</p>
+                <div>
+                  <h4 className="font-semibold mb-3">Transport Regulations</h4>
+                  <p className="text-sm">Comply with applicable domestic and international transport laws.</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Other Information */}
+          {/* Section 15: Regulatory Information */}
           <Card className="mb-8">
             <CardHeader>
               <CardTitle className="text-xl text-oiltac-dark flex items-center">
-                <Shield className="mr-2 text-gray-500" size={24} />
+                <Shield className="mr-2 text-green-500" size={24} />
+                Section 15: Regulatory Information
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-sm space-y-1">
+                <p>• Fire Defence Law: Hazardous material, Class 4 Petroleum No.2</p>
+                <p>• Industrial Safety and Health Law: Indication required</p>
+                <p>• Ship Safety Law / Aviation Law: Inflammable liquid</p>
+                <p>• Marine Pollution Prevention Law: Effluent control</p>
+                <p>• Chemical Management Law: Class 1 designated substance</p>
+                <p>• Port Regulation Law / Road Vehicles Act: Explosive liquid</p>
+                <p>• Sewerage / Water Pollution Control Law: Effluent control of oils</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Section 16: Other Information */}
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="text-xl text-oiltac-dark flex items-center">
+                <FileText className="mr-2 text-gray-500" size={24} />
                 Section 16: Other Information
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                 <p className="text-sm">
-                  The information herein is accurate to the best of our knowledge as of the date of issue. 
-                  It is intended for safe handling, use, processing, transport, and disposal of the material. 
-                  This does not constitute a warranty or quality specification.
+                  This information is accurate to the best of our knowledge as of the date issued. It is intended 
+                  only as guidance for safe handling and use. It does not constitute a warranty or guarantee.
                 </p>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Emergency Contact */}
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle className="text-xl text-oiltac-dark flex items-center">
-                <Phone className="mr-2 text-red-500" size={24} />
-                Section 8: Emergency Contact Information
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                <div className="text-center">
-                  <p className="font-semibold text-lg mb-2">24-Hour Emergency Response</p>
-                  <p className="text-sm mb-1"><strong>CHEMTREC:</strong> 1-800-424-9300 (US)</p>
-                  <p className="text-sm mb-1"><strong>International:</strong> +1-703-527-3887</p>
-                  <p className="text-sm"><strong>Product Information:</strong> info@oiltacfuel.com</p>
-                </div>
               </div>
             </CardContent>
           </Card>
