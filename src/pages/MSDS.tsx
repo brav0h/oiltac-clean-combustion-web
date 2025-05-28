@@ -1,4 +1,3 @@
-
 import { AlertTriangle, Shield, ThermometerSun, Droplets, Eye, Wind, Phone, FileText } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -16,10 +15,19 @@ const MSDS = () => {
               OILTAC-NP
             </div>
             <div className="text-lg text-gray-700 mb-2">
-              FUKASAWA CHEMICAL LABORATORY INC.
+              Manufacturer: Fukasawa Chemical Laboratory Inc.
             </div>
-            <div className="text-sm text-gray-600">
-              14-24, Tamagawagakuen 8-chome, Machida-shi, Tokyo, 194-0041 JAPAN
+            <div className="text-sm text-gray-600 mb-2">
+              Tokyo, Japan
+            </div>
+            <div className="text-lg text-gray-700 mb-2">
+              Distributed by: Chie Tsiang Enterprise
+            </div>
+            <div className="text-sm text-gray-600 mb-2">
+              Authorized Distributor
+            </div>
+            <div className="text-sm text-gray-600 mb-2">
+              info@oiltacfuel.com
             </div>
             <div className="text-sm text-gray-600">
               Date Issued: MAR. 1st, 2019
@@ -46,9 +54,10 @@ const MSDS = () => {
                 <div>
                   <h4 className="font-semibold mb-3">Company Information</h4>
                   <div className="space-y-2 text-sm">
-                    <p><strong>Company:</strong> FUKASAWA CHEMICAL LABORATORY INC.</p>
-                    <p><strong>Address:</strong> 14-24, Tamagawagakuen 8-chome, Machida-shi, Tokyo, 194-0041 JAPAN</p>
-                    <p><strong>Phone:</strong> +81-0427-26-9201</p>
+                    <p><strong>Manufacturer:</strong> Fukasawa Chemical Laboratory Inc.</p>
+                    <p><strong>Location:</strong> Tokyo, Japan</p>
+                    <p><strong>Distributed by:</strong> Chie Tsiang Enterprise</p>
+                    <p><strong>Contact:</strong> info@oiltacfuel.com</p>
                   </div>
                 </div>
               </div>
