@@ -4,16 +4,14 @@ import { Button } from "@/components/ui/button";
 import Navigation from "./Navigation";
 
 const Hero = () => {
-  const scrollToIndustries = () => {
-    console.log('Button clicked, looking for industries section');
-    const industriesSection = document.getElementById('industries');
-    console.log('Industries section found:', industriesSection);
-    if (industriesSection) {
-      industriesSection.scrollIntoView({ behavior: 'smooth' });
+  const scrollToContact = () => {
+    console.log('Button clicked, looking for contact section');
+    const contactSection = document.getElementById('contact');
+    console.log('Contact section found:', contactSection);
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
     } else {
-      console.log('Industries section not found, trying alternative scroll');
-      // Fallback - scroll to approximate position
-      window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+      console.log('Contact section not found');
     }
   };
 
@@ -46,7 +44,7 @@ const Hero = () => {
           </p>
           <Button 
             className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white py-6 px-8 text-lg rounded-md flex items-center gap-2 relative z-30"
-            onClick={scrollToIndustries}
+            onClick={scrollToContact}
           >
             See How Much You Could Save
             <ArrowRight size={20} />
