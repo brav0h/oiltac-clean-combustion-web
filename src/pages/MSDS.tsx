@@ -1,3 +1,4 @@
+
 import { AlertTriangle, Shield, ThermometerSun, Droplets, Eye, Wind, Phone } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -41,8 +42,8 @@ const MSDS = () => {
                   <h4 className="font-semibold mb-2">Company Information</h4>
                   <div className="space-y-1 text-sm">
                     <p><strong>Company:</strong> FUKASAWA CHEMICAL LABORATORY INC.</p>
-                    <p><strong>Address:</strong> Available upon request</p>
-                    <p><strong>Phone:</strong> Available upon request</p>
+                    <p><strong>Address:</strong> 14-24, Tamagawagakuen 8-chome, Machida-shi, Tokyo, 194-0041 JAPAN</p>
+                    <p><strong>Phone:</strong> +81-0427-26-8201</p>
                     <p><strong>Email:</strong> info@oiltacfuel.com</p>
                   </div>
                 </div>
@@ -127,7 +128,7 @@ const MSDS = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-sm">Melting/Freezing Point</p>
-                    <p className="text-sm">< -20°C</p>
+                    <p className="text-sm">&lt; -20°C</p>
                   </div>
                 </div>
                 <div className="space-y-3">
