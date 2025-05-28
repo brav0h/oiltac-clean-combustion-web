@@ -24,10 +24,10 @@ const Hero = () => {
       
       <div className="container-custom min-h-[90vh] relative z-20 flex flex-col justify-center pt-20">
         <div className="max-w-3xl backdrop-blur-sm bg-black/30 p-8 rounded-lg">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">
             Cut Fuel Costs by Up to 11% — Without Changing a Single Part of Your Engine
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-gray-100">
+          <p className="text-lg md:text-xl mb-8 text-gray-100">
             <span className="text-white font-semibold">OILTAC</span> is a natural enzyme fuel additive that enhances combustion, reduces soot and emissions, and helps engines run cleaner — from diesel to bunker fuel.
           </p>
           <Button 
