@@ -4,6 +4,13 @@ import { Button } from "@/components/ui/button";
 import Navigation from "./Navigation";
 
 const Hero = () => {
+  const scrollToIndustries = () => {
+    const industriesSection = document.getElementById('industries');
+    if (industriesSection) {
+      industriesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="relative">
       <div className="absolute inset-0 z-50">
@@ -32,12 +39,7 @@ const Hero = () => {
           </p>
           <Button 
             className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white py-6 px-8 text-lg rounded-md flex items-center gap-2"
-            onClick={() => {
-              const industriesSection = document.getElementById('industries');
-              if (industriesSection) {
-                industriesSection.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
+            onClick={scrollToIndustries}
           >
             See Use Cases for Your Industry
             <ArrowRight size={20} />

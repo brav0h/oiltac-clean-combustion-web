@@ -1,4 +1,3 @@
-
 import { FileText } from "lucide-react";
 
 const Footer = () => {
@@ -50,21 +49,9 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Resources</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors flex items-center">
-                  <FileText size={16} className="mr-2" />
-                  Technical Data Sheet
-                </a>
-              </li>
-              <li>
                 <a href="/msds" className="text-gray-300 hover:text-white transition-colors flex items-center">
                   <FileText size={16} className="mr-2" />
                   Safety Data Sheet
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors flex items-center">
-                  <FileText size={16} className="mr-2" />
-                  Case Studies
                 </a>
               </li>
             </ul>
