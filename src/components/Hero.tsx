@@ -10,6 +10,10 @@ const Hero = () => {
     console.log('Industries section found:', industriesSection);
     if (industriesSection) {
       industriesSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      console.log('Industries section not found, trying alternative scroll');
+      // Fallback - scroll to approximate position
+      window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
     }
   };
 
@@ -39,13 +43,14 @@ const Hero = () => {
           <p className="text-lg md:text-xl mb-8 text-gray-100">
             <span className="text-white font-semibold">OILTAC</span> is a natural enzyme fuel additive that enhances combustion, reduces soot and emissions, and helps engines run cleaner — from diesel to bunker fuel.
           </p>
-          <Button 
-            className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white py-6 px-8 text-lg rounded-md flex items-center gap-2"
+          <button 
+            className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white py-6 px-8 text-lg rounded-md flex items-center gap-2 cursor-pointer transition-colors"
             onClick={scrollToIndustries}
+            type="button"
           >
             See Use Cases for Your Industry
             <ArrowRight size={20} />
-          </Button>
+          </button>
         </div>
       </div>
     </div>
