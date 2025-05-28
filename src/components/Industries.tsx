@@ -40,25 +40,25 @@ const Industries = () => {
     {
       icon: Ship,
       title: "Maritime Operators",
-      subtitle: "Reduce bunker fuel emissions and improve engine performance at sea.",
+      subtitle: "Lower emissions, clean injectors, and improve engine performance at sea — without touching your hardware.",
       imageSrc: "/lovable-uploads/50f3319d-544b-409b-a101-93cd0d7804d2.png"
     },
     {
       icon: TrainFront,
       title: "Rail Engine Managers",
-      subtitle: "Optimize locomotive fuel efficiency and reduce maintenance costs.",
+      subtitle: "Optimize fuel combustion, reduce particulate buildup, and extend locomotive engine life.",
       imageSrc: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&auto=format&fit=crop"
     },
     {
       icon: Factory,
       title: "Industrial Plant Engineers",
-      subtitle: "Enhance boiler efficiency and meet stringent emissions requirements.",
+      subtitle: "Increase boiler and furnace efficiency while meeting strict emissions standards.",
       imageSrc: "/lovable-uploads/2af66211-fc6e-46c5-9eed-1b491d2091e6.png"
     },
     {
       icon: Truck,
       title: "Diesel Fleet Owners",
-      subtitle: "Extend engine life and reduce operational costs across your fleet.",
+      subtitle: "Reduce fuel use, prevent sludge buildup, and extend engine life across your diesel vehicle fleet.",
       imageSrc: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&auto=format&fit=crop"
     },
   ];
@@ -68,7 +68,7 @@ const Industries = () => {
       <div className="container-custom">
         <h2 className="section-title text-center text-white mb-8">Who It's For</h2>
         <p className="section-subtitle text-center text-white/80 mb-16">
-          <span className="text-white">OILTAC</span> delivers measurable benefits across multiple industries and applications.
+          <span className="text-white">OILTAC</span> helps operators in high-fuel-use industries cut costs, reduce emissions, and keep equipment running longer — without capex or retrofits.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">

@@ -12,11 +12,11 @@ const BenefitItem = ({ text }: { text: string }) => {
 
 const Benefits = () => {
   const benefits = [
-    "Reduces sludge and soot buildup",
-    "Improves fuel combustion and engine cleanliness",
-    "Cuts NOx, SOx, and PM",
-    "Works with diesel, IFO, and HFO",
-    "No engine modification needed"
+    "Up to 11% fuel savings",
+    "Clears sludge, soot, and injector buildup",
+    "Cuts NOx, SOx, smoke, and PM",
+    "Works with diesel, HFO, IFO, biodiesel",
+    "No engine modification required"
   ];
 
   return (
@@ -24,10 +24,9 @@ const Benefits = () => {
       <div className="container-custom">
         <div className="flex flex-col md:flex-row gap-12 items-center">
           <div className="md:w-1/2">
-            <h2 className="section-title text-white">What It Does</h2>
+            <h2 className="section-title text-white">What OILTAC Does</h2>
             <p className="text-lg mb-8 text-white/80">
-              OILTAC is a plant-based fuel additive that transforms how your engines perform, 
-              extending their lifetime while reducing environmental impact.
+              OILTAC is a patented plant enzyme-based fuel additive that transforms how your fuel burns. It helps you extract more energy from every drop while protecting your engine and cutting emissions.
             </p>
             
             <div className="space-y-4">

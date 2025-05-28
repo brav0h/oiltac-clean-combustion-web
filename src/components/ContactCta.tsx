@@ -71,9 +71,9 @@ const ContactCta = () => {
     <section id="contact" className="section-padding bg-gradient-soft">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto">
-          <h2 className="section-title text-center">Get In Touch</h2>
+          <h2 className="section-title text-center">Let's Talk Results</h2>
           <p className="section-subtitle text-center">
-            Let's discuss how OILTAC can benefit your specific equipment and operations.
+            Want to see how much you can save with OILTAC? Request a use case tailored to your operation.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mt-12">
@@ -95,6 +95,9 @@ const ContactCta = () => {
             </div>
             
             <div className="md:col-span-3">
+              <h3 className="text-lg font-semibold mb-4 text-oiltac-dark">
+                Tell us about your engines or fleet — we'll show you what's possible.
+              </h3>
               <form onSubmit={handleSubmit} className="space-y-4 p-6 bg-white/80 backdrop-blur-sm rounded-lg shadow-md">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
@@ -154,7 +157,7 @@ const ContactCta = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    placeholder="Tell us about your needs and how we can help"
+                    placeholder="Share any fuel types, fleet sizes, or current pain points."
                     className="w-full"
                     rows={4}
                   />
@@ -165,7 +168,7 @@ const ContactCta = () => {
                   className="bg-oiltac-forest hover:bg-oiltac-forest/90 text-white w-full py-6"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Submitting..." : "Request Information"}
+                  {isSubmitting ? "Submitting..." : "✅ Request My Results"}
                 </Button>
               </form>
             </div>
