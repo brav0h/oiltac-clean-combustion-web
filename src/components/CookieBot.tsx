@@ -9,91 +9,83 @@ declare global {
 
 const CookieBot = () => {
   useEffect(() => {
-    console.log('CookieBot: Starting script load...');
+    console.log('CookieBot: Component mounted, checking for Cookiebot script');
     
-    // Check if script already exists
-    const existingScript = document.getElementById('Cookiebot');
-    if (existingScript) {
-      console.log('CookieBot: Script already exists, removing it first');
-      existingScript.remove();
-    }
-    
-    // Load Cookiebot script
-    const script = document.createElement('script');
-    script.id = 'Cookiebot';
-    script.src = 'https://consent.cookiebot.com/uc.js';
-    script.setAttribute('data-cbid', '4374aa58-93f7-4e6a-8be7-928cdb524a9c');
-    script.setAttribute('data-blockingmode', 'auto');
-    script.setAttribute('data-culture', 'EN');
-    script.type = 'text/javascript';
-    script.async = true;
-    
-    script.onload = () => {
-      console.log('CookieBot: Script loaded successfully');
-      
-      // Wait a bit for Cookiebot to initialize, then check and show banner
-      setTimeout(() => {
-        try {
-          if (window.Cookiebot) {
-            console.log('CookieBot: Cookiebot object available', {
-              hasResponse: window.Cookiebot.hasResponse,
-              consent: window.Cookiebot.consent
-            });
-            
-            // Force show banner in incognito or when no response exists
-            if (!window.Cookiebot.hasResponse) {
-              console.log('CookieBot: No response detected, forcing banner display');
-              if (typeof window.Cookiebot.show === 'function') {
-                window.Cookiebot.show();
-              }
+    const initializeCookiebot = () => {
+      try {
+        if (window.Cookiebot) {
+          console.log('CookieBot: Cookiebot object available', {
+            hasResponse: window.Cookiebot.hasResponse,
+            consent: window.Cookiebot.consent
+          });
+          
+          // Force show banner in incognito or when no response exists
+          if (!window.Cookiebot.hasResponse) {
+            console.log('CookieBot: No response detected, forcing banner display');
+            if (typeof window.Cookiebot.show === 'function') {
+              window.Cookiebot.show();
             }
-          } else {
-            console.log('CookieBot: Cookiebot object still not available after load');
           }
-        } catch (error) {
-          console.error('CookieBot: Error during initialization check', error);
+        } else {
+          console.log('CookieBot: Cookiebot object not yet available, will retry');
+          // Retry after a short delay
+          setTimeout(initializeCookiebot, 100);
         }
-      }, 500);
+      } catch (error) {
+        console.error('CookieBot: Error during initialization', error);
+      }
     };
-    
-    script.onerror = (error) => {
-      console.error('CookieBot: Failed to load script', error);
-      // Try to reload the script once after a delay
-      setTimeout(() => {
-        console.log('CookieBot: Retrying script load...');
-        const retryScript = document.createElement('script');
-        retryScript.id = 'Cookiebot-retry';
-        retryScript.src = 'https://consent.cookiebot.com/uc.js';
-        retryScript.setAttribute('data-cbid', '4374aa58-93f7-4e6a-8be7-928cdb524a9c');
-        retryScript.setAttribute('data-blockingmode', 'auto');
-        retryScript.type = 'text/javascript';
-        retryScript.async = true;
-        
-        retryScript.onload = () => {
-          console.log('CookieBot: Retry script loaded successfully');
-        };
-        
-        retryScript.onerror = () => {
-          console.error('CookieBot: Retry also failed');
-        };
-        
-        document.head.appendChild(retryScript);
-      }, 2000);
-    };
-    
-    try {
-      document.head.appendChild(script);
-      console.log('CookieBot: Script added to head');
-    } catch (error) {
-      console.error('CookieBot: Error appending script to head', error);
-    }
 
-    return () => {
-      // Cleanup scripts on component unmount
-      const scripts = document.querySelectorAll('#Cookiebot, #Cookiebot-retry');
-      scripts.forEach(script => script.remove());
-      console.log('CookieBot: Scripts cleaned up');
-    };
+    // Check immediately if Cookiebot is already loaded
+    if (window.Cookiebot) {
+      initializeCookiebot();
+    } else {
+      // Wait for Cookiebot to load from the HTML script
+      const checkInterval = setInterval(() => {
+        if (window.Cookiebot) {
+          clearInterval(checkInterval);
+          initializeCookiebot();
+        }
+      }, 100);
+
+      // Fallback: if Cookiebot doesn't load from HTML after 10 seconds, load dynamically
+      const fallbackTimeout = setTimeout(() => {
+        if (!window.Cookiebot) {
+          console.log('CookieBot: HTML script failed to load, falling back to dynamic loading');
+          clearInterval(checkInterval);
+          
+          const script = document.createElement('script');
+          script.id = 'Cookiebot-fallback';
+          script.src = 'https://consent.cookiebot.com/uc.js';
+          script.setAttribute('data-cbid', '4374aa58-93f7-4e6a-8be7-928cdb524a9c');
+          script.setAttribute('data-blockingmode', 'auto');
+          script.setAttribute('data-culture', 'EN');
+          script.type = 'text/javascript';
+          script.async = true;
+          
+          script.onload = () => {
+            console.log('CookieBot: Fallback script loaded successfully');
+            initializeCookiebot();
+          };
+          
+          script.onerror = () => {
+            console.error('CookieBot: Fallback script also failed to load');
+          };
+          
+          document.head.appendChild(script);
+        }
+      }, 10000);
+
+      return () => {
+        clearInterval(checkInterval);
+        clearTimeout(fallbackTimeout);
+        // Clean up fallback script if it exists
+        const fallbackScript = document.getElementById('Cookiebot-fallback');
+        if (fallbackScript) {
+          fallbackScript.remove();
+        }
+      };
+    }
   }, []);
 
   return null;
