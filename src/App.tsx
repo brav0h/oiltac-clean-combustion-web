@@ -9,6 +9,7 @@ import MSDS from "./pages/MSDS";
 import NotFound from "./pages/NotFound";
 import CookieBot from "./components/CookieBot";
 import CookieBotDeclaration from "./components/CookieBotDeclaration";
+import GoogleTagManager from "./components/GoogleTagManager";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const App = () => (
       <Sonner />
       <CookieBot />
       <CookieBotDeclaration />
+      <GoogleTagManager />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
