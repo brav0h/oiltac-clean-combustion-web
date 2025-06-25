@@ -11,6 +11,13 @@ const CookieBot = () => {
   useEffect(() => {
     console.log('CookieBot: Starting script load...');
     
+    // Check if script already exists
+    const existingScript = document.getElementById('Cookiebot');
+    if (existingScript) {
+      console.log('CookieBot: Script already exists');
+      return;
+    }
+    
     // Load Cookiebot script
     const script = document.createElement('script');
     script.id = 'Cookiebot';
@@ -25,31 +32,39 @@ const CookieBot = () => {
       
       // Check if Cookiebot is available and show banner if needed
       const checkCookiebot = () => {
-        if (window.Cookiebot) {
-          console.log('CookieBot: Cookiebot object available', {
-            hasResponse: window.Cookiebot.hasResponse,
-            consent: window.Cookiebot.consent
-          });
-          
-          // If user hasn't responded to cookies yet, ensure banner is shown
-          if (!window.Cookiebot.hasResponse) {
-            console.log('CookieBot: No response yet, showing banner');
-            window.Cookiebot.show();
+        try {
+          if (window.Cookiebot) {
+            console.log('CookieBot: Cookiebot object available', {
+              hasResponse: window.Cookiebot.hasResponse,
+              consent: window.Cookiebot.consent
+            });
+            
+            // If user hasn't responded to cookies yet, ensure banner is shown
+            if (!window.Cookiebot.hasResponse && typeof window.Cookiebot.show === 'function') {
+              console.log('CookieBot: No response yet, showing banner');
+              window.Cookiebot.show();
+            }
+          } else {
+            console.log('CookieBot: Cookiebot object not yet available, retrying...');
+            setTimeout(checkCookiebot, 100);
           }
-        } else {
-          console.log('CookieBot: Cookiebot object not yet available, retrying...');
-          setTimeout(checkCookiebot, 100);
+        } catch (error) {
+          console.error('CookieBot: Error checking Cookiebot status', error);
         }
       };
       
       checkCookiebot();
     };
     
-    script.onerror = () => {
-      console.error('CookieBot: Failed to load script');
+    script.onerror = (error) => {
+      console.error('CookieBot: Failed to load script', error);
     };
     
-    document.head.appendChild(script);
+    try {
+      document.head.appendChild(script);
+    } catch (error) {
+      console.error('CookieBot: Error appending script to head', error);
+    }
 
     return () => {
       // Cleanup script on component unmount

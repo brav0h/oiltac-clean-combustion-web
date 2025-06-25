@@ -27,17 +27,19 @@ export const useCookieConsent = () => {
     console.log('useCookieConsent: Hook initialized');
 
     const updateConsent = () => {
-      if (window.Cookiebot) {
+      if (window.Cookiebot && window.Cookiebot.consent) {
         const newConsent = {
-          necessary: window.Cookiebot.consent.necessary,
-          preferences: window.Cookiebot.consent.preferences,
-          statistics: window.Cookiebot.consent.statistics,
-          marketing: window.Cookiebot.consent.marketing,
+          necessary: window.Cookiebot.consent.necessary || false,
+          preferences: window.Cookiebot.consent.preferences || false,
+          statistics: window.Cookiebot.consent.statistics || false,
+          marketing: window.Cookiebot.consent.marketing || false,
         };
         
         console.log('useCookieConsent: Updating consent', newConsent);
         setConsent(newConsent);
-        setHasResponse(window.Cookiebot.hasResponse);
+        setHasResponse(window.Cookiebot.hasResponse || false);
+      } else {
+        console.log('useCookieConsent: Cookiebot or consent not available yet');
       }
     };
 
@@ -48,15 +50,19 @@ export const useCookieConsent = () => {
       
       // Listen for consent changes
       if (window.Cookiebot) {
-        window.Cookiebot.addEventListener('CookiebotOnAccept', () => {
-          console.log('useCookieConsent: Cookies accepted');
-          updateConsent();
-        });
-        
-        window.Cookiebot.addEventListener('CookiebotOnDecline', () => {
-          console.log('useCookieConsent: Cookies declined');
-          updateConsent();
-        });
+        try {
+          window.Cookiebot.addEventListener('CookiebotOnAccept', () => {
+            console.log('useCookieConsent: Cookies accepted');
+            updateConsent();
+          });
+          
+          window.Cookiebot.addEventListener('CookiebotOnDecline', () => {
+            console.log('useCookieConsent: Cookies declined');
+            updateConsent();
+          });
+        } catch (error) {
+          console.error('useCookieConsent: Error setting up event listeners', error);
+        }
       }
     };
 
@@ -72,8 +78,10 @@ export const useCookieConsent = () => {
   }, []);
 
   const showCookieSettings = () => {
-    if (window.Cookiebot) {
+    if (window.Cookiebot && typeof window.Cookiebot.show === 'function') {
       window.Cookiebot.show();
+    } else {
+      console.warn('useCookieConsent: Cannot show cookie settings - Cookiebot not available');
     }
   };
 
