@@ -1,5 +1,5 @@
 
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 declare global {
   interface Window {
@@ -7,33 +7,30 @@ declare global {
   }
 }
 
-interface CookieBotDeclarationProps {
-  show?: boolean;
-  onHide?: () => void;
-}
-
-const CookieBotDeclaration = ({ show = false, onHide }: CookieBotDeclarationProps) => {
-  const declarationRef = useRef<HTMLDivElement>(null);
-
+const CookieBotDeclaration = () => {
   useEffect(() => {
-    if (show && window.Cookiebot) {
-      window.Cookiebot.show();
-    }
-  }, [show]);
-
-  useEffect(() => {
+    console.log('CookieBotDeclaration: Component mounted');
+    
     // Listen for Cookiebot events
     const handleCookiebotLoad = () => {
+      console.log('CookieBotDeclaration: Cookiebot loaded event received');
+      
       if (window.Cookiebot) {
         // Set up event listeners for consent changes
         window.Cookiebot.addEventListener('CookiebotOnAccept', () => {
-          console.log('Cookies accepted');
-          onHide?.();
+          console.log('CookieBotDeclaration: Cookies accepted');
         });
         
         window.Cookiebot.addEventListener('CookiebotOnDecline', () => {
-          console.log('Cookies declined');
-          onHide?.();
+          console.log('CookieBotDeclaration: Cookies declined');
+        });
+        
+        window.Cookiebot.addEventListener('CookiebotOnDialogInit', () => {
+          console.log('CookieBotDeclaration: Dialog initialized');
+        });
+        
+        window.Cookiebot.addEventListener('CookiebotOnDialogDisplay', () => {
+          console.log('CookieBotDeclaration: Dialog displayed');
         });
       }
     };
@@ -49,10 +46,10 @@ const CookieBotDeclaration = ({ show = false, onHide }: CookieBotDeclarationProp
     return () => {
       window.removeEventListener('CookiebotOnLoad', handleCookiebotLoad);
     };
-  }, [onHide]);
+  }, []);
 
   return (
-    <div ref={declarationRef} id="CookiebotDeclaration" data-cbid="4374aa58-93f7-4e6a-8be7-928cdb524a9c" data-type="iab" />
+    <div id="CookiebotDeclaration" data-cbid="4374aa58-93f7-4e6a-8be7-928cdb524a9c" data-type="iab" />
   );
 };
 

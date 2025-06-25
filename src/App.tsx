@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import MSDS from "./pages/MSDS";
 import NotFound from "./pages/NotFound";
 import CookieBot from "./components/CookieBot";
+import CookieBotDeclaration from "./components/CookieBotDeclaration";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <CookieBot />
+      <CookieBotDeclaration />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
