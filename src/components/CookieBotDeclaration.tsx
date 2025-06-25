@@ -52,7 +52,7 @@ const CookieBotDeclaration = ({ show = false, onHide }: CookieBotDeclarationProp
   }, [onHide]);
 
   return (
-    <div ref={declarationRef} id="CookiebotDeclaration" data-cbid="YOUR_COOKIEBOT_ID" data-type="iab" />
+    <div ref={declarationRef} id="CookiebotDeclaration" data-cbid="4374aa58-93f7-4e6a-8be7-928cdb524a9c" data-type="iab" />
   );
 };
 

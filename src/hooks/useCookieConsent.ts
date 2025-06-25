@@ -1,23 +1,6 @@
 
 import { useState, useEffect } from 'react';
 
-declare global {
-  interface Window {
-    Cookiebot?: {
-      consent: {
-        necessary: boolean;
-        preferences: boolean;
-        statistics: boolean;
-        marketing: boolean;
-      };
-      hasResponse: boolean;
-      show: () => void;
-      hide: () => void;
-      addEventListener: (event: string, callback: () => void) => void;
-    };
-  }
-}
-
 export interface CookieConsent {
   necessary: boolean;
   preferences: boolean;
