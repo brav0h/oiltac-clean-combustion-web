@@ -66,45 +66,6 @@ export type Database = {
         }
         Relationships: []
       }
-      pilot_applications: {
-        Row: {
-          case_study: string | null
-          challenge: string
-          company_name: string
-          created_at: string
-          email: string
-          equipment: string
-          full_name: string
-          id: string
-          industry: string
-          phone: string | null
-        }
-        Insert: {
-          case_study?: string | null
-          challenge: string
-          company_name: string
-          created_at?: string
-          email: string
-          equipment: string
-          full_name: string
-          id?: string
-          industry: string
-          phone?: string | null
-        }
-        Update: {
-          case_study?: string | null
-          challenge?: string
-          company_name?: string
-          created_at?: string
-          email?: string
-          equipment?: string
-          full_name?: string
-          id?: string
-          industry?: string
-          phone?: string | null
-        }
-        Relationships: []
-      }
     }
     Views: {
       [_ in never]: never
