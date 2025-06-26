@@ -7,12 +7,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import MSDS from "./pages/MSDS";
 import NotFound from "./pages/NotFound";
+import Cookiebot from "./components/Cookiebot";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <Cookiebot />
       <Toaster />
       <Sonner />
       <BrowserRouter>
