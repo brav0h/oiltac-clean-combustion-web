@@ -7,20 +7,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import MSDS from "./pages/MSDS";
 import NotFound from "./pages/NotFound";
-import ErrorBoundary from "./components/ErrorBoundary";
+// We have removed the ErrorBoundary import
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <ErrorBoundary>
+  // We have removed the <ErrorBoundary> wrapper for now
+  <>
     <Helmet>
-      {/* 
-        This is the corrected implementation.
-        We are placing the <script> tag directly inside <Helmet>
-        instead of using the script={[...]} prop.
-      */}
       <title>OILTAC - Clean Combustion Across Industries</title>
-      
       <script
         id="Cookiebot"
         src="https://consent.cookiebot.com/uc.js"
@@ -30,7 +25,6 @@ const App = () => (
       ></script>
     </Helmet>
 
-    {/* The rest of the application remains unchanged */}
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
@@ -44,7 +38,7 @@ const App = () => (
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
-  </ErrorBoundary>
+  </>
 );
 
 export default App;
