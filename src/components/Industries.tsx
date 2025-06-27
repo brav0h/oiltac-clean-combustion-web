@@ -41,7 +41,7 @@ const Industries = () => {
       icon: Ship,
       title: "Maritime Operators",
       subtitle: "Lower emissions, clean injectors, and improve engine performance at sea — without touching your hardware.",
-      imageSrc: "/lovable-uploads/50f3319d-544b-409b-a101-93cd0d7804d2.png"
+      imageSrc: "/images/maritime-ship.png"
     },
     {
       icon: TrainFront,
@@ -53,7 +53,7 @@ const Industries = () => {
       icon: Factory,
       title: "Industrial Plant Engineers",
       subtitle: "Increase boiler and furnace efficiency while meeting strict emissions standards.",
-      imageSrc: "/lovable-uploads/2af66211-fc6e-46c5-9eed-1b491d2091e6.png"
+      imageSrc: "/images/industrial-plant.png"
     },
     {
       icon: Truck,
