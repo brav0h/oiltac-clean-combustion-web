@@ -1,3 +1,4 @@
+
 import { FileText } from "lucide-react";
 
 const Footer = () => {
@@ -52,6 +53,11 @@ const Footer = () => {
                 <a href="/msds" className="text-gray-300 hover:text-white transition-colors flex items-center">
                   <FileText size={16} className="mr-2" />
                   Safety Data Sheet
+                </a>
+              </li>
+              <li>
+                <a href="/privacy-policy" className="text-gray-300 hover:text-white transition-colors">
+                  Privacy Policy
                 </a>
               </li>
             </ul>

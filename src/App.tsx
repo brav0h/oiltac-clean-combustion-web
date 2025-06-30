@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Toaster } from "@/components/ui/toaster";
@@ -7,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import MSDS from "./pages/MSDS";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 // The ErrorBoundary import has been removed.
 
@@ -69,6 +71,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/msds" element={<MSDS />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
