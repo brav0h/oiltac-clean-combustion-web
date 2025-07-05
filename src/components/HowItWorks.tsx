@@ -121,6 +121,21 @@ const HowItWorks = () => {
                       </div>
                     </td>
                   </tr>
+                  <tr className="bg-gray-50">
+                    <td className="px-6 py-4 text-sm font-medium text-gray-900">Fuel compatibility</td>
+                    <td className="px-6 py-4 text-center">
+                      <div className="flex items-center justify-center gap-2 text-yellow-600">
+                        <AlertTriangle size={20} />
+                        <span>Limited</span>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      <div className="flex items-center justify-center gap-2 text-green-600">
+                        <Check size={20} />
+                        <span>Universal (diesel, HFO, VLSFO, ULSFO, biodiesel)</span>
+                      </div>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -169,6 +184,13 @@ const HowItWorks = () => {
                     <span className="text-sm">Yes</span>
                   </div>
                 </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm">Fuel compatibility</span>
+                  <div className="flex items-center gap-1 text-yellow-600">
+                    <AlertTriangle size={16} />
+                    <span className="text-sm">Limited</span>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -213,6 +235,13 @@ const HowItWorks = () => {
                     <span className="text-sm">Post-combustion</span>
                   </div>
                 </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm">Fuel compatibility</span>
+                  <div className="flex items-center gap-1 text-green-600">
+                    <Check size={16} />
+                    <span className="text-sm">Universal</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -234,7 +263,7 @@ const HowItWorks = () => {
             </div>
             <div className="flex items-start gap-3">
               <Check className="text-primary mt-1 flex-shrink-0" size={20} />
-              <p className="text-gray-700">Works with diesel, HFO, biodiesel — without risk</p>
+              <p className="text-gray-700">Works with diesel, HFO, biodiesel — and low-sulfur marine fuels like VLSFO and ULSFO</p>
             </div>
             <div className="flex items-start gap-3">
               <Check className="text-primary mt-1 flex-shrink-0" size={20} />
