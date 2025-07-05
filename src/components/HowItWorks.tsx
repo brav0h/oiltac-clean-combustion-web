@@ -14,7 +14,7 @@ const HowItWorks = () => {
             Not all fuel additives are created equal.
           </p>
           <p className="text-lg text-gray-600 max-w-4xl mx-auto mt-4">
-            Unlike traditional chemical additives that modify fuel properties directly, OILTAC uses plant-based enzymes that activate only during combustion. That means your fuel remains untouched — but burns cleaner, faster, and more completely.
+            Unlike traditional chemical additives that modify fuel properties directly, OILTAC uses plant-based enzymes that stay dormant in the fuel until combustion begins. At ignition, these enzymes activate and catalyze a cleaner, more complete burn — unlocking more energy from every drop of fuel without altering its chemistry.
           </p>
         </div>
 
