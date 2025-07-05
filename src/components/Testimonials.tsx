@@ -13,7 +13,7 @@ const Testimonials = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
           <Card className="bg-white/20 backdrop-blur-sm border-0">
             <CardContent className="pt-6">
               <div className="mb-4">
@@ -32,52 +32,6 @@ const Testimonials = () => {
                 <div>
                   <p className="font-semibold text-white">Maritime Fleet Manager</p>
                   <p className="text-sm text-white/90">Intl. Shipping Co.</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card className="bg-white/20 backdrop-blur-sm border-0">
-            <CardContent className="pt-6">
-              <div className="mb-4">
-                <div className="flex space-x-1">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-oiltac-copper" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                    </svg>
-                  ))}
-                </div>
-              </div>
-              <p className="italic mb-4 text-white font-medium">
-                "OILTAC helped us stay ahead of emissions targets. <strong>The reduction in maintenance costs alone justified the investment.</strong>"
-              </p>
-              <div className="flex items-center">
-                <div>
-                  <p className="font-semibold text-white">Chief Engineer</p>
-                  <p className="text-sm text-white/90">Rail Authority</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card className="bg-white/20 backdrop-blur-sm border-0">
-            <CardContent className="pt-6">
-              <div className="mb-4">
-                <div className="flex space-x-1">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-oiltac-copper" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                    </svg>
-                  ))}
-                </div>
-              </div>
-              <p className="italic mb-4 text-white font-medium">
-                "<strong>15% reduction in soot and particulate matter</strong>... The results were visible within the first month."
-              </p>
-              <div className="flex items-center">
-                <div>
-                  <p className="font-semibold text-white">Maintenance Director</p>
-                  <p className="text-sm text-white/90">Industrial Manufacturing Plant</p>
                 </div>
               </div>
             </CardContent>
@@ -105,6 +59,38 @@ const Testimonials = () => {
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Injector Condition - Before & After Section */}
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold text-center text-white mb-4">
+            📸 Injector Condition – Before &amp; After
+          </h3>
+          <p className="text-lg text-center text-white/90 mb-8 max-w-2xl mx-auto">
+            The following images show real injector tips from the lab test: one using untreated fuel, and the other after 100 hours on OILTAC-treated fuel.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="text-center">
+              <img 
+                src="/lovable-uploads/d077b200-1c73-4f68-a6ad-c14a4c55d411.png" 
+                alt="Injector tip with untreated fuel showing buildup and deposits"
+                className="w-full h-auto rounded-lg shadow-lg mb-4"
+              />
+              <p className="text-white font-semibold">Before: Untreated Fuel</p>
+              <p className="text-white/80 text-sm">Heavy carbon buildup and deposits</p>
+            </div>
+            
+            <div className="text-center">
+              <img 
+                src="/lovable-uploads/4c9806db-d499-4e8b-a00f-3459f47bdf87.png" 
+                alt="Clean injector tip after 100 hours with OILTAC treatment"
+                className="w-full h-auto rounded-lg shadow-lg mb-4"
+              />
+              <p className="text-white font-semibold">After: 100 Hours with OILTAC</p>
+              <p className="text-white/80 text-sm">Visibly cleaner with minimal deposits</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
