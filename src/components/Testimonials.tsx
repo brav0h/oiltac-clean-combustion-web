@@ -109,7 +109,7 @@ const Testimonials = () => {
                 alt="Exhaust and suction valves comparison showing untreated vs OILTAC treated"
                 className="w-full h-auto rounded-lg shadow-lg mb-4"
               />
-              <p className="text-white font-semibold">Exhaust Valves Comparison</p>
+              <p className="text-white font-semibold">Before: Exhaust Valves</p>
               <p className="text-white/80 text-sm">Untreated</p>
             </div>
             
@@ -119,7 +119,7 @@ const Testimonials = () => {
                 alt="Suction valves comparison showing cleaner condition with OILTAC treatment"
                 className="w-full h-auto rounded-lg shadow-lg mb-4"
               />
-              <p className="text-white font-semibold">Suction Valves Comparison</p>
+              <p className="text-white font-semibold">After: Exhaust Valves</p>
               <p className="text-white/80 text-sm">Treated with OILTAC</p>
             </div>
           </div>
