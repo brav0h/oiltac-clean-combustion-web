@@ -73,7 +73,7 @@ const Testimonials = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="text-center">
               <img 
-                src="/lovable-uploads/4db4bbe7-3f15-4c74-884e-22c85bbc6e50.png" 
+                src="/lovable-uploads/bb1c2fd7-8f99-4a4f-b75e-6676b4d8f1d6.png" 
                 alt="Injection nozzle with untreated fuel showing buildup and deposits"
                 className="w-full h-auto rounded-lg shadow-lg mb-4"
               />
@@ -83,7 +83,7 @@ const Testimonials = () => {
             
             <div className="text-center">
               <img 
-                src="/lovable-uploads/bb1c2fd7-8f99-4a4f-b75e-6676b4d8f1d6.png" 
+                src="/lovable-uploads/4db4bbe7-3f15-4c74-884e-22c85bbc6e50.png" 
                 alt="Clean injection nozzle after 100 hours with OILTAC treatment"
                 className="w-full h-auto rounded-lg shadow-lg mb-4"
               />
