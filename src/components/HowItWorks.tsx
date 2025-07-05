@@ -47,17 +47,17 @@ const HowItWorks = () => {
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   <tr>
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">Alters fuel chemistry</td>
+                    <td className="px-6 py-4 text-sm font-medium text-gray-900">Doesn't alter fuel chemistry</td>
+                    <td className="px-6 py-4 text-center">
+                      <div className="flex items-center justify-center gap-2 text-yellow-600">
+                        <AlertTriangle size={20} />
+                        <span>No</span>
+                      </div>
+                    </td>
                     <td className="px-6 py-4 text-center">
                       <div className="flex items-center justify-center gap-2 text-green-600">
                         <Check size={20} />
                         <span>Yes</span>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 text-center">
-                      <div className="flex items-center justify-center gap-2 text-red-500">
-                        <span className="text-lg">❌</span>
-                        <span>No</span>
                       </div>
                     </td>
                   </tr>
@@ -136,6 +136,21 @@ const HowItWorks = () => {
                       </div>
                     </td>
                   </tr>
+                  <tr>
+                    <td className="px-6 py-4 text-sm font-medium text-gray-900">Compatible without affecting fuel compliance or engine performance</td>
+                    <td className="px-6 py-4 text-center">
+                      <div className="flex items-center justify-center gap-2 text-yellow-600">
+                        <AlertTriangle size={20} />
+                        <span>Depends on fuel type</span>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      <div className="flex items-center justify-center gap-2 text-green-600">
+                        <Check size={20} />
+                        <span>Yes (diesel, HFO, VLSFO, ULSFO, biodiesel)</span>
+                      </div>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -150,10 +165,10 @@ const HowItWorks = () => {
               </h4>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm">Alters fuel chemistry</span>
-                  <div className="flex items-center gap-1 text-green-600">
-                    <Check size={16} />
-                    <span className="text-sm">Yes</span>
+                  <span className="text-sm">Doesn't alter fuel chemistry</span>
+                  <div className="flex items-center gap-1 text-yellow-600">
+                    <AlertTriangle size={16} />
+                    <span className="text-sm">No</span>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
@@ -191,6 +206,13 @@ const HowItWorks = () => {
                     <span className="text-sm">Limited</span>
                   </div>
                 </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm">Compliance & performance</span>
+                  <div className="flex items-center gap-1 text-yellow-600">
+                    <AlertTriangle size={16} />
+                    <span className="text-sm">Depends on fuel</span>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -201,10 +223,10 @@ const HowItWorks = () => {
               </h4>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm">Alters fuel chemistry</span>
-                  <div className="flex items-center gap-1 text-red-500">
-                    <span>❌</span>
-                    <span className="text-sm">No</span>
+                  <span className="text-sm">Doesn't alter fuel chemistry</span>
+                  <div className="flex items-center gap-1 text-green-600">
+                    <Check size={16} />
+                    <span className="text-sm">Yes</span>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
@@ -240,6 +262,13 @@ const HowItWorks = () => {
                   <div className="flex items-center gap-1 text-green-600">
                     <Check size={16} />
                     <span className="text-sm">Universal</span>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm">Compliance & performance</span>
+                  <div className="flex items-center gap-1 text-green-600">
+                    <Check size={16} />
+                    <span className="text-sm">Yes (all fuel types)</span>
                   </div>
                 </div>
               </div>
