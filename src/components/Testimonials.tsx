@@ -92,6 +92,38 @@ const Testimonials = () => {
             </div>
           </div>
         </div>
+
+        {/* Exhaust and Suction Valves - Before & After Section */}
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold text-center text-white mb-4">
+            🔧 Exhaust &amp; Suction Valves – Before &amp; After
+          </h3>
+          <p className="text-lg text-center text-white/90 mb-8 max-w-2xl mx-auto">
+            Additional evidence from the same test showing the difference in valve condition with and without OILTAC treatment.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="text-center">
+              <img 
+                src="/lovable-uploads/bfcdc605-dad6-4446-a1b8-2a0e64d213ac.png" 
+                alt="Exhaust and suction valves comparison showing untreated vs OILTAC treated"
+                className="w-full h-auto rounded-lg shadow-lg mb-4"
+              />
+              <p className="text-white font-semibold">Exhaust Valves Comparison</p>
+              <p className="text-white/80 text-sm">Left: Untreated | Right: With OILTAC</p>
+            </div>
+            
+            <div className="text-center">
+              <img 
+                src="/lovable-uploads/0bf9ee34-9b9a-4ae9-a90c-e53b874a17fc.png" 
+                alt="Suction valves comparison showing cleaner condition with OILTAC treatment"
+                className="w-full h-auto rounded-lg shadow-lg mb-4"
+              />
+              <p className="text-white font-semibold">Suction Valves Comparison</p>
+              <p className="text-white/80 text-sm">Left: Untreated | Right: With OILTAC</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
