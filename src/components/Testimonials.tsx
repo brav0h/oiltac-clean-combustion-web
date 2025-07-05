@@ -110,7 +110,7 @@ const Testimonials = () => {
                 className="w-full h-auto rounded-lg shadow-lg mb-4"
               />
               <p className="text-white font-semibold">Exhaust Valves Comparison</p>
-              <p className="text-white/80 text-sm">Left: Untreated | Right: With OILTAC</p>
+              <p className="text-white/80 text-sm">Untreated</p>
             </div>
             
             <div className="text-center">
@@ -120,7 +120,7 @@ const Testimonials = () => {
                 className="w-full h-auto rounded-lg shadow-lg mb-4"
               />
               <p className="text-white font-semibold">Suction Valves Comparison</p>
-              <p className="text-white/80 text-sm">Left: Untreated | Right: With OILTAC</p>
+              <p className="text-white/80 text-sm">Treated with OILTAC</p>
             </div>
           </div>
         </div>
