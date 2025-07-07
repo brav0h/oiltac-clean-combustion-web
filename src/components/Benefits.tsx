@@ -40,8 +40,8 @@ const Benefits = () => {
             <div className="p-6 rounded-lg">
               <div className="relative">
                 <img 
-                  src="/lovable-uploads/bb1c2fd7-8f99-4a4f-b75e-6676b4d8f1d6.png" 
-                  alt="OILTAC ADOIL fuel additive container" 
+                  src="/lovable-uploads/32fe4240-aacc-4eba-bad1-e796fbeb53f4.png" 
+                  alt="OILTAC ADOIL fuel additive container"
                   className="rounded-lg shadow-lg object-cover h-[400px] w-full"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-black/80 text-white p-4 rounded-b-lg">
