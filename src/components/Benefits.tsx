@@ -46,7 +46,7 @@ const Benefits = () => {
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-black/80 text-white p-4 rounded-b-lg">
                   <p className="text-center font-semibold">
-                    OILTAC ADOIL - Advanced fuel additive technology
+                    Plant-based enzymes that enhance combustion naturally
                   </p>
                 </div>
               </div>
