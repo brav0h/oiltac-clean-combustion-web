@@ -42,7 +42,7 @@ const Benefits = () => {
                 <img 
                   src="/lovable-uploads/32fe4240-aacc-4eba-bad1-e796fbeb53f4.png" 
                   alt="OILTAC ADOIL fuel additive container" 
-                  className="rounded-lg shadow-lg object-cover h-[400px] w-full"
+                  className="rounded-lg shadow-lg object-contain h-auto max-h-[400px] w-full"
                 />
                 <p className="text-center font-semibold text-white mt-4">
                   Plant-based enzymes that enhance combustion naturally
