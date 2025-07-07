@@ -40,13 +40,13 @@ const Benefits = () => {
             <div className="p-6 rounded-lg">
               <div className="relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?q=80&w=2070&auto=format" 
-                  alt="Natural enzyme technology" 
+                  src="/lovable-uploads/bb1c2fd7-8f99-4a4f-b75e-6676b4d8f1d6.png" 
+                  alt="OILTAC ADOIL fuel additive container" 
                   className="rounded-lg shadow-lg object-cover h-[400px] w-full"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-black/80 text-white p-4 rounded-b-lg">
                   <p className="text-center font-semibold">
-                    Plant-based enzymes that enhance combustion naturally
+                    OILTAC ADOIL - Advanced fuel additive technology
                   </p>
                 </div>
               </div>
