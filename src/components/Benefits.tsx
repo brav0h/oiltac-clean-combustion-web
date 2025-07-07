@@ -38,17 +38,15 @@ const Benefits = () => {
           
           <div className="md:w-1/2">
             <div className="p-6 rounded-lg">
-              <div className="relative">
+              <div>
                 <img 
                   src="/lovable-uploads/32fe4240-aacc-4eba-bad1-e796fbeb53f4.png" 
-                  alt="OILTAC ADOIL fuel additive container"
+                  alt="OILTAC ADOIL fuel additive container" 
                   className="rounded-lg shadow-lg object-cover h-[400px] w-full"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-black/80 text-white p-4 rounded-b-lg">
-                  <p className="text-center font-semibold">
-                    Plant-based enzymes that enhance combustion naturally
-                  </p>
-                </div>
+                <p className="text-center font-semibold text-white mt-4">
+                  Plant-based enzymes that enhance combustion naturally
+                </p>
               </div>
             </div>
           </div>
