@@ -28,6 +28,7 @@ const Navigation = () => {
           <a href="#benefits" className="text-white hover:text-oiltac-light transition-colors">Benefits</a>
           <a href="#proven" className="text-white hover:text-oiltac-light transition-colors">Results</a>
           <a href="#why-now" className="text-white hover:text-oiltac-light transition-colors">Why Now</a>
+          <a href="/fuel-calculator" className="text-white hover:text-oiltac-light transition-colors">Calculator</a>
           <Button 
             className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white"
             onClick={scrollToContact}
@@ -78,6 +79,13 @@ const Navigation = () => {
               onClick={() => setIsOpen(false)}
             >
               Why Now
+            </a>
+            <a 
+              href="/fuel-calculator" 
+              className="text-white hover:text-oiltac-light transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              Calculator
             </a>
             <Button 
               className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white w-full"
