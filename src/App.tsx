@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import MSDS from "./pages/MSDS";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import FuelCalculator from "./pages/FuelCalculator";
+import AboutUs from "./pages/AboutUs";
 import NotFound from "./pages/NotFound";
 // The ErrorBoundary import has been removed.
 
@@ -74,6 +75,7 @@ const App = () => {
               <Route path="/msds" element={<MSDS />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/fuel-calculator" element={<FuelCalculator />} />
+              <Route path="/about-us" element={<AboutUs />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

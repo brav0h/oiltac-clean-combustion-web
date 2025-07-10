@@ -24,6 +24,7 @@ const Navigation = () => {
         </div>
         
         <div className="hidden md:flex items-center space-x-8">
+          <a href="/about-us" className="text-white hover:text-oiltac-light transition-colors">About Us</a>
           <a href="#industries" className="text-white hover:text-oiltac-light transition-colors">Industries</a>
           <a href="#benefits" className="text-white hover:text-oiltac-light transition-colors">Benefits</a>
           <a href="#proven" className="text-white hover:text-oiltac-light transition-colors">Results</a>
@@ -52,6 +53,13 @@ const Navigation = () => {
       {isOpen && (
         <div className="md:hidden bg-oiltac-dark py-4 px-4 shadow-md absolute top-16 left-0 right-0">
           <div className="flex flex-col space-y-4">
+            <a 
+              href="/about-us" 
+              className="text-white hover:text-oiltac-light transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              About Us
+            </a>
             <a 
               href="#industries" 
               className="text-white hover:text-oiltac-light transition-colors"
