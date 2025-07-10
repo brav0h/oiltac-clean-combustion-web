@@ -69,8 +69,8 @@ const FuelCalculator = () => {
           backgroundColor: '#1a434a'
         }}
       >
-        <div className="relative z-10 max-w-2xl w-full bg-transparent p-5">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-10 text-shadow">
+        <div className="relative z-10 max-w-lg w-full bg-transparent p-5">
+          <h1 className="text-2xl md:text-3xl font-bold text-white mb-10 text-shadow">
             Industrial Fuel and CO2 Savings Simulator
           </h1>
 
