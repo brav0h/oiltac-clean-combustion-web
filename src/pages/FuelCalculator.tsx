@@ -5,48 +5,46 @@ import Footer from "@/components/Footer";
 const FuelCalculator = () => {
   const [formData, setFormData] = useState({
     fuelType: "hfo",
-    fuelQuantity: 30,
+    fuelQuantity: "",
     units: "tonnes",
-    fuelCost: 650,
-    co2Cost: 50,
-    fuelSavingsPercentage: 5.1
+    fuelCost: "",
+    co2Cost: "",
+    fuelSavingsPercentage: 4.0
   });
 
   const [results, setResults] = useState({
-    additiveRequired: 0.55,
-    fuelSavings: 1.53,
-    purchaseSavings: 994.50,
-    co2Savings: 4.77,
-    co2MoneySaved: 238.68
+    additiveRequired: "---",
+    fuelSavings: "---",
+    purchaseSavings: "---",
+    co2Savings: "---",
+    co2MoneySaved: "---"
   });
 
   const calculateResults = () => {
-    const { fuelQuantity, fuelCost, co2Cost, fuelSavingsPercentage } = formData;
+    const quantity = parseFloat(formData.fuelQuantity as string) || 0;
+    const fuelCost = parseFloat(formData.fuelCost as string) || 0;
+    const co2Cost = parseFloat(formData.co2Cost as string) || 0;
+    const fuelSavingsPercentage = formData.fuelSavingsPercentage;
     
     // Calculation factors
     const CO2_EMISSION_FACTOR = 3.12; // Tonnes of CO2 per tonne of HFO
     const ADDITIVE_DOSAGE_RATE = 0.55 / 30; // Litres of additive per tonne of fuel
     
     // Calculations
-    const fuelSavings_tonnes = fuelQuantity * (fuelSavingsPercentage / 100);
+    const fuelSavings_tonnes = quantity * (fuelSavingsPercentage / 100);
     const savingsOnPurchase_usd = fuelSavings_tonnes * fuelCost;
     const co2Savings_tonnes = fuelSavings_tonnes * CO2_EMISSION_FACTOR;
     const moneySavedOnCO2_usd = co2Savings_tonnes * co2Cost;
-    const additiveRequired_litres = fuelQuantity * ADDITIVE_DOSAGE_RATE;
+    const additiveRequired_litres = quantity * ADDITIVE_DOSAGE_RATE;
 
     setResults({
-      additiveRequired: additiveRequired_litres,
-      fuelSavings: fuelSavings_tonnes,
-      purchaseSavings: savingsOnPurchase_usd,
-      co2Savings: co2Savings_tonnes,
-      co2MoneySaved: moneySavedOnCO2_usd
+      additiveRequired: additiveRequired_litres.toFixed(2),
+      fuelSavings: fuelSavings_tonnes.toFixed(2),
+      purchaseSavings: savingsOnPurchase_usd.toFixed(2),
+      co2Savings: co2Savings_tonnes.toFixed(2),
+      co2MoneySaved: moneySavedOnCO2_usd.toFixed(2)
     });
   };
-
-  // Calculate results whenever form data changes
-  useEffect(() => {
-    calculateResults();
-  }, [formData]);
 
   const handleInputChange = (field: string, value: string | number) => {
     setFormData(prev => ({
@@ -82,7 +80,7 @@ const FuelCalculator = () => {
         
         <div className="relative z-10 max-w-2xl w-full bg-transparent p-5">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-10 text-shadow">
-            Industrial Fuel and CO2 Savings Simulator
+            Savings Calculator
           </h1>
 
           <form onSubmit={handleSubmit} className="space-y-5">
@@ -114,8 +112,9 @@ const FuelCalculator = () => {
               <input
                 type="number"
                 value={formData.fuelQuantity}
-                onChange={(e) => handleInputChange('fuelQuantity', parseFloat(e.target.value) || 0)}
+                onChange={(e) => handleInputChange('fuelQuantity', e.target.value)}
                 step="any"
+                placeholder="e.g., 30"
                 className="w-full p-4 rounded-md border-0 text-base bg-white text-gray-800"
               />
             </div>
@@ -148,8 +147,9 @@ const FuelCalculator = () => {
               <input
                 type="number"
                 value={formData.fuelCost}
-                onChange={(e) => handleInputChange('fuelCost', parseFloat(e.target.value) || 0)}
+                onChange={(e) => handleInputChange('fuelCost', e.target.value)}
                 step="any"
+                placeholder="e.g., 650"
                 className="w-full p-4 rounded-md border-0 text-base bg-white text-gray-800"
               />
             </div>
@@ -165,8 +165,9 @@ const FuelCalculator = () => {
               <input
                 type="number"
                 value={formData.co2Cost}
-                onChange={(e) => handleInputChange('co2Cost', parseFloat(e.target.value) || 0)}
+                onChange={(e) => handleInputChange('co2Cost', e.target.value)}
                 step="any"
+                placeholder="e.g., 50"
                 className="w-full p-4 rounded-md border-0 text-base bg-white text-gray-800"
               />
             </div>
@@ -184,7 +185,7 @@ const FuelCalculator = () => {
             {/* Fuel Savings Percentage Slider */}
             <div>
               <label className="block text-white font-bold mb-2 text-lg">
-                Select Fuel Savings Percentage : <span className="text-white font-bold ml-2">{formData.fuelSavingsPercentage}%</span>
+                Select Fuel Savings Percentage : <span className="text-white font-bold ml-2">{formData.fuelSavingsPercentage.toFixed(1)}%</span>
               </label>
               <input
                 type="range"
@@ -213,19 +214,19 @@ const FuelCalculator = () => {
             <h2 className="text-3xl text-white font-bold mb-4">Results :</h2>
             <div className="space-y-3">
               <p className="text-xl text-white font-medium">
-                Quantity of additive required : <span className="font-bold">{results.additiveRequired.toFixed(2)}</span> litres
+                Quantity of additive required : <span className="font-bold">{results.additiveRequired}</span> litres
               </p>
               <p className="text-xl text-white font-medium">
-                Fuel savings : <span className="font-bold">{results.fuelSavings.toFixed(2)}</span> metric tonnes
+                Fuel savings : <span className="font-bold">{results.fuelSavings}</span> metric tonnes
               </p>
               <p className="text-xl text-white font-medium">
-                Savings on fuel purchase : US$<span className="font-bold">{results.purchaseSavings.toFixed(2)}</span>
+                Savings on fuel purchase : US$<span className="font-bold">{results.purchaseSavings}</span>
               </p>
               <p className="text-xl text-white font-medium">
-                CO2 savings : <span className="font-bold">{results.co2Savings.toFixed(2)}</span> metric tonnes
+                CO2 savings : <span className="font-bold">{results.co2Savings}</span> metric tonnes
               </p>
               <p className="text-xl text-white font-medium">
-                Money saved on CO2 reduction : US$<span className="font-bold">{results.co2MoneySaved.toFixed(2)}</span>
+                Money saved on CO2 reduction : US$<span className="font-bold">{results.co2MoneySaved}</span>
               </p>
             </div>
           </div>
