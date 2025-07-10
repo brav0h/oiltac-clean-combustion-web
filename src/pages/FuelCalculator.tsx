@@ -225,7 +225,7 @@ const FuelCalculator = () => {
           {/* Footer Notes */}
           <div className="mt-10 text-sm leading-relaxed text-gray-300">
             <p className="italic">
-              These results depend on the fuel quality and operational conditions. The emission factors integrated into our simulator are sourced from a VPS database. The fuel savings facilitated by OILTAC have been validated by SGS, based on tests conducted by our team.
+              Results shown are estimates based on average fuel conditions and operating environments. Actual savings may vary depending on fuel quality, engine condition, and duty cycle. Emission factors used in this calculator are based on third-party databases and internal field data. Fuel savings attributed to OILTAC have been validated through independent testing and real-world trials.
             </p>
           </div>
         </div>
