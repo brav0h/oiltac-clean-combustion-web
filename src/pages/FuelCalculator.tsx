@@ -69,12 +69,12 @@ const FuelCalculator = () => {
           backgroundColor: '#1a434a'
         }}
       >
-        <div className="relative z-10 max-w-lg w-full bg-transparent p-5">
-          <h1 className="text-2xl md:text-3xl font-bold text-white mb-10 text-shadow">
+        <div className="relative z-10 max-w-md w-full bg-transparent p-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-white mb-8 text-shadow">
             Industrial Fuel and CO2 Savings Simulator
           </h1>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4">
             {/* Fuel Type */}
             <div>
               <label className="block text-white font-bold mb-2 text-lg">
@@ -83,7 +83,7 @@ const FuelCalculator = () => {
               <select
                 value={formData.fuelType}
                 onChange={(e) => handleInputChange('fuelType', e.target.value)}
-                className="w-full p-4 rounded-md border-0 text-base bg-white text-gray-800 appearance-none bg-no-repeat bg-right pr-10"
+                className="w-full p-3 rounded-md border-0 text-sm bg-white text-gray-800 appearance-none bg-no-repeat bg-right pr-10"
                 style={{
                   backgroundImage: "url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",
                   backgroundPosition: 'right 1rem center',
@@ -106,7 +106,7 @@ const FuelCalculator = () => {
                 onChange={(e) => handleInputChange('fuelQuantity', e.target.value)}
                 step="any"
                 placeholder="e.g., 30"
-                className="w-full p-4 rounded-md border-0 text-base bg-white text-gray-800"
+                className="w-full p-3 rounded-md border-0 text-sm bg-white text-gray-800"
               />
             </div>
 
@@ -118,7 +118,7 @@ const FuelCalculator = () => {
               <select
                 value={formData.units}
                 onChange={(e) => handleInputChange('units', e.target.value)}
-                className="w-full p-4 rounded-md border-0 text-base bg-white text-gray-800 appearance-none bg-no-repeat bg-right pr-10"
+                className="w-full p-3 rounded-md border-0 text-sm bg-white text-gray-800 appearance-none bg-no-repeat bg-right pr-10"
                 style={{
                   backgroundImage: "url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",
                   backgroundPosition: 'right 1rem center',
@@ -141,7 +141,7 @@ const FuelCalculator = () => {
                 onChange={(e) => handleInputChange('fuelCost', e.target.value)}
                 step="any"
                 placeholder="e.g., 650"
-                className="w-full p-4 rounded-md border-0 text-base bg-white text-gray-800"
+                className="w-full p-3 rounded-md border-0 text-sm bg-white text-gray-800"
               />
             </div>
 
@@ -159,7 +159,7 @@ const FuelCalculator = () => {
                 onChange={(e) => handleInputChange('co2Cost', e.target.value)}
                 step="any"
                 placeholder="e.g., 50"
-                className="w-full p-4 rounded-md border-0 text-base bg-white text-gray-800"
+                className="w-full p-3 rounded-md border-0 text-sm bg-white text-gray-800"
               />
             </div>
 
@@ -168,7 +168,7 @@ const FuelCalculator = () => {
               <label className="block text-white font-bold mb-2 text-lg">
                 Additive :
               </label>
-              <div className="w-full p-4 rounded-md text-base bg-white text-gray-800 font-medium">
+              <div className="w-full p-3 rounded-md text-sm bg-white text-gray-800 font-medium">
                 OILTAC
               </div>
             </div>
@@ -194,7 +194,7 @@ const FuelCalculator = () => {
 
             <button
               type="submit"
-              className="bg-white text-gray-800 border-0 py-4 px-8 rounded-md cursor-pointer font-bold text-lg mt-3 transition-all duration-200 hover:bg-gray-100"
+              className="bg-white text-gray-800 border-0 py-3 px-6 rounded-md cursor-pointer font-bold text-base mt-3 transition-all duration-200 hover:bg-gray-100"
             >
               Calculate
             </button>
