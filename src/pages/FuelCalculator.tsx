@@ -66,18 +66,9 @@ const FuelCalculator = () => {
       <div 
         className="min-h-screen flex items-center justify-center px-5 py-20"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
           backgroundColor: '#1a434a'
         }}
       >
-        <div 
-          className="absolute inset-0" 
-          style={{ backgroundColor: 'rgba(30, 75, 84, 0.9)' }}
-        ></div>
-        
         <div className="relative z-10 max-w-2xl w-full bg-transparent p-5">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-10 text-shadow">
             Industrial Fuel and CO2 Savings Simulator
