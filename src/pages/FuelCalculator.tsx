@@ -113,51 +113,34 @@ const FuelCalculator = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Background with overlay */}
+      {/* Background with solid color */}
       <div 
-        className="min-h-screen flex items-center justify-center px-5 py-20 relative"
+        className="min-h-screen flex items-center justify-center py-4 px-4"
         style={{
-          backgroundColor: '#1a434a'
+          backgroundColor: '#1e4b54'
         }}
       >
-        {/* Background image */}
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: "url('https://i.imgur.com/vHqQ9hK.png')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-          }}
-        />
-        
-        {/* Overlay */}
-        <div 
-          className="absolute inset-0 z-10"
-          style={{
-            backgroundColor: 'rgba(30, 75, 84, 0.9)'
-          }}
-        />
-
-        <div className="relative z-20 max-w-2xl w-full bg-transparent p-4">
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-8 text-shadow">
-            Industrial Fuel and CO2 Savings Simulator
+        <div className="w-full bg-transparent p-4" style={{ maxWidth: '490px' }}>
+          <h1 className="text-3xl font-bold text-white mb-8 text-shadow">
+            Fuel & CO2 Savings Simulator
           </h1>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4">
             {/* Fuel Type */}
             <div>
-              <label className="block text-white font-bold mb-3 text-lg">
+              <label className="block text-white font-bold mb-1.5 text-sm">
                 Fuel type :
               </label>
               <select
                 value={formData.fuelType}
                 onChange={(e) => handleInputChange('fuelType', e.target.value)}
-                className="w-full p-4 rounded-md border-0 text-base bg-white text-gray-800 appearance-none bg-no-repeat bg-right pr-10"
+                className="w-full rounded border-0 bg-white text-gray-800 appearance-none bg-no-repeat bg-right pr-8"
                 style={{
+                  padding: '11px',
+                  fontSize: '0.8rem',
                   backgroundImage: "url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",
-                  backgroundPosition: 'right 1rem center',
-                  backgroundSize: '1.2em'
+                  backgroundPosition: 'right 0.8rem center',
+                  backgroundSize: '1em'
                 }}
               >
                 <option value="hfo">Heavy Fuel (HFO)</option>
@@ -167,7 +150,7 @@ const FuelCalculator = () => {
 
             {/* Fuel Quantity */}
             <div>
-              <label className="block text-white font-bold mb-3 text-lg">
+              <label className="block text-white font-bold mb-1.5 text-sm">
                 Quantity of fuel :
               </label>
               <input
@@ -176,23 +159,29 @@ const FuelCalculator = () => {
                 onChange={(e) => handleInputChange('fuelQuantity', e.target.value)}
                 step="any"
                 placeholder="Enter quantity"
-                className="w-full p-4 rounded-md border-0 text-base bg-white text-gray-800"
+                className="w-full rounded border-0 bg-white text-gray-800"
+                style={{
+                  padding: '11px',
+                  fontSize: '0.8rem'
+                }}
               />
             </div>
 
             {/* Units */}
             <div>
-              <label className="block text-white font-bold mb-3 text-lg">
+              <label className="block text-white font-bold mb-1.5 text-sm">
                 Units :
               </label>
               <select
                 value={formData.units}
                 onChange={(e) => handleInputChange('units', e.target.value)}
-                className="w-full p-4 rounded-md border-0 text-base bg-white text-gray-800 appearance-none bg-no-repeat bg-right pr-10"
+                className="w-full rounded border-0 bg-white text-gray-800 appearance-none bg-no-repeat bg-right pr-8"
                 style={{
+                  padding: '11px',
+                  fontSize: '0.8rem',
                   backgroundImage: "url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",
-                  backgroundPosition: 'right 1rem center',
-                  backgroundSize: '1.2em'
+                  backgroundPosition: 'right 0.8rem center',
+                  backgroundSize: '1em'
                 }}
               >
                 <option value="tonnes">Metric tonnes</option>
@@ -203,7 +192,7 @@ const FuelCalculator = () => {
 
             {/* Fuel Cost */}
             <div>
-              <label className="block text-white font-bold mb-3 text-lg">
+              <label className="block text-white font-bold mb-1.5 text-sm">
                 {getFuelCostLabel()}
               </label>
               <input
@@ -212,16 +201,20 @@ const FuelCalculator = () => {
                 onChange={(e) => handleInputChange('fuelCost', e.target.value)}
                 step="any"
                 placeholder="Enter cost per unit"
-                className="w-full p-4 rounded-md border-0 text-base bg-white text-gray-800"
+                className="w-full rounded border-0 bg-white text-gray-800"
+                style={{
+                  padding: '11px',
+                  fontSize: '0.8rem'
+                }}
               />
             </div>
 
             {/* CO2 Cost */}
             <div>
-              <label className="block text-white font-bold mb-3 text-lg">
+              <label className="block text-white font-bold mb-1.5 text-sm">
                 Cost of CO2 (US$/metric tonne) :
               </label>
-              <p className="text-sm text-gray-300 italic mb-3 -mt-1">
+              <p className="text-xs text-gray-300 italic mb-2 -mt-1">
                 Please note that the cost of CO2 emissions varies by country. Please ensure to check the specific rates applicable to your country.
               </p>
               <input
@@ -230,23 +223,30 @@ const FuelCalculator = () => {
                 onChange={(e) => handleInputChange('co2Cost', e.target.value)}
                 step="any"
                 placeholder="e.g., 50"
-                className="w-full p-4 rounded-md border-0 text-base bg-white text-gray-800"
+                className="w-full rounded border-0 bg-white text-gray-800"
+                style={{
+                  padding: '11px',
+                  fontSize: '0.8rem'
+                }}
               />
             </div>
 
             {/* Static OILTAC Additive */}
             <div>
-              <label className="block text-white font-bold mb-3 text-lg">
+              <label className="block text-white font-bold mb-1.5 text-sm">
                 Additive :
               </label>
-              <div className="w-full p-4 rounded-md text-base bg-white text-gray-800 font-medium">
+              <div className="w-full rounded bg-white text-gray-800 font-medium" style={{
+                padding: '11px',
+                fontSize: '0.8rem'
+              }}>
                 OILTAC
               </div>
             </div>
 
             {/* Fuel Savings Percentage Slider */}
             <div>
-              <label className="block text-white font-bold mb-3 text-lg">
+              <label className="block text-white font-bold mb-1.5 text-sm">
                 Select Fuel Savings Percentage : <span className="text-white font-bold ml-2">{formData.fuelSavingsPercentage.toFixed(1)}%</span>
               </label>
               <input
@@ -256,8 +256,9 @@ const FuelCalculator = () => {
                 step="0.1"
                 value={formData.fuelSavingsPercentage}
                 onChange={(e) => handleInputChange('fuelSavingsPercentage', parseFloat(e.target.value))}
-                className="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer mt-3 slider"
+                className="w-full bg-gray-300 rounded appearance-none cursor-pointer mt-2"
                 style={{
+                  height: '6px',
                   background: '#ddd'
                 }}
               />
@@ -265,38 +266,42 @@ const FuelCalculator = () => {
 
             <button
               type="submit"
-              className="bg-white text-gray-800 border-0 py-4 px-8 rounded-md cursor-pointer font-bold text-lg mt-4 transition-all duration-200 hover:bg-gray-100"
+              className="bg-white text-gray-800 border-0 rounded cursor-pointer font-bold mt-2 transition-all duration-200 hover:bg-gray-100"
+              style={{
+                padding: '11px 22px',
+                fontSize: '0.9rem'
+              }}
             >
               Calculate
             </button>
           </form>
 
           {/* Results Section */}
-          <div className="mt-10">
-            <h2 className="text-3xl text-white font-bold mb-6">Results :</h2>
-            <div className="space-y-3">
-              <p className="text-xl text-white font-medium">
+          <div style={{ marginTop: '30px' }}>
+            <h2 className="text-white font-bold mb-3" style={{ fontSize: '1.4rem' }}>Results :</h2>
+            <div className="space-y-2">
+              <p className="text-white font-medium" style={{ fontSize: '0.95rem' }}>
                 Quantity of additive required : <span className="font-bold">{results.additiveRequired}</span> litres
               </p>
-              <p className="text-xl text-white font-medium">
+              <p className="text-white font-medium" style={{ fontSize: '0.95rem' }}>
                 Fuel savings : <span className="font-bold">{results.fuelSavings}</span> {getFuelSavingsUnit()}
               </p>
-              <p className="text-xl text-white font-medium">
+              <p className="text-white font-medium" style={{ fontSize: '0.95rem' }}>
                 Savings on fuel purchase : US$<span className="font-bold">{results.purchaseSavings}</span>
               </p>
-              <p className="text-xl text-white font-medium">
+              <p className="text-white font-medium" style={{ fontSize: '0.95rem' }}>
                 CO2 savings : <span className="font-bold">{results.co2Savings}</span> metric tonnes
               </p>
-              <p className="text-xl text-white font-medium">
+              <p className="text-white font-medium" style={{ fontSize: '0.95rem' }}>
                 Money saved on CO2 reduction : US$<span className="font-bold">{results.co2MoneySaved}</span>
               </p>
             </div>
           </div>
 
           {/* Footer Notes */}
-          <div className="mt-10 text-sm leading-relaxed text-gray-300">
+          <div style={{ marginTop: '30px', fontSize: '0.7rem' }} className="leading-relaxed text-gray-300">
             <p className="italic">
-              Results shown are estimates based on average fuel conditions and operating environments. Actual savings may vary depending on fuel quality, engine condition, and duty cycle. Emission factors used in this calculator are based on third-party databases and internal field data. Fuel savings attributed to OILTAC have been validated through independent testing and real-world trials.
+              The results from this simulator are based on the proven performance of OILTAC, validated by decades of data. From the 1970s through the early 2000s, numerous laboratory tests and extensive field trials in the agriculture, marine, and power generation industries confirmed our product's effectiveness. This legacy of success is further supported by a long history of customer testimonials. As every application is unique, please note that these are estimates and actual savings depend on your specific fuel quality, engine condition, and operational parameters.
             </p>
           </div>
         </div>
