@@ -144,5 +144,25 @@
   .glass-effect {
     @apply backdrop-blur-sm bg-white/70 shadow-md;
   }
+  
+  /* Chatbase widget customization */
+  #chatbase-bubble-button {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  
+  #chatbase-bubble-window {
+    width: 320px !important;
+    height: 480px !important;
+    max-width: 320px !important;
+    max-height: 480px !important;
+  }
+  
+  iframe[src*="chatbase.co"] {
+    width: 320px !important;
+    height: 480px !important;
+    max-width: 320px !important;
+    max-height: 480px !important;
+  }
 }
 
