@@ -40,8 +40,8 @@ const Benefits = () => {
             <div className="p-6 rounded-lg">
               <div>
                 <img 
-                  src="/lovable-uploads/8ed28859-ee1a-41b8-bc68-0ac3157bb8d9.png" 
-                  alt="OILTAC ADOIL fuel additive logo" 
+                  src="/lovable-uploads/32fe4240-aacc-4eba-bad1-e796fbeb53f4.png" 
+                  alt="OILTAC ADOIL fuel additive container" 
                   className="rounded-lg shadow-lg object-contain h-auto max-h-[400px] w-full"
                 />
                 <p className="text-center font-semibold text-white mt-4">
