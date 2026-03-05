@@ -12,14 +12,14 @@ const OurStory = () => {
           </h2>
           <div className="max-w-3xl mx-auto">
             <p className="text-lg md:text-xl text-oiltac-gray mb-8 leading-relaxed">
-              OILTAC was created in the 1970s by a close friend of my grandfather—an engineer who believed that fuel could do more than just power an engine. He developed a plant enzyme additive that quietly improved combustion, reduced deposits, and helped engines run cleaner and longer.
+              OILTAC was created in the 1970s by an engineer who believed fuel could do more than just power an engine. His plant enzyme formula quietly improved combustion, reduced deposits, and kept engines running longer.
             </p>
             <p className="text-lg md:text-xl text-oiltac-gray mb-10 leading-relaxed">
-              For decades, it was a trusted secret among operators who valued real results over marketing hype. Today, with rising fuel prices and tightening emissions regulations, I've brought that solution back—modernized, tested, and more relevant than ever.
+              For decades it was a trusted secret among operators who valued real results. Today, with rising fuel costs and tightening emissions rules, it's back — modernized and more relevant than ever.
             </p>
             <Link to="/about-us">
-              <Button className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white py-6 px-8 text-lg rounded-md flex items-center gap-2 mx-auto">
-                👉 Discover Our Full Story
+              <Button className="bg-oiltac-cta hover:bg-oiltac-cta/90 text-white py-6 px-8 text-lg rounded-md flex items-center gap-2 mx-auto">
+                Discover Our Full Story
                 <ArrowRight size={20} />
               </Button>
             </Link>

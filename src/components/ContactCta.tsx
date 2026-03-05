@@ -1,11 +1,9 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 
 const ContactCta = () => {
   const { toast } = useToast();
@@ -24,16 +22,25 @@ const ContactCta = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     setIsSubmitting(true);
     try {
-      // Insert the form data into the Supabase database
-      const { error } = await supabase
-        .from('contact_requests')
-        .insert([formData]);
-      
-      if (error) {
-        console.error('Error submitting form:', error);
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          message: formData.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        console.error("Error submitting form:", data);
         toast({
           title: "Submission failed",
           description: "There was an error submitting your request. Please try again.",
@@ -41,13 +48,13 @@ const ContactCta = () => {
         });
         return;
       }
-      
+
       // Show success message
       toast({
         title: "Information request sent",
         description: "Thank you for your interest. We'll be in touch shortly.",
       });
-      
+
       // Reset form
       setFormData({
         name: "",
@@ -56,7 +63,7 @@ const ContactCta = () => {
         message: ""
       });
     } catch (err) {
-      console.error('Exception when submitting form:', err);
+      console.error("Exception when submitting form:", err);
       toast({
         title: "Submission failed",
         description: "There was an error submitting your request. Please try again.",
@@ -165,7 +172,7 @@ const ContactCta = () => {
                 
                 <Button 
                   type="submit"
-                  className="bg-oiltac-forest hover:bg-oiltac-forest/90 text-white w-full py-6"
+                  className="bg-oiltac-cta hover:bg-oiltac-cta/90 text-white w-full py-6"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Submitting..." : "✅ Request My Results"}

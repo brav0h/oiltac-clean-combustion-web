@@ -38,7 +38,7 @@ const AboutUs = () => {
             {/* Introduction */}
             <div className="mb-16">
               <p className="text-lg leading-relaxed text-muted-foreground mb-6">
-                For decades, OILTAC has been a quiet force in agriculture, marine, and industrial power generation. First developed in the 1970s, our plant enzyme-based fuel additive was validated through extensive real-world use—improving combustion, reducing fuel waste, and extending engine life long before emissions targets became headlines.
+                For decades, OILTAC has been a trusted solution in marine, rail, and industrial power generation — validated through independent testing across four countries. First developed in the 1970s, our plant enzyme-based fuel additive was validated through extensive real-world use—improving combustion, reducing fuel waste, and extending engine life long before emissions targets became headlines.
               </p>
             </div>
 
@@ -90,9 +90,9 @@ const AboutUs = () => {
               </h2>
               <div className="grid gap-4">
                 {[
-                  "Proven Over Decades – Field-tested and used in agriculture, shipping, power generation",
+                  "Proven Over Decades – Field-tested across marine, rail, and industrial power generation",
                   "Drop-In Simplicity – No retrofitting or engine changes needed",
-                  "Real-World Savings – Fuel savings of up to 11% in verified trials",
+                  "Real-World Savings – Fuel savings of 2–6% documented in marine, locomotive, and power plant trials across four countries",
                   "Cleaner Burn, Less Maintenance – Reduced carbon buildup and soot",
                   "Built on Legacy, Revived with Purpose – A family connection to an enduring solution"
                 ].map((benefit, index) => (
@@ -132,7 +132,7 @@ const AboutUs = () => {
                 Join the operators who've trusted OILTAC for decades.
               </p>
               <Button 
-                className="bg-oiltac-copper hover:bg-oiltac-copper/90 text-white px-8 py-3 text-lg"
+                className="bg-oiltac-cta hover:bg-oiltac-cta/90 text-white px-8 py-3 text-lg"
                 onClick={scrollToContact}
               >
                 Get Started Today

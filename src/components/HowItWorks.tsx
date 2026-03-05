@@ -14,7 +14,7 @@ const HowItWorks = () => {
             Not all fuel additives are created equal.
           </p>
           <p className="text-lg text-gray-600 max-w-4xl mx-auto mt-4">
-            Unlike traditional chemical additives that modify fuel properties directly, OILTAC uses plant-based enzymes that stay dormant in the fuel until combustion begins. At ignition, these enzymes activate and catalyze a cleaner, more complete burn — unlocking more energy from every drop of fuel without altering its chemistry.
+            Unlike traditional chemical additives that modify fuel properties directly, OILTAC uses plant-based enzymes that stay dormant in the fuel until combustion begins. At ignition, these enzymes activate and catalyze a cleaner, more complete burn — unlocking more energy from every drop of fuel within your existing fuel system.
           </p>
         </div>
 
@@ -47,7 +47,7 @@ const HowItWorks = () => {
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   <tr>
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">Doesn't alter fuel chemistry</td>
+                    <td className="px-6 py-4 text-sm font-medium text-gray-900">Works within your existing fuel system — no compatibility modifications needed</td>
                     <td className="px-6 py-4 text-center">
                       <div className="flex items-center justify-center gap-2 text-yellow-600">
                         <AlertTriangle size={20} />
@@ -62,7 +62,7 @@ const HowItWorks = () => {
                     </td>
                   </tr>
                   <tr className="bg-gray-50">
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">Acts before or during combustion</td>
+                    <td className="px-6 py-4 text-sm font-medium text-gray-900">Activates during combustion — no pre-treatment or fuel system changes required</td>
                     <td className="px-6 py-4 text-center">
                       <div className="flex items-center justify-center gap-2 text-green-600">
                         <Check size={20} />
@@ -72,7 +72,7 @@ const HowItWorks = () => {
                     <td className="px-6 py-4 text-center">
                       <div className="flex items-center justify-center gap-2 text-green-600">
                         <Check size={20} />
-                        <span>During combustion only</span>
+                        <span>Activates during combustion only</span>
                       </div>
                     </td>
                   </tr>
@@ -132,7 +132,7 @@ const HowItWorks = () => {
                     <td className="px-6 py-4 text-center">
                       <div className="flex items-center justify-center gap-2 text-green-600">
                         <Check size={20} />
-                        <span>Universal (diesel, HFO, VLSFO, ULSFO, biodiesel)</span>
+                        <span>Diesel, gas oil, and heavy fuel oil (bunker A/C blend) — VLSFO/ULSFO under evaluation</span>
                       </div>
                     </td>
                   </tr>
@@ -147,7 +147,7 @@ const HowItWorks = () => {
                     <td className="px-6 py-4 text-center">
                       <div className="flex items-center justify-center gap-2 text-green-600">
                         <Check size={20} />
-                        <span>Yes (diesel, HFO, VLSFO, ULSFO, biodiesel)</span>
+                        <span>Yes (diesel, gas oil, HFO)</span>
                       </div>
                     </td>
                   </tr>
@@ -165,14 +165,14 @@ const HowItWorks = () => {
               </h4>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm">Doesn't alter fuel chemistry</span>
+                  <span className="text-sm">Works within your existing fuel system — no compatibility modifications needed</span>
                   <div className="flex items-center gap-1 text-yellow-600">
                     <AlertTriangle size={16} />
                     <span className="text-sm">No</span>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm">Acts before combustion</span>
+                  <span className="text-sm">Activates during combustion — no pre-treatment or fuel system changes required</span>
                   <div className="flex items-center gap-1 text-green-600">
                     <Check size={16} />
                     <span className="text-sm">Before</span>
@@ -223,14 +223,14 @@ const HowItWorks = () => {
               </h4>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm">Doesn't alter fuel chemistry</span>
+                  <span className="text-sm">Works within your existing fuel system — no compatibility modifications needed</span>
                   <div className="flex items-center gap-1 text-green-600">
                     <Check size={16} />
                     <span className="text-sm">Yes</span>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm">Acts during combustion</span>
+                  <span className="text-sm">Activates during combustion — no pre-treatment or fuel system changes required</span>
                   <div className="flex items-center gap-1 text-green-600">
                     <Check size={16} />
                     <span className="text-sm">During only</span>
@@ -261,14 +261,14 @@ const HowItWorks = () => {
                   <span className="text-sm">Fuel compatibility</span>
                   <div className="flex items-center gap-1 text-green-600">
                     <Check size={16} />
-                    <span className="text-sm">Universal</span>
+                    <span className="text-sm">Diesel, gas oil, HFO</span>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm">Compliance & performance</span>
                   <div className="flex items-center gap-1 text-green-600">
                     <Check size={16} />
-                    <span className="text-sm">Yes (all fuel types)</span>
+                    <span className="text-sm">Yes (diesel, gas oil, HFO)</span>
                   </div>
                 </div>
               </div>
@@ -292,7 +292,7 @@ const HowItWorks = () => {
             </div>
             <div className="flex items-start gap-3">
               <Check className="text-primary mt-1 flex-shrink-0" size={20} />
-              <p className="text-gray-700">Works with diesel, HFO, biodiesel — and low-sulfur marine fuels like VLSFO and ULSFO</p>
+              <p className="text-gray-700">Tested with diesel, gas oil, and heavy fuel oil (bunker A/C blend) — compatibility with VLSFO and ULSFO under evaluation</p>
             </div>
             <div className="flex items-start gap-3">
               <Check className="text-primary mt-1 flex-shrink-0" size={20} />

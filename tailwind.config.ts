@@ -55,10 +55,11 @@ export default {
 				oiltac: {
 					forest: '#2B6D3A',
 					earth: '#7D5A3C',
-					copper: '#16A34A',  // Slightly darker version of #22C55E
+					copper: '#C8102E',
+					cta: '#F97316',
 					light: '#F2FCE2',
 					'light-dark': '#E2E6EA',
-					dark: '#333333',
+					dark: '#1B2A4A',
 					gray: '#555555'
 				},
 				sidebar: {

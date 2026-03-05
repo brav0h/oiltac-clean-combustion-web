@@ -12,10 +12,10 @@ const BenefitItem = ({ text }: { text: string }) => {
 
 const Benefits = () => {
   const benefits = [
-    "Up to 11% fuel savings",
-    "Clears sludge, soot, and injector buildup",
-    "Cuts NOx, SOx, smoke, and PM",
-    "Works with diesel, HFO, IFO, biodiesel",
+    "Documented fuel savings across marine, rail, and industrial engine trials",
+    "Reduces soot buildup; keeps injector nozzles clear and free of sticking",
+    "Cuts NOx, smoke, and particulate matter",
+    "Works with diesel and heavy fuel oil (HFO/bunker fuel)",
     "No engine modification required"
   ];
 
@@ -26,22 +26,22 @@ const Benefits = () => {
           <div className="md:w-1/2">
             <h2 className="section-title text-white">What OILTAC Does</h2>
             <p className="text-lg mb-8 text-white/80">
-              OILTAC is a patented plant enzyme-based fuel additive that transforms how your fuel burns. It helps you extract more energy from every drop while protecting your engine and cutting emissions.
+              OILTAC is a plant enzyme-based fuel additive that transforms how your fuel burns. It helps you extract more energy from every drop while protecting your engine and reducing emissions.
             </p>
-            
+
             <div className="space-y-4">
               {benefits.map((benefit, index) => (
                 <BenefitItem key={index} text={benefit} />
               ))}
             </div>
           </div>
-          
+
           <div className="md:w-1/2">
             <div className="p-6 rounded-lg">
               <div>
-                <img 
-                  src="/lovable-uploads/32fe4240-aacc-4eba-bad1-e796fbeb53f4.png" 
-                  alt="OILTAC ADOIL fuel additive container" 
+                <img
+                  src="/lovable-uploads/32fe4240-aacc-4eba-bad1-e796fbeb53f4.png"
+                  alt="OILTAC ADOIL fuel additive container"
                   className="rounded-lg shadow-lg object-contain h-auto max-h-[400px] w-full"
                 />
                 <p className="text-center font-semibold text-white mt-4">
