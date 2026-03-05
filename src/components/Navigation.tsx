@@ -1,17 +1,16 @@
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById('pilot-cta');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-      setIsOpen(false);
-    }
+    setIsOpen(false);
+    navigate("/#pilot-cta");
   };
 
   return (
@@ -25,10 +24,10 @@ const Navigation = () => {
 
         <div className="hidden md:flex items-center space-x-8">
           <a href="/about-us" className="text-white hover:text-oiltac-light transition-colors">About Us</a>
-          <a href="#industries" className="text-white hover:text-oiltac-light transition-colors">Industries</a>
-          <a href="#benefits" className="text-white hover:text-oiltac-light transition-colors">Benefits</a>
+          <a href="/#industries" className="text-white hover:text-oiltac-light transition-colors">Industries</a>
+          <a href="/#benefits" className="text-white hover:text-oiltac-light transition-colors">Benefits</a>
           <a href="/proof" className="text-white hover:text-oiltac-light transition-colors">Proof</a>
-          <a href="#why-now" className="text-white hover:text-oiltac-light transition-colors">Why Now</a>
+          <a href="/#why-now" className="text-white hover:text-oiltac-light transition-colors">Why Now</a>
           <a href="/fuel-calculator" className="text-white hover:text-oiltac-light transition-colors">Calculator</a>
           <Button
             className="bg-oiltac-cta hover:bg-oiltac-cta/90 text-white"
@@ -54,10 +53,10 @@ const Navigation = () => {
         <div className="md:hidden bg-oiltac-dark py-4 px-4 shadow-md absolute top-16 left-0 right-0">
           <div className="flex flex-col space-y-4">
             <a href="/about-us" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>About Us</a>
-            <a href="#industries" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Industries</a>
-            <a href="#benefits" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Benefits</a>
+            <a href="/#industries" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Industries</a>
+            <a href="/#benefits" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Benefits</a>
             <a href="/proof" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Proof</a>
-            <a href="#why-now" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Why Now</a>
+            <a href="/#why-now" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Why Now</a>
             <a href="/fuel-calculator" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Calculator</a>
             <Button
               className="bg-oiltac-cta hover:bg-oiltac-cta/90 text-white w-full"
