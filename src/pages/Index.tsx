@@ -7,8 +7,8 @@ import Benefits from "@/components/Benefits";
 import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
 import WhyNow from "@/components/WhyNow";
+import HowTheTrialWorks from "@/components/HowTheTrialWorks";
 import PilotCta from "@/components/PilotCta";
-import ContactCta from "@/components/ContactCta";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -21,9 +21,9 @@ const Index = () => {
       <HowItWorks />
       <OurStory />
       <Testimonials />
-      <PilotCta />
       <WhyNow />
-      <ContactCta />
+      <HowTheTrialWorks />
+      <PilotCta />
       <Footer />
     </div>
   );

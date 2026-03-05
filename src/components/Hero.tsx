@@ -5,7 +5,7 @@ import Navigation from "./Navigation";
 
 const Hero = () => {
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
+    const contactSection = document.getElementById('pilot-cta');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }

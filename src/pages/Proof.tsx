@@ -1,6 +1,13 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import {
+  HorizCompareChart,
+  StatCard,
+  VertBarChart,
+  DepositCompareCard,
+  StatCardPair,
+} from "@/components/ProofCharts";
+import {
   Accordion,
   AccordionContent,
   AccordionItem,
@@ -62,6 +69,34 @@ const Proof = () => {
                   <p>Fuel efficiency gains of 1.5–2% were documented over the test period, with improved combustion consistency throughout. Exhaust particulate levels decreased by 14–25% in controlled measurements.</p>
                   <p>Combustion chamber deposits with OILTAC treatment were soft and easy to scrape off during inspection. Without OILTAC, deposits were hard, adhesive, and difficult to remove. Crank pin bearing wear was reduced by 21% in the comparative test.</p>
                   <p className="text-xs text-muted-foreground/70">Source: OILTAC Long Term Operation on Diesel Engine — Marine Technical Institute, Ministry of Transportation, Japan</p>
+
+                  <HorizCompareChart
+                    title="Fuel Consumption — Baseline vs. With OILTAC"
+                    baselineLabel="Baseline"
+                    treatedLabel="With OILTAC"
+                    baselineValue={100}
+                    treatedValue={98.25}
+                    treatedNote="1.5–2% improvement"
+                    source="200-hour continuous marine diesel engine test. Marine Technical Institute, Ministry of Transportation, Japan."
+                  />
+
+                  <HorizCompareChart
+                    title="Exhaust Particulate Levels — Baseline vs. With OILTAC"
+                    baselineLabel="Baseline"
+                    treatedLabel="With OILTAC"
+                    baselineValue={100}
+                    treatedValue={80.5}
+                    treatedNote="14–25% reduction"
+                    source="200-hour continuous marine diesel engine test. Marine Technical Institute, Ministry of Transportation, Japan."
+                  />
+
+                  <div className="mt-4">
+                    <StatCard
+                      value="21% reduction in crank pin bearing wear"
+                      subtext="Comparative 200-hour engine test"
+                      source="200-hour continuous marine diesel engine test. Marine Technical Institute, Ministry of Transportation, Japan."
+                    />
+                  </div>
                 </AccordionContent>
               </AccordionItem>
 
@@ -112,6 +147,16 @@ const Proof = () => {
                   <p>Controlled road testing with standard diesel fuel measured fuel consumption under two conditions: constant speed (60 km/h) and acceleration performance (30–80 km/h). Compared treated and untreated fuel under identical conditions.</p>
                   <p>Results: up to 6.8% fuel reduction at constant speed; approximately 3–4% reduction during acceleration testing. Both tests used standard diesel fuel with no other modifications.</p>
                   <p className="text-xs text-muted-foreground/70">Source: Test Results — Verification of Efficacy on Diesel Engine, Fuel Experimental Station San Donato Milanese, Italy, 1982</p>
+
+                  <VertBarChart
+                    title="Fuel Consumption Reduction by Test Condition"
+                    data={[
+                      { name: "Constant Speed (60 km/h)", value: 6.8, label: "Up to 6.8%", color: "#1a2633" },
+                      { name: "Pickup (30–80 km/h)", value: 3.5, label: "3–4%", color: "#1a2633" },
+                    ]}
+                    yLabel="% Reduction"
+                    source="Road fuel efficiency test. Fuel Experimental Station San Donato Milanese, Italy. 1982."
+                  />
                 </AccordionContent>
               </AccordionItem>
 
@@ -123,6 +168,19 @@ const Proof = () => {
                   <p>A 200-hour comparative engine test measured crank pin bearing wear and combustion chamber deposit condition with and without OILTAC. Crank pin bearing wear was reduced by 21% in the OILTAC-treated engine.</p>
                   <p>Combustion deposits in the treated engine were described as soft and easy to scrape off during inspection. In the control engine (untreated fuel), deposits were hard, adhesive, and difficult to remove — increasing the labor and downtime required during maintenance shutdowns.</p>
                   <p className="text-xs text-muted-foreground/70">Source: OILTAC Long Term Operation on Diesel Engine — Marine Technical Institute, Ministry of Transportation, Japan</p>
+
+                  <div className="mt-4">
+                    <StatCard
+                      value="21% reduction in crank pin bearing wear"
+                      subtext="200-hour comparative engine bench test"
+                    />
+                  </div>
+
+                  <DepositCompareCard
+                    title="Combustion Chamber Deposit Condition"
+                    withoutLabel="Hard, adhesive deposits — difficult to remove on inspection"
+                    withLabel="Soft deposits — easy to scrape off on inspection"
+                  />
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -163,6 +221,16 @@ const Proof = () => {
                   <p>Engine 5 at Hokkaido Electric's Okushiri Power Station was monitored over two fiscal years with OILTAC additive. Fuel consumption was compared against baseline fiscal years without the additive.</p>
                   <p>Results showed a 2–6% reduction in diesel generator fuel consumption during the monitored period. The comparison used actual operational fiscal year data — not a controlled test environment — making this a real-world performance validation.</p>
                   <p className="text-xs text-muted-foreground/70">Source: Internal Test Data — Okushiri Power Station, Hokkaido Electric, FY2001–FY2003</p>
+
+                  <VertBarChart
+                    title="Diesel Generator Fuel Consumption — Monitored Over Two Fiscal Years"
+                    data={[
+                      { name: "Baseline (no additive)", value: 100, label: "100%", color: "#e2e2e2" },
+                      { name: "With OILTAC (FY2001–03)", value: 96, label: "2–6% reduction", color: "#1a2633" },
+                    ]}
+                    yLabel="Relative consumption %"
+                    source="Two-year monitored field data. Hokkaido Electric, Okushiri Power Station, Engine 5. FY2001–2003."
+                  />
                 </AccordionContent>
               </AccordionItem>
 
@@ -175,6 +243,18 @@ const Proof = () => {
                   <p>When the additive was subsequently removed, incidents resumed. This on/off cycle confirmed the causal relationship between OILTAC and the soot reduction, rather than attributing it to external factors.</p>
                   <p>Engine oil analysis during the same period documented viscosity increase prevention, oxidation prevention, and sludge reduction — with potential oil change interval extension observed in long-term operation.</p>
                   <p className="text-xs text-muted-foreground/70">Source: Internal Test Data — Okushiri Power Station, Hokkaido Electric, Japan</p>
+
+                  <VertBarChart
+                    title="Soot & Smoke Dispersion Incidents Per Year"
+                    data={[
+                      { name: "Before OILTAC", value: 8, label: "4–12 per year", color: "#e2e2e2" },
+                      { name: "With OILTAC", value: 0, label: "0 incidents", color: "#1a2633" },
+                      { name: "After removal", value: 8, label: "Resumed", color: "#f97316" },
+                    ]}
+                    yLabel="Incidents / year"
+                    callout="Incidents dropped to zero within 2 months of introduction and resumed when the additive was removed — confirming causation."
+                    source="Soot incident monitoring. Hokkaido Electric, Okushiri Power Station."
+                  />
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -215,6 +295,13 @@ const Proof = () => {
                   <p>Field trials conducted with Bulgarian National Railways measured fuel consumption per locomotive with and without OILTAC. Results showed fuel savings of 1.9–4.4% per locomotive, equivalent to 26–57.9 kg of diesel saved per locomotive per day depending on operating conditions.</p>
                   <p>Engine oil samples analyzed spectroscopically showed no discernible quality change, indicating OILTAC did not introduce additional chemical stress to the lubricant system.</p>
                   <p className="text-xs text-muted-foreground/70">Source: Internal Test Data — Bulgarian National Railways, 1982; Bulgarian locomotive engine oil analysis</p>
+
+                  <StatCardPair
+                    card1Value="1.9–4.4% fuel savings per locomotive"
+                    card2Value="26–57.9 kg diesel saved per locomotive per day"
+                    sharedSubtext="Bulgarian National Railways field trials, 1982"
+                    source="Bulgarian National Railways field trials, 1982."
+                  />
                 </AccordionContent>
               </AccordionItem>
 
@@ -226,6 +313,16 @@ const Proof = () => {
                   <p>Korean National Railways conducted trials across 4 separate diesel train routes. Fuel savings ranged from 1.1% to 5.4% depending on the route and operating profile. An additional 1.5–2% improvement was observed at idle engine conditions.</p>
                   <p>Exhaust particulate and soot levels were reduced across all measured routes. The range of results across different routes reflects variation in duty cycle, load, and operating environment.</p>
                   <p className="text-xs text-muted-foreground/70">Source: Internal Test Data — Korean National Railways, 1984</p>
+
+                  <VertBarChart
+                    title="Fuel Savings — Korean National Railways Multi-Route Trial"
+                    data={[
+                      { name: "Active operation", value: 3.25, label: "1.1–5.4%", color: "#1a2633" },
+                      { name: "Idle conditions", value: 1.75, label: "1.5–2%", color: "#1a2633" },
+                    ]}
+                    yLabel="% fuel savings"
+                    source="Multi-route field trials across 4 diesel train routes. Korean National Railways. 1984."
+                  />
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

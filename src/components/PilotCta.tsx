@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 
 const PilotCta = () => {
   const { toast } = useToast();
@@ -11,9 +10,10 @@ const PilotCta = () => {
   const [formData, setFormData] = useState({
     name: "",
     company: "",
-    fleet_type: "",
-    engine_type: "",
+    job_title: "",
+    industry: "",
     fleet_size: "",
+    region: "",
     message: ""
   });
 
@@ -26,37 +26,48 @@ const PilotCta = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const { error } = await supabase
-        .from("contact_requests")
-        .insert([{
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+          subject: "New Pilot Request — OILTAC",
+          from_name: formData.name,
           name: formData.name,
           company: formData.company,
-          message: `[PILOT REQUEST] Fleet type: ${formData.fleet_type} | Engine type: ${formData.engine_type} | Fleet size: ${formData.fleet_size}\n\n${formData.message}`
-        }]);
+          job_title: formData.job_title,
+          industry: formData.industry,
+          fleet_size: formData.fleet_size,
+          region: formData.region,
+          message: formData.message,
+        }),
+      });
 
-      if (error) {
-        console.error("Error submitting pilot request:", error);
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        toast({
+          title: "Pilot request received",
+          description: "We'll be in touch within 2 business days.",
+        });
+
+        setFormData({
+          name: "",
+          company: "",
+          job_title: "",
+          industry: "",
+          fleet_size: "",
+          region: "",
+          message: ""
+        });
+      } else {
+        console.error("Error submitting pilot request:", data);
         toast({
           title: "Submission failed",
           description: "There was an error submitting your request. Please try again.",
           variant: "destructive",
         });
-        return;
       }
-
-      toast({
-        title: "Pilot request received",
-        description: "We\'ll be in touch within 2 business days.",
-      });
-
-      setFormData({
-        name: "",
-        company: "",
-        fleet_type: "",
-        engine_type: "",
-        fleet_size: "",
-        message: ""
-      });
     } catch (err) {
       console.error("Exception when submitting pilot request:", err);
       toast({
@@ -73,46 +84,31 @@ const PilotCta = () => {
     <section id="pilot-cta" className="section-padding" style={{ backgroundColor: "#1B2A4A" }}>
       <div className="container-custom">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-6">
-            Put OILTAC to Work on Your Fleet — Start with a Pilot
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+            Request a Pilot
           </h2>
-          <p className="text-lg text-white/80 max-w-3xl mx-auto">
-            We&apos;re currently running pilot programs with tugboat operators and maritime fleets. If you operate diesel or heavy fuel oil engines and want to see the results firsthand — with your fuel, your equipment, and your own measurement — we want to talk.
+          <p className="text-lg text-white/80 max-w-2xl mx-auto">
+            Tell us about your operation and we'll design a trial around it.
           </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-white/10 rounded-lg p-6 text-white">
-            <p className="font-semibold text-lg mb-2">No capital investment</p>
-            <p className="text-white/80 text-sm">OILTAC is added to existing fuel. No hardware changes, no retrofits, no downtime.</p>
-          </div>
-          <div className="bg-white/10 rounded-lg p-6 text-white">
-            <p className="font-semibold text-lg mb-2">Measurable results</p>
-            <p className="text-white/80 text-sm">We&apos;ll help you set up a baseline and track fuel consumption, emissions, and maintenance intervals before and after.</p>
-          </div>
-          <div className="bg-white/10 rounded-lg p-6 text-white">
-            <p className="font-semibold text-lg mb-2">Flexible start</p>
-            <p className="text-white/80 text-sm">Whether you have a single tugboat or a multi-vessel fleet, we can design a trial that fits your operation.</p>
-          </div>
         </div>
 
         <div className="max-w-2xl mx-auto">
           <form onSubmit={handleSubmit} className="bg-white/10 rounded-lg p-8 space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="pilot-name" className="block text-sm font-medium text-white/80 mb-1">Name</label>
+                <label htmlFor="pilot-name" className="block text-sm font-medium text-white/80 mb-1">Full name <span className="text-white/50">*</span></label>
                 <Input
                   id="pilot-name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  placeholder="Your name"
+                  placeholder="Your full name"
                   className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
                 />
               </div>
               <div>
-                <label htmlFor="pilot-company" className="block text-sm font-medium text-white/80 mb-1">Company</label>
+                <label htmlFor="pilot-company" className="block text-sm font-medium text-white/80 mb-1">Company name <span className="text-white/50">*</span></label>
                 <Input
                   id="pilot-company"
                   name="company"
@@ -125,48 +121,61 @@ const PilotCta = () => {
               </div>
             </div>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="pilot-job-title" className="block text-sm font-medium text-white/80 mb-1">Job title / role</label>
+                <Input
+                  id="pilot-job-title"
+                  name="job_title"
+                  value={formData.job_title}
+                  onChange={handleChange}
+                  placeholder="e.g. Fleet Manager, Engineer"
+                  className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
+                />
+              </div>
+              <div>
+                <label htmlFor="pilot-region" className="block text-sm font-medium text-white/80 mb-1">Region / country <span className="text-white/50">*</span></label>
+                <Input
+                  id="pilot-region"
+                  name="region"
+                  value={formData.region}
+                  onChange={handleChange}
+                  required
+                  placeholder="e.g. Netherlands, Southeast Asia"
+                  className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
+                />
+              </div>
+            </div>
+
             <div>
-              <label htmlFor="pilot-fleet-type" className="block text-sm font-medium text-white/80 mb-1">Fleet type</label>
+              <label htmlFor="pilot-industry" className="block text-sm font-medium text-white/80 mb-1">Industry / application type <span className="text-white/50">*</span></label>
               <select
-                id="pilot-fleet-type"
-                name="fleet_type"
-                value={formData.fleet_type}
+                id="pilot-industry"
+                name="industry"
+                value={formData.industry}
                 onChange={handleChange}
                 required
                 className="w-full rounded-md border border-white/30 bg-white/20 text-white px-3 py-2 text-sm placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
               >
-                <option value="" disabled className="text-gray-800">Select fleet type</option>
-                <option value="Maritime" className="text-gray-800">Maritime</option>
-                <option value="Railroad" className="text-gray-800">Railroad</option>
-                <option value="Industrial Plant" className="text-gray-800">Industrial Plant</option>
-                <option value="Off-Road & Mining" className="text-gray-800">Off-Road &amp; Mining</option>
+                <option value="" disabled className="text-gray-800">Select industry</option>
+                <option value="Marine" className="text-gray-800">Marine</option>
+                <option value="Power Generation" className="text-gray-800">Power Generation</option>
+                <option value="Off-Road Diesel" className="text-gray-800">Off-Road Diesel</option>
+                <option value="Industrial Heating" className="text-gray-800">Industrial Heating</option>
                 <option value="Other" className="text-gray-800">Other</option>
               </select>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="pilot-engine-type" className="block text-sm font-medium text-white/80 mb-1">Engine type</label>
-                <Input
-                  id="pilot-engine-type"
-                  name="engine_type"
-                  value={formData.engine_type}
-                  onChange={handleChange}
-                  placeholder="e.g., diesel, HFO, dual-fuel"
-                  className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
-                />
-              </div>
-              <div>
-                <label htmlFor="pilot-fleet-size" className="block text-sm font-medium text-white/80 mb-1">Fleet size</label>
-                <Input
-                  id="pilot-fleet-size"
-                  name="fleet_size"
-                  value={formData.fleet_size}
-                  onChange={handleChange}
-                  placeholder="Approximate number of engines or vessels"
-                  className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
-                />
-              </div>
+            <div>
+              <label htmlFor="pilot-fleet-size" className="block text-sm font-medium text-white/80 mb-1">Approximate fleet or equipment size</label>
+              <Input
+                id="pilot-fleet-size"
+                name="fleet_size"
+                value={formData.fleet_size}
+                onChange={handleChange}
+                placeholder='e.g. "12 vessels" or "3 generators"'
+                className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
+              />
             </div>
 
             <div>
@@ -176,7 +185,7 @@ const PilotCta = () => {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Tell us about your operation or the challenge you&apos;re facing"
+                placeholder="Tell us about your operation or any specific goals for the trial."
                 rows={4}
                 className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
               />
@@ -188,7 +197,7 @@ const PilotCta = () => {
               className="w-full py-6 text-white font-semibold text-base"
               style={{ backgroundColor: "#F97316" }}
             >
-              {isSubmitting ? "Submitting..." : "Request My Pilot"}
+              {isSubmitting ? "Submitting..." : "Submit Request"}
             </Button>
           </form>
 

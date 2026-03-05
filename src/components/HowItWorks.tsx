@@ -3,7 +3,7 @@ import { Check, AlertTriangle } from "lucide-react";
 
 const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="section-padding bg-gradient-to-b from-white to-gray-50">
+    <section id="how-oiltac-works" className="section-padding bg-gradient-to-b from-white to-gray-50">
       <div className="container-custom">
         <div className="text-center mb-16">
           <h2 className="section-title flex items-center justify-center gap-3">
@@ -304,8 +304,8 @@ const HowItWorks = () => {
             <blockquote className="text-xl font-medium text-primary italic mb-6">
               "We don't add to your fuel — we unlock its potential."
             </blockquote>
-            <Button size="lg" className="bg-primary hover:bg-primary/90">
-              View Technical Breakdown
+            <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
+              <a href="#how-it-works">See How the Trial Works</a>
             </Button>
           </div>
         </div>

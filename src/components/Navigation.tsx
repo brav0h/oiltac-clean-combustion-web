@@ -7,7 +7,7 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
+    const contactSection = document.getElementById('pilot-cta');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
       setIsOpen(false);
@@ -34,7 +34,7 @@ const Navigation = () => {
             className="bg-oiltac-cta hover:bg-oiltac-cta/90 text-white"
             onClick={scrollToContact}
           >
-            Contact Us
+            Request a Pilot
           </Button>
         </div>
 
@@ -63,7 +63,7 @@ const Navigation = () => {
               className="bg-oiltac-cta hover:bg-oiltac-cta/90 text-white w-full"
               onClick={scrollToContact}
             >
-              Contact Us
+              Request a Pilot
             </Button>
           </div>
         </div>
