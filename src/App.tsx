@@ -12,6 +12,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import FuelCalculator from "./pages/FuelCalculator";
 import AboutUs from "./pages/AboutUs";
 import NotFound from "./pages/NotFound";
+import Proof from "./pages/Proof";
 // The ErrorBoundary import has been removed.
 
 const queryClient = new QueryClient();
@@ -78,6 +79,7 @@ const App = () => {
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/fuel-calculator" element={<FuelCalculator />} />
               <Route path="/about-us" element={<AboutUs />} />
+              <Route path="/proof" element={<Proof />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

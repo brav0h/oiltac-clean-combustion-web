@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
             <a href="/" className="text-2xl font-display font-bold">
-              <span className="text-white">OIL</span><span className="text-oiltac-copper">TAC</span>
+              <span className="text-white font-bold tracking-wide">OILTAC</span>
             </a>
             <p className="mt-4 text-gray-300">
               Plant-based fuel additive technology for cleaner, more efficient combustion.
@@ -36,6 +36,11 @@ const Footer = () => {
               <li>
                 <a href="#proven" className="text-gray-300 hover:text-white transition-colors">
                   Results
+                </a>
+              </li>
+              <li>
+                <a href="/proof" className="text-gray-300 hover:text-white transition-colors">
+                  Proof
                 </a>
               </li>
               <li>
@@ -77,7 +82,8 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
-          <p>© {new Date().getFullYear()} <span className="text-white">OIL</span><span className="text-oiltac-copper">TAC</span>. All rights reserved.</p>
+          <p className="text-gray-500 text-xs mb-2">Results vary by duty cycle, fuel quality, and operating conditions. Claims reflect documented test data — not guaranteed outcomes.</p>
+          <p>© {new Date().getFullYear()} <span className="text-white font-bold">OILTAC</span>. All rights reserved.</p>
         </div>
       </div>
     </footer>
