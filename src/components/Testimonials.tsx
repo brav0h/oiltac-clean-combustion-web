@@ -128,6 +128,15 @@ const Testimonials = () => {
         <p className="text-center text-white/50 text-xs mt-12">
           Results vary by duty cycle, fuel quality, and operating conditions.
         </p>
+
+        <div className="text-center mt-6">
+          <a
+            href="/proof"
+            className="text-white/70 hover:text-white text-sm underline underline-offset-4 transition-colors"
+          >
+            View Full Test Data &amp; Field Trial Results →
+          </a>
+        </div>
       </div>
     </section>
   );

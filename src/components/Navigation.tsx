@@ -3,18 +3,25 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { useScrollDirection } from "@/hooks/useScrollDirection";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const { scrollDirection, atTop } = useScrollDirection();
 
   const scrollToContact = () => {
     setIsOpen(false);
     navigate("/#pilot-cta");
   };
 
+  const hidden = scrollDirection === "down" && !atTop;
+
   return (
-    <nav className="bg-oiltac-dark py-4 sticky top-0 z-50 shadow-sm">
+    <nav
+      className="bg-oiltac-dark py-4 fixed top-0 w-full z-50 shadow-sm transition-transform duration-300 ease-in-out"
+      style={{ transform: hidden ? "translateY(-100%)" : "translateY(0)" }}
+    >
       <div className="container-custom flex items-center justify-between">
         <div className="flex items-center">
           <a href="/" className="font-display font-bold text-xl">
