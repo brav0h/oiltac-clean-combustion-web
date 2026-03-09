@@ -150,6 +150,14 @@ const steps = [
       "Engine load vs fuel rate",
     ],
     bulletsLabel: "Common evaluation metrics include:",
+    additionalBulletsLabel: "Additional Metrics Often Evaluated",
+    additionalBullets: [
+      "DPF regeneration frequency (Tier IV engines)",
+      "Exhaust smoke opacity",
+      "Fuel consumption per engine hour",
+      "Exhaust backpressure trends",
+      "Injector cleanliness after extended use",
+    ],
   },
 ];
 
@@ -231,6 +239,22 @@ const HowTheTrialWorks = () => {
                         ))}
                       </ul>
                     )}
+                    {"additionalBulletsLabel" in step && step.additionalBulletsLabel && (
+                      <p className="text-gray-600 mb-2 mt-3">{step.additionalBulletsLabel}</p>
+                    )}
+                    {"additionalBullets" in step && step.additionalBullets && step.additionalBullets.length > 0 && (
+                      <ul className="space-y-1 pl-1">
+                        {step.additionalBullets.map((bullet) => (
+                          <li key={bullet} className="flex items-start gap-2 text-gray-600">
+                            <span
+                              className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
+                              style={{ backgroundColor: ORANGE }}
+                            />
+                            {bullet}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </div>
 
@@ -259,7 +283,7 @@ const HowTheTrialWorks = () => {
             style={{ backgroundColor: "#f9f9f9", borderTopColor: ORANGE }}
           >
             <p className="text-lg italic text-gray-700 text-center">
-              "Most trials run alongside normal operations. Your team stays in control throughout."
+              Most trials run alongside normal operations. Your team stays in control throughout.
             </p>
           </div>
 
