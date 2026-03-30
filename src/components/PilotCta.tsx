@@ -85,10 +85,10 @@ const PilotCta = () => {
       <div className="container-custom">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
-            Request a Pilot
+            Ready to Run the Numbers?
           </h2>
           <p className="text-lg text-white/80 max-w-2xl mx-auto">
-            Tell us about your operation and we'll design a trial around it.
+            The fastest way to evaluate OILTAC is to run it in your own operation.
           </p>
         </div>
 
@@ -202,7 +202,7 @@ const PilotCta = () => {
           </form>
 
           <p className="text-center text-white/60 text-sm mt-4">
-            Or email us directly at{" "}
+            Or contact us directly at{" "}
             <a href="mailto:info@oiltacfuel.com" className="text-white underline hover:text-white/80">
               info@oiltacfuel.com
             </a>

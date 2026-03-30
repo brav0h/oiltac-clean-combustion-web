@@ -67,7 +67,7 @@ const Testimonials = () => {
             Injector Condition – Before & After
           </h3>
           <p className="text-lg text-center text-white/90 mb-8 max-w-2xl mx-auto">
-            Real injector tips from a controlled long-term engine test — untreated fuel versus OILTAC-treated fuel.
+            Injector tips from a long-term controlled marine engine test. Before OILTAC: hard, adhesive carbon deposits, difficult to remove. After OILTAC: softer deposits, easier maintenance, longer service life.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -88,7 +88,7 @@ const Testimonials = () => {
                 className="w-full h-auto rounded-lg shadow-lg mb-4"
               />
               <p className="text-white font-semibold">After: OILTAC-Treated Fuel</p>
-              <p className="text-white/80 text-sm">Deposits remain soft and easy to remove — reducing maintenance time and cleaning labor</p>
+              <p className="text-white/80 text-sm">Softer deposits — easier maintenance, longer service life</p>
             </div>
           </div>
         </div>
@@ -99,7 +99,7 @@ const Testimonials = () => {
             Exhaust & Suction Valves – Before & After
           </h3>
           <p className="text-lg text-center text-white/90 mb-8 max-w-2xl mx-auto">
-            Additional evidence from the same test showing valve condition with and without OILTAC.
+            Exhaust and suction valve condition with and without OILTAC. Reduced carbon adhesion observed across the full test duration.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -110,17 +110,17 @@ const Testimonials = () => {
                 className="w-full h-auto rounded-lg shadow-lg mb-4"
               />
               <p className="text-white font-semibold">Before: Exhaust Valves</p>
-              <p className="text-white/80 text-sm">Untreated</p>
+              <p className="text-white/80 text-sm">Untreated — adhesive carbon buildup throughout test</p>
             </div>
 
             <div className="text-center">
               <img
                 src="/lovable-uploads/0bf9ee34-9b9a-4ae9-a90c-e53b874a17fc.png"
-                alt="Suction valves — OILTAC treated"
+                alt="Exhaust valves — OILTAC treated"
                 className="w-full h-auto rounded-lg shadow-lg mb-4"
               />
               <p className="text-white font-semibold">After: Exhaust Valves</p>
-              <p className="text-white/80 text-sm">Treated with OILTAC</p>
+              <p className="text-white/80 text-sm">Treated with OILTAC — reduced carbon adhesion observed</p>
             </div>
           </div>
         </div>
