@@ -236,18 +236,14 @@ export const RailRangeChart = () => (
 
 /* ── Viz 4 — Industrial Soot Timeline ────────────────────────────── */
 const sootData = [
-  { period: "FY12", incidents: 8, phase: "before", label: "~8" },
-  { period: "FY13", incidents: 10, phase: "before", label: "~10" },
-  { period: "FY14", incidents: 6, phase: "before", label: "~6" },
-  { period: "FY15*", incidents: 2, phase: "transition", label: "2" },
-  { period: "Full yr", incidents: 0, phase: "treated", label: "0" },
-  { period: "Removed", incidents: 8, phase: "removed", label: "↑" },
+  { period: "Before OILTAC", incidents: 8, phase: "before", label: "4–12/yr" },
+  { period: "During OILTAC use", incidents: 0, phase: "treated", label: "0" },
+  { period: "After withdrawal", incidents: 8, phase: "removed", label: "Resumed" },
 ];
 
 const sootPhaseColor = (phase: string): string => {
   switch (phase) {
     case "before": return BORDER_GREY;
-    case "transition": return AMBER;
     case "treated": return NAVY;
     default: return ORANGE;
   }
@@ -258,19 +254,16 @@ export const SootTimelineChart = () => (
     <p className="text-sm font-semibold mb-1" style={{ color: NAVY }}>
       Soot & Smoke Dispersion Incidents Per Year — Okushiri Power Station
     </p>
-    <p className="text-xs mb-4 rounded border border-amber-200 bg-amber-50 px-3 py-2 text-amber-800">
-      Pre-OILTAC values (FY12–14) are representative estimates within the documented 4–12 incidents/year range.
-    </p>
-    <div style={{ width: "100%", height: 230 }}>
+    <div style={{ width: "100%", height: 210 }}>
       <ResponsiveContainer width="100%" height="100%" debounce={1}>
         <BarChart
           data={sootData}
           margin={{ top: 28, right: 16, left: 8, bottom: 8 }}
-          barSize={42}
+          barSize={72}
         >
           <XAxis
             dataKey="period"
-            tick={{ fontSize: 10, fill: "#374151" }}
+            tick={{ fontSize: 11, fill: "#374151" }}
             tickLine={false}
             interval={0}
           />
@@ -300,25 +293,7 @@ export const SootTimelineChart = () => (
         </BarChart>
       </ResponsiveContainer>
     </div>
-    <div className="mt-3 flex flex-wrap gap-4 text-xs" style={{ color: TEXT_GREY }}>
-      <span className="flex items-center gap-1.5">
-        <span className="inline-block w-3 h-3 rounded-sm" style={{ backgroundColor: BORDER_GREY }} />
-        Before OILTAC (est.)
-      </span>
-      <span className="flex items-center gap-1.5">
-        <span className="inline-block w-3 h-3 rounded-sm" style={{ backgroundColor: AMBER }} />
-        First partial year
-      </span>
-      <span className="flex items-center gap-1.5">
-        <span className="inline-block w-3 h-3 rounded-sm" style={{ backgroundColor: NAVY }} />
-        With OILTAC (full yr)
-      </span>
-      <span className="flex items-center gap-1.5">
-        <span className="inline-block w-3 h-3 rounded-sm" style={{ backgroundColor: ORANGE }} />
-        After removal
-      </span>
-    </div>
-    <SourceNote text="Source: Hokkaido Electric Power, Okushiri Power Station. Pre-OILTAC range: 4–12 incidents/year. FY12–14 values are representative estimates within that range. Removal/reinstatement pattern confirmed causal relationship." />
+    <SourceNote text="Source: Hokkaido Electric Power, Okushiri Power Station. Documented range before use: 4–12 incidents/year. Incidents ceased within 2 months of introduction. Pattern confirmed by removal and reintroduction." />
   </div>
 );
 
