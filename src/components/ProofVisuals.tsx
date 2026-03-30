@@ -25,26 +25,23 @@ const SourceNote = ({ text }: { text: string }) => (
 );
 
 /* ── Viz 5 — Cross-Industry Fuel Savings ─────────────────────────── */
-/* Floating bar: invisible spacer + visible range bar                 */
+/* Single representative value per application, sorted low to high.  */
 const crossData = [
-  { name: "Marine (200-hr test, Japan)", start: 0, range: 2, label: "~2%" },
-  { name: "Rail Bulgaria", start: 1.9, range: 2.5, label: "1.9–4.4%" },
-  { name: "Rail Korea", start: 1.1, range: 4.3, label: "1.1–5.4%" },
-  { name: "Coast Guard (light oil)", start: 0, range: 4.7, label: "4.7%" },
-  { name: "Power gen / Hokkaido", start: 2, range: 4, label: "2–6%" },
-  { name: "Off-road / Italy", start: 0, range: 6.8, label: "6.8%" },
+  { name: "Marine — 200hr test, Japan", value: 2, label: "~2%" },
+  { name: "Rail — Korea", value: 3, label: "~3%" },
+  { name: "Rail — Bulgaria", value: 3.5, label: "~3.5%" },
+  { name: "Power Generation — Japan", value: 4, label: "~4%" },
+  { name: "Marine — Coast Guard Academy", value: 4.7, label: "4.7%" },
+  { name: "Heavy Equipment — Italy", value: 6.8, label: "6.8%" },
 ];
 
 export const CrossIndustryFuelChart = () => (
-  <div className="rounded-lg border bg-white p-6 shadow-sm my-8">
-    <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: ORANGE }}>
-      Cross-Industry Summary
-    </p>
-    <p className="text-base font-semibold mb-1" style={{ color: NAVY }}>
+  <div className="rounded-lg border border-white/10 bg-[#1B2A4A] p-6 my-8">
+    <p className="text-base font-semibold mb-1 text-white">
       Fuel Savings Documented Across Independent Tests
     </p>
-    <p className="text-xs mb-5" style={{ color: TEXT_GREY }}>
-      Bars show the documented range. Single-point results appear as fixed bars.
+    <p className="text-xs italic mb-5 text-white/60">
+      Representative values shown. See application sections below for full data ranges and source citations.
     </p>
     <div style={{ width: "100%", height: 330 }}>
       <ResponsiveContainer width="100%" height="100%" debounce={1}>
@@ -58,42 +55,43 @@ export const CrossIndustryFuelChart = () => (
             type="number"
             domain={[0, 8]}
             tickFormatter={(v: number) => `${v}%`}
-            tick={{ fontSize: 10, fill: TEXT_GREY }}
+            tick={{ fontSize: 10, fill: "rgba(255,255,255,0.5)" }}
             tickLine={false}
             axisLine={false}
           />
           <YAxis
             type="category"
             dataKey="name"
-            width={178}
-            tick={{ fontSize: 11, fill: "#374151" }}
+            width={195}
+            tick={{ fontSize: 11, fill: "rgba(255,255,255,0.8)" }}
             tickLine={false}
             axisLine={false}
           />
-          {/* Invisible spacer creates floating bar effect */}
-          <Bar dataKey="start" stackId="a" fill="transparent" strokeWidth={0} legendType="none" />
-          {/* Visible range bar */}
-          <Bar dataKey="range" stackId="a" fill={NAVY} radius={[0, 4, 4, 0]}>
+          <Bar dataKey="value" fill={ORANGE} radius={[0, 4, 4, 0]}>
             <LabelList
               dataKey="label"
               position="right"
-              style={{ fontSize: 11, fill: NAVY, fontWeight: 600 }}
+              style={{ fontSize: 11, fill: "rgba(255,255,255,0.9)", fontWeight: 600 }}
             />
           </Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>
-    <SourceNote text="Sources: Marine Technical Institute, Japan (1985–86); Japan Coast Guard Academy; Bulgarian National Railways (1982); Korean National Railways (1984); Hokkaido Electric, Okushiri Power Station (FY2001–03); Fuel Experimental Station San Donato Milanese, Italy (1982)." />
+    <p className="text-xs italic mt-3 text-white/50">
+      Bars show representative values from documented trials. Results vary by duty cycle, fuel type, and operating conditions.
+    </p>
+    <p className="text-xs italic mt-2 text-white/40">
+      Sources: Marine Technical Institute Japan (1985–86); Japan Coast Guard Academy; Bulgarian National Railways (1982); Korean National Railways (1984); Hokkaido Electric Okushiri Power Station (FY2001–03); Fuel Experimental Station San Donato Milanese, Italy (1982).
+    </p>
   </div>
 );
 
 /* ── Viz 1 — Marine Comprehensive Chart ──────────────────────────── */
-/* All bars go right (absolute magnitude). Navy = improvement vs baseline. Amber = adverse. */
+/* Three clean improvement metrics only. Deposit mass covered by DepositQualityCard below. */
 const marineMetrics = [
-  { metric: "Deposit mass*", change: 41, label: "+41%*", color: AMBER },
-  { metric: "Bearing wear", change: 21, label: "−21%", color: NAVY },
-  { metric: "Exhaust particulates", change: 50, label: "−50%", color: NAVY },
-  { metric: "Fuel consumption", change: 2, label: "−2%", color: NAVY },
+  { metric: "Bearing wear", change: 21, label: "−21%" },
+  { metric: "Exhaust particulates", change: 50, label: "−50%" },
+  { metric: "Fuel consumption", change: 2, label: "−2%" },
 ];
 
 export const MarineComprehensiveChart = () => (
@@ -102,9 +100,9 @@ export const MarineComprehensiveChart = () => (
       200-Hour Marine Engine Test — Key Metrics vs. Baseline
     </p>
     <p className="text-xs mb-4" style={{ color: TEXT_GREY }}>
-      Bar length = magnitude of change. Navy = improvement vs baseline. Amber = increase vs baseline (see note).
+      Key improvements vs. untreated fuel — 200-hour controlled marine engine test.
     </p>
-    <div style={{ width: "100%", height: 200 }}>
+    <div style={{ width: "100%", height: 160 }}>
       <ResponsiveContainer width="100%" height="100%" debounce={1}>
         <BarChart
           data={marineMetrics}
@@ -128,24 +126,16 @@ export const MarineComprehensiveChart = () => (
             tickLine={false}
             axisLine={false}
           />
-          <Bar dataKey="change" radius={[0, 4, 4, 0]}>
-            {marineMetrics.map((entry, i) => (
-              <Cell key={i} fill={entry.color} />
-            ))}
+          <Bar dataKey="change" fill={NAVY} radius={[0, 4, 4, 0]}>
             <LabelList
               dataKey="label"
               position="right"
-              style={{ fontSize: 11, fontWeight: 700 }}
+              style={{ fontSize: 11, fontWeight: 700, fill: NAVY }}
             />
           </Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>
-    <p className="text-xs mt-2 pl-3 border-l-2 leading-relaxed" style={{ borderColor: AMBER, color: TEXT_GREY }}>
-      * Deposit mass was 41% higher by weight with OILTAC — but deposits were soft and easily removed,
-      versus hard adhesive deposits in untreated engines. Deposit hardness, not mass, determines
-      maintenance difficulty and wear rate.
-    </p>
     <SourceNote text="Source: 200-hour continuous marine diesel engine test. Marine Technical Institute, Ministry of Transportation, Japan, 1985–1986." />
   </div>
 );
