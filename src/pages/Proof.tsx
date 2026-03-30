@@ -624,6 +624,12 @@ const Proof = () => {
                 </AccordionTrigger>
                 <AccordionContent className="text-sm text-muted-foreground space-y-2">
                   <p>It depends on your fuel spend, duty cycle, and fuel type. Use the calculator on our site for an estimate, or contact us and we'll model it against your actual operating data.</p>
+                  <a
+                    href="/fuel-calculator"
+                    className="text-[#F97316] hover:text-[#F97316]/80 font-medium transition-colors"
+                  >
+                    → Go to the Fuel Savings Calculator
+                  </a>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
