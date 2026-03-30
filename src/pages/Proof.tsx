@@ -8,6 +8,16 @@ import {
   StatCardPair,
 } from "@/components/ProofCharts";
 import {
+  CrossIndustryFuelChart,
+  MarineComprehensiveChart,
+  DepositQualityCard,
+  RailRangeChart,
+  SootTimelineChart,
+  CompatibilityMatrix,
+  TBNTrendChart,
+  EmissionsCalloutGrid,
+} from "@/components/ProofVisuals";
+import {
   Accordion,
   AccordionContent,
   AccordionItem,
@@ -111,6 +121,13 @@ const Proof = () => {
           </div>
         </section>
 
+        {/* ── Cross-Industry Summary Chart ──────────────────────────── */}
+        <section className="py-4 bg-zinc-950">
+          <div className="container-custom max-w-4xl">
+            <CrossIndustryFuelChart />
+          </div>
+        </section>
+
         {/* ── Marine ────────────────────────────────────────────────── */}
         <section id="proof-marine" className="py-20 border-b scroll-mt-28">
           <div className="container-custom max-w-4xl">
@@ -138,13 +155,8 @@ const Proof = () => {
               />
             </div>
 
-            <SectionBullets items={[
-              "Controlled 200-hour test conducted by the Marine Technical Institute, Ministry of Transportation, Japan",
-              "Fuel: A/C heavy oil blend (bunker A and C — representative of real-world marine fuel conditions)",
-              "Exhaust smoke and particulates reduced to approximately 50% of baseline and maintained at that level throughout testing",
-              "Deposits formed were soft and easily removed — versus hard, adhesive deposits in untreated engines",
-              "Lubricating oil TBN better maintained with OILTAC — indicating slower oil degradation over time",
-            ]} />
+            <MarineComprehensiveChart />
+            <DepositQualityCard />
 
             {/* Marine callout block */}
             <div className="rounded-lg bg-[#1B2A4A] text-white p-6 mb-8">
@@ -152,13 +164,8 @@ const Proof = () => {
               <h3 className="text-xl font-bold mb-4">
                 Simultaneous CO and NOx Reduction — Normally That Doesn't Happen.
               </h3>
-              <p className="text-white/80 mb-4 leading-relaxed">
-                In diesel combustion, CO and NOx typically trade off against each other — reducing one tends to increase the other. Testing at the Japan Coast Guard Academy documented simultaneous reduction in both.
-              </p>
-              <p className="text-white/80 mb-4 leading-relaxed">
-                Specific fuel consumption improved 4.7% on light oil and 3.6% on heavy oil A — the fuel types relevant to marine operations. The simultaneous emissions reduction was flagged by test engineers as technically significant.
-              </p>
-              <p className="font-semibold text-white">
+              <EmissionsCalloutGrid />
+              <p className="font-semibold text-white mt-4">
                 This finding has direct relevance for operators navigating tightening marine emissions requirements without modifying their exhaust systems.
               </p>
             </div>
@@ -201,6 +208,8 @@ const Proof = () => {
                       source="200-hour continuous marine diesel engine test. Marine Technical Institute, Ministry of Transportation, Japan."
                     />
                   </div>
+
+                  <TBNTrendChart />
                 </AccordionContent>
               </AccordionItem>
 
@@ -328,12 +337,7 @@ const Proof = () => {
               />
             </div>
 
-            <SectionBullets items={[
-              "Okushiri Power Station (Hokkaido Electric, Japan): 2–6% fuel reduction documented over two consecutive fiscal years",
-              "Soot and smoke stack incidents: from 4–12 per fiscal year to zero during OILTAC use",
-              "Pattern confirmed by removal and reinstatement — incidents resumed when product was withdrawn, ceased again on reintroduction",
-              "Engine oil degradation delayed: viscosity increase, oxidation, and sludge formation all reduced",
-            ]} />
+            <SootTimelineChart />
 
             <p className="text-xs text-muted-foreground italic mb-8 border-l-4 border-gray-200 pl-4">
               Note: The Hokkaido Electric data reflects stationary diesel generator operation — a different duty cycle from mobile marine or rail applications. Results in variable-load marine engines may differ.
@@ -415,12 +419,7 @@ const Proof = () => {
               />
             </div>
 
-            <SectionBullets items={[
-              "Bulgarian national railway field trials: 04-series locomotives saved 3.5–4.4% fuel; 07-series saved ~1.9%",
-              "Korean National Railways: fuel saving ratio 1.1–5.4% across 4 trains and routes",
-              "Spectroscopic oil analysis on Bulgarian locomotive engines showed no discernible change in oil quality — confirming no adverse effect on lubrication",
-              "Soot and exhaust particulates reduced across both programs",
-            ]} />
+            <RailRangeChart />
 
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="rail-1">
@@ -543,40 +542,7 @@ const Proof = () => {
             <h2 className="text-3xl font-display font-bold mb-6 text-[#1B2A4A]">
               Compatibility & Compliance
             </h2>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm border-collapse">
-                <thead>
-                  <tr className="border-b-2 border-[#1B2A4A]">
-                    <th className="text-left py-3 pr-8 font-semibold text-[#1B2A4A]">Parameter</th>
-                    <th className="text-left py-3 font-semibold text-[#1B2A4A]">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { param: "Diesel (ULSD)", status: "Compatible", type: "positive" },
-                    { param: "Heavy fuel oil (HFO / bunker)", status: "Compatible", type: "positive" },
-                    { param: "ASTM D975 fuel spec compliance", status: "Not affected", type: "positive" },
-                    { param: "SOLAS flash point requirement", status: "Compliant", type: "positive" },
-                    { param: "Engine modification required", status: "None", type: "positive" },
-                    { param: "Dosing hardware required", status: "None", type: "positive" },
-                    { param: "DEF / SCR systems", status: "No adverse effects observed in testing — contact us for Tier 4 SCR-specific configurations", type: "conditional" },
-                  ].map(({ param, status, type }) => (
-                    <tr key={param} className="border-b border-gray-200">
-                      <td className="py-3 pr-8 text-gray-700 font-medium">{param}</td>
-                      <td className="py-3 text-gray-600">
-                        {type === "positive" && (
-                          <span className="text-[#F97316] font-semibold mr-1.5">✓</span>
-                        )}
-                        {type === "conditional" && (
-                          <span className="text-amber-500 font-semibold mr-1.5">~</span>
-                        )}
-                        {status}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <CompatibilityMatrix />
 
             {/* Honest Data Note */}
             <div className="mt-8 rounded-lg border border-amber-200 bg-amber-50 px-6 py-5">
