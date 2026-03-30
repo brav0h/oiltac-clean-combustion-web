@@ -65,22 +65,22 @@ const IndustryCard = ({
 const Industries = () => {
   const industries = [
     {
-      title: "Maritime & Tugboat Operators",
-      descriptor: "For marine and tug operators running diesel and heavy fuel oil engines.",
+      title: "Marine & Tugboat Operations",
+      descriptor: "Fleet managers and chief engineers running high-cycle marine diesel engines where fuel is a top-three operating cost.",
       bullets: [
-        "Reduced fuel consumption observed in controlled marine engine testing",
-        "Injection nozzle sticking prevented in real-world long-term operation",
-        "Smoke and exhaust particulates decreased in controlled tests",
+        "Fuel costs are a material line item in your operating budget",
+        "Dealing with injector fouling, soot buildup, or escalating oil consumption",
+        "Under pressure to reduce emissions without a capital retrofit",
       ],
       imageSrc: "/lovable-uploads/9c599674-c722-41d9-a0d4-cd5f4fc0e969.png",
       proofHref: proofLinks.marine,
     },
     {
-      title: "Railroad & Locomotive Operators",
-      descriptor: "For railway fleets running high-hour diesel locomotive engines.",
+      title: "Rail & Locomotive Fleets",
+      descriptor: "Railway operators running high-hour diesel locomotive engines across national and regional networks.",
       bullets: [
         "Fuel savings documented across multiple national railway field trials",
-        "Lower exhaust particulate and soot levels observed in use",
+        "Exhaust soot and particulates reduced without engine modification",
         "No adverse effect on engine oil quality in long-term field data",
       ],
       imageSrc: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&auto=format&fit=crop",
@@ -88,7 +88,7 @@ const Industries = () => {
     },
     {
       title: "Industrial Plants & Power Generation",
-      descriptor: "For diesel generators, stationary engines, and industrial power facilities.",
+      descriptor: "Operators of diesel generators and stationary engines in facilities where unplanned downtime is not an option.",
       bullets: [
         "Generator fuel consumption reduced in multi-year monitored operation",
         "Soot and smoke incidents eliminated during additive use",
@@ -98,11 +98,11 @@ const Industries = () => {
       proofHref: proofLinks.industrial,
     },
     {
-      title: "Off-Road Diesel & Mining Equipment",
-      descriptor: "For heavy equipment fleets in high-load, high-hour environments.",
+      title: "Off-Road & Heavy Equipment",
+      descriptor: "Heavy equipment fleets in high-load, high-hour environments where fuel efficiency and component life directly affect margin.",
       bullets: [
-        "Fuel reduction documented at constant speed and under acceleration",
-        "Bearing wear reduced in comparative engine testing",
+        "Up to 6.8% fuel reduction at constant load in controlled testing",
+        "Bearing wear reduced in comparative 200-hour engine testing",
         "Combustion deposits softer and easier to remove versus untreated fuel",
       ],
       imageSrc: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&auto=format&fit=crop",
@@ -113,9 +113,9 @@ const Industries = () => {
   return (
     <section id="industries" className="section-padding bg-black text-white">
       <div className="container-custom">
-        <h2 className="section-title text-center text-white mb-8">Who It's For</h2>
+        <h2 className="section-title text-center text-white mb-8">Who This Is For</h2>
         <p className="section-subtitle text-center text-white/80 mb-16">
-          OILTAC helps operators in high-fuel-use industries cut costs, reduce emissions, and keep equipment running longer — without capex or retrofits.
+          OILTAC is used by fleet managers and chief engineers who run high-cycle diesel engines — where fuel is a top-three operating cost and unplanned downtime is not an option.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
@@ -129,6 +129,20 @@ const Industries = () => {
               proofHref={industry.proofHref}
             />
           ))}
+        </div>
+
+        <div className="mt-10 rounded-lg border border-white/20 px-6 py-5 max-w-2xl mx-auto bg-white/5">
+          <p className="text-sm font-semibold text-white/50 uppercase tracking-wide mb-3">Not the right fit if:</p>
+          <ul className="space-y-2">
+            <li className="flex items-start gap-2 text-sm text-white/70">
+              <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-white/30" />
+              You need a regulatory emissions certification product
+            </li>
+            <li className="flex items-start gap-2 text-sm text-white/70">
+              <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-white/30" />
+              You're looking for a one-time fix rather than an ongoing operational improvement
+            </li>
+          </ul>
         </div>
       </div>
     </section>

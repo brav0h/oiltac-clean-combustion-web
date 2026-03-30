@@ -102,9 +102,9 @@ const TrialParamsCard = () => (
 const steps = [
   {
     number: 1,
-    title: "Baseline Measurement",
+    title: "Baseline",
     description:
-      "We start by recording your existing fuel consumption and operating data — per engine hour, per nautical mile, or per unit of output depending on your operation. This becomes the reference point everything is measured against.",
+      "We help you document your current fuel consumption per engine hour, per nautical mile, or per ton of output. This becomes the measurement baseline — no proprietary tracking, just your existing operational records.",
     bullets: [
       "Fuel consumption per engine hour",
       "Fuel consumption per nautical mile or per mile",
@@ -115,33 +115,35 @@ const steps = [
   },
   {
     number: 2,
-    title: "Trial Design",
+    title: "Controlled Application",
     description:
-      "We recommend a treat rate and application method suited to your equipment and operating conditions. You define what a successful result looks like before the trial begins.",
+      "OILTAC is added to your fuel at approximately 1:10,000. No retrofitting, no hardware, no operational disruption.",
     bullets: [
-      "What does a successful result look like for your operation?",
-      "Which vessel, engine, or equipment will run the trial?",
+      "Treatment ratio: ~1:10,000",
+      "Trial duration: 30–45 days",
+      "No engine modification required",
+      "Compatible with diesel and heavy fuel oil",
     ],
     bulletsLabel: null as string | null,
   },
   {
     number: 3,
-    title: "Controlled Application",
+    title: "Monitor",
     description:
-      "OILTAC is introduced into the fuel supply at a very low treat rate — typically around 1:10,000. No retrofitting, no downtime, no changes to your existing systems. Most trials run 30–45 days to generate sufficient operating data.",
+      "Track the same metrics established at baseline. 30–45 days of operation generates statistically meaningful data.",
     bullets: [
-      "Fuel consumption",
-      "Engine performance",
+      "Fuel consumption per engine hour",
+      "Fuel consumption per nautical mile",
       "Exhaust smoke and combustion quality",
-      "Operational consistency",
+      "Engine load vs fuel rate",
     ],
-    bulletsLabel: "During the trial period we monitor:",
+    bulletsLabel: "Metrics tracked during the trial:",
   },
   {
     number: 4,
     title: "Your Data, Your Decision",
     description:
-      "Fuel consumption and performance data is compared against your baseline. You own the evaluation — we are simply here to support it. If the numbers work for your operation, you will know it from your own records.",
+      "You compare results against your own baseline. We don't control the measurement. You own the evaluation.",
     bullets: [
       "Fuel consumption per engine hour",
       "Fuel consumption per nautical mile",
@@ -154,7 +156,6 @@ const steps = [
     additionalBullets: [
       "DPF regeneration frequency (Tier IV engines)",
       "Exhaust smoke opacity",
-      "Fuel consumption per engine hour",
       "Exhaust backpressure trends",
       "Injector cleanliness after extended use",
     ],
@@ -169,9 +170,9 @@ const HowTheTrialWorks = () => {
 
         {/* Heading */}
         <div className="text-center mb-5">
-          <h2 className="section-title">How the Trial Works</h2>
+          <h2 className="section-title">The Only Claim We Make Is: Test It Yourself</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mt-2">
-            A structured evaluation process designed to produce measurable results using your own operational data.
+            A structured 30–45 day pilot on your own vessels, using your own consumption data.
           </p>
 
           {/* Duration badge */}
@@ -185,9 +186,7 @@ const HowTheTrialWorks = () => {
 
         {/* Intro paragraph — left aligned */}
         <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
-          We don't ask for long commitments or system changes. A typical OILTAC trial fits within
-          your existing operation — measurable, low-disruption, and built around your equipment and
-          data.
+          No engine modification &nbsp;·&nbsp; No operational downtime &nbsp;·&nbsp; No long-term commitment required &nbsp;·&nbsp; Compatible with diesel and HFO
         </p>
 
         {/* Flow diagram */}
@@ -293,8 +292,11 @@ const HowTheTrialWorks = () => {
               className="bg-oiltac-cta hover:bg-oiltac-cta/90 text-white px-8"
               asChild
             >
-              <a href="#pilot-cta">Request a Pilot</a>
+              <a href="#pilot-cta">Request a Pilot Test</a>
             </Button>
+            <p className="text-sm text-gray-500 mt-3">
+              Tell us about your operation and we'll design a trial around it.
+            </p>
           </div>
         </div>
 

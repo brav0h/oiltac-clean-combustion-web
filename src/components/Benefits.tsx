@@ -12,11 +12,18 @@ const BenefitItem = ({ text }: { text: string }) => {
 
 const Benefits = () => {
   const benefits = [
-    "Documented fuel savings across marine, rail, and industrial engine trials",
-    "Reduces soot buildup; keeps injector nozzles clear and free of sticking",
-    "Cuts NOx, smoke, and particulate matter",
-    "Works with diesel and heavy fuel oil (HFO/bunker fuel)",
-    "No engine modification required"
+    "Improves combustion — more complete burn, less unburned carbon leaving as soot",
+    "Injectors stay cleaner longer — reduced fouling in long-term operation",
+    "Exhaust visibly reduced — particulates and smoke decreased in controlled tests",
+    "Lube oil lasts longer — less carbon contamination extends maintenance intervals",
+    "Compatible with diesel and heavy fuel oil (HFO / bunker fuel)"
+  ];
+
+  const doesNot = [
+    "Does not change ASTM D975 fuel specification compliance",
+    "Does not require pre-treatment or a separate dosing system",
+    "Does not affect DEF/SCR systems in tested configurations",
+    "Does not replace maintenance — it reduces the rate at which maintenance becomes necessary",
   ];
 
   return (
@@ -24,15 +31,35 @@ const Benefits = () => {
       <div className="container-custom">
         <div className="flex flex-col md:flex-row gap-12 items-center">
           <div className="md:w-1/2">
-            <h2 className="section-title text-white">What OILTAC Does</h2>
+            <h2 className="section-title text-white">What OILTAC Does — and Doesn't Do</h2>
             <p className="text-lg mb-8 text-white/80">
-              OILTAC is a plant enzyme-based fuel additive that transforms how your fuel burns. It helps you extract more energy from every drop while protecting your engine and reducing emissions.
+              OILTAC contains enzyme-derived compounds that activate during combustion — not before. They don't alter your fuel's chemical specification, viscosity, or ignition properties. What they do is catalyze a more complete burn, which means less unburned carbon leaving the combustion chamber as soot.
             </p>
 
-            <div className="space-y-4">
+            <div className="space-y-4 mb-8">
               {benefits.map((benefit, index) => (
                 <BenefitItem key={index} text={benefit} />
               ))}
+            </div>
+
+            <div className="mb-6">
+              <ul className="space-y-2">
+                {doesNot.map((item, index) => (
+                  <li key={index} className="flex items-start gap-2 text-sm text-white/70">
+                    <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-white/30" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-xs italic text-white/50 mt-4">
+                For Tier 4 SCR-equipped vessels, contact us to discuss your specific setup before trialing.
+              </p>
+            </div>
+
+            <div className="rounded-lg border border-white/20 px-5 py-4 bg-white/5">
+              <p className="text-white/80 italic text-sm">
+                "We don't add anything to your fuel. We unlock more from the combustion that's already happening."
+              </p>
             </div>
           </div>
 
@@ -45,7 +72,7 @@ const Benefits = () => {
                   className="rounded-lg shadow-lg object-contain h-auto max-h-[400px] w-full"
                 />
                 <p className="text-center font-semibold text-white mt-4">
-                  Plant-based enzymes that enhance combustion naturally
+                  Enzyme-derived compounds that activate during combustion
                 </p>
               </div>
             </div>
