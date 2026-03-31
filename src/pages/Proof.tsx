@@ -74,14 +74,44 @@ const Proof = () => {
             <p className="text-lg text-white/80 max-w-2xl mb-4">
               Field results, controlled trials, and engine condition documentation from marine, rail, and industrial applications.
             </p>
-            <p className="text-xs text-white/50 mb-6">
-              Manufactured by Fukasawa Chemical Laboratory, Japan &nbsp;·&nbsp; Validated in commercial marine, rail, and power generation trials &nbsp;·&nbsp; SOLAS flash point compliant (62.5°C)
-            </p>
-            <div className="max-w-2xl text-sm text-white/70 leading-relaxed mb-6">
-              OILTAC results come from three types of evidence: (1) controlled engine tests under standardized conditions, (2) long-term fleet operation monitored over months or years, and (3) removal/reinstatement studies — where OILTAC was withdrawn and reintroduced to observe the effect on the same equipment. The third type is the most operationally meaningful.
+            {/* Credential badges */}
+            <div className="flex flex-wrap gap-2 mb-8">
+              {[
+                "Fukasawa Chemical Laboratory, Japan",
+                "Validated — Marine, Rail & Power",
+                "SOLAS Flash Point Compliant",
+              ].map((label) => (
+                <span
+                  key={label}
+                  className="inline-flex items-center rounded-md border-l-2 border-[#F97316] bg-white/10 px-3 py-1.5 text-xs font-medium text-white/90"
+                >
+                  {label}
+                </span>
+              ))}
             </div>
-            <p className="text-sm text-white/50 border border-white/20 rounded px-4 py-3 inline-block italic">
-              Results vary. Always follow SDS and dosing guidance. Claims reflect specific test conditions — duty cycle, fuel quality, and operating environment affect outcomes.
+
+            {/* Methodology items */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 max-w-3xl">
+              {[
+                { n: "1", label: "Controlled engine tests", sub: "Standardized conditions" },
+                { n: "2", label: "Long-term fleet operation", sub: "Monitored over months or years" },
+                { n: "3", label: "Removal & reinstatement studies", sub: "The most operationally meaningful" },
+              ].map(({ n, label, sub }) => (
+                <div key={n} className="flex items-start gap-3">
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#F97316] text-white text-xs font-bold flex items-center justify-center mt-0.5">
+                    {n}
+                  </span>
+                  <div>
+                    <p className="text-sm font-semibold text-white leading-snug">{label}</p>
+                    <p className="text-xs text-white/50 mt-0.5">{sub}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Disclaimer */}
+            <p className="text-xs italic text-white/40">
+              Results vary by duty cycle, fuel quality, and operating conditions. Always follow SDS and dosing guidance.
             </p>
           </div>
         </section>
