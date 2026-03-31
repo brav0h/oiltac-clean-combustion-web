@@ -71,8 +71,11 @@ const Proof = () => {
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
               Test Data & Technical Validation
             </h1>
-            <p className="text-lg text-white/80 max-w-2xl mb-6">
+            <p className="text-lg text-white/80 max-w-2xl mb-4">
               Field results, controlled trials, and engine condition documentation from marine, rail, and industrial applications.
+            </p>
+            <p className="text-xs text-white/50 mb-6">
+              Manufactured by Fukasawa Chemical Laboratory, Japan &nbsp;·&nbsp; Validated in commercial marine, rail, and power generation trials &nbsp;·&nbsp; SOLAS flash point compliant (62.5°C)
             </p>
             <div className="max-w-2xl text-sm text-white/70 leading-relaxed mb-6">
               OILTAC results come from three types of evidence: (1) controlled engine tests under standardized conditions, (2) long-term fleet operation monitored over months or years, and (3) removal/reinstatement studies — where OILTAC was withdrawn and reintroduced to observe the effect on the same equipment. The third type is the most operationally meaningful.
