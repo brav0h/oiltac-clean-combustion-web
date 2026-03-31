@@ -68,12 +68,14 @@ const AboutUs = () => {
         </section>
 
         {/* ── Pull Quote 1 ────────────────────────────────────────────── */}
-        <section className="py-24 bg-[#1B2A4A]">
-          <div className="container-custom max-w-4xl text-center">
-            <p className="text-3xl md:text-4xl lg:text-5xl font-display font-light text-[#F97316] leading-snug">
-              "What if this isn't something to manage…<br className="hidden md:block" />
-              but something to fix?"
-            </p>
+        <section className="py-24 md:py-36 bg-[#1a1f2e]">
+          <div className="container-custom">
+            <div className="max-w-xl">
+              <p className="text-xl md:text-2xl font-normal text-[#F5F0EB] leading-relaxed tracking-[0.03em]">
+                What if this isn't something to manage…<br />
+                but something to fix?
+              </p>
+            </div>
           </div>
         </section>
 
@@ -162,19 +164,21 @@ const AboutUs = () => {
         </section>
 
         {/* ── Pull Quote 2 — background image ─────────────────────────── */}
-        <section className="relative py-32">
+        <section className="relative py-24 md:py-36">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: "url('/assets/images/ship-engine.jpg')" }}
           />
-          <div className="absolute inset-0 bg-[#1B2A4A]/70" />
-          <div className="relative z-10 container-custom max-w-4xl text-center">
-            <p className="text-3xl md:text-4xl lg:text-5xl font-display font-light text-white leading-snug">
-              "That's how engineers decide<br className="hidden md:block" />
-              something is real.<br />
-              Not by what they're told.<br className="hidden md:block" />
-              But by what they can measure."
-            </p>
+          <div className="absolute inset-0 bg-black/65" />
+          <div className="relative z-10 container-custom">
+            <div className="max-w-xl">
+              <p className="text-xl md:text-2xl font-normal text-[#F5F0EB] leading-relaxed tracking-[0.03em]">
+                That's how engineers decide<br />
+                something is real.<br />
+                Not by what they're told.<br />
+                But by what they can measure.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -301,12 +305,15 @@ const AboutUs = () => {
         </section>
 
         {/* ── Pull Quote 3 / Closing CTA ──────────────────────────────── */}
-        <section className="py-32 bg-zinc-950 text-white text-center">
-          <div className="container-custom max-w-3xl">
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-8 text-white leading-tight">
-              Because That's the Only Part<br />
-              That Matters
-            </h2>
+        <section className="py-24 md:py-36 bg-[#1a1f2e] text-white">
+          <div className="container-custom">
+            <div className="max-w-xl mb-16">
+              <h2 className="text-xl md:text-2xl font-normal text-[#F5F0EB] leading-relaxed tracking-[0.03em]">
+                Because That's the Only Part<br />
+                That Matters
+              </h2>
+            </div>
+            <div className="max-w-xl">
             <p className="text-lg text-white/60 mb-4">
               Not what's written here.
             </p>
@@ -325,6 +332,7 @@ const AboutUs = () => {
             <p className="text-sm italic text-white/40 mt-8">
               The formula hasn't changed. The results haven't changed. What's changed is simply that you can now access it.
             </p>
+            </div>
           </div>
         </section>
 
