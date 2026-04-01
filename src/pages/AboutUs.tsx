@@ -95,7 +95,7 @@ const AboutUs = () => {
                 At the moment combustion happens.
               </p>
               <p className="text-[1.05rem] leading-[1.85] text-[#1F2937] mb-5">
-                Because if that moment could be improved — if the fuel actually burned more completely — then everything else would change with it.
+                Because if that moment could be improved, if the fuel actually burned more completely, then everything else would change with it.
               </p>
               <p className="text-[1.05rem] leading-[1.85] text-[#1F2937] mb-5">
                 Fuel consumption. Soot. Maintenance.
@@ -107,7 +107,7 @@ const AboutUs = () => {
                 And after years of work, he developed something that did exactly that.
               </p>
               <p className="text-[1.05rem] leading-[1.85] text-[#1F2937] mb-6">
-                A formulation added directly to fuel — in small amounts — that works during combustion itself.
+                A formulation added directly to fuel, in small amounts, that works during combustion itself.
               </p>
               <p className="text-[1.15rem] font-medium text-[#0D1B2A] mt-6">
                 He called it OILTAC.
@@ -191,7 +191,7 @@ const AboutUs = () => {
                 And they should.
               </p>
               <p className="text-[1.05rem] leading-[1.85] text-[#1F2937] mb-5">
-                Because if something sounds too simple — or too good — the first instinct is to question it.
+                Because if something sounds too simple, or too good, the first instinct is to question it.
               </p>
               <p className="text-[1.05rem] leading-[1.85] text-[#1F2937] mb-5">
                 That's exactly what the people using it did.
@@ -247,7 +247,7 @@ const AboutUs = () => {
                   So this wasn't something I came across while looking for a business idea.
                 </p>
                 <p className="text-[1.05rem] leading-[1.85] text-[#CBD5E1] mb-5">
-                  It was something I had seen — indirectly — for years.
+                  It was something I had seen, indirectly, for years.
                 </p>
                 <p className="text-[1.05rem] leading-[1.85] text-[#CBD5E1]">
                   Something that worked. Something people kept using. Something that didn't need to be explained to the people who relied on it.
