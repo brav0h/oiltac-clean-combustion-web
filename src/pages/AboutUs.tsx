@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Flame, Filter, Droplet } from 'lucide-react';
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -83,26 +84,45 @@ const AboutUs = () => {
         {/* ── Three Costs ─────────────────────────────────────────────── */}
         <section className="py-12 md:py-20 bg-[#FAFAFA]">
           <div className="container-custom">
-            <div className="max-w-[720px] mx-auto">
-              <h2 className="text-[1.4rem] md:text-[1.75rem] font-bold text-[#0D1B2A] mb-10 leading-tight">
-                Three Costs It Addresses Directly
-              </h2>
-              <div className="grid md:grid-cols-3 gap-8 md:gap-10 mb-10">
-                <div>
-                  <p className="text-[1.25rem] font-bold text-[#0D1B2A] block mb-[0.4rem]">Fuel consumption</p>
-                  <p className="text-[1rem] leading-[1.7] text-[#374151] font-normal">More complete combustion means less fuel doing the same work.</p>
-                </div>
-                <div>
-                  <p className="text-[1.25rem] font-bold text-[#0D1B2A] block mb-[0.4rem]">Carbon and soot buildup</p>
-                  <p className="text-[1rem] leading-[1.7] text-[#374151] font-normal">Reduced at the source. Cleaner injectors, cleaner valves, and less unplanned maintenance over time.</p>
-                </div>
-                <div>
-                  <p className="text-[1.25rem] font-bold text-[#0D1B2A] block mb-[0.4rem]">Lube oil life</p>
-                  <p className="text-[1rem] leading-[1.7] text-[#374151] font-normal">Incomplete combustion sends carbon particles past the piston rings into the crankcase oil. More complete combustion means less contamination, slower TBN depletion, and oil that protects longer between changes.</p>
-                </div>
+            <h2 className="text-[1.4rem] md:text-[1.75rem] font-bold text-[#0D1B2A] mb-10 leading-tight max-w-[720px] mx-auto">
+              Three Operating Costs. One Treatment.
+            </h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {/* Card 1 */}
+              <div className="border border-[rgba(13,27,42,0.12)] rounded-[6px] p-8">
+                <Flame size={28} strokeWidth={1.5} className="text-[#0D1B2A] mb-5" />
+                <h3 className="text-[1.1rem] font-bold text-[#0D1B2A] mb-3">Reduce Fuel Consumption</h3>
+                <ul className="space-y-1.5">
+                  <li className="flex gap-2 text-[0.95rem] leading-[1.7] text-[#374151]"><span className="flex-shrink-0 text-[#0D1B2A]/40 select-none">–</span>More complete combustion</li>
+                  <li className="flex gap-2 text-[0.95rem] leading-[1.7] text-[#374151]"><span className="flex-shrink-0 text-[#0D1B2A]/40 select-none">–</span>Less fuel for the same output</li>
+                  <li className="flex gap-2 text-[0.95rem] leading-[1.7] text-[#374151]"><span className="flex-shrink-0 text-[#0D1B2A]/40 select-none">–</span>Lower operating cost per hour</li>
+                </ul>
               </div>
-              <p className="text-[1.05rem] leading-[1.85] text-[#1F2937]">
-                No hardware. No engine modification. No operational disruption. It goes into your fuel. You measure the difference with your own data.
+              {/* Card 2 */}
+              <div className="border border-[rgba(13,27,42,0.12)] rounded-[6px] p-8">
+                <Filter size={28} strokeWidth={1.5} className="text-[#0D1B2A] mb-5" />
+                <h3 className="text-[1.1rem] font-bold text-[#0D1B2A] mb-3">Reduce Carbon and Soot Buildup</h3>
+                <ul className="space-y-1.5">
+                  <li className="flex gap-2 text-[0.95rem] leading-[1.7] text-[#374151]"><span className="flex-shrink-0 text-[#0D1B2A]/40 select-none">–</span>Reduced at the source</li>
+                  <li className="flex gap-2 text-[0.95rem] leading-[1.7] text-[#374151]"><span className="flex-shrink-0 text-[#0D1B2A]/40 select-none">–</span>Cleaner injectors and valves</li>
+                  <li className="flex gap-2 text-[0.95rem] leading-[1.7] text-[#374151]"><span className="flex-shrink-0 text-[#0D1B2A]/40 select-none">–</span>Less unplanned maintenance over time</li>
+                </ul>
+              </div>
+              {/* Card 3 */}
+              <div className="border border-[rgba(13,27,42,0.12)] rounded-[6px] p-8">
+                <Droplet size={28} strokeWidth={1.5} className="text-[#0D1B2A] mb-5" />
+                <h3 className="text-[1.1rem] font-bold text-[#0D1B2A] mb-3">Extend Oil Life</h3>
+                <ul className="space-y-1.5">
+                  <li className="flex gap-2 text-[0.95rem] leading-[1.7] text-[#374151]"><span className="flex-shrink-0 text-[#0D1B2A]/40 select-none">–</span>Less carbon contamination</li>
+                  <li className="flex gap-2 text-[0.95rem] leading-[1.7] text-[#374151]"><span className="flex-shrink-0 text-[#0D1B2A]/40 select-none">–</span>Slower TBN depletion</li>
+                  <li className="flex gap-2 text-[0.95rem] leading-[1.7] text-[#374151]"><span className="flex-shrink-0 text-[#0D1B2A]/40 select-none">–</span>Longer protection between changes</li>
+                </ul>
+              </div>
+            </div>
+            {/* Closing strip */}
+            <div className="mt-10 pt-10 border-t border-[rgba(13,27,42,0.10)]">
+              <p className="text-[0.95rem] leading-[1.7] text-[#4B5563] text-center max-w-[640px] mx-auto">
+                No hardware. No retrofit. No operational disruption. It goes directly into your fuel. The difference is measured in your own data.
               </p>
             </div>
           </div>
