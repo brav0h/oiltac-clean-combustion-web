@@ -11,19 +11,14 @@ const AboutUs = () => {
     const el = pullQuoteRef.current;
     if (!el) return;
 
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 800ms ease-out, transform 800ms ease-out';
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-          observer.disconnect();
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.15 }
     );
 
     observer.observe(el);
@@ -74,7 +69,7 @@ const AboutUs = () => {
           <div className="container-custom">
             <div
               ref={pullQuoteRef}
-              className="max-w-[640px] mx-auto text-center"
+              className="fade-up max-w-[640px] mx-auto text-center"
             >
               <p className="font-lora italic text-[1.2rem] md:text-[1.5rem] font-normal text-[#E8E8E8] leading-[1.8]">
                 That's how engineers decide something is real.<br />
