@@ -1,9 +1,35 @@
+import { useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 
 const AboutUs = () => {
+  const pullQuoteRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = pullQuoteRef.current;
+    if (!el) return;
+
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 800ms ease-out, transform 800ms ease-out';
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -23,13 +49,11 @@ const AboutUs = () => {
           />
           <div className="absolute inset-0 bg-black/60" />
           <div className="relative z-10 container-custom pb-16 md:pb-24 pt-24">
-            <h1 className="text-[1.75rem] md:text-[2.5rem] font-bold text-white mb-5 leading-tight">
-              A Formula Built in the 1970s.<br />
-              Still Running Engines Today.
+            <h1 className="text-[1.75rem] md:text-[2.5rem] font-bold text-white mb-4 leading-tight">
+              Built in the 1970s. Still Solving the Same Problem.
             </h1>
-            <p className="text-[1rem] text-[#CBD5E1] italic font-light leading-relaxed">
-              Not because someone sold it.<br />
-              Because people kept choosing to use it.
+            <p className="text-[1.05rem] md:text-[1.2rem] font-light text-[#CBD5E1] leading-snug">
+              More complete combustion. Less fuel. Less maintenance.
             </p>
           </div>
         </section>
@@ -37,7 +61,7 @@ const AboutUs = () => {
         {/* ── The Story ───────────────────────────────────────────────── */}
         <section className="py-12 md:py-20 bg-[#FAFAFA]">
           <div className="container-custom">
-            <div className="max-w-[560px]">
+            <div className="max-w-[720px] mx-auto">
               <p className="text-[1.05rem] leading-[1.85] text-[#1F2937]">
                 In the 1970s, a Japanese engineer named Fukasawa developed a fuel treatment that works during combustion itself, catalyzing a more complete burn without changing the fuel or modifying the engine. It spread through heavy industry the way things spread when something actually works: one engineer tried it, the numbers held, and they told someone they trusted. Over four decades it moved into marine fleets, railway systems, and power generation facilities across Japan and beyond. Not because it was marketed. Because it kept working.
               </p>
@@ -46,10 +70,13 @@ const AboutUs = () => {
         </section>
 
         {/* ── Pull Quote ──────────────────────────────────────────────── */}
-        <section className="py-16 md:py-24 bg-[#1a1f2e]">
+        <section className="bg-[#1a1f2e] pt-[64px] pb-[80px] md:pt-[100px] md:pb-[120px]">
           <div className="container-custom">
-            <div className="max-w-[520px]">
-              <p className="text-[1.15rem] md:text-[1.35rem] font-light text-[#E8E8E8] leading-[1.9] tracking-[0.025em]">
+            <div
+              ref={pullQuoteRef}
+              className="max-w-[640px] mx-auto text-center"
+            >
+              <p className="font-lora italic text-[1.2rem] md:text-[1.5rem] font-normal text-[#E8E8E8] leading-[1.8]">
                 That's how engineers decide something is real.<br />
                 Not by what they're told.<br />
                 But by what they can measure.
@@ -61,21 +88,23 @@ const AboutUs = () => {
         {/* ── Three Costs ─────────────────────────────────────────────── */}
         <section className="py-12 md:py-20 bg-[#FAFAFA]">
           <div className="container-custom">
-            <h2 className="text-[1.4rem] md:text-[1.75rem] font-bold text-[#0D1B2A] mb-8 leading-tight max-w-[480px]">
-              Three Costs It Addresses Directly
-            </h2>
-            <div className="max-w-[560px]">
-              <div className="mb-8">
-                <p className="text-[1.05rem] font-bold text-[#0D1B2A] mb-2">Fuel consumption</p>
-                <p className="text-[1.05rem] leading-[1.85] text-[#1F2937]">More complete combustion means less fuel doing the same work.</p>
-              </div>
-              <div className="mb-8">
-                <p className="text-[1.05rem] font-bold text-[#0D1B2A] mb-2">Carbon and soot buildup</p>
-                <p className="text-[1.05rem] leading-[1.85] text-[#1F2937]">Reduced at the source. Cleaner injectors, cleaner valves, and less unplanned maintenance over time.</p>
-              </div>
-              <div className="mb-10">
-                <p className="text-[1.05rem] font-bold text-[#0D1B2A] mb-2">Lube oil life</p>
-                <p className="text-[1.05rem] leading-[1.85] text-[#1F2937]">Incomplete combustion sends carbon particles past the piston rings into the crankcase oil. More complete combustion means less contamination, slower TBN depletion, and oil that protects longer between changes.</p>
+            <div className="max-w-[720px] mx-auto">
+              <h2 className="text-[1.4rem] md:text-[1.75rem] font-bold text-[#0D1B2A] mb-10 leading-tight">
+                Three Costs It Addresses Directly
+              </h2>
+              <div className="grid md:grid-cols-3 gap-8 md:gap-10 mb-10">
+                <div>
+                  <p className="text-[1.25rem] font-bold text-[#0D1B2A] block mb-[0.4rem]">Fuel consumption</p>
+                  <p className="text-[1rem] leading-[1.7] text-[#374151] font-normal">More complete combustion means less fuel doing the same work.</p>
+                </div>
+                <div>
+                  <p className="text-[1.25rem] font-bold text-[#0D1B2A] block mb-[0.4rem]">Carbon and soot buildup</p>
+                  <p className="text-[1rem] leading-[1.7] text-[#374151] font-normal">Reduced at the source. Cleaner injectors, cleaner valves, and less unplanned maintenance over time.</p>
+                </div>
+                <div>
+                  <p className="text-[1.25rem] font-bold text-[#0D1B2A] block mb-[0.4rem]">Lube oil life</p>
+                  <p className="text-[1rem] leading-[1.7] text-[#374151] font-normal">Incomplete combustion sends carbon particles past the piston rings into the crankcase oil. More complete combustion means less contamination, slower TBN depletion, and oil that protects longer between changes.</p>
+                </div>
               </div>
               <p className="text-[1.05rem] leading-[1.85] text-[#1F2937]">
                 No hardware. No engine modification. No operational disruption. It goes into your fuel. You measure the difference with your own data.
@@ -87,22 +116,36 @@ const AboutUs = () => {
         {/* ── Why You're Hearing About It Now ─────────────────────────── */}
         <section className="bg-[#0D1B2A] text-white py-20">
           <div className="container-custom">
-            <h2 className="text-[1.4rem] md:text-[1.75rem] font-bold text-white mb-8 leading-tight max-w-[480px]">
-              Why You're Hearing About This Now
-            </h2>
-            <div className="max-w-[560px]">
-              <p className="text-[1.05rem] leading-[1.85] text-[#CBD5E1] mb-5">
-                The engineer who created OILTAC was a close family friend. Not a business contact. A family friend. I grew up around this product long before I thought about what to do with it. It was not an opportunity. It was just something that ran in engines and worked.
-              </p>
-              <p className="text-[1.05rem] leading-[1.85] text-[#CBD5E1]">
-                Operators in North America were facing the same challenges it had been solving in Japan for decades. They just did not have access to it. That is what Chie Tsiang Enterprise is here to change.
-              </p>
+            <div className="max-w-[900px] mx-auto">
+              <h2 className="text-[1.4rem] md:text-[1.75rem] font-bold text-white mb-8 leading-tight">
+                Why You're Hearing About This Now
+              </h2>
+              <div className="flex flex-col md:flex-row md:gap-12">
+                <div className="md:w-[60%]">
+                  <p className="text-[1.05rem] leading-[1.85] text-[#CBD5E1] mb-5">
+                    The engineer who created OILTAC was a close family friend. That relationship is not the point. It is what it led to.
+                  </p>
+                  <p className="text-[1.05rem] leading-[1.85] text-[#CBD5E1] mb-5">
+                    Chie Tsiang Enterprise has direct access to the original Fukasawa formulation. Not a licensed copy. Not a reformulation. The same product that has been running in commercial fleets for four decades, with the original production and historical validation behind it.
+                  </p>
+                  <p className="text-[1.05rem] leading-[1.85] text-[#CBD5E1]">
+                    North American operators were dealing with the same fuel cost and maintenance pressure it had already solved elsewhere. Access was the only gap. That is what this exists to close.
+                  </p>
+                </div>
+                <div className="md:w-[40%] mt-10 md:mt-0 flex items-center justify-center">
+                  <div className="bg-[#111827] border border-[#2D3748] rounded-sm p-8 text-center w-full">
+                    <p className="text-[4rem] font-bold text-white leading-none mb-3">40+</p>
+                    <p className="text-[1rem] font-medium text-[#CBD5E1]">Years of commercial operation</p>
+                    <p className="text-[0.85rem] text-[#64748B] mt-2">Marine, rail, and power generation</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* ── Closing CTA ─────────────────────────────────────────────── */}
-        <section className="py-[100px] bg-[#0D1B2A] text-white text-center">
+        <section className="py-[100px] bg-[#0D1B2A] text-white text-center border-t border-[#1F2D40]">
           <div className="container-custom max-w-2xl mx-auto">
             <h2 className="text-[1.4rem] md:text-[1.75rem] font-bold text-white mb-8 leading-tight">
               The Only Way to Know Is to<br />
