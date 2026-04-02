@@ -76,6 +76,7 @@ export default {
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
 				display: ['Montserrat', 'sans-serif'],
+				lora: ['Lora', 'serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
