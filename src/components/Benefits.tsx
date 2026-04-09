@@ -1,4 +1,11 @@
 
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+  }
+}
+
+import { useEffect, useRef } from 'react';
 import { CircleCheck } from "lucide-react";
 
 const BenefitItem = ({ text }: { text: string }) => {
@@ -11,6 +18,31 @@ const BenefitItem = ({ text }: { text: string }) => {
 };
 
 const Benefits = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const hasTracked = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasTracked.current) {
+            hasTracked.current = true;
+            if (typeof window !== 'undefined' && window.gtag) {
+              window.gtag('event', 'section_benefits_viewed', {
+                event_category: 'engagement',
+                event_label: 'Benefits Section Viewed'
+              });
+            }
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   const benefits = [
     "Improves combustion — more complete burn, less unburned carbon leaving as soot",
     "Injectors stay cleaner longer — reduced fouling in long-term operation",
@@ -27,7 +59,7 @@ const Benefits = () => {
   ];
 
   return (
-    <section id="benefits" className="section-padding bg-zinc-900">
+    <section ref={sectionRef} id="benefits" className="section-padding bg-zinc-900">
       <div className="container-custom">
         <div className="flex flex-col md:flex-row gap-12 items-center">
           <div className="md:w-1/2">

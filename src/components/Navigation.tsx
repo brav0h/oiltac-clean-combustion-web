@@ -1,4 +1,10 @@
 
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+  }
+}
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -30,12 +36,12 @@ const Navigation = () => {
         </div>
 
         <div className="hidden md:flex items-center space-x-8">
-          <a href="/about-us" className="text-white hover:text-oiltac-light transition-colors">Our Story</a>
-          <a href="/#industries" className="text-white hover:text-oiltac-light transition-colors">Industries</a>
-          <a href="/#benefits" className="text-white hover:text-oiltac-light transition-colors">Benefits</a>
           <a href="/proof" className="text-white hover:text-oiltac-light transition-colors">Proof</a>
-          <a href="/#why-now" className="text-white hover:text-oiltac-light transition-colors">Why Now</a>
+          <a href="/#industries" className="text-white hover:text-oiltac-light transition-colors" onClick={() => { if (typeof window !== 'undefined' && window.gtag) { window.gtag('event', 'nav_industries_click', { event_category: 'navigation', event_label: 'Industries Nav Click' }); } }}>Industries</a>
+          <a href="/#benefits" className="text-white hover:text-oiltac-light transition-colors" onClick={() => { if (typeof window !== 'undefined' && window.gtag) { window.gtag('event', 'nav_benefits_click', { event_category: 'navigation', event_label: 'Benefits Nav Click' }); } }}>Benefits</a>
           <a href="/fuel-calculator" className="text-white hover:text-oiltac-light transition-colors">Calculator</a>
+          <a href="/#why-now" className="text-white hover:text-oiltac-light transition-colors">Why Now</a>
+          <a href="/about-us" className="text-white hover:text-oiltac-light transition-colors">Our Story</a>
           <Button
             className="bg-oiltac-cta hover:bg-oiltac-cta/90 text-white"
             onClick={scrollToContact}
@@ -59,12 +65,12 @@ const Navigation = () => {
       {isOpen && (
         <div className="md:hidden bg-oiltac-dark py-4 px-4 shadow-md absolute top-16 left-0 right-0">
           <div className="flex flex-col space-y-4">
-            <a href="/about-us" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Our Story</a>
-            <a href="/#industries" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Industries</a>
-            <a href="/#benefits" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Benefits</a>
             <a href="/proof" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Proof</a>
-            <a href="/#why-now" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Why Now</a>
+            <a href="/#industries" className="text-white hover:text-oiltac-light transition-colors" onClick={() => { setIsOpen(false); if (typeof window !== 'undefined' && window.gtag) { window.gtag('event', 'nav_industries_click', { event_category: 'navigation', event_label: 'Industries Nav Click' }); } }}>Industries</a>
+            <a href="/#benefits" className="text-white hover:text-oiltac-light transition-colors" onClick={() => { setIsOpen(false); if (typeof window !== 'undefined' && window.gtag) { window.gtag('event', 'nav_benefits_click', { event_category: 'navigation', event_label: 'Benefits Nav Click' }); } }}>Benefits</a>
             <a href="/fuel-calculator" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Calculator</a>
+            <a href="/#why-now" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Why Now</a>
+            <a href="/about-us" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Our Story</a>
             <Button
               className="bg-oiltac-cta hover:bg-oiltac-cta/90 text-white w-full"
               onClick={scrollToContact}

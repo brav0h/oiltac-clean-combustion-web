@@ -1,4 +1,11 @@
 
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+  }
+}
+
+import { useEffect, useRef } from 'react';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 // Explicit href map — do not compute or derive these values
@@ -63,6 +70,31 @@ const IndustryCard = ({
 };
 
 const Industries = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const hasTracked = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasTracked.current) {
+            hasTracked.current = true;
+            if (typeof window !== 'undefined' && window.gtag) {
+              window.gtag('event', 'section_industries_viewed', {
+                event_category: 'engagement',
+                event_label: 'Industries Section Viewed'
+              });
+            }
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   const industries = [
     {
       title: "Marine & Tugboat Operations",
@@ -111,7 +143,7 @@ const Industries = () => {
   ];
 
   return (
-    <section id="industries" className="section-padding bg-black text-white">
+    <section ref={sectionRef} id="industries" className="section-padding bg-black text-white">
       <div className="container-custom">
         <h2 className="section-title text-center text-white mb-8">Who This Is For</h2>
         <p className="section-subtitle text-center text-white/80 mb-16">
