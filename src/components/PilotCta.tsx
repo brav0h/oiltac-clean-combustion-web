@@ -1,3 +1,9 @@
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+  }
+}
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -46,6 +52,12 @@ const PilotCta = () => {
       const data = await response.json();
 
       if (response.ok && data.success) {
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'pilot_form_submit', {
+            event_category: 'conversion',
+            event_label: 'Pilot Form Submitted'
+          });
+        }
         toast({
           title: "Pilot request received",
           description: "We'll be in touch within 2 business days.",

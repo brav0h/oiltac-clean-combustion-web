@@ -1,4 +1,10 @@
 
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+  }
+}
+
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navigation from "./Navigation";
@@ -8,6 +14,12 @@ const Hero = () => {
     const contactSection = document.getElementById('pilot-cta');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'request_pilot_click', {
+        event_category: 'engagement',
+        event_label: 'Request a Pilot Button'
+      });
     }
   };
 
