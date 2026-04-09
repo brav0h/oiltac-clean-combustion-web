@@ -1,4 +1,4 @@
-import { ClipboardList, Settings2, Droplets, BarChart2, ArrowRight, ArrowDown } from "lucide-react";
+import { ClipboardList, Settings2, Droplets, BarChart2, ArrowRight, ArrowDown, Wrench, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ORANGE = "#f97316";
@@ -54,111 +54,39 @@ const FlowDiagram = () => (
   </div>
 );
 
-/* ── Vertical connector between step circles ──────────────────────── */
-const StepConnector = () => (
-  <div className="flex" style={{ height: 20 }}>
-    <div className="flex justify-center flex-shrink-0" style={{ width: 40 }}>
-      <div className="bg-gray-200" style={{ width: 2, height: "100%" }} />
-    </div>
-    <div className="flex-1" />
-  </div>
-);
+/* ── Icon feature grid ────────────────────────────────────────────── */
+const iconFeatures = [
+  { icon: Wrench,        label: "No Engine Modifications" },
+  { icon: Clock,         label: "No Operational Downtime" },
+  { icon: ClipboardList, label: "No Long-Term Commitment" },
+  { icon: Droplets,      label: "Diesel and HFO Compatible" },
+];
 
-/* ── Trial parameters card ────────────────────────────────────────── */
-const TrialParamsCard = () => (
-  <div className="flex gap-5">
-    <div className="flex flex-col items-center flex-shrink-0" style={{ width: 40 }}>
-      <div className="bg-gray-200 w-full flex-1" style={{ width: 2, margin: "0 auto" }} />
-    </div>
-    <div
-      className="flex-1 rounded-lg p-5 mb-0"
-      style={{
-        backgroundColor: "#f9f9f9",
-        border: "1px solid #e5e7eb",
-        borderLeft: `4px solid ${ORANGE}`,
-      }}
-    >
-      <p className="text-sm font-semibold mb-3" style={{ color: NAVY }}>
-        Typical Trial Parameters
-      </p>
-      <ul className="space-y-1.5">
-        {[
-          "Treatment ratio: ~1:10,000",
-          "Trial duration: 30–45 days",
-          "No engine modification required",
-          "Compatible with diesel and heavy fuel oil",
-        ].map((item) => (
-          <li key={item} className="flex items-start gap-2 text-sm text-gray-600">
-            <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: ORANGE }} />
-            {item}
-          </li>
-        ))}
-      </ul>
-    </div>
-  </div>
-);
-
-/* ── Step card data ───────────────────────────────────────────────── */
-const steps = [
+/* ── Horizontal step cards ────────────────────────────────────────── */
+const stepCards = [
   {
     number: 1,
     title: "Baseline",
     description:
-      "We help you document your current fuel consumption per engine hour, per nautical mile, or per ton of output. This becomes the measurement baseline — no proprietary tracking, just your existing operational records.",
-    bullets: [
-      "Fuel consumption per engine hour",
-      "Fuel consumption per nautical mile or per mile",
-      "Fuel consumption per ton of output or work performed",
-      "Engine load and duty cycle",
-    ],
-    bulletsLabel: null as string | null,
+      "Document your current fuel consumption per engine hour, nautical mile, or ton of output using your existing operational records. No proprietary tracking required.",
   },
   {
     number: 2,
-    title: "Controlled Application",
+    title: "Trial Design",
     description:
-      "OILTAC is added to your fuel at approximately 1:10,000. No retrofitting, no hardware, no operational disruption.",
-    bullets: [
-      "Treatment ratio: ~1:10,000",
-      "Trial duration: 30–45 days",
-      "No engine modification required",
-      "Compatible with diesel and heavy fuel oil",
-    ],
-    bulletsLabel: null as string | null,
+      "We define the treatment schedule, vessel selection, and measurement intervals together before the trial begins. Nothing changes operationally.",
   },
   {
     number: 3,
-    title: "Monitor",
+    title: "Controlled Application",
     description:
-      "Track the same metrics established at baseline. 30–45 days of operation generates statistically meaningful data.",
-    bullets: [
-      "Fuel consumption per engine hour",
-      "Fuel consumption per nautical mile",
-      "Exhaust smoke and combustion quality",
-      "Engine load vs fuel rate",
-    ],
-    bulletsLabel: "Metrics tracked during the trial:",
+      "OILTAC is applied at the confirmed treat rate of 1:10,000. Your crew continues normal operations throughout.",
   },
   {
     number: 4,
-    title: "Your Data, Your Decision",
+    title: "Data Comparison",
     description:
-      "You compare results against your own baseline. We don't control the measurement. You own the evaluation.",
-    bullets: [
-      "Fuel consumption per engine hour",
-      "Fuel consumption per nautical mile",
-      "Fuel consumption per ton of output",
-      "Smoke opacity observations",
-      "Engine load vs fuel rate",
-    ],
-    bulletsLabel: "Common evaluation metrics include:",
-    additionalBulletsLabel: "Additional Metrics Often Evaluated",
-    additionalBullets: [
-      "DPF regeneration frequency (Tier IV engines)",
-      "Exhaust smoke opacity",
-      "Exhaust backpressure trends",
-      "Injector cleanliness after extended use",
-    ],
+      "At trial close, pre- and post-treatment consumption data is compared side by side. You own the results.",
   },
 ];
 
@@ -169,110 +97,48 @@ const HowTheTrialWorks = () => {
       <div className="container-custom">
 
         {/* Heading */}
-        <div className="text-center mb-5">
-          <h2 className="section-title">The Only Claim We Make Is: Test It Yourself</h2>
+        <div className="text-center mb-8">
+          <h2 className="section-title">Don't Take Our Word For It. Test It Yourself.</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mt-2">
-            A structured 30–45 day pilot on your own vessels, using your own consumption data.
+            A structured 30–45 day pilot on your own vessels, with your own data.
           </p>
-
-          {/* Duration badge */}
-          <span
-            className="inline-block mt-4 px-4 py-1.5 rounded-full text-sm font-medium"
-            style={{ backgroundColor: "#f5f5f5", color: NAVY }}
-          >
-            Typical trial: 30–45 days
-          </span>
         </div>
 
-        {/* Intro paragraph — left aligned */}
-        <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
-          No engine modification &nbsp;·&nbsp; No operational downtime &nbsp;·&nbsp; No long-term commitment required &nbsp;·&nbsp; Compatible with diesel and HFO
-        </p>
+        {/* Icon feature grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-10">
+          {iconFeatures.map(({ icon: Icon, label }) => (
+            <div
+              key={label}
+              className="flex flex-col items-center text-center bg-white border border-gray-100 rounded-lg shadow-sm px-4 py-5 gap-3"
+            >
+              <Icon size={24} style={{ color: ORANGE }} strokeWidth={1.75} />
+              <span className="text-sm font-semibold" style={{ color: NAVY }}>{label}</span>
+            </div>
+          ))}
+        </div>
 
         {/* Flow diagram */}
         <FlowDiagram />
 
-        {/* Steps */}
-        <div className="max-w-3xl mx-auto">
-          {steps.map((step, index) => {
-            const isLast = index === steps.length - 1;
-            const showTrialParams = step.number === 2;
-
-            return (
-              <div key={step.number}>
-                {/* Step row */}
-                <div className="flex gap-5">
-                  {/* Left column: circle */}
-                  <div className="flex-shrink-0 flex flex-col items-center" style={{ width: 40 }}>
-                    <div
-                      className="w-10 h-10 rounded-full text-white flex items-center justify-center font-bold text-lg flex-shrink-0"
-                      style={{ backgroundColor: ORANGE }}
-                    >
-                      {step.number}
-                    </div>
-                    {/* Connector down to next element */}
-                    {!isLast && (
-                      <div className="bg-gray-200 flex-1 mt-1" style={{ width: 2, minHeight: 16 }} />
-                    )}
-                  </div>
-
-                  {/* Right column: card */}
-                  <div className={`flex-1 bg-white rounded-lg shadow-sm border border-gray-100 p-5 ${!isLast ? "mb-1" : ""}`}>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Step {step.number} — {step.title}
-                    </h3>
-                    <p className="text-gray-600 mb-3">{step.description}</p>
-                    {step.bulletsLabel && (
-                      <p className="text-gray-600 mb-2">{step.bulletsLabel}</p>
-                    )}
-                    {step.bullets.length > 0 && (
-                      <ul className="space-y-1 pl-1">
-                        {step.bullets.map((bullet) => (
-                          <li key={bullet} className="flex items-start gap-2 text-gray-600">
-                            <span
-                              className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                              style={{ backgroundColor: ORANGE }}
-                            />
-                            {bullet}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                    {"additionalBulletsLabel" in step && step.additionalBulletsLabel && (
-                      <p className="text-gray-600 mb-2 mt-3">{step.additionalBulletsLabel}</p>
-                    )}
-                    {"additionalBullets" in step && step.additionalBullets && step.additionalBullets.length > 0 && (
-                      <ul className="space-y-1 pl-1">
-                        {step.additionalBullets.map((bullet) => (
-                          <li key={bullet} className="flex items-start gap-2 text-gray-600">
-                            <span
-                              className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                              style={{ backgroundColor: ORANGE }}
-                            />
-                            {bullet}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                </div>
-
-                {/* Trial parameters card injected after step 2 */}
-                {showTrialParams && (
-                  <>
-                    <StepConnector />
-                    <TrialParamsCard />
-                    <StepConnector />
-                  </>
-                )}
-
-                {/* Connector between steps (not after last, not after step 2 since handled above) */}
-                {!isLast && !showTrialParams && (
-                  <div style={{ height: 4 }} />
-                )}
+        {/* Horizontal step cards */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+          {stepCards.map((card) => (
+            <div
+              key={card.number}
+              className="bg-white rounded-lg shadow-sm border border-gray-100 p-5 flex flex-col"
+            >
+              <div
+                className="w-9 h-9 rounded-full text-white flex items-center justify-center font-bold text-base flex-shrink-0 mb-3"
+                style={{ backgroundColor: ORANGE }}
+              >
+                {card.number}
               </div>
-            );
-          })}
+              <h3 className="text-base font-semibold mb-2" style={{ color: NAVY }}>
+                {card.title}
+              </h3>
+              <p className="text-sm text-gray-600">{card.description}</p>
+            </div>
+          ))}
         </div>
 
         {/* Closing statement */}
