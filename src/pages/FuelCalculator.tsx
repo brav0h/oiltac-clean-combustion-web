@@ -1,6 +1,58 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+
+const C = {
+  bg:       "#0A1524",
+  surface:  "#11203A",
+  surface2: "#15274A",
+  line:     "#1F3358",
+  line2:    "#28406B",
+  ink:      "#E6ECF5",
+  inkDim:   "#A7B4CC",
+  inkMute:  "#6F7F9E",
+  accent:   "#F97316",
+};
+const SANS = '"Inter", Helvetica, Arial, sans-serif';
+const DISPLAY = '"Montserrat", "Inter", Helvetica, Arial, sans-serif';
+
+const labelStyle: React.CSSProperties = {
+  display: "block",
+  fontFamily: SANS,
+  fontSize: "0.68rem",
+  fontWeight: 600,
+  letterSpacing: "0.09em",
+  textTransform: "uppercase",
+  color: C.inkDim,
+  marginBottom: "6px",
+};
+
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  padding: "10px 12px",
+  fontSize: "0.85rem",
+  fontFamily: SANS,
+  fontWeight: 400,
+  color: C.ink,
+  backgroundColor: C.surface,
+  border: `1px solid ${C.line}`,
+  borderRadius: "4px",
+  outline: "none",
+  boxSizing: "border-box",
+};
+
+const selectArrow = `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A7B4CC' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`;
+
+const selectStyle: React.CSSProperties = {
+  ...inputStyle,
+  appearance: "none",
+  backgroundImage: selectArrow,
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "right 0.75rem center",
+  backgroundSize: "1em",
+  paddingRight: "2.5rem",
+  cursor: "pointer",
+};
 
 const FuelCalculator = () => {
   const [formData, setFormData] = useState({
@@ -54,7 +106,7 @@ const FuelCalculator = () => {
     const fuelCost = parseFloat(formData.fuelCost as string) || 0;
     const co2Cost = parseFloat(formData.co2Cost as string) || 0;
     const fuelSavingPercentage = formData.fuelSavingsPercentage / 100;
-    
+
     if (quantity === 0) return;
 
     const factors = FACTORS[formData.fuelType as keyof typeof FACTORS];
@@ -74,7 +126,7 @@ const FuelCalculator = () => {
     const additiveRequired = quantityInTonnes * factors.additiveRatePerTonne; // Always in litres
     const co2SavingsInTonnes = fuelSavingsInTonnes * factors.co2PerTonne;
     const moneySavedOnCO2 = co2SavingsInTonnes * co2Cost;
-    
+
     // Calculate fuel savings in the user's original unit for display
     let fuelSavingsInOriginalUnit = 0;
     if (formData.units === 'tonnes') {
@@ -109,39 +161,81 @@ const FuelCalculator = () => {
     calculateResults();
   };
 
+  const sliderPercent = ((formData.fuelSavingsPercentage - 4) / (11 - 4)) * 100;
+
   return (
-    <div className="min-h-screen">
+    <div style={{ minHeight: "100vh", backgroundColor: C.bg, fontFamily: SANS }}>
       <Navigation />
-      
-      {/* Background with solid color */}
-      <div 
-        className="min-h-screen flex items-center justify-center py-4 px-4"
-        style={{
-          backgroundColor: '#1e4b54'
-        }}
-      >
-        <div className="w-full bg-transparent p-4" style={{ maxWidth: '490px' }}>
-          <h1 className="text-3xl font-bold text-white mb-8 text-shadow">
-            Fuel & CO2 Savings Simulator
+
+      <style>{`
+        .calc-slider {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 100%;
+          height: 5px;
+          border-radius: 3px;
+          outline: none;
+          cursor: pointer;
+          margin-top: 10px;
+        }
+        .calc-slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: ${C.accent};
+          cursor: pointer;
+          border: 2px solid ${C.bg};
+          box-shadow: 0 0 0 1px ${C.accent};
+        }
+        .calc-slider::-moz-range-thumb {
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: ${C.accent};
+          cursor: pointer;
+          border: 2px solid ${C.bg};
+          box-shadow: 0 0 0 1px ${C.accent};
+        }
+        .calc-input::placeholder {
+          color: ${C.inkMute};
+          opacity: 1;
+        }
+        .calc-input:focus {
+          border-color: ${C.line2};
+          outline: none;
+        }
+        .calc-select option {
+          background-color: ${C.surface};
+          color: ${C.ink};
+        }
+      `}</style>
+
+      <div style={{ padding: "100px 16px 64px" }}>
+        <div style={{ maxWidth: "490px", margin: "0 auto" }}>
+
+          <h1 style={{
+            fontFamily: DISPLAY,
+            fontSize: "1.75rem",
+            fontWeight: 700,
+            color: C.ink,
+            letterSpacing: "-0.01em",
+            marginBottom: "36px",
+          }}>
+            Fuel &amp; CO2 Savings Simulator
           </h1>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+
             {/* Fuel Type */}
             <div>
-              <label className="block text-white font-bold mb-1.5 text-sm">
-                Fuel type :
-              </label>
+              <label style={labelStyle}>Fuel type :</label>
               <select
                 value={formData.fuelType}
                 onChange={(e) => handleInputChange('fuelType', e.target.value)}
-                className="w-full rounded border-0 bg-white text-gray-800 appearance-none bg-no-repeat bg-right pr-8"
-                style={{
-                  padding: '11px',
-                  fontSize: '0.8rem',
-                  backgroundImage: "url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",
-                  backgroundPosition: 'right 0.8rem center',
-                  backgroundSize: '1em'
-                }}
+                className="calc-select"
+                style={selectStyle}
               >
                 <option value="hfo">Heavy Fuel (HFO)</option>
                 <option value="diesel">Diesel (Agriculture/Vehicle)</option>
@@ -150,39 +244,26 @@ const FuelCalculator = () => {
 
             {/* Fuel Quantity */}
             <div>
-              <label className="block text-white font-bold mb-1.5 text-sm">
-                Quantity of fuel :
-              </label>
+              <label style={labelStyle}>Quantity of fuel :</label>
               <input
                 type="number"
                 value={formData.fuelQuantity}
                 onChange={(e) => handleInputChange('fuelQuantity', e.target.value)}
                 step="any"
                 placeholder="Enter quantity"
-                className="w-full rounded border-0 bg-white text-gray-800"
-                style={{
-                  padding: '11px',
-                  fontSize: '0.8rem'
-                }}
+                className="calc-input"
+                style={inputStyle}
               />
             </div>
 
             {/* Units */}
             <div>
-              <label className="block text-white font-bold mb-1.5 text-sm">
-                Units :
-              </label>
+              <label style={labelStyle}>Units :</label>
               <select
                 value={formData.units}
                 onChange={(e) => handleInputChange('units', e.target.value)}
-                className="w-full rounded border-0 bg-white text-gray-800 appearance-none bg-no-repeat bg-right pr-8"
-                style={{
-                  padding: '11px',
-                  fontSize: '0.8rem',
-                  backgroundImage: "url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",
-                  backgroundPosition: 'right 0.8rem center',
-                  backgroundSize: '1em'
-                }}
+                className="calc-select"
+                style={selectStyle}
               >
                 <option value="tonnes">Metric tonnes</option>
                 <option value="litres">Litres</option>
@@ -192,29 +273,30 @@ const FuelCalculator = () => {
 
             {/* Fuel Cost */}
             <div>
-              <label className="block text-white font-bold mb-1.5 text-sm">
-                {getFuelCostLabel()}
-              </label>
+              <label style={labelStyle}>{getFuelCostLabel()}</label>
               <input
                 type="number"
                 value={formData.fuelCost}
                 onChange={(e) => handleInputChange('fuelCost', e.target.value)}
                 step="any"
                 placeholder="Enter cost per unit"
-                className="w-full rounded border-0 bg-white text-gray-800"
-                style={{
-                  padding: '11px',
-                  fontSize: '0.8rem'
-                }}
+                className="calc-input"
+                style={inputStyle}
               />
             </div>
 
             {/* CO2 Cost */}
             <div>
-              <label className="block text-white font-bold mb-1.5 text-sm">
-                Cost of CO2 (US$/metric tonne) :
-              </label>
-              <p className="text-xs text-gray-300 italic mb-2 -mt-1">
+              <label style={labelStyle}>Cost of CO2 (US$/metric tonne) :</label>
+              <p style={{
+                fontFamily: SANS,
+                fontSize: "0.72rem",
+                fontStyle: "italic",
+                color: C.inkMute,
+                marginBottom: "8px",
+                marginTop: "-2px",
+                lineHeight: 1.5,
+              }}>
                 Please note that the cost of CO2 emissions varies by country. Please ensure to check the specific rates applicable to your country.
               </p>
               <input
@@ -223,22 +305,19 @@ const FuelCalculator = () => {
                 onChange={(e) => handleInputChange('co2Cost', e.target.value)}
                 step="any"
                 placeholder="e.g., 50"
-                className="w-full rounded border-0 bg-white text-gray-800"
-                style={{
-                  padding: '11px',
-                  fontSize: '0.8rem'
-                }}
+                className="calc-input"
+                style={inputStyle}
               />
             </div>
 
             {/* Static OILTAC Additive */}
             <div>
-              <label className="block text-white font-bold mb-1.5 text-sm">
-                Additive :
-              </label>
-              <div className="w-full rounded bg-white text-gray-800 font-medium" style={{
-                padding: '11px',
-                fontSize: '0.8rem'
+              <label style={labelStyle}>Additive :</label>
+              <div style={{
+                ...inputStyle,
+                fontWeight: 600,
+                color: C.inkDim,
+                letterSpacing: "0.04em",
               }}>
                 OILTAC
               </div>
@@ -246,8 +325,11 @@ const FuelCalculator = () => {
 
             {/* Fuel Savings Percentage Slider */}
             <div>
-              <label className="block text-white font-bold mb-1.5 text-sm">
-                Select Fuel Savings Percentage : <span className="text-white font-bold ml-2">{formData.fuelSavingsPercentage.toFixed(1)}%</span>
+              <label style={{ ...labelStyle, marginBottom: "4px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span>Select Fuel Savings Percentage :</span>
+                <span style={{ color: C.accent, fontWeight: 700, fontSize: "0.85rem", letterSpacing: "0.04em" }}>
+                  {formData.fuelSavingsPercentage.toFixed(1)}%
+                </span>
               </label>
               <input
                 type="range"
@@ -256,57 +338,91 @@ const FuelCalculator = () => {
                 step="0.1"
                 value={formData.fuelSavingsPercentage}
                 onChange={(e) => handleInputChange('fuelSavingsPercentage', parseFloat(e.target.value))}
-                className="w-full bg-gray-300 rounded appearance-none cursor-pointer mt-2"
+                className="calc-slider"
                 style={{
-                  height: '6px',
-                  background: '#ddd'
+                  background: `linear-gradient(to right, ${C.accent} 0%, ${C.accent} ${sliderPercent}%, ${C.line} ${sliderPercent}%, ${C.line} 100%)`,
                 }}
               />
             </div>
 
             <button
               type="submit"
-              className="bg-white text-gray-800 border-0 rounded cursor-pointer font-bold mt-2 transition-all duration-200 hover:bg-gray-100"
               style={{
-                padding: '11px 22px',
-                fontSize: '0.9rem'
+                fontFamily: DISPLAY,
+                fontSize: "0.85rem",
+                fontWeight: 700,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: "#fff",
+                backgroundColor: C.accent,
+                border: "none",
+                borderRadius: "4px",
+                padding: "12px 24px",
+                cursor: "pointer",
+                alignSelf: "flex-start",
+                transition: "background-color 150ms ease",
               }}
+              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#ea6c0a")}
+              onMouseLeave={e => (e.currentTarget.style.backgroundColor = C.accent)}
             >
               Calculate
             </button>
           </form>
 
           {/* Results Section */}
-          <div style={{ marginTop: '30px' }}>
-            <h2 className="text-white font-bold mb-3" style={{ fontSize: '1.4rem' }}>Results :</h2>
-            <div className="space-y-2">
-              <p className="text-white font-medium" style={{ fontSize: '0.95rem' }}>
-                Quantity of additive required : <span className="font-bold">{results.additiveRequired}</span> litres
-              </p>
-              <p className="text-white font-medium" style={{ fontSize: '0.95rem' }}>
-                Fuel savings : <span className="font-bold">{results.fuelSavings}</span> {getFuelSavingsUnit()}
-              </p>
-              <p className="text-white font-medium" style={{ fontSize: '0.95rem' }}>
-                Savings on fuel purchase : US$<span className="font-bold">{results.purchaseSavings}</span>
-              </p>
-              <p className="text-white font-medium" style={{ fontSize: '0.95rem' }}>
-                CO2 savings : <span className="font-bold">{results.co2Savings}</span> metric tonnes
-              </p>
-              <p className="text-white font-medium" style={{ fontSize: '0.95rem' }}>
-                Money saved on CO2 reduction : US$<span className="font-bold">{results.co2MoneySaved}</span>
-              </p>
+          <div style={{
+            marginTop: "36px",
+            padding: "24px",
+            backgroundColor: C.surface,
+            border: `1px solid ${C.line}`,
+            borderRadius: "6px",
+          }}>
+            <h2 style={{
+              fontFamily: DISPLAY,
+              fontSize: "0.68rem",
+              fontWeight: 600,
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              color: C.inkMute,
+              marginBottom: "18px",
+            }}>
+              Results
+            </h2>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+              {[
+                { label: "Quantity of additive required", value: results.additiveRequired, unit: "litres" },
+                { label: "Fuel savings", value: results.fuelSavings, unit: getFuelSavingsUnit() },
+                { label: "Savings on fuel purchase", value: `US$${results.purchaseSavings}`, unit: "" },
+                { label: "CO2 savings", value: results.co2Savings, unit: "metric tonnes" },
+                { label: "Money saved on CO2 reduction", value: `US$${results.co2MoneySaved}`, unit: "" },
+              ].map(({ label, value, unit }) => (
+                <div key={label} style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "12px" }}>
+                  <span style={{ fontFamily: SANS, fontSize: "0.8rem", color: C.inkDim }}>
+                    {label}
+                  </span>
+                  <span style={{ fontFamily: DISPLAY, fontSize: "0.9rem", fontWeight: 700, color: C.ink, whiteSpace: "nowrap" }}>
+                    {value}{unit ? ` ${unit}` : ""}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Footer Notes */}
-          <div style={{ marginTop: '30px', fontSize: '0.7rem' }} className="leading-relaxed text-gray-300">
-            <p className="italic">
-              The results from this simulator are based on the proven performance of OILTAC, validated by decades of data. From the 1970s through the early 2000s, numerous laboratory tests and extensive field trials in the agriculture, marine, and power generation industries confirmed our product's effectiveness. This legacy of success is further supported by a long history of customer testimonials. As every application is unique, please note that these are estimates and actual savings depend on your specific fuel quality, engine condition, and operational parameters.
-            </p>
-          </div>
+          <p style={{
+            marginTop: "28px",
+            fontFamily: SANS,
+            fontSize: "0.68rem",
+            fontStyle: "italic",
+            color: C.inkMute,
+            lineHeight: 1.7,
+          }}>
+            The results from this simulator are based on the proven performance of OILTAC, validated by decades of data. From the 1970s through the early 2000s, numerous laboratory tests and extensive field trials in the agriculture, marine, and power generation industries confirmed our product's effectiveness. This legacy of success is further supported by a long history of customer testimonials. As every application is unique, please note that these are estimates and actual savings depend on your specific fuel quality, engine condition, and operational parameters.
+          </p>
+
         </div>
       </div>
-      
+
       <Footer />
     </div>
   );
