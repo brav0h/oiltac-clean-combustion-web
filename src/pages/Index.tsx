@@ -255,9 +255,17 @@ function Industries() {
             </div>
           </div>
         </div>
+        <style>{`
+          .ind-card { transition: box-shadow 0.2s ease, outline-color 0.2s ease; outline: 1px solid transparent; }
+          .ind-card:hover { outline-color: rgba(249,115,22,0.55); }
+          .ind-card .ind-overlay { background: rgba(10,20,40,0.70); transition: background 0.2s ease; }
+          .ind-card:hover .ind-overlay { background: rgba(10,20,40,0.52); }
+          .ind-card .ind-cta { transition: color 0.2s ease; }
+          .ind-card:hover .ind-cta { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+        `}</style>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", border: `1px solid ${C.line}`, background: C.surface }}>
           {INDUSTRY_DATA.map((it, idx) => (
-            <a key={it.kind} href={it.href} style={{
+            <a key={it.kind} href={it.href} className="ind-card" style={{
               borderRight: idx % 2 === 0 ? `1px solid ${C.line}` : undefined,
               borderBottom: idx < 2 ? `1px solid ${C.line}` : undefined,
               display: "block",
@@ -270,15 +278,7 @@ function Industries() {
               cursor: "pointer",
             }}>
               {/* dark overlay */}
-              <div style={{
-                position: "absolute",
-                inset: 0,
-                background: "rgba(10, 20, 40, 0.70)",
-                transition: "background 0.15s",
-              }}
-                onMouseEnter={e => (e.currentTarget.style.background = "rgba(10, 20, 40, 0.60)")}
-                onMouseLeave={e => (e.currentTarget.style.background = "rgba(10, 20, 40, 0.70)")}
-              />
+              <div className="ind-overlay" style={{ position: "absolute", inset: 0 }} />
               {/* content above overlay */}
               <div style={{ position: "relative", zIndex: 1, padding: "28px 30px" }}>
                 <div style={{ display: "flex", gap: 6, marginBottom: 8 }}>
@@ -296,7 +296,7 @@ function Industries() {
                     </div>
                   ))}
                 </div>
-                <div style={{ marginTop: 12, fontFamily: MONO, fontSize: 11, color: C.accent, letterSpacing: "0.08em" }}>SEE PROOF →</div>
+                <div className="ind-cta" style={{ marginTop: 12, fontFamily: MONO, fontSize: 11, color: C.accent, letterSpacing: "0.08em" }}>SEE PROOF →</div>
               </div>
             </a>
           ))}
