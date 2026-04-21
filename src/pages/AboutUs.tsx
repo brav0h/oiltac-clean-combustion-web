@@ -35,7 +35,7 @@ const AboutUs = () => {
 
       <Navigation />
 
-      <main className="min-h-screen bg-background">
+      <main className="min-h-screen bg-background" style={{ fontFamily: "'Inter Tight', Inter, Helvetica, Arial, sans-serif" }}>
 
         {/* ── Hero ────────────────────────────────────────────────────── */}
         <section className="relative min-h-[70vh] flex items-end">
@@ -45,7 +45,7 @@ const AboutUs = () => {
           />
           <div className="absolute inset-0 bg-black/60" />
           <div className="relative z-10 container-custom pb-16 md:pb-24 pt-24">
-            <h1 className="text-[1.75rem] md:text-[2.5rem] font-bold text-white mb-4 leading-tight">
+            <h1 className="text-[1.75rem] md:text-[2.5rem] font-semibold text-white mb-4 leading-tight" style={{ letterSpacing: "-0.02em" }}>
               Built in the 1970s. Still Solving the Same Problem.
             </h1>
             <p className="text-[1.05rem] md:text-[1.2rem] font-light text-[#CBD5E1] leading-snug">
@@ -72,7 +72,7 @@ const AboutUs = () => {
               ref={pullQuoteRef}
               className="fade-up max-w-[640px] mx-auto text-center"
             >
-              <p className="font-lora italic text-[1.2rem] md:text-[1.5rem] font-normal text-[#E8E8E8] leading-[1.8]">
+              <p className="italic text-[1.2rem] md:text-[1.5rem] font-normal text-[#E8E8E8] leading-[1.8]">
                 That's how engineers decide something is real.<br />
                 Not by what they're told.<br />
                 But by what they can measure.
@@ -84,14 +84,14 @@ const AboutUs = () => {
         {/* ── Three Costs ─────────────────────────────────────────────── */}
         <section className="py-12 md:py-20 bg-[#FAFAFA]">
           <div className="container-custom">
-            <h2 className="text-[1.4rem] md:text-[1.75rem] font-bold text-[#0D1B2A] mb-10 leading-tight max-w-[720px] mx-auto">
+            <h2 className="text-[1.4rem] md:text-[1.75rem] font-semibold text-[#0D1B2A] mb-10 leading-tight max-w-[720px] mx-auto" style={{ letterSpacing: "-0.02em" }}>
               Three Operating Costs. One Treatment.
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
               {/* Card 1 */}
               <div className="border border-[rgba(13,27,42,0.12)] rounded-[6px] p-8">
                 <Flame size={28} strokeWidth={1.5} className="text-[#0D1B2A] mb-5" />
-                <h3 className="text-[1.1rem] font-bold text-[#0D1B2A] mb-3">Reduce Fuel Consumption</h3>
+                <h3 className="text-[1.1rem] font-semibold text-[#0D1B2A] mb-3">Reduce Fuel Consumption</h3>
                 <ul className="space-y-1.5">
                   <li className="flex gap-2 text-[0.95rem] leading-[1.7] text-[#374151]"><span className="flex-shrink-0 text-[#0D1B2A]/40 select-none">–</span>More complete combustion</li>
                   <li className="flex gap-2 text-[0.95rem] leading-[1.7] text-[#374151]"><span className="flex-shrink-0 text-[#0D1B2A]/40 select-none">–</span>Less fuel for the same output</li>
@@ -101,7 +101,7 @@ const AboutUs = () => {
               {/* Card 2 */}
               <div className="border border-[rgba(13,27,42,0.12)] rounded-[6px] p-8">
                 <Filter size={28} strokeWidth={1.5} className="text-[#0D1B2A] mb-5" />
-                <h3 className="text-[1.1rem] font-bold text-[#0D1B2A] mb-3">Reduce Carbon and Soot Buildup</h3>
+                <h3 className="text-[1.1rem] font-semibold text-[#0D1B2A] mb-3">Reduce Carbon and Soot Buildup</h3>
                 <ul className="space-y-1.5">
                   <li className="flex gap-2 text-[0.95rem] leading-[1.7] text-[#374151]"><span className="flex-shrink-0 text-[#0D1B2A]/40 select-none">–</span>Reduced at the source</li>
                   <li className="flex gap-2 text-[0.95rem] leading-[1.7] text-[#374151]"><span className="flex-shrink-0 text-[#0D1B2A]/40 select-none">–</span>Cleaner injectors and valves</li>
@@ -111,7 +111,7 @@ const AboutUs = () => {
               {/* Card 3 */}
               <div className="border border-[rgba(13,27,42,0.12)] rounded-[6px] p-8">
                 <Droplet size={28} strokeWidth={1.5} className="text-[#0D1B2A] mb-5" />
-                <h3 className="text-[1.1rem] font-bold text-[#0D1B2A] mb-3">Extend Oil Life</h3>
+                <h3 className="text-[1.1rem] font-semibold text-[#0D1B2A] mb-3">Extend Oil Life</h3>
                 <ul className="space-y-1.5">
                   <li className="flex gap-2 text-[0.95rem] leading-[1.7] text-[#374151]"><span className="flex-shrink-0 text-[#0D1B2A]/40 select-none">–</span>Less carbon contamination</li>
                   <li className="flex gap-2 text-[0.95rem] leading-[1.7] text-[#374151]"><span className="flex-shrink-0 text-[#0D1B2A]/40 select-none">–</span>Slower TBN depletion</li>
@@ -132,7 +132,7 @@ const AboutUs = () => {
         <section className="bg-[#0D1B2A] text-white py-20">
           <div className="container-custom">
             <div className="max-w-[900px] mx-auto">
-              <h2 className="text-[1.4rem] md:text-[1.75rem] font-bold text-white mb-8 leading-tight">
+              <h2 className="text-[1.4rem] md:text-[1.75rem] font-semibold text-white mb-8 leading-tight" style={{ letterSpacing: "-0.02em" }}>
                 Why You're Hearing About This Now
               </h2>
               <div className="flex flex-col md:flex-row md:gap-12">
@@ -162,7 +162,7 @@ const AboutUs = () => {
         {/* ── Closing CTA ─────────────────────────────────────────────── */}
         <section className="py-[100px] bg-[#0D1B2A] text-white text-center border-t border-[#1F2D40]">
           <div className="container-custom max-w-2xl mx-auto">
-            <h2 className="text-[1.4rem] md:text-[1.75rem] font-bold text-white mb-8 leading-tight">
+            <h2 className="text-[1.4rem] md:text-[1.75rem] font-semibold text-white mb-8 leading-tight" style={{ letterSpacing: "-0.02em" }}>
               The Only Way to Know Is to<br />
               Run It Yourself
             </h2>

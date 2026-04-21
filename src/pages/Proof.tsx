@@ -397,7 +397,7 @@ const HeadlineStats = () => {
             <div style={{ position: "absolute", left: 0, top: 28, bottom: 28, width: 2, background: C.accent }} />
             <div style={mono({ fontSize: 10.5, color: C.inkMute, letterSpacing: "0.08em", marginBottom: 16 })}>{s.tag}</div>
             <div style={{ fontFamily: SANS, fontWeight: 500, fontSize: 44, lineHeight: 1, letterSpacing: "-0.02em", color: C.ink, fontVariantNumeric: "tabular-nums" }}>
-              −{s.num}<span style={{ fontSize: 20, color: C.inkDim, fontWeight: 400 }}>{s.unit}</span>
+              {s.num}<span style={{ fontSize: 20, color: C.inkDim, fontWeight: 400 }}>{s.unit}</span>
             </div>
             <div style={{ fontFamily: SANS, fontSize: 14, color: C.ink, marginTop: 8 }}>{s.label}</div>
             <div style={mono({ fontSize: 10.5, color: C.inkMute, marginTop: 14, letterSpacing: "0.02em", lineHeight: 1.5 })}>{s.src}</div>
@@ -566,7 +566,7 @@ const FuelSavingsChart = ({ rows, mode, onModeChange, filter }: ChartProps) => {
                 <td style={{ padding: "14px", borderBottom: `1px solid ${C.line}`, fontSize: 13, color: C.inkDim, verticalAlign: "top" }}>{r.protocol.split(";")[0]}</td>
                 <td style={{ padding: "14px", borderBottom: `1px solid ${C.line}`, verticalAlign: "top", ...mono({ fontSize: 12, color: C.ink }) }}>{r.duration}</td>
                 <td style={{ padding: "14px", borderBottom: `1px solid ${C.line}`, textAlign: "right", verticalAlign: "top", ...mono({ color: C.inkMute }) }}>{r.sampleN ?? "—"}</td>
-                <td style={{ padding: "14px", borderBottom: `1px solid ${C.line}`, textAlign: "right", verticalAlign: "top", color: C.accent, fontWeight: 600 }}>−{r.fuelSaving.toFixed(1)}%</td>
+                <td style={{ padding: "14px", borderBottom: `1px solid ${C.line}`, textAlign: "right", verticalAlign: "top", color: C.accent, fontWeight: 600 }}>{r.fuelSaving.toFixed(1)}% saved</td>
                 <td style={{ padding: "14px", borderBottom: `1px solid ${C.line}`, textAlign: "right", verticalAlign: "top", ...mono({ color: C.inkMute }) }}>{r.particulate !== null ? `${r.particulate.toFixed(1)}%` : "—"}</td>
                 <td style={{ padding: "14px", borderBottom: `1px solid ${C.line}`, textAlign: "right", verticalAlign: "top", ...mono({ color: C.inkMute }) }}>{r.bearingWear !== null ? `${r.bearingWear.toFixed(0)}%` : "—"}</td>
               </tr>
@@ -678,7 +678,7 @@ const TestLedger = ({ rows, filter, onFilter }: LedgerProps) => {
                   <td style={{ padding: "14px", borderBottom: `1px solid ${C.line}`, textAlign: "right", verticalAlign: "top", ...mono({ fontSize: 12, color: C.ink }) }}>{r.duration}</td>
                   <td style={{ padding: "14px", borderBottom: `1px solid ${C.line}`, textAlign: "right", verticalAlign: "top", ...mono({ color: C.inkMute }) }}>{r.sampleN ?? "—"}</td>
                   <td style={{ padding: "14px", borderBottom: `1px solid ${C.line}`, textAlign: "right", verticalAlign: "top", color: r.fuelSaving !== null ? C.accent : C.inkMute, fontWeight: r.fuelSaving !== null ? 600 : 400 }}>
-                    {r.fuelSaving !== null ? `−${r.fuelSaving.toFixed(1)}%` : "—"}
+                    {r.fuelSaving !== null ? `${r.fuelSaving.toFixed(1)}% saved` : "—"}
                   </td>
                   <td style={{ padding: "14px", borderBottom: `1px solid ${C.line}`, textAlign: "right", verticalAlign: "top", ...mono({ color: C.inkMute }) }}>
                     {r.particulate !== null ? `${r.particulate.toFixed(0)}%` : "—"}
@@ -845,13 +845,13 @@ const MechanismSchematic = () => (
           <line x1="625" y1="102" x2="905" y2="102" stroke={C.line} />
 
           <text x="625" y="124" fill={C.inkDim} fontSize="11" fontFamily={MONO}>Fuel consumed</text>
-          <text x="905" y="124" fill={C.accent} fontSize="12" fontFamily={MONO} textAnchor="end" fontWeight="600">−1.5–6.8 %</text>
+          <text x="905" y="124" fill={C.accent} fontSize="12" fontFamily={MONO} textAnchor="end" fontWeight="600">1.5–6.8% reduction</text>
 
           <text x="625" y="150" fill={C.inkDim} fontSize="11" fontFamily={MONO}>Smoke / PM</text>
-          <text x="905" y="150" fill={C.accent} fontSize="12" fontFamily={MONO} textAnchor="end" fontWeight="600">−8–50 %</text>
+          <text x="905" y="150" fill={C.accent} fontSize="12" fontFamily={MONO} textAnchor="end" fontWeight="600">8–50% reduction</text>
 
           <text x="625" y="176" fill={C.inkDim} fontSize="11" fontFamily={MONO}>Crank pin wear (200 h)</text>
-          <text x="905" y="176" fill={C.accent} fontSize="12" fontFamily={MONO} textAnchor="end" fontWeight="600">−21 %</text>
+          <text x="905" y="176" fill={C.accent} fontSize="12" fontFamily={MONO} textAnchor="end" fontWeight="600">21% reduction</text>
 
           <text x="625" y="202" fill={C.inkMute} fontSize="9" fontFamily={MONO}>Ranges across documented tests — see §02 ledger.</text>
         </svg>
