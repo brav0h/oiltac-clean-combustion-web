@@ -61,7 +61,7 @@ const FuelCalculator = () => {
     units: "tonnes",
     fuelCost: "",
     co2Cost: "",
-    fuelSavingsPercentage: 4.0
+    fuelSavingsPercentage: 2.0
   });
 
   const [results, setResults] = useState({
@@ -161,7 +161,7 @@ const FuelCalculator = () => {
     calculateResults();
   };
 
-  const sliderPercent = ((formData.fuelSavingsPercentage - 4) / (11 - 4)) * 100;
+  const sliderPercent = ((formData.fuelSavingsPercentage - 1) / (8 - 1)) * 100;
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: C.bg, fontFamily: SANS }}>
@@ -333,8 +333,8 @@ const FuelCalculator = () => {
               </label>
               <input
                 type="range"
-                min="4"
-                max="11"
+                min="1"
+                max="8"
                 step="0.1"
                 value={formData.fuelSavingsPercentage}
                 onChange={(e) => handleInputChange('fuelSavingsPercentage', parseFloat(e.target.value))}
