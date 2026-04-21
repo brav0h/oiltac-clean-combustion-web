@@ -19,23 +19,8 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="/about-us" className="text-gray-300 hover:text-white transition-colors">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#industries" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/industries" className="text-gray-300 hover:text-white transition-colors">
                   Industries
-                </a>
-              </li>
-              <li>
-                <a href="#benefits" className="text-gray-300 hover:text-white transition-colors">
-                  Benefits
-                </a>
-              </li>
-              <li>
-                <a href="#proven" className="text-gray-300 hover:text-white transition-colors">
-                  Results
                 </a>
               </li>
               <li>
@@ -44,12 +29,27 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#why-now" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/#benefits" className="text-gray-300 hover:text-white transition-colors">
+                  Benefits
+                </a>
+              </li>
+              <li>
+                <a href="/fuel-calculator" className="text-gray-300 hover:text-white transition-colors">
+                  Calculator
+                </a>
+              </li>
+              <li>
+                <a href="/#why-now" className="text-gray-300 hover:text-white transition-colors">
                   Why Now
                 </a>
               </li>
               <li>
-                <a href="#pilot-cta" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/about-us" className="text-gray-300 hover:text-white transition-colors">
+                  Our Story
+                </a>
+              </li>
+              <li>
+                <a href="/#pilot-cta" className="text-gray-300 hover:text-white transition-colors">
                   Request a Pilot
                 </a>
               </li>

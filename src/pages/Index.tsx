@@ -396,7 +396,7 @@ function Comparison() {
   const cellColor = (cls: string) => cls === "yes" ? C.accent : cls === "warn" ? "#D8A04C" : C.inkMute;
 
   return (
-    <section style={{ padding: "88px 0", borderTop: `1px solid ${C.line}` }}>
+    <section id="benefits" style={{ padding: "88px 0", borderTop: `1px solid ${C.line}`, scrollMarginTop: 72 }}>
       <div style={wrap}>
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 44, gap: 40 }}>
           <div>
@@ -514,7 +514,7 @@ function PilotCTA() {
   };
 
   return (
-    <section id="pilot" style={{ padding: "88px 0", borderTop: `1px solid ${C.line}` }}>
+    <section id="pilot-cta" style={{ padding: "88px 0", borderTop: `1px solid ${C.line}`, scrollMarginTop: 72 }}>
       <div style={wrap}>
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 44, gap: 40 }}>
           <div>

@@ -417,7 +417,7 @@ const Industries = () => {
               The fastest way to evaluate OILTAC is to run it in your own operation.
             </p>
             <a
-              href="/#pilot"
+              href="/#pilot-cta"
               className="inline-block bg-[#F97316] hover:bg-[#F97316]/90 text-white font-semibold px-8 py-4 rounded-md text-lg transition-colors"
             >
               Request a Pilot Test
