@@ -137,7 +137,7 @@ function Hero() {
             <em style={{ fontStyle: "normal", color: C.accent, fontWeight: 500 }}>No hardware changes.</em>
           </h1>
           <p style={{ color: C.inkDim, fontSize: 17, lineHeight: 1.55, maxWidth: 540, margin: "0 0 28px" }}>
-            OILTAC is a combustion additive for diesel and heavy fuel oil — dosed at the tank, activated in the chamber. Fleet managers use it to cut fuel consumption, soot, and bearing wear without touching the engine.
+            OILTAC is a combustion additive for diesel and heavy fuel oil, dosed at the tank and active during combustion to improve burn efficiency without modifying the engine. Fleet managers use it to reduce fuel consumption, soot, and bearing wear without touching the engine.
           </p>
           <div style={{ display: "flex", gap: 10, marginBottom: 28 }}>
             <button onClick={scrollToPilot} style={{
@@ -468,7 +468,7 @@ function WhyNow() {
                 { ref: "CAPEX", text: "No retrofit, no new injectors, no new systems" },
                 { ref: "OPEX", text: "Fuel + maintenance reductions attack the two biggest line items" },
                 { ref: "OEM", text: "Warranty-safe in tested configurations" },
-                { ref: "PILOT", text: "90-day trial on your equipment; your data, your decision" },
+                { ref: "PILOT", text: "45–60 day trial on your equipment; your data, your decision" },
               ],
             },
           ].map((cell, ci) => (
@@ -521,7 +521,7 @@ function PilotCTA() {
             <div style={{ fontFamily: MONO, fontSize: 11, color: C.inkMute, letterSpacing: "0.1em", marginBottom: 10 }}>SECTION 05 · PILOT</div>
             <h2 style={{ fontWeight: 600, fontSize: 36, lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, maxWidth: 640 }}>Run OILTAC against your own baseline.</h2>
             <div style={{ color: C.inkDim, maxWidth: 480, marginTop: 12, fontSize: 15 }}>
-              Three units. 90 days. We supply the additive and dosing rig; you set the duty cycle; a neutral observer can witness if you want one.
+              Three units. 45–60 days. We supply the additive and dosing rig; you set the duty cycle; a neutral observer can witness if you want one.
             </div>
           </div>
         </div>
@@ -533,7 +533,7 @@ function PilotCTA() {
               {[
                 { n: "01", t: "Baseline", d: "Agree on measurement — fuel rail, duty cycle, date range — and establish your additive-free baseline." },
                 { n: "02", t: "Dose", d: "1 : 10,000 at tank. No dosing rig required for most installations; we supply one if you prefer." },
-                { n: "03", t: "Measure", d: "90 days. Same duty cycle. Compare fuel, PM, and oil condition against baseline." },
+                { n: "03", t: "Measure", d: "45–60 days. Same duty cycle. Compare fuel, PM, and oil condition against baseline." },
                 { n: "04", t: "Decide", d: "Keep it, remove it, or expand. Your data, your decision — no lock-in." },
               ].map(step => (
                 <div key={step.n} style={{ padding: "18px 0", borderBottom: `1px solid ${C.line}`, display: "grid", gridTemplateColumns: "40px 1fr", gap: 20, alignItems: "start" }}>

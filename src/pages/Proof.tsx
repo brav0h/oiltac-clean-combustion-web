@@ -1026,7 +1026,7 @@ const CTASection = () => (
           Run OILTAC against your own baseline.
         </h3>
         <p style={{ fontFamily: SANS, color: C.inkDim, margin: 0, maxWidth: 480, fontSize: 15, lineHeight: 1.6 }}>
-          Pilot programmes start at three units and 90 days. You set the duty cycle; we provide the additive and dosing rig. Contact us to discuss how to structure a measurement protocol for your fleet.
+          Pilot programmes start at three units and 45–60 days. You set the duty cycle; we provide the additive and dosing rig. Contact us to discuss how to structure a measurement protocol for your fleet.
         </p>
       </div>
       <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
