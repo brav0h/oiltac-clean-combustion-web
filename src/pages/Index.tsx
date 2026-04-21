@@ -36,7 +36,7 @@ function EyebrowBar() {
       borderBottom: `1px solid ${C.line}`, background: C.bg2,
       fontFamily: MONO, fontSize: 11.5, color: C.inkMute, letterSpacing: "0.04em",
     }}>
-      <div style={{ ...wrap, display: "flex", justifyContent: "space-between", height: 32, alignItems: "center" }}>
+      <div style={{ ...wrap, display: "flex", justifyContent: "space-between", padding: "11px 0 5px", alignItems: "center" }}>
         <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
           <span>COMMERCIAL FUEL TREATMENT · DIESEL &amp; HFO</span>
           <span>OEM-SAFE · NO HARDWARE CHANGES</span>
