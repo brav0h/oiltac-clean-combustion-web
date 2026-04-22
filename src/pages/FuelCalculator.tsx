@@ -76,13 +76,13 @@ const FuelCalculator = () => {
   const FACTORS = {
     hfo: {
       co2PerTonne: 3.12,      // tonnes CO2 per tonne HFO
-      additiveRatePerTonne: 0.55 / 30, // litres additive per tonne HFO
+      additiveRatePerTonne: 990 / 10000, // litres additive per tonne HFO (1:10,000 V/V)
       litresPerTonne: 990,    // Approx. litres in 1 metric tonne of HFO
       gallonsPerTonne: 261.5  // Approx. US gallons in 1 metric tonne of HFO
     },
     diesel: {
       co2PerTonne: 3.16,      // tonnes CO2 per tonne Diesel
-      additiveRatePerTonne: (1/4000) * 1176, // litres additive per tonne Diesel (1:4000L ratio)
+      additiveRatePerTonne: 1176 / 10000, // litres additive per tonne Diesel (1:10,000 V/V)
       litresPerTonne: 1176,   // Approx. litres in 1 metric tonne of Diesel (density ~0.85)
       gallonsPerTonne: 310.7  // Approx. US gallons in 1 metric tonne of Diesel
     }
