@@ -131,6 +131,26 @@ const FuelCalculator = () => {
     return "metric tonnes";
   };
 
+  const FUEL_COST_PLACEHOLDERS: Record<string, Record<string, string>> = {
+    hfo:    { tonnes: "e.g., 480 (typical HFO spot price US$/tonne)",    litres: "e.g., 0.48 (typical HFO price US$/litre)",    gallons: "e.g., 1.82 (typical HFO price US$/gallon)" },
+    ifo:    { tonnes: "e.g., 510 (typical IFO spot price US$/tonne)",    litres: "e.g., 0.53 (typical IFO price US$/litre)",    gallons: "e.g., 1.93 (typical IFO price US$/gallon)" },
+    mdo:    { tonnes: "e.g., 650 (typical MGO spot price US$/tonne)",    litres: "e.g., 0.76 (typical MGO price US$/litre)",    gallons: "e.g., 2.46 (typical MGO price US$/gallon)" },
+    diesel: { tonnes: "e.g., 950 (typical diesel price US$/tonne)",      litres: "e.g., 0.80 (typical diesel price US$/litre)", gallons: "e.g., 3.03 (typical diesel price US$/gallon)" },
+  };
+
+  const QTY_PLACEHOLDERS: Record<string, Record<string, string>> = {
+    hfo:    { tonnes: "e.g., 5000 (metric tonnes per month)",    litres: "e.g., 4,950,000 (litres per month)",  gallons: "e.g., 1,307,500 (gallons per month)" },
+    ifo:    { tonnes: "e.g., 3000 (metric tonnes per month)",    litres: "e.g., 2,910,000 (litres per month)",  gallons: "e.g., 768,600 (gallons per month)" },
+    mdo:    { tonnes: "e.g., 500 (metric tonnes per month)",     litres: "e.g., 430,000 (litres per month)",    gallons: "e.g., 113,550 (gallons per month)" },
+    diesel: { tonnes: "e.g., 200 (metric tonnes per month)",     litres: "e.g., 168,000 (litres per month)",    gallons: "e.g., 44,380 (gallons per month)" },
+  };
+
+  const getFuelCostPlaceholder = () =>
+    FUEL_COST_PLACEHOLDERS[formData.fuelType]?.[formData.units] ?? "Enter cost per unit";
+
+  const getQtyPlaceholder = () =>
+    QTY_PLACEHOLDERS[formData.fuelType]?.[formData.units] ?? "Enter quantity";
+
   useEffect(() => {
     const quantity = parseFloat(formData.fuelQuantity) || 0;
     const fuelCost = parseFloat(formData.fuelCost) || 0;
@@ -285,7 +305,7 @@ const FuelCalculator = () => {
                 value={formData.fuelQuantity}
                 onChange={(e) => handleInputChange("fuelQuantity", e.target.value)}
                 step="any"
-                placeholder="Enter quantity"
+                placeholder={getQtyPlaceholder()}
                 className="calc-input"
                 style={inputStyle}
               />
@@ -314,7 +334,7 @@ const FuelCalculator = () => {
                 value={formData.fuelCost}
                 onChange={(e) => handleInputChange("fuelCost", e.target.value)}
                 step="any"
-                placeholder="Enter cost per unit"
+                placeholder={getFuelCostPlaceholder()}
                 className="calc-input"
                 style={inputStyle}
               />
@@ -339,7 +359,7 @@ const FuelCalculator = () => {
                 value={formData.co2Cost}
                 onChange={(e) => handleInputChange("co2Cost", e.target.value)}
                 step="any"
-                placeholder="e.g., 50"
+                placeholder="e.g., 50 (EU ETS ~€50–80/tonne · US voluntary ~$15–30/tonne)"
                 className="calc-input"
                 style={inputStyle}
               />
@@ -399,7 +419,7 @@ const FuelCalculator = () => {
                 value={formData.additivePricePerLitre}
                 onChange={(e) => handleInputChange("additivePricePerLitre", e.target.value)}
                 step="any"
-                placeholder="Enter your quoted rate"
+                placeholder="e.g., 45–78 (contact us for your quoted rate)"
                 className="calc-input"
                 style={inputStyle}
               />
@@ -407,9 +427,22 @@ const FuelCalculator = () => {
 
           </form>
 
+          {/* Helper note */}
+          <p style={{
+            marginTop: "36px",
+            marginBottom: "8px",
+            fontFamily: SANS,
+            fontSize: "0.7rem",
+            fontStyle: "italic",
+            color: C.inkMute,
+            lineHeight: 1.5,
+          }}>
+            Results are estimates based on documented trial data. Actual savings depend on engine condition, duty cycle, and fuel quality.
+          </p>
+
           {/* Results Section */}
           <div style={{
-            marginTop: "36px",
+            marginTop: "0",
             backgroundColor: C.surface,
             border: `1px solid ${C.line}`,
             borderRadius: "6px",
@@ -445,16 +478,15 @@ const FuelCalculator = () => {
                 }}>
                   US${fmt(results.netSavings!)}
                 </div>
-                <div style={{
-                  fontFamily: SANS,
-                  fontSize: "0.75rem",
-                  color: C.inkMute,
-                  fontStyle: results.netSavings! < 0 ? "italic" : "normal",
-                }}>
-                  {results.netSavings! >= 0
-                    ? "after additive cost"
-                    : "Additive cost exceeds fuel savings at this input — try a higher quantity or savings percentage"}
-                </div>
+                {results.netSavings! >= 0 ? (
+                  <div style={{ fontFamily: SANS, fontSize: "0.75rem", color: C.inkMute }}>
+                    after additive cost
+                  </div>
+                ) : (
+                  <div style={{ fontFamily: SANS, fontSize: "0.72rem", fontStyle: "italic", color: C.inkMute, lineHeight: 1.55, marginTop: "4px" }}>
+                    Net savings are negative at these inputs. This is typically caused by a low fuel cost entry — check that your fuel cost reflects current market rates (HFO ~US$480/tonne, MGO ~US$650/tonne). At realistic fuel prices, OILTAC typically returns US$2–4 in fuel savings for every US$1 spent on additive.
+                  </div>
+                )}
               </div>
             )}
 
