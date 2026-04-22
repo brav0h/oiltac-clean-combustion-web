@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
@@ -54,6 +54,29 @@ const selectStyle: React.CSSProperties = {
   cursor: "pointer",
 };
 
+interface CalcResults {
+  additiveRequired: number | null;
+  fuelSavingsQty: number | null;
+  purchaseSavings: number | null;
+  co2Savings: number | null;
+  co2MoneySaved: number | null;
+  additiveCost: number | null;
+  netSavings: number | null;
+}
+
+const nullResults: CalcResults = {
+  additiveRequired: null,
+  fuelSavingsQty: null,
+  purchaseSavings: null,
+  co2Savings: null,
+  co2MoneySaved: null,
+  additiveCost: null,
+  netSavings: null,
+};
+
+const fmt = (n: number) =>
+  n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
 const FuelCalculator = () => {
   const [formData, setFormData] = useState({
     fuelType: "hfo",
@@ -61,16 +84,11 @@ const FuelCalculator = () => {
     units: "tonnes",
     fuelCost: "",
     co2Cost: "",
-    fuelSavingsPercentage: 2.0
+    fuelSavingsPercentage: 2.0,
+    additivePricePerLitre: "",
   });
 
-  const [results, setResults] = useState({
-    additiveRequired: "---",
-    fuelSavings: "---",
-    purchaseSavings: "---",
-    co2Savings: "---",
-    co2MoneySaved: "---"
-  });
+  const [results, setResults] = useState<CalcResults>(nullResults);
 
   // Calculation constants and conversion factors
   const FACTORS = {
@@ -88,15 +106,9 @@ const FuelCalculator = () => {
     },
     mdo: {
       co2PerTonne: 3.16,
-      litresPerTonne: 870,
-      gallonsPerTonne: 229.8,
-      additiveRatePerTonne: 870 / 10000,
-    },
-    mgo: {
-      co2PerTonne: 3.16,
-      litresPerTonne: 850,
-      gallonsPerTonne: 224.5,
-      additiveRatePerTonne: 850 / 10000,
+      litresPerTonne: 860,
+      gallonsPerTonne: 227.1,
+      additiveRatePerTonne: 860 / 10000,
     },
     diesel: {
       co2PerTonne: 3.16,
@@ -107,35 +119,39 @@ const FuelCalculator = () => {
   };
 
   const getFuelCostLabel = () => {
-    let unitText = 'metric tonne';
-    if (formData.units === 'litres') unitText = 'litre';
-    if (formData.units === 'gallons') unitText = 'gallon (US)';
+    let unitText = "metric tonne";
+    if (formData.units === "litres") unitText = "litre";
+    if (formData.units === "gallons") unitText = "gallon (US)";
     return `Fuel cost (US$/${unitText}) :`;
   };
 
   const getFuelSavingsUnit = () => {
-    if (formData.units === 'litres') return 'litres';
-    if (formData.units === 'gallons') return 'gallons';
-    return 'metric tonnes';
+    if (formData.units === "litres") return "litres";
+    if (formData.units === "gallons") return "gallons";
+    return "metric tonnes";
   };
 
-  const calculateResults = () => {
-    const quantity = parseFloat(formData.fuelQuantity as string) || 0;
-    const fuelCost = parseFloat(formData.fuelCost as string) || 0;
-    const co2Cost = parseFloat(formData.co2Cost as string) || 0;
+  useEffect(() => {
+    const quantity = parseFloat(formData.fuelQuantity) || 0;
+    const fuelCost = parseFloat(formData.fuelCost) || 0;
+    const co2Cost = parseFloat(formData.co2Cost) || 0;
+    const additivePricePerLitre = parseFloat(formData.additivePricePerLitre) || 0;
     const fuelSavingPercentage = formData.fuelSavingsPercentage / 100;
 
-    if (quantity === 0) return;
+    if (quantity === 0 || fuelCost === 0) {
+      setResults(nullResults);
+      return;
+    }
 
     const factors = FACTORS[formData.fuelType as keyof typeof FACTORS];
 
     // Normalize input quantity to metric tonnes
     let quantityInTonnes = 0;
-    if (formData.units === 'tonnes') {
+    if (formData.units === "tonnes") {
       quantityInTonnes = quantity;
-    } else if (formData.units === 'litres') {
+    } else if (formData.units === "litres") {
       quantityInTonnes = quantity / factors.litresPerTonne;
-    } else if (formData.units === 'gallons') {
+    } else if (formData.units === "gallons") {
       quantityInTonnes = quantity / factors.gallonsPerTonne;
     }
 
@@ -147,11 +163,11 @@ const FuelCalculator = () => {
 
     // Calculate fuel savings in the user's original unit for display
     let fuelSavingsInOriginalUnit = 0;
-    if (formData.units === 'tonnes') {
+    if (formData.units === "tonnes") {
       fuelSavingsInOriginalUnit = fuelSavingsInTonnes;
-    } else if (formData.units === 'litres') {
+    } else if (formData.units === "litres") {
       fuelSavingsInOriginalUnit = fuelSavingsInTonnes * factors.litresPerTonne;
-    } else if (formData.units === 'gallons') {
+    } else if (formData.units === "gallons") {
       fuelSavingsInOriginalUnit = fuelSavingsInTonnes * factors.gallonsPerTonne;
     }
 
@@ -159,27 +175,26 @@ const FuelCalculator = () => {
     const savingsOnPurchase = fuelSavingsInOriginalUnit * fuelCost;
 
     setResults({
-      additiveRequired: additiveRequired.toFixed(2),
-      fuelSavings: fuelSavingsInOriginalUnit.toFixed(2),
-      purchaseSavings: savingsOnPurchase.toFixed(2),
-      co2Savings: co2SavingsInTonnes.toFixed(2),
-      co2MoneySaved: moneySavedOnCO2.toFixed(2)
+      additiveRequired,
+      fuelSavingsQty: fuelSavingsInOriginalUnit,
+      purchaseSavings: savingsOnPurchase,
+      co2Savings: co2SavingsInTonnes,
+      co2MoneySaved: co2Cost > 0 ? moneySavedOnCO2 : null,
+      additiveCost: additivePricePerLitre > 0 ? additiveRequired * additivePricePerLitre : null,
+      netSavings: additivePricePerLitre > 0 ? savingsOnPurchase - additiveRequired * additivePricePerLitre : null,
     });
-  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formData]);
 
   const handleInputChange = (field: string, value: string | number) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    calculateResults();
+    setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   const sliderPercent = ((formData.fuelSavingsPercentage - 1) / (8 - 1)) * 100;
+
+  const hasBasicResults = results.additiveRequired !== null;
+  const hasAdditiveResults = results.additiveCost !== null;
+  const hasCO2Results = results.co2MoneySaved !== null;
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: C.bg, fontFamily: SANS }}>
@@ -244,21 +259,20 @@ const FuelCalculator = () => {
             Fuel &amp; CO2 Savings Simulator
           </h1>
 
-          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          <form style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
 
             {/* Fuel Type */}
             <div>
               <label style={labelStyle}>Fuel type :</label>
               <select
                 value={formData.fuelType}
-                onChange={(e) => handleInputChange('fuelType', e.target.value)}
+                onChange={(e) => handleInputChange("fuelType", e.target.value)}
                 className="calc-select"
                 style={selectStyle}
               >
                 <option value="hfo">Heavy Fuel Oil (HFO)</option>
                 <option value="ifo">Intermediate Fuel Oil (IFO 380 / IFO 180)</option>
-                <option value="mdo">Marine Diesel Oil (MDO)</option>
-                <option value="mgo">Marine Gas Oil (MGO)</option>
+                <option value="mdo">Marine Diesel / MGO</option>
                 <option value="diesel">Diesel — General (Rail · Power Generation · Mining · Heavy Equipment)</option>
               </select>
             </div>
@@ -269,7 +283,7 @@ const FuelCalculator = () => {
               <input
                 type="number"
                 value={formData.fuelQuantity}
-                onChange={(e) => handleInputChange('fuelQuantity', e.target.value)}
+                onChange={(e) => handleInputChange("fuelQuantity", e.target.value)}
                 step="any"
                 placeholder="Enter quantity"
                 className="calc-input"
@@ -282,7 +296,7 @@ const FuelCalculator = () => {
               <label style={labelStyle}>Units :</label>
               <select
                 value={formData.units}
-                onChange={(e) => handleInputChange('units', e.target.value)}
+                onChange={(e) => handleInputChange("units", e.target.value)}
                 className="calc-select"
                 style={selectStyle}
               >
@@ -298,7 +312,7 @@ const FuelCalculator = () => {
               <input
                 type="number"
                 value={formData.fuelCost}
-                onChange={(e) => handleInputChange('fuelCost', e.target.value)}
+                onChange={(e) => handleInputChange("fuelCost", e.target.value)}
                 step="any"
                 placeholder="Enter cost per unit"
                 className="calc-input"
@@ -323,7 +337,7 @@ const FuelCalculator = () => {
               <input
                 type="number"
                 value={formData.co2Cost}
-                onChange={(e) => handleInputChange('co2Cost', e.target.value)}
+                onChange={(e) => handleInputChange("co2Cost", e.target.value)}
                 step="any"
                 placeholder="e.g., 50"
                 className="calc-input"
@@ -358,7 +372,7 @@ const FuelCalculator = () => {
                 max="8"
                 step="0.1"
                 value={formData.fuelSavingsPercentage}
-                onChange={(e) => handleInputChange('fuelSavingsPercentage', parseFloat(e.target.value))}
+                onChange={(e) => handleInputChange("fuelSavingsPercentage", parseFloat(e.target.value))}
                 className="calc-slider"
                 style={{
                   background: `linear-gradient(to right, ${C.accent} 0%, ${C.accent} ${sliderPercent}%, ${C.line} ${sliderPercent}%, ${C.line} 100%)`,
@@ -366,66 +380,200 @@ const FuelCalculator = () => {
               />
             </div>
 
-            <button
-              type="submit"
-              style={{
-                fontFamily: DISPLAY,
-                fontSize: "0.85rem",
-                fontWeight: 700,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: "#fff",
-                backgroundColor: C.accent,
-                border: "none",
-                borderRadius: "4px",
-                padding: "12px 24px",
-                cursor: "pointer",
-                alignSelf: "flex-start",
-                transition: "background-color 150ms ease",
-              }}
-              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#ea6c0a")}
-              onMouseLeave={e => (e.currentTarget.style.backgroundColor = C.accent)}
-            >
-              Calculate
-            </button>
+            {/* Additive Price */}
+            <div>
+              <label style={labelStyle}>OILTAC Additive Cost (US$/litre) :</label>
+              <p style={{
+                fontFamily: SANS,
+                fontSize: "0.72rem",
+                fontStyle: "italic",
+                color: C.inkMute,
+                marginBottom: "8px",
+                marginTop: "-2px",
+                lineHeight: 1.5,
+              }}>
+                Contact us for pricing — enter your quoted rate to calculate net ROI
+              </p>
+              <input
+                type="number"
+                value={formData.additivePricePerLitre}
+                onChange={(e) => handleInputChange("additivePricePerLitre", e.target.value)}
+                step="any"
+                placeholder="Enter your quoted rate"
+                className="calc-input"
+                style={inputStyle}
+              />
+            </div>
+
           </form>
 
           {/* Results Section */}
           <div style={{
             marginTop: "36px",
-            padding: "24px",
             backgroundColor: C.surface,
             border: `1px solid ${C.line}`,
             borderRadius: "6px",
+            overflow: "hidden",
           }}>
-            <h2 style={{
-              fontFamily: DISPLAY,
-              fontSize: "0.68rem",
-              fontWeight: 600,
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              color: C.inkMute,
-              marginBottom: "18px",
-            }}>
-              Results
-            </h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+
+            {/* Headline block — net savings, shown only when additive cost is entered */}
+            {hasAdditiveResults && (
+              <div style={{
+                padding: "24px 24px 20px",
+                borderBottom: `1px solid ${C.line}`,
+                backgroundColor: C.surface2,
+              }}>
+                <div style={{
+                  fontFamily: SANS,
+                  fontSize: "0.68rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: C.inkMute,
+                  marginBottom: "6px",
+                }}>
+                  Net Savings
+                </div>
+                <div style={{
+                  fontFamily: DISPLAY,
+                  fontSize: "2.25rem",
+                  fontWeight: 700,
+                  color: results.netSavings! >= 0 ? C.accent : "#f87171",
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1.1,
+                  marginBottom: "6px",
+                }}>
+                  US${fmt(results.netSavings!)}
+                </div>
+                <div style={{
+                  fontFamily: SANS,
+                  fontSize: "0.75rem",
+                  color: C.inkMute,
+                  fontStyle: results.netSavings! < 0 ? "italic" : "normal",
+                }}>
+                  {results.netSavings! >= 0
+                    ? "after additive cost"
+                    : "Additive cost exceeds fuel savings at this input — try a higher quantity or savings percentage"}
+                </div>
+              </div>
+            )}
+
+            {/* Two-column block — fuel savings vs additive cost, shown only when additive cost is entered */}
+            {hasAdditiveResults && (
+              <div style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "1px",
+                backgroundColor: C.line,
+                borderBottom: `1px solid ${C.line}`,
+              }}>
+                <div style={{ padding: "16px 20px", backgroundColor: C.surface }}>
+                  <div style={{
+                    fontFamily: SANS,
+                    fontSize: "0.68rem",
+                    fontWeight: 600,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: C.inkMute,
+                    marginBottom: "6px",
+                  }}>
+                    Fuel Savings
+                  </div>
+                  <div style={{ fontFamily: DISPLAY, fontSize: "1.05rem", fontWeight: 700, color: C.ink }}>
+                    US${fmt(results.purchaseSavings!)}
+                  </div>
+                  <div style={{ fontFamily: SANS, fontSize: "0.75rem", color: C.inkDim, marginTop: "3px" }}>
+                    {fmt(results.fuelSavingsQty!)} {getFuelSavingsUnit()} saved
+                  </div>
+                </div>
+                <div style={{ padding: "16px 20px", backgroundColor: C.surface }}>
+                  <div style={{
+                    fontFamily: SANS,
+                    fontSize: "0.68rem",
+                    fontWeight: 600,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: C.inkMute,
+                    marginBottom: "6px",
+                  }}>
+                    Additive Cost
+                  </div>
+                  <div style={{ fontFamily: DISPLAY, fontSize: "1.05rem", fontWeight: 700, color: C.ink }}>
+                    US${fmt(results.additiveCost!)}
+                  </div>
+                  <div style={{ fontFamily: SANS, fontSize: "0.75rem", color: C.inkDim, marginTop: "3px" }}>
+                    {fmt(results.additiveRequired!)} litres required
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Secondary block — always shown, --- until basic inputs are entered */}
+            <div style={{ padding: "20px 24px", display: "flex", flexDirection: "column", gap: "10px" }}>
+              <div style={{
+                fontFamily: SANS,
+                fontSize: "0.68rem",
+                fontWeight: 600,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: C.inkMute,
+                marginBottom: "4px",
+              }}>
+                Results
+              </div>
+
               {[
-                { label: "Quantity of additive required", value: results.additiveRequired, unit: "litres" },
-                { label: "Fuel savings", value: results.fuelSavings, unit: getFuelSavingsUnit() },
-                { label: "Savings on fuel purchase", value: `US$${results.purchaseSavings}`, unit: "" },
-                { label: "CO2 savings", value: results.co2Savings, unit: "metric tonnes" },
-                { label: "Money saved on CO2 reduction", value: `US$${results.co2MoneySaved}`, unit: "" },
-              ].map(({ label, value, unit }) => (
+                {
+                  label: "Additive required",
+                  value: hasBasicResults ? `${fmt(results.additiveRequired!)} litres` : "---",
+                },
+                {
+                  label: "Fuel savings",
+                  value: hasBasicResults ? `${fmt(results.fuelSavingsQty!)} ${getFuelSavingsUnit()}` : "---",
+                },
+                {
+                  label: "Savings on fuel purchase",
+                  value: hasBasicResults ? `US$${fmt(results.purchaseSavings!)}` : "---",
+                },
+                {
+                  label: "CO2 savings",
+                  value: hasBasicResults ? `${fmt(results.co2Savings!)} metric tonnes` : "---",
+                },
+              ].map(({ label, value }) => (
                 <div key={label} style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "12px" }}>
-                  <span style={{ fontFamily: SANS, fontSize: "0.8rem", color: C.inkDim }}>
-                    {label}
-                  </span>
-                  <span style={{ fontFamily: DISPLAY, fontSize: "0.9rem", fontWeight: 700, color: C.ink, whiteSpace: "nowrap" }}>
-                    {value}{unit ? ` ${unit}` : ""}
+                  <span style={{ fontFamily: SANS, fontSize: "0.8rem", color: C.inkDim }}>{label}</span>
+                  <span style={{ fontFamily: DISPLAY, fontSize: "0.88rem", fontWeight: 700, color: C.ink, whiteSpace: "nowrap" }}>
+                    {value}
                   </span>
                 </div>
               ))}
+
+              {hasCO2Results && (
+                <>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "12px" }}>
+                    <span style={{ fontFamily: SANS, fontSize: "0.8rem", color: C.inkDim }}>CO2 value</span>
+                    <span style={{ fontFamily: DISPLAY, fontSize: "0.88rem", fontWeight: 700, color: C.ink, whiteSpace: "nowrap" }}>
+                      US${fmt(results.co2MoneySaved!)}
+                    </span>
+                  </div>
+                  <div style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "baseline",
+                    gap: "12px",
+                    paddingTop: "8px",
+                    borderTop: `1px solid ${C.line}`,
+                    marginTop: "2px",
+                  }}>
+                    <span style={{ fontFamily: SANS, fontSize: "0.82rem", fontWeight: 600, color: C.inkDim }}>
+                      Total including CO2
+                    </span>
+                    <span style={{ fontFamily: DISPLAY, fontSize: "1rem", fontWeight: 700, color: C.ink, whiteSpace: "nowrap" }}>
+                      US${fmt(results.purchaseSavings! + results.co2MoneySaved!)}
+                    </span>
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
