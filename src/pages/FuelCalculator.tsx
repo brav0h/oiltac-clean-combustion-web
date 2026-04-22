@@ -75,17 +75,35 @@ const FuelCalculator = () => {
   // Calculation constants and conversion factors
   const FACTORS = {
     hfo: {
-      co2PerTonne: 3.12,      // tonnes CO2 per tonne HFO
-      additiveRatePerTonne: 990 / 10000, // litres additive per tonne HFO (1:10,000 V/V)
-      litresPerTonne: 990,    // Approx. litres in 1 metric tonne of HFO
-      gallonsPerTonne: 261.5  // Approx. US gallons in 1 metric tonne of HFO
+      co2PerTonne: 3.12,
+      litresPerTonne: 990,
+      gallonsPerTonne: 261.5,
+      additiveRatePerTonne: 990 / 10000, // 1:10,000 V/V
+    },
+    ifo: {
+      co2PerTonne: 3.14,
+      litresPerTonne: 970,
+      gallonsPerTonne: 256.2,
+      additiveRatePerTonne: 970 / 10000,
+    },
+    mdo: {
+      co2PerTonne: 3.16,
+      litresPerTonne: 870,
+      gallonsPerTonne: 229.8,
+      additiveRatePerTonne: 870 / 10000,
+    },
+    mgo: {
+      co2PerTonne: 3.16,
+      litresPerTonne: 850,
+      gallonsPerTonne: 224.5,
+      additiveRatePerTonne: 850 / 10000,
     },
     diesel: {
-      co2PerTonne: 3.16,      // tonnes CO2 per tonne Diesel
-      additiveRatePerTonne: 1176 / 10000, // litres additive per tonne Diesel (1:10,000 V/V)
-      litresPerTonne: 1176,   // Approx. litres in 1 metric tonne of Diesel (density ~0.85)
-      gallonsPerTonne: 310.7  // Approx. US gallons in 1 metric tonne of Diesel
-    }
+      co2PerTonne: 3.16,
+      litresPerTonne: 840,
+      gallonsPerTonne: 221.9,
+      additiveRatePerTonne: 840 / 10000,
+    },
   };
 
   const getFuelCostLabel = () => {
@@ -237,8 +255,11 @@ const FuelCalculator = () => {
                 className="calc-select"
                 style={selectStyle}
               >
-                <option value="hfo">Heavy Fuel (HFO)</option>
-                <option value="diesel">Diesel (Agriculture/Vehicle)</option>
+                <option value="hfo">Heavy Fuel Oil (HFO)</option>
+                <option value="ifo">Intermediate Fuel Oil (IFO 380 / IFO 180)</option>
+                <option value="mdo">Marine Diesel Oil (MDO)</option>
+                <option value="mgo">Marine Gas Oil (MGO)</option>
+                <option value="diesel">Diesel — General (Rail · Power Generation · Mining · Heavy Equipment)</option>
               </select>
             </div>
 
