@@ -1,10 +1,4 @@
 
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void;
-  }
-}
-
 import { useEffect, useRef } from 'react';
 import { CircleCheck } from "lucide-react";
 
@@ -27,12 +21,8 @@ const Benefits = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !hasTracked.current) {
             hasTracked.current = true;
-            if (typeof window !== 'undefined' && window.gtag) {
-              window.gtag('event', 'section_benefits_viewed', {
-                event_category: 'engagement',
-                event_label: 'Benefits Section Viewed'
-              });
-            }
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: "section_benefits_viewed", event_category: "engagement", event_label: "Benefits Section Viewed" });
           }
         });
       },

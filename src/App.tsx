@@ -30,6 +30,7 @@ declare global {
   interface Window {
     gtag?: (...args: any[]) => void;
     chatbase?: (...args: any[]) => void;
+    dataLayer: Array<Record<string, unknown>>;
   }
 }
 

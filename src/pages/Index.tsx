@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
-declare global {
-  interface Window { gtag: (...args: unknown[]) => void; }
-}
 
 const C = {
   bg:       "#0A1524",
@@ -116,9 +113,8 @@ function HeroStatPanel() {
 function Hero() {
   const scrollToPilot = () => {
     document.getElementById("pilot")?.scrollIntoView({ behavior: "smooth" });
-    if (typeof window !== "undefined" && window.gtag) {
-      window.gtag("event", "request_pilot_click", { event_category: "engagement", event_label: "Hero CTA" });
-    }
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: "request_pilot_click", event_category: "engagement", event_label: "Hero CTA" });
   };
 
   return (
@@ -623,9 +619,8 @@ function PilotCTA() {
       });
       const data = await response.json();
       if (response.ok && data.success) {
-        if (typeof window !== "undefined" && window.gtag) {
-          window.gtag("event", "pilot_form_submit", { event_category: "engagement", event_label: "Pilot Form Submit" });
-        }
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: "pilot_form_submit", event_category: "engagement", event_label: "Pilot Form Submit" });
         alert("Thanks — we'll be in touch within 2 business days.");
         setFormData({ name: "", company: "", role: "", region: "", industry: "", fleet_size: "", notes: "" });
       } else {

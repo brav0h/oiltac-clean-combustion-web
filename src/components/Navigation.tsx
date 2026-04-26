@@ -1,10 +1,4 @@
 
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void;
-  }
-}
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -36,9 +30,9 @@ const Navigation = () => {
         </div>
 
         <div className="hidden md:flex items-center space-x-8">
-          <a href="/industries" className="text-white hover:text-oiltac-light transition-colors" onClick={() => { if (typeof window !== 'undefined' && window.gtag) { window.gtag('event', 'nav_industries_click', { event_category: 'navigation', event_label: 'Industries Nav Click' }); } }}>Industries</a>
+          <a href="/industries" className="text-white hover:text-oiltac-light transition-colors" onClick={() => { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: "nav_industries_click", event_category: "navigation", event_label: "Industries Nav Click" }); }}>Industries</a>
           <a href="/proof" className="text-white hover:text-oiltac-light transition-colors">Proof</a>
-          <a href="/#benefits" className="text-white hover:text-oiltac-light transition-colors" onClick={() => { if (typeof window !== 'undefined' && window.gtag) { window.gtag('event', 'nav_benefits_click', { event_category: 'navigation', event_label: 'Benefits Nav Click' }); } }}>Benefits</a>
+          <a href="/#benefits" className="text-white hover:text-oiltac-light transition-colors" onClick={() => { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: "nav_benefits_click", event_category: "navigation", event_label: "Benefits Nav Click" }); }}>Benefits</a>
           <a href="/fuel-calculator" className="text-white hover:text-oiltac-light transition-colors">Calculator</a>
           <a href="/#why-now" className="text-white hover:text-oiltac-light transition-colors">Why Now</a>
           <a href="/about-us" className="text-white hover:text-oiltac-light transition-colors">Our Story</a>
