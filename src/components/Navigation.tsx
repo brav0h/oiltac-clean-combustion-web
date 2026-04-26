@@ -36,7 +36,7 @@ const Navigation = () => {
 
         <div className="hidden md:flex items-center space-x-8">
           <a href="/industries" className="text-white hover:text-oiltac-light transition-colors" onClick={() => { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: "nav_industries_click", event_category: "navigation", event_label: "Industries Nav Click" }); }}>Industries</a>
-          <a href="/proof" className="text-white hover:text-oiltac-light transition-colors">Proof</a>
+          <a href="/proof" className="text-white hover:text-oiltac-light transition-colors" onClick={() => { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: "nav_proof_click", event_category: "navigation", event_label: "Proof Nav Click" }); }}>Proof</a>
           <a href="/#benefits" className="text-white hover:text-oiltac-light transition-colors" onClick={() => { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: "nav_benefits_click", event_category: "navigation", event_label: "Benefits Nav Click" }); }}>Benefits</a>
           <a href="/fuel-calculator" className="text-white hover:text-oiltac-light transition-colors">Calculator</a>
           <a href="/#why-now" className="text-white hover:text-oiltac-light transition-colors">Why Now</a>
@@ -64,9 +64,9 @@ const Navigation = () => {
       {isOpen && (
         <div className="md:hidden bg-oiltac-dark py-4 px-4 shadow-md absolute top-16 left-0 right-0">
           <div className="flex flex-col space-y-4">
-            <a href="/industries" className="text-white hover:text-oiltac-light transition-colors" onClick={() => { setIsOpen(false); if (typeof window !== 'undefined' && window.gtag) { window.gtag('event', 'nav_industries_click', { event_category: 'navigation', event_label: 'Industries Nav Click' }); } }}>Industries</a>
-            <a href="/proof" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Proof</a>
-            <a href="/#benefits" className="text-white hover:text-oiltac-light transition-colors" onClick={() => { setIsOpen(false); if (typeof window !== 'undefined' && window.gtag) { window.gtag('event', 'nav_benefits_click', { event_category: 'navigation', event_label: 'Benefits Nav Click' }); } }}>Benefits</a>
+            <a href="/industries" className="text-white hover:text-oiltac-light transition-colors" onClick={() => { setIsOpen(false); if (typeof window !== 'undefined') { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: "nav_industries_click", event_category: "navigation", event_label: "Industries Nav Click" }); } }}>Industries</a>
+            <a href="/proof" className="text-white hover:text-oiltac-light transition-colors" onClick={() => { setIsOpen(false); if (typeof window !== 'undefined') { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: "nav_proof_click", event_category: "navigation", event_label: "Proof Nav Click" }); } }}>Proof</a>
+            <a href="/#benefits" className="text-white hover:text-oiltac-light transition-colors" onClick={() => { setIsOpen(false); if (typeof window !== 'undefined') { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: "nav_benefits_click", event_category: "navigation", event_label: "Benefits Nav Click" }); } }}>Benefits</a>
             <a href="/fuel-calculator" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Calculator</a>
             <a href="/#why-now" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Why Now</a>
             <a href="/about-us" className="text-white hover:text-oiltac-light transition-colors" onClick={() => setIsOpen(false)}>Our Story</a>
