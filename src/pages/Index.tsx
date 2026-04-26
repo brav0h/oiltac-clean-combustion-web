@@ -591,12 +591,53 @@ function WhyNow() {
 // ─── Pilot CTA ────────────────────────────────────────────────────────────────
 
 function PilotCTA() {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formData, setFormData] = useState({
+    name: "", company: "", role: "", region: "", industry: "", fleet_size: "", notes: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (typeof window !== "undefined" && window.gtag) {
-      window.gtag("event", "pilot_form_submit", { event_category: "engagement", event_label: "Pilot Form Submit" });
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+          subject: "New Pilot Request — OILTAC",
+          from_name: formData.name,
+          name: formData.name,
+          company: formData.company,
+          role: formData.role,
+          region: formData.region,
+          industry: formData.industry,
+          fleet_size: formData.fleet_size,
+          notes: formData.notes,
+        }),
+      });
+      const data = await response.json();
+      if (response.ok && data.success) {
+        if (typeof window !== "undefined" && window.gtag) {
+          window.gtag("event", "pilot_form_submit", { event_category: "engagement", event_label: "Pilot Form Submit" });
+        }
+        alert("Thanks — we'll be in touch within 2 business days.");
+        setFormData({ name: "", company: "", role: "", region: "", industry: "", fleet_size: "", notes: "" });
+      } else {
+        console.error("Web3Forms error:", data);
+        alert("There was an error submitting your request. Please email info@oiltacfuel.com directly.");
+      }
+    } catch (err) {
+      console.error("Web3Forms exception:", err);
+      alert("There was an error submitting your request. Please email info@oiltacfuel.com directly.");
+    } finally {
+      setIsSubmitting(false);
     }
-    alert("Thanks — we'll be in touch within 2 business days.");
   };
 
   const inputStyle: React.CSSProperties = {
@@ -647,48 +688,50 @@ function PilotCTA() {
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 14 }}>
                 <div>
                   <label style={labelStyle}>FULL NAME *</label>
-                  <input required placeholder="Your name" style={inputStyle} />
+                  <input name="name" value={formData.name} onChange={handleChange} required placeholder="Your name" style={inputStyle} />
                 </div>
                 <div>
                   <label style={labelStyle}>COMPANY *</label>
-                  <input required placeholder="Fleet / company name" style={inputStyle} />
+                  <input name="company" value={formData.company} onChange={handleChange} required placeholder="Fleet / company name" style={inputStyle} />
                 </div>
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 14 }}>
                 <div>
                   <label style={labelStyle}>ROLE</label>
-                  <input placeholder="e.g. Chief Engineer" style={inputStyle} />
+                  <input name="role" value={formData.role} onChange={handleChange} placeholder="e.g. Chief Engineer" style={inputStyle} />
                 </div>
                 <div>
                   <label style={labelStyle}>REGION *</label>
-                  <input required placeholder="e.g. Rotterdam" style={inputStyle} />
+                  <input name="region" value={formData.region} onChange={handleChange} required placeholder="e.g. Rotterdam" style={inputStyle} />
                 </div>
               </div>
               <div style={{ marginBottom: 14 }}>
                 <label style={labelStyle}>INDUSTRY *</label>
-                <select required defaultValue="" style={{ ...inputStyle, appearance: "none" }}>
+                <select name="industry" value={formData.industry} onChange={handleChange} required style={{ ...inputStyle, appearance: "none" }}>
                   <option value="" disabled>Select industry…</option>
-                  <option>Marine</option>
-                  <option>Rail</option>
-                  <option>Power generation</option>
-                  <option>Off-road / mining</option>
-                  <option>Other</option>
+                  <option value="Marine">Marine</option>
+                  <option value="Rail">Rail</option>
+                  <option value="Power generation">Power generation</option>
+                  <option value="Off-road / mining">Off-road / mining</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
               <div style={{ marginBottom: 14 }}>
                 <label style={labelStyle}>FLEET / EQUIPMENT SIZE</label>
-                <input placeholder='e.g. "12 vessels", "3 × 2.5 MW gensets"' style={inputStyle} />
+                <input name="fleet_size" value={formData.fleet_size} onChange={handleChange} placeholder='e.g. "12 vessels", "3 × 2.5 MW gensets"' style={inputStyle} />
               </div>
               <div style={{ marginBottom: 14 }}>
                 <label style={labelStyle}>NOTES</label>
-                <textarea placeholder="Duty cycle, fuel type, or specific trial goals." style={{ ...inputStyle, resize: "vertical", minHeight: 80 }} />
+                <textarea name="notes" value={formData.notes} onChange={handleChange} placeholder="Duty cycle, fuel type, or specific trial goals." style={{ ...inputStyle, resize: "vertical", minHeight: 80 }} />
               </div>
-              <button type="submit" style={{
+              <button type="submit" disabled={isSubmitting} style={{
                 width: "100%", padding: "14px 16px", fontSize: 14, fontWeight: 600,
-                background: C.accent, color: "#1A0A00", border: 0, cursor: "pointer",
+                background: C.accent, color: "#1A0A00", border: 0,
+                cursor: isSubmitting ? "not-allowed" : "pointer",
                 fontFamily: SANS, letterSpacing: "0.01em",
+                opacity: isSubmitting ? 0.7 : 1,
               }}>
-                SUBMIT PILOT REQUEST →
+                {isSubmitting ? "SUBMITTING..." : "SUBMIT PILOT REQUEST →"}
               </button>
             </form>
           </div>
