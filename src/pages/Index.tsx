@@ -279,7 +279,7 @@ function TestingInstitutionsStripCondensed() {
             INDEPENDENTLY TESTED ACROSS 6 COUNTRIES
           </div>
           <div style={{ fontFamily: SANS, fontSize: 13, color: C.inkDim, lineHeight: 1.55, marginBottom: 14 }}>
-            Marine · Rail · Power Generation · Heavy Equipment · 1974–2005
+            Marine · Rail · Power Generation · Heavy Equipment
           </div>
           <a href="/proof" className="ti-cta">View summary proof page →</a>
         </div>
