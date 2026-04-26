@@ -26,18 +26,23 @@ const PilotCta = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const accessKey = import.meta.env.VITE_WEB3FORMS_KEY;
+    if (!accessKey) {
+      console.error("Web3Forms: VITE_WEB3FORMS_KEY is not set in this build.");
+      toast({ title: "Submission failed", description: "Configuration error. Please email info@oiltacfuel.com directly.", variant: "destructive" });
+      return;
+    }
     setIsSubmitting(true);
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+          access_key: accessKey,
           subject: "New Pilot Request — OILTAC",
           from_name: formData.name,
           name: formData.name,
           email: formData.email,
-          replyto: formData.email,
           phone: formData.phone,
           company: formData.company,
           job_title: formData.job_title,
@@ -70,7 +75,7 @@ const PilotCta = () => {
           message: ""
         });
       } else {
-        console.error("Error submitting pilot request:", data);
+        console.error("Web3Forms error response:", data);
         toast({
           title: "Submission failed",
           description: "There was an error submitting your request. Please try again.",
