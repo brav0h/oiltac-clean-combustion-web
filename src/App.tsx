@@ -15,66 +15,93 @@ import AboutUs from "./pages/AboutUs";
 import NotFound from "./pages/NotFound";
 import Proof from "./pages/Proof";
 import Industries from "./pages/Industries";
-// The ErrorBoundary import has been removed.
 
 const queryClient = new QueryClient();
 
-// Define types for the CookieYes consent object and gtag function
 interface CookieYesConsent {
   analytics: boolean;
   advertisement: boolean;
   functional: boolean;
   necessary: boolean;
 }
+
 declare global {
   interface Window {
     gtag?: (...args: any[]) => void;
-    chatbase?: (...args: any[]) => void;
+    chatbase?: any; // third-party embed — typed loosely intentionally
     dataLayer: Array<Record<string, unknown>>;
   }
 }
 
+// ─── Chatbase loader — only called after functional consent is granted ─────────
+
+let chatbaseLoaded = false;
+
+const loadChatbase = () => {
+  if (chatbaseLoaded || typeof window === "undefined") return;
+  chatbaseLoaded = true;
+
+  if (!window.chatbase || window.chatbase("getState") !== "initialized") {
+    const fn: any = (...args: any[]) => {
+      if (!fn.q) fn.q = [];
+      fn.q.push(args);
+    };
+    fn.q = [];
+    window.chatbase = new Proxy(fn, {
+      get(target: any, prop: string) {
+        if (prop === "q") return target.q;
+        return (...args: any[]) => target(prop, ...args);
+      },
+    });
+  }
+
+  const script = document.createElement("script");
+  script.src = "https://www.chatbase.co/embed.min.js";
+  script.id = "eFn7jjr51Tyygqsk2wuPn";
+  script.setAttribute("domain", "www.chatbase.co");
+  document.body.appendChild(script);
+};
+
+// ─── App ──────────────────────────────────────────────────────────────────────
+
 const App = () => {
-  // The useEffect hook for manual consent updates
   useEffect(() => {
+    // CookieYes restores saved consent state on page load via its own GCM
+    // integration. This listener handles explicit consent changes by the user.
     const handleConsentUpdate = (event: CustomEvent<{ consent: CookieYesConsent }>) => {
-      if (typeof window.gtag === 'function') {
+      if (typeof window.gtag === "function") {
         const consentState = {
-          'analytics_storage':      event.detail.consent.analytics      ? 'granted' : 'denied',
-          'ad_storage':             event.detail.consent.advertisement  ? 'granted' : 'denied',
-          'ad_user_data':           event.detail.consent.advertisement  ? 'granted' : 'denied',
-          'ad_personalization':     event.detail.consent.advertisement  ? 'granted' : 'denied',
-          'functionality_storage':  event.detail.consent.functional     ? 'granted' : 'denied',
-          'personalization_storage':event.detail.consent.functional     ? 'granted' : 'denied',
-          'security_storage':       'granted',
+          analytics_storage:       event.detail.consent.analytics     ? "granted" : "denied",
+          ad_storage:              event.detail.consent.advertisement ? "granted" : "denied",
+          ad_user_data:            event.detail.consent.advertisement ? "granted" : "denied",
+          ad_personalization:      event.detail.consent.advertisement ? "granted" : "denied",
+          functionality_storage:   event.detail.consent.functional    ? "granted" : "denied",
+          personalization_storage: event.detail.consent.functional    ? "granted" : "denied",
+          security_storage:        "granted",
         };
-        window.gtag('consent', 'update', consentState);
-        console.log("Manual consent update pushed to GTM:", consentState);
+        window.gtag("consent", "update", consentState);
+        if (import.meta.env.DEV) {
+          console.log("Consent update pushed to GTM:", consentState);
+        }
+      }
+
+      if (event.detail.consent.functional) {
+        loadChatbase();
       }
     };
-    window.addEventListener('cookieyes_consent_update', handleConsentUpdate as EventListener);
+
+    window.addEventListener("cookieyes_consent_update", handleConsentUpdate as EventListener);
     return () => {
-      window.removeEventListener('cookieyes_consent_update', handleConsentUpdate as EventListener);
+      window.removeEventListener("cookieyes_consent_update", handleConsentUpdate as EventListener);
     };
   }, []);
 
   return (
-    // The <ErrorBoundary> wrapper has been removed. We start with a fragment (<>).
     <>
       <Helmet>
         <title>OILTAC - Clean Combustion Across Industries</title>
-        {/* 1. CookieYes consent manager — consent defaults are set in index.html */}
-        <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/cb27b0fb048dd5148493f175/script.js"></script>
-        {/* 3. GTM — loads after consent defaults are established */}
-        <script type="text/javascript">{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MKH32BVW');`}</script>
-        {/* 4. Chatbase — non-consent widget, loaded last */}
-        <script type="text/javascript">{`(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="eFn7jjr51Tyygqsk2wuPn";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();`}</script>
       </Helmet>
 
-      {/* GTM noscript tag */}
-      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MKH32BVW" height="0" width="0" style={{ display: 'none', visibility: 'hidden' }}></iframe></noscript>
-      
-      {/* The rest of your application structure */}
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <Toaster />
