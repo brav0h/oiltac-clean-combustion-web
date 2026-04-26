@@ -40,10 +40,13 @@ const App = () => {
     const handleConsentUpdate = (event: CustomEvent<{ consent: CookieYesConsent }>) => {
       if (typeof window.gtag === 'function') {
         const consentState = {
-          'analytics_storage': event.detail.consent.analytics ? 'granted' : 'denied',
-          'ad_storage': event.detail.consent.advertisement ? 'granted' : 'denied',
-          'ad_user_data': event.detail.consent.advertisement ? 'granted' : 'denied',
-          'ad_personalization': event.detail.consent.advertisement ? 'granted' : 'denied',
+          'analytics_storage':      event.detail.consent.analytics      ? 'granted' : 'denied',
+          'ad_storage':             event.detail.consent.advertisement  ? 'granted' : 'denied',
+          'ad_user_data':           event.detail.consent.advertisement  ? 'granted' : 'denied',
+          'ad_personalization':     event.detail.consent.advertisement  ? 'granted' : 'denied',
+          'functionality_storage':  event.detail.consent.functional     ? 'granted' : 'denied',
+          'personalization_storage':event.detail.consent.functional     ? 'granted' : 'denied',
+          'security_storage':       'granted',
         };
         window.gtag('consent', 'update', consentState);
         console.log("Manual consent update pushed to GTM:", consentState);
@@ -59,11 +62,8 @@ const App = () => {
     // The <ErrorBoundary> wrapper has been removed. We start with a fragment (<>).
     <>
       <Helmet>
-        {/* All your scripts (CookieYes, Default Consent, GTM, Chatbase) go here */}
         <title>OILTAC - Clean Combustion Across Industries</title>
-        {/* 1. Consent defaults — must run before CookieYes and GTM */}
-        <script type="text/javascript">{`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("consent","default",{ad_storage:"denied",analytics_storage:"denied",ad_user_data:"denied",ad_personalization:"denied"});`}</script>
-        {/* 2. CookieYes consent manager */}
+        {/* 1. CookieYes consent manager — consent defaults are set in index.html */}
         <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/cb27b0fb048dd5148493f175/script.js"></script>
         {/* 3. GTM — loads after consent defaults are established */}
         <script type="text/javascript">{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MKH32BVW');`}</script>
