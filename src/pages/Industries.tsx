@@ -1,3 +1,4 @@
+import React from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import {
@@ -14,426 +15,652 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const Industries = () => {
-  return (
-    <>
-      <Navigation />
-      <main className="min-h-screen bg-background" style={{ fontFamily: "'Inter Tight', Inter, Helvetica, Arial, sans-serif" }}>
-        {/* Hero */}
-        <section className="bg-[#1B2A4A] text-white py-16">
-          <div className="container-custom">
-            <h1 className="text-4xl md:text-5xl font-semibold mb-4" style={{ letterSpacing: "-0.02em" }}>
-              Industries &amp; Applications
-            </h1>
-            <p className="text-lg text-white/80 max-w-2xl">
-              Test data, field results, and engine condition documentation from marine, rail, heavy equipment, and industrial power applications.
-            </p>
-            <div className="mt-6 max-w-2xl text-sm text-white/70 leading-relaxed">
-              OILTAC results come from three types of evidence: (1) controlled engine tests under standardized conditions, (2) long-term fleet operation monitored over months or years, and (3) removal/reinstatement studies — where OILTAC was withdrawn and reintroduced to observe the effect on the same equipment. The third type is the most operationally meaningful.
-            </div>
-            <p className="mt-6 text-sm text-white/50 border border-white/20 rounded px-4 py-3 inline-block italic">
-              Results vary. Always follow SDS and dosing guidance. Claims reflect specific test conditions — duty cycle, fuel quality, and operating environment affect outcomes.
-            </p>
-          </div>
-        </section>
+// ─── Design tokens ────────────────────────────────────────────────────────────
+const NAVY   = "#1B2A4A";
+const ORANGE = "#F97316";
+const MONO   = '"IBM Plex Mono", ui-monospace, Menlo, monospace';
+const SANS   = '"Inter Tight", "Inter", Helvetica, Arial, sans-serif';
 
-        {/* Marine */}
-        <section id="marine" className="py-16 border-b scroll-mt-28">
-          <div className="container-custom max-w-4xl">
-            <h2 className="text-3xl font-semibold mb-2 text-[#1B2A4A]" style={{ letterSpacing: "-0.02em" }}>
-              Marine &amp; Tugboats
-            </h2>
-            <p className="text-muted-foreground mb-6">
-              Fuel consumption, emissions, injector condition, and oil consumption data from marine diesel engine testing and long-term power station operation.
-            </p>
+// ─── MetricCard ───────────────────────────────────────────────────────────────
 
-            <ul className="space-y-2 mb-8">
-              <li className="flex items-start gap-2 text-sm">
-                <span className="mt-1.5 w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Fuel consumption: 1.5–2% reduction documented in controlled marine engine testing, measured per engine hour and per nautical mile.</span>
-              </li>
-              <li className="flex items-start gap-2 text-sm">
-                <span className="mt-1.5 w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Exhaust particulates: 14–25% reduction in controlled testing. Smoke and soot levels visibly reduced in long-term operation.</span>
-              </li>
-              <li className="flex items-start gap-2 text-sm">
-                <span className="mt-1.5 w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Injector condition: Before/after images show significantly reduced hard deposits. Injection nozzle sticking prevented in real-world long-term operation.</span>
-              </li>
-              <li className="flex items-start gap-2 text-sm">
-                <span className="mt-1.5 w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Oil consumption — key finding: Hokkaido Electric documented reduced oil consumption during OILTAC use. When withdrawn, consumption returned to prior levels. When reintroduced, consumption reduced again.</span>
-              </li>
-              <li className="flex items-start gap-2 text-sm">
-                <span className="mt-1.5 w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Cetane improvement: Cetane number improvement validated by the Japan National Research Institute — an accredited independent laboratory.</span>
-              </li>
-            </ul>
+interface MetricCardProps { value: string; label: string; accent?: boolean; }
 
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="marine-1">
-                <AccordionTrigger className="text-sm font-semibold">
-                  200-Hour Continuous Marine Diesel Engine Test — Marine Technical Institute, Ministry of Transportation, Japan (1985–1986)
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground space-y-2">
-                  <p>A controlled 200-hour continuous operation test compared fuel consumption, combustion characteristics, and particulate output with and without OILTAC additive in marine diesel engines.</p>
-                  <p>Fuel efficiency gains of 1.5–2% were documented over the test period, with improved combustion consistency throughout. Exhaust particulate levels decreased by 14–25% in controlled measurements.</p>
-                  <p>Combustion chamber deposits with OILTAC treatment were soft and easy to scrape off during inspection. Without OILTAC, deposits were hard, adhesive, and difficult to remove. Crank pin bearing wear was reduced by 21% in the comparative test.</p>
-                  <p className="text-xs text-muted-foreground/70">Source: OILTAC Long Term Operation on Diesel Engine — Marine Technical Institute, Ministry of Transportation, Japan</p>
+const MetricCard = ({ value, label, accent = false }: MetricCardProps) => (
+  <div style={{
+    background: "#F8FAFC",
+    border: "1px solid #E2E8F0",
+    borderRadius: 5,
+    padding: "11px 14px 10px",
+    display: "flex",
+    flexDirection: "column",
+    gap: 4,
+  }}>
+    <div style={{
+      fontFamily: SANS,
+      fontSize: 18,
+      fontWeight: 700,
+      color: accent ? ORANGE : NAVY,
+      letterSpacing: "-0.01em",
+      lineHeight: 1.1,
+    }}>
+      {value}
+    </div>
+    <div style={{
+      fontFamily: MONO,
+      fontSize: 9,
+      color: "#718096",
+      letterSpacing: "0.04em",
+      lineHeight: 1.4,
+    }}>
+      {label}
+    </div>
+  </div>
+);
 
-                  <HorizCompareChart
-                    title="Fuel Consumption — Baseline vs. With OILTAC"
-                    baselineLabel="Baseline"
-                    treatedLabel="With OILTAC"
-                    baselineValue={100}
-                    treatedValue={98.25}
-                    treatedNote="1.5–2% reduction"
-                    source="200-hour continuous marine diesel engine test. Marine Technical Institute, Ministry of Transportation, Japan."
-                  />
+// ─── EvidenceChip ─────────────────────────────────────────────────────────────
 
-                  <HorizCompareChart
-                    title="Exhaust Particulate Levels — Baseline vs. With OILTAC"
-                    baselineLabel="Baseline"
-                    treatedLabel="With OILTAC"
-                    baselineValue={100}
-                    treatedValue={80.5}
-                    treatedNote="14–25% reduction"
-                    source="200-hour continuous marine diesel engine test. Marine Technical Institute, Ministry of Transportation, Japan."
-                  />
+const EvidenceChip = ({ label }: { label: string }) => (
+  <span style={{
+    display: "inline-block",
+    fontFamily: MONO,
+    fontSize: 9,
+    letterSpacing: "0.07em",
+    color: "#718096",
+    background: "#EDF2F7",
+    border: "1px solid #CBD5E0",
+    borderRadius: 3,
+    padding: "2px 6px",
+    marginRight: 8,
+    verticalAlign: "middle",
+    whiteSpace: "nowrap",
+    flexShrink: 0,
+  }}>
+    {label}
+  </span>
+);
 
-                  <div className="mt-4">
-                    <StatCard
-                      value="21% reduction in crank pin bearing wear"
-                      subtext="Comparative 200-hour engine test"
-                      source="200-hour continuous marine diesel engine test. Marine Technical Institute, Ministry of Transportation, Japan."
-                    />
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
+// ─── EvidenceList ─────────────────────────────────────────────────────────────
 
-              <AccordionItem value="marine-2">
-                <AccordionTrigger className="text-sm font-semibold">
-                  Long-Term Power Station Operation — Oil Consumption &amp; Removal/Reinstatement Study — Hokkaido Electric, Okushiri Power Station (Japan)
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground space-y-2">
-                  <p>A major Japanese power utility (Hokkaido Electric Power) documented a significant reduction in oil consumption during OILTAC use at their Okushiri Power Station. When the product was withdrawn, oil consumption returned to prior levels. When OILTAC was reintroduced, consumption reduced again.</p>
-                  <p>This removal/reinstatement pattern — independently observed — is among the strongest forms of causal evidence available in field conditions. Injection nozzle orifice sticking was also prevented during OILTAC use, a common failure mode in heavy fuel oil applications.</p>
-                  <p className="text-xs text-muted-foreground/70">Source: Internal Test Data — Okushiri Power Station, Hokkaido Electric, Japan</p>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-        </section>
+const EvidenceList = ({ items }: { items: string[] }) => (
+  <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 7 }}>
+    {items.map((item, i) => (
+      <li key={i} style={{
+        display: "flex", gap: 10, alignItems: "flex-start",
+        fontSize: 13.5, color: "#4A5568", fontFamily: SANS, lineHeight: 1.55,
+      }}>
+        <span style={{
+          flexShrink: 0, marginTop: 6,
+          width: 5, height: 5,
+          borderRadius: "50%", background: ORANGE, display: "inline-block",
+        }} />
+        {item}
+      </li>
+    ))}
+  </ul>
+);
 
-        {/* Off-Road */}
-        <section id="offroad" className="py-16 bg-gray-50 border-b scroll-mt-28">
-          <div className="container-custom max-w-4xl">
-            <h2 className="text-3xl font-semibold mb-2 text-[#1B2A4A]" style={{ letterSpacing: "-0.02em" }}>
-              Off-Road &amp; Heavy Equipment
-            </h2>
-            <p className="text-muted-foreground mb-6">
-              Road test and engine bench data from Italy and Japan, reflecting constant-load and acceleration performance.
-            </p>
+// ─── IndustryJumpNav ─────────────────────────────────────────────────────────
 
-            <ul className="space-y-2 mb-8">
-              <li className="flex items-start gap-2 text-sm">
-                <span className="mt-1.5 w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Up to 6.8% fuel reduction at constant load (controlled test). Approximately 3–4% reduction during acceleration testing.</span>
-              </li>
-              <li className="flex items-start gap-2 text-sm">
-                <span className="mt-1.5 w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>21% reduction in crank pin bearing wear in a 200-hour comparative engine test, supporting extended maintenance intervals in high-load applications.</span>
-              </li>
-              <li className="flex items-start gap-2 text-sm">
-                <span className="mt-1.5 w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Combustion deposits softer and easier to remove versus untreated fuel — reducing maintenance labor and shutdown time.</span>
-              </li>
-            </ul>
+const JUMP_LINKS = [
+  { label: "Marine",           href: "#marine"    },
+  { label: "Heavy Equipment",  href: "#offroad"   },
+  { label: "Industrial Power", href: "#power"     },
+  { label: "Rail",             href: "#rail"      },
+  { label: "Engine Condition", href: "#condition" },
+];
 
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="offroad-1">
-                <AccordionTrigger className="text-sm font-semibold">
-                  Road Fuel Efficiency Test — Fuel Experimental Station San Donato Milanese, Italy (1982)
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground space-y-2">
-                  <p>Controlled road testing with standard diesel fuel measured fuel consumption under two conditions: constant speed (60 km/h) and acceleration performance (30–80 km/h). Compared treated and untreated fuel under identical conditions.</p>
-                  <p>Results: up to 6.8% fuel reduction at constant speed; approximately 3–4% reduction during acceleration testing. Both tests used standard diesel fuel with no other modifications.</p>
-                  <p className="text-xs text-muted-foreground/70">Source: Test Results — Verification of Efficacy on Diesel Engine, Fuel Experimental Station San Donato Milanese, Italy, 1982</p>
+const IndustryJumpNav = () => (
+  <nav style={{
+    background: NAVY,
+    borderBottom: "1px solid rgba(255,255,255,0.1)",
+    position: "sticky",
+    top: 0,
+    zIndex: 40,
+    overflowX: "auto",
+  }}>
+    <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 24px", display: "flex" }}>
+      {JUMP_LINKS.map(link => (
+        <a
+          key={link.href}
+          href={link.href}
+          style={{
+            display: "inline-block",
+            fontFamily: MONO,
+            fontSize: 10.5,
+            letterSpacing: "0.07em",
+            color: "rgba(255,255,255,0.6)",
+            padding: "11px 16px",
+            textDecoration: "none",
+            borderBottom: "2px solid transparent",
+            whiteSpace: "nowrap",
+            transition: "color 0.14s ease, border-color 0.14s ease",
+          }}
+          onMouseEnter={e => {
+            (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
+            (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = ORANGE;
+          }}
+          onMouseLeave={e => {
+            (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.6)";
+            (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = "transparent";
+          }}
+        >
+          {link.label.toUpperCase()}
+        </a>
+      ))}
+    </div>
+  </nav>
+);
 
-                  <VertBarChart
-                    title="Fuel Consumption Reduction by Test Condition"
-                    data={[
-                      { name: "Constant Speed (60 km/h)", value: 6.8, label: "Up to 6.8%", color: "#1a2633" },
-                      { name: "Pickup (30–80 km/h)", value: 3.5, label: "3–4%", color: "#1a2633" },
-                    ]}
-                    yLabel="% Reduction"
-                    source="Road fuel efficiency test. Fuel Experimental Station San Donato Milanese, Italy. 1982."
-                  />
-                </AccordionContent>
-              </AccordionItem>
+// ─── SectionShell ─────────────────────────────────────────────────────────────
 
-              <AccordionItem value="offroad-2">
-                <AccordionTrigger className="text-sm font-semibold">
-                  200-Hour Engine Bench Test — Bearing Wear &amp; Deposit Analysis
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground space-y-2">
-                  <p>A 200-hour comparative engine test measured crank pin bearing wear and combustion chamber deposit condition with and without OILTAC. Crank pin bearing wear was reduced by 21% in the OILTAC-treated engine.</p>
-                  <p>Combustion deposits in the treated engine were described as soft and easy to scrape off during inspection. In the control engine (untreated fuel), deposits were hard, adhesive, and difficult to remove — increasing the labor and downtime required during maintenance shutdowns.</p>
-                  <p className="text-xs text-muted-foreground/70">Source: OILTAC Long Term Operation on Diesel Engine — Marine Technical Institute, Ministry of Transportation, Japan</p>
+interface SectionShellProps {
+  id: string;
+  title: string;
+  context: string;
+  altBg?: boolean;
+  children: React.ReactNode;
+}
 
-                  <div className="mt-4">
-                    <StatCard
-                      value="21% reduction in crank pin bearing wear"
-                      subtext="200-hour comparative engine bench test"
-                    />
-                  </div>
+const SectionShell = ({ id, title, context, altBg = false, children }: SectionShellProps) => (
+  <section id={id} style={{
+    padding: "80px 0",
+    borderBottom: "1px solid #E2E8F0",
+    background: altBg ? "#F8FAFC" : "#fff",
+    scrollMarginTop: 48,
+  }}>
+    <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 24px" }}>
+      <div style={{ width: 28, height: 3, background: ORANGE, borderRadius: 2, marginBottom: 14 }} />
+      <h2 style={{
+        fontFamily: SANS, fontWeight: 600, fontSize: 28,
+        letterSpacing: "-0.02em", color: NAVY, margin: "0 0 6px", lineHeight: 1.2,
+      }}>
+        {title}
+      </h2>
+      <p style={{ fontFamily: SANS, fontSize: 14, color: "#718096", margin: "0 0 28px", lineHeight: 1.55 }}>
+        {context}
+      </p>
+      {children}
+    </div>
+  </section>
+);
 
-                  <DepositCompareCard
-                    title="Combustion Chamber Deposit Condition"
-                    withoutLabel="Hard, adhesive deposits — difficult to remove on inspection"
-                    withLabel="Soft deposits — easy to scrape off on inspection"
-                  />
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-        </section>
+// ─── Subhead label ────────────────────────────────────────────────────────────
 
-        {/* Industrial Power */}
-        <section id="power" className="py-16 border-b scroll-mt-28">
-          <div className="container-custom max-w-4xl">
-            <h2 className="text-3xl font-semibold mb-2 text-[#1B2A4A]" style={{ letterSpacing: "-0.02em" }}>
-              Industrial Power
-            </h2>
-            <p className="text-muted-foreground mb-6">
-              Multi-year field data from a monitored diesel power station in Japan, with removal/reinstatement data confirming causal effect.
-            </p>
+const SubLabel = ({ children }: { children: React.ReactNode }) => (
+  <div style={{
+    fontFamily: MONO, fontSize: 9.5, color: "#718096",
+    letterSpacing: "0.08em", marginBottom: 10, textTransform: "uppercase",
+  }}>
+    {children}
+  </div>
+);
 
-            <ul className="space-y-2 mb-8">
-              <li className="flex items-start gap-2 text-sm">
-                <span className="mt-1.5 w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>2–6% fuel reduction in multi-year generator monitoring at Hokkaido Electric's Okushiri Power Station (Engine 5), compared against baseline fiscal years without the additive.</span>
-              </li>
-              <li className="flex items-start gap-2 text-sm">
-                <span className="mt-1.5 w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Soot incidents: from 4–12 per year to zero within 2 months of OILTAC introduction. Incidents resumed when additive was removed — confirming causation.</span>
-              </li>
-              <li className="flex items-start gap-2 text-sm">
-                <span className="mt-1.5 w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Engine oil degradation delayed — viscosity increase prevention, oxidation prevention, and sludge reduction documented. Extended maintenance intervals observed in long-term operation.</span>
-              </li>
-            </ul>
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="industrial-1">
-                <AccordionTrigger className="text-sm font-semibold">
-                  Two-Year Fuel Consumption Monitoring — Okushiri Power Station, Hokkaido Electric (FY2001–2003)
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground space-y-2">
-                  <p>Engine 5 at Hokkaido Electric's Okushiri Power Station was monitored over two fiscal years with OILTAC additive. Fuel consumption was compared against baseline fiscal years without the additive.</p>
-                  <p>Results showed a 2–6% reduction in diesel generator fuel consumption during the monitored period. The comparison used actual operational fiscal year data — not a controlled test environment — making this a real-world performance validation.</p>
-                  <p className="text-xs text-muted-foreground/70">Source: Internal Test Data — Okushiri Power Station, Hokkaido Electric, FY2001–FY2003</p>
+const Industries = () => (
+  <>
+    <Navigation />
+    <main className="min-h-screen bg-background" style={{ fontFamily: SANS }}>
 
-                  <VertBarChart
-                    title="Diesel Generator Fuel Consumption — Monitored Over Two Fiscal Years"
-                    data={[
-                      { name: "Baseline (no additive)", value: 100, label: "100%", color: "#e2e2e2" },
-                      { name: "With OILTAC (FY2001–03)", value: 96, label: "2–6% reduction", color: "#1a2633" },
-                    ]}
-                    yLabel="Relative consumption %"
-                    source="Two-year monitored field data. Hokkaido Electric, Okushiri Power Station, Engine 5. FY2001–2003."
-                  />
-                </AccordionContent>
-              </AccordionItem>
+      {/* ── Hero ── */}
+      <section style={{ background: NAVY, color: "#fff", padding: "64px 0 40px" }}>
+        <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 24px" }}>
+          <h1 style={{
+            fontFamily: SANS, fontWeight: 600,
+            fontSize: "clamp(32px, 5vw, 48px)",
+            letterSpacing: "-0.02em", margin: "0 0 12px", lineHeight: 1.1,
+          }}>
+            Industries &amp; Applications
+          </h1>
+          <p style={{ fontFamily: SANS, fontSize: 17, color: "rgba(255,255,255,0.8)", maxWidth: 560, margin: "0 0 20px", lineHeight: 1.55 }}>
+            Application-specific OILTAC test data across marine, rail, heavy equipment, and industrial power operations.
+          </p>
+          <p style={{ fontFamily: SANS, fontSize: 13, color: "rgba(255,255,255,0.5)", maxWidth: 620, margin: 0, lineHeight: 1.6 }}>
+            Evidence includes controlled engine tests, field operation records, and removal/reinstatement studies where available. Results vary by duty cycle, fuel quality, dosing, and operating environment.
+          </p>
+        </div>
+      </section>
 
-              <AccordionItem value="industrial-2">
-                <AccordionTrigger className="text-sm font-semibold">
-                  Soot Incident Elimination &amp; Oil Analysis — Okushiri Power Station
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground space-y-2">
-                  <p>Before OILTAC introduction, the station recorded 4–12 soot and smoke dispersion incidents per year from diesel generator exhaust stacks. Within 2 months of OILTAC use, incidents dropped to zero.</p>
-                  <p>When the additive was subsequently removed, incidents resumed. This on/off cycle confirmed the causal relationship between OILTAC and the soot reduction, rather than attributing it to external factors.</p>
-                  <p>Engine oil analysis during the same period documented viscosity increase prevention, oxidation prevention, and sludge reduction — with potential oil change interval extension observed in long-term operation.</p>
-                  <p className="text-xs text-muted-foreground/70">Source: Internal Test Data — Okushiri Power Station, Hokkaido Electric, Japan</p>
+      {/* ── Jump Nav ── */}
+      <IndustryJumpNav />
 
-                  <VertBarChart
-                    title="Soot & Smoke Dispersion Incidents Per Year"
-                    data={[
-                      { name: "Before OILTAC", value: 8, label: "4–12 per year", color: "#e2e2e2" },
-                      { name: "With OILTAC", value: 0, label: "0 incidents", color: "#1a2633" },
-                      { name: "After removal", value: 8, label: "Resumed", color: "#f97316" },
-                    ]}
-                    yLabel="Incidents / year"
-                    callout="Incidents dropped to zero within 2 months of introduction and resumed when the additive was removed — confirming causation."
-                    source="Soot incident monitoring. Hokkaido Electric, Okushiri Power Station."
-                  />
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-        </section>
+      {/* ── Marine ── */}
+      <SectionShell
+        id="marine"
+        title="Marine & Tugboats"
+        context="Fuel consumption, exhaust, and component condition data from controlled 200-hour marine diesel engine testing and long-term power station operation."
+      >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+          <MetricCard value="1.5–2%"  label="Fuel consumption reduction"       accent />
+          <MetricCard value="14–25%"  label="Exhaust particulate reduction"    />
+          <MetricCard value="21%"     label="Crank pin bearing wear reduction" />
+          <MetricCard value="Reduced" label="Oil consumption in field operation" />
+        </div>
 
-        {/* Rail */}
-        <section id="rail" className="py-16 bg-gray-50 scroll-mt-28">
-          <div className="container-custom max-w-4xl">
-            <h2 className="text-3xl font-semibold mb-2 text-[#1B2A4A]" style={{ letterSpacing: "-0.02em" }}>
-              Rail &amp; Locomotives
-            </h2>
-            <p className="text-muted-foreground mb-6">
-              Field trial data from national railway operators in Bulgaria and South Korea.
-            </p>
+        <div className="mb-8">
+          <SubLabel>SUPPORTING TEST RECORD</SubLabel>
+          <EvidenceList items={[
+            "Controlled 200-hour marine diesel engine test with fuel consumption, particulate, and wear measurement.",
+            "Deposit condition comparison — soft vs. hard deposits with and without OILTAC, documented with inspection images.",
+            "Long-term oil consumption removal/reinstatement data from diesel power station operation.",
+          ]} />
+        </div>
 
-            <ul className="space-y-2 mb-8">
-              <li className="flex items-start gap-2 text-sm">
-                <span className="mt-1.5 w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Bulgarian national railway trials: 1.9–2.8% fuel savings per locomotive (equivalent to 26–57.9 kg diesel saved per locomotive per day).</span>
-              </li>
-              <li className="flex items-start gap-2 text-sm">
-                <span className="mt-1.5 w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Korean railway testing across 4 routes: 2.1–5.4% fuel savings. Exhaust particulates and soot reduced across both programs.</span>
-              </li>
-              <li className="flex items-start gap-2 text-sm">
-                <span className="mt-1.5 w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>No adverse impact on engine oil quality in long-term data — spectroscopic analysis confirmed no additional engine chemistry stress.</span>
-              </li>
-            </ul>
-
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="rail-1">
-                <AccordionTrigger className="text-sm font-semibold">
-                  Field Trials — Bulgarian National Railways (1982)
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground space-y-2">
-                  <p>Field trials conducted with Bulgarian National Railways measured fuel consumption per locomotive with and without OILTAC. Results showed fuel savings of 1.9–4.4% per locomotive, equivalent to 26–57.9 kg of diesel saved per locomotive per day depending on operating conditions.</p>
-                  <p>Engine oil samples analyzed spectroscopically showed no discernible quality change, indicating OILTAC did not introduce additional chemical stress to the lubricant system.</p>
-                  <p className="text-xs text-muted-foreground/70">Source: Internal Test Data — Bulgarian National Railways, 1982; Bulgarian locomotive engine oil analysis</p>
-
-                  <StatCardPair
-                    card1Value="1.9–4.4% fuel savings per locomotive"
-                    card2Value="26–57.9 kg diesel saved per locomotive per day"
-                    sharedSubtext="Bulgarian National Railways field trials, 1982"
-                    source="Bulgarian National Railways field trials, 1982."
-                  />
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="rail-2">
-                <AccordionTrigger className="text-sm font-semibold">
-                  Multi-Route Trials — Korean National Railways (1984)
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground space-y-2">
-                  <p>Korean National Railways conducted trials across 4 separate diesel train routes. Fuel savings ranged from 1.1% to 5.4% depending on the route and operating profile. An additional 1.5–2% improvement was observed at idle engine conditions.</p>
-                  <p>Exhaust particulate and soot levels were reduced across all measured routes. The range of results across different routes reflects variation in duty cycle, load, and operating environment.</p>
-                  <p className="text-xs text-muted-foreground/70">Source: Internal Test Data — Korean National Railways, 1984</p>
-
-                  <VertBarChart
-                    title="Fuel Savings — Korean National Railways Multi-Route Trial"
-                    data={[
-                      { name: "Active operation", value: 3.25, label: "1.1–5.4%", color: "#1a2633" },
-                      { name: "Idle conditions", value: 1.75, label: "1.5–2%", color: "#1a2633" },
-                    ]}
-                    yLabel="% fuel savings"
-                    source="Multi-route field trials across 4 diesel train routes. Korean National Railways. 1984."
-                  />
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-        </section>
-
-        {/* Before & After — Engine Condition */}
-        <section className="py-16 border-b">
-          <div className="container-custom max-w-4xl">
-            <h2 className="text-3xl font-semibold mb-2 text-[#1B2A4A]" style={{ letterSpacing: "-0.02em" }}>
-              Before &amp; After — Engine Condition
-            </h2>
-            <p className="text-muted-foreground mb-10">
-              Visual documentation from controlled marine engine testing.
-            </p>
-
-            <div className="mb-12">
-              <h3 className="text-lg font-semibold text-[#1B2A4A] mb-4">Injector Condition</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="text-center">
-                  <img
-                    src="/lovable-uploads/bb1c2fd7-8f99-4a4f-b75e-6676b4d8f1d6.png"
-                    alt="Injection nozzle with untreated fuel showing buildup and deposits"
-                    className="w-full h-auto rounded-lg shadow mb-3"
-                  />
-                  <p className="font-semibold text-sm text-[#1B2A4A]">Before OILTAC</p>
-                  <p className="text-sm text-muted-foreground">Hard, adhesive carbon deposits — difficult to remove</p>
-                </div>
-                <div className="text-center">
-                  <img
-                    src="/lovable-uploads/4db4bbe7-3f15-4c74-884e-22c85bbc6e50.png"
-                    alt="Clean injection nozzle after treatment with OILTAC"
-                    className="w-full h-auto rounded-lg shadow mb-3"
-                  />
-                  <p className="font-semibold text-sm text-[#1B2A4A]">After OILTAC</p>
-                  <p className="text-sm text-muted-foreground">Softer deposits — easier maintenance, longer service life</p>
-                </div>
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="marine-1">
+            <AccordionTrigger className="text-sm font-semibold text-left">
+              <span style={{ display: "flex", flexDirection: "column", gap: 4, alignItems: "flex-start" }}>
+                <span style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                  <EvidenceChip label="Controlled test" />
+                  <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 13.5, color: NAVY }}>Fuel use down 1.5–2%, particulates down 14–25% in 200-hour engine test</span>
+                </span>
+                <span style={{ fontFamily: MONO, fontSize: 10, color: "#A0AEC0", letterSpacing: "0.04em" }}>Marine Technical Institute, Ministry of Transportation, Japan · 1985–1986</span>
+              </span>
+            </AccordionTrigger>
+            <AccordionContent className="text-sm text-muted-foreground space-y-2">
+              <p>A controlled 200-hour continuous operation test compared fuel consumption, combustion characteristics, and particulate output with and without OILTAC additive in marine diesel engines.</p>
+              <p>Fuel efficiency gains of 1.5–2% were documented over the test period, with improved combustion consistency throughout. Exhaust particulate levels decreased by 14–25% in controlled measurements.</p>
+              <p>Combustion chamber deposits with OILTAC treatment were soft and easy to scrape off during inspection. Without OILTAC, deposits were hard, adhesive, and difficult to remove. Crank pin bearing wear was reduced by 21% in the comparative test.</p>
+              <p className="text-xs text-muted-foreground/70">Source: OILTAC Long Term Operation on Diesel Engine — Marine Technical Institute, Ministry of Transportation, Japan</p>
+              <HorizCompareChart
+                title="Fuel Consumption — Baseline vs. With OILTAC"
+                baselineLabel="Baseline"
+                treatedLabel="With OILTAC"
+                baselineValue={100}
+                treatedValue={98.25}
+                treatedNote="1.5–2% reduction"
+                source="200-hour continuous marine diesel engine test. Marine Technical Institute, Ministry of Transportation, Japan."
+              />
+              <HorizCompareChart
+                title="Exhaust Particulate Levels — Baseline vs. With OILTAC"
+                baselineLabel="Baseline"
+                treatedLabel="With OILTAC"
+                baselineValue={100}
+                treatedValue={80.5}
+                treatedNote="14–25% reduction"
+                source="200-hour continuous marine diesel engine test. Marine Technical Institute, Ministry of Transportation, Japan."
+              />
+              <div className="mt-4">
+                <StatCard
+                  value="21% reduction in crank pin bearing wear"
+                  subtext="Comparative 200-hour engine test"
+                  source="200-hour continuous marine diesel engine test. Marine Technical Institute, Ministry of Transportation, Japan."
+                />
               </div>
-              <p className="text-xs text-muted-foreground mt-4 italic">
-                Injector tips from a long-term controlled marine engine test. Before OILTAC: hard, adhesive carbon deposits, difficult to remove. After OILTAC: softer deposits, easier maintenance, longer service life.
-              </p>
-            </div>
+            </AccordionContent>
+          </AccordionItem>
 
-            <div>
-              <h3 className="text-lg font-semibold text-[#1B2A4A] mb-4">Valve Condition</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="text-center">
-                  <img
-                    src="/lovable-uploads/bfcdc605-dad6-4446-a1b8-2a0e64d213ac.png"
-                    alt="Exhaust valves untreated"
-                    className="w-full h-auto rounded-lg shadow mb-3"
-                  />
-                  <p className="font-semibold text-sm text-[#1B2A4A]">Before OILTAC</p>
-                  <p className="text-sm text-muted-foreground">Untreated — carbon adhesion throughout test duration</p>
-                </div>
-                <div className="text-center">
-                  <img
-                    src="/lovable-uploads/0bf9ee34-9b9a-4ae9-a90c-e53b874a17fc.png"
-                    alt="Exhaust valves OILTAC treated"
-                    className="w-full h-auto rounded-lg shadow mb-3"
-                  />
-                  <p className="font-semibold text-sm text-[#1B2A4A]">After OILTAC</p>
-                  <p className="text-sm text-muted-foreground">Reduced carbon adhesion observed across the full test duration</p>
-                </div>
+          <AccordionItem value="marine-2">
+            <AccordionTrigger className="text-sm font-semibold text-left">
+              <span style={{ display: "flex", flexDirection: "column", gap: 4, alignItems: "flex-start" }}>
+                <span style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                  <EvidenceChip label="Removal/reinstatement" />
+                  <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 13.5, color: NAVY }}>Oil consumption reduced, soot eliminated — removal/reinstatement confirms causation</span>
+                </span>
+                <span style={{ fontFamily: MONO, fontSize: 10, color: "#A0AEC0", letterSpacing: "0.04em" }}>Hokkaido Electric, Okushiri Power Station · Long-term field operation</span>
+              </span>
+            </AccordionTrigger>
+            <AccordionContent className="text-sm text-muted-foreground space-y-2">
+              <p>A major Japanese power utility (Hokkaido Electric Power) documented a significant reduction in oil consumption during OILTAC use at their Okushiri Power Station. When the product was withdrawn, oil consumption returned to prior levels. When OILTAC was reintroduced, consumption reduced again.</p>
+              <p>This removal/reinstatement pattern — independently observed — is among the strongest forms of causal evidence available in field conditions. Injection nozzle orifice sticking was also prevented during OILTAC use, a common failure mode in heavy fuel oil applications.</p>
+              <p className="text-xs text-muted-foreground/70">Source: Internal Test Data — Okushiri Power Station, Hokkaido Electric, Japan</p>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </SectionShell>
+
+      {/* ── Heavy Equipment ── */}
+      <SectionShell
+        id="offroad"
+        title="Off-Road & Heavy Equipment"
+        context="Road test and engine bench data from Italy and Japan, reflecting constant-load and acceleration performance."
+        altBg
+      >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+          <MetricCard value="Up to 6.8%" label="Fuel reduction at constant load" accent />
+          <MetricCard value="3–4%"       label="Acceleration test reduction"     />
+          <MetricCard value="21%"        label="Bearing wear reduction"          />
+          <MetricCard value="Softer"     label="Combustion deposits"             />
+        </div>
+
+        <div className="mb-8">
+          <SubLabel>SUPPORTING TEST RECORD</SubLabel>
+          <EvidenceList items={[
+            "Controlled road fuel efficiency testing — constant speed and acceleration conditions, Fuel Experimental Station San Donato Milanese, Italy (1982).",
+            "200-hour engine bench comparison measuring bearing wear and deposit condition with and without OILTAC.",
+            "Deposit hardness and crank pin bearing wear quantified in the same 200-hour comparative test.",
+          ]} />
+        </div>
+
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="offroad-1">
+            <AccordionTrigger className="text-sm font-semibold text-left">
+              <span style={{ display: "flex", flexDirection: "column", gap: 4, alignItems: "flex-start" }}>
+                <span style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                  <EvidenceChip label="Controlled test" />
+                  <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 13.5, color: NAVY }}>Up to 6.8% fuel reduction at constant speed, 3–4% during acceleration testing</span>
+                </span>
+                <span style={{ fontFamily: MONO, fontSize: 10, color: "#A0AEC0", letterSpacing: "0.04em" }}>Fuel Experimental Station San Donato Milanese, Italy · 1982</span>
+              </span>
+            </AccordionTrigger>
+            <AccordionContent className="text-sm text-muted-foreground space-y-2">
+              <p>Controlled road testing with standard diesel fuel measured fuel consumption under two conditions: constant speed (60 km/h) and acceleration performance (30–80 km/h). Compared treated and untreated fuel under identical conditions.</p>
+              <p>Results: up to 6.8% fuel reduction at constant speed; approximately 3–4% reduction during acceleration testing. Both tests used standard diesel fuel with no other modifications.</p>
+              <p className="text-xs text-muted-foreground/70">Source: Test Results — Verification of Efficacy on Diesel Engine, Fuel Experimental Station San Donato Milanese, Italy, 1982</p>
+              <VertBarChart
+                title="Fuel Consumption Reduction by Test Condition"
+                data={[
+                  { name: "Constant Speed (60 km/h)", value: 6.8, label: "Up to 6.8%", color: "#1a2633" },
+                  { name: "Pickup (30–80 km/h)",       value: 3.5, label: "3–4%",       color: "#1a2633" },
+                ]}
+                yLabel="% Reduction"
+                source="Road fuel efficiency test. Fuel Experimental Station San Donato Milanese, Italy. 1982."
+              />
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="offroad-2">
+            <AccordionTrigger className="text-sm font-semibold text-left">
+              <span style={{ display: "flex", flexDirection: "column", gap: 4, alignItems: "flex-start" }}>
+                <span style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                  <EvidenceChip label="Bench test" />
+                  <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 13.5, color: NAVY }}>21% bearing wear reduction with softer, easier-to-remove combustion deposits</span>
+                </span>
+                <span style={{ fontFamily: MONO, fontSize: 10, color: "#A0AEC0", letterSpacing: "0.04em" }}>200-hour comparative engine bench test · Marine Technical Institute, Japan</span>
+              </span>
+            </AccordionTrigger>
+            <AccordionContent className="text-sm text-muted-foreground space-y-2">
+              <p>A 200-hour comparative engine test measured crank pin bearing wear and combustion chamber deposit condition with and without OILTAC. Crank pin bearing wear was reduced by 21% in the OILTAC-treated engine.</p>
+              <p>Combustion deposits in the treated engine were described as soft and easy to scrape off during inspection. In the control engine (untreated fuel), deposits were hard, adhesive, and difficult to remove — increasing the labor and downtime required during maintenance shutdowns.</p>
+              <p className="text-xs text-muted-foreground/70">Source: OILTAC Long Term Operation on Diesel Engine — Marine Technical Institute, Ministry of Transportation, Japan</p>
+              <div className="mt-4">
+                <StatCard
+                  value="21% reduction in crank pin bearing wear"
+                  subtext="200-hour comparative engine bench test"
+                />
               </div>
-              <p className="text-xs text-muted-foreground mt-4 italic">
-                Exhaust and suction valve condition with and without OILTAC. Reduced carbon adhesion observed across the full test duration.
-              </p>
-            </div>
-          </div>
-        </section>
+              <DepositCompareCard
+                title="Combustion Chamber Deposit Condition"
+                withoutLabel="Hard, adhesive deposits — difficult to remove on inspection"
+                withLabel="Soft deposits — easy to scrape off on inspection"
+              />
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </SectionShell>
 
-        {/* Final CTA */}
-        <section className="py-16 bg-[#1B2A4A] text-white">
-          <div className="container-custom text-center">
-            <h2 className="text-3xl md:text-4xl font-semibold mb-4" style={{ letterSpacing: "-0.02em" }}>
-              Ready to Run the Numbers?
-            </h2>
-            <p className="text-lg text-white/80 mb-8 max-w-xl mx-auto">
-              The fastest way to evaluate OILTAC is to run it in your own operation.
+      {/* ── Industrial Power ── */}
+      <SectionShell
+        id="power"
+        title="Industrial Power"
+        context="Multi-year field data from a monitored diesel power station in Japan, with removal/reinstatement data confirming causal effect."
+      >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+          <MetricCard value="2–6%"    label="Generator fuel reduction"         accent />
+          <MetricCard value="0"       label="Soot incidents during OILTAC use" />
+          <MetricCard value="4–12/yr" label="Prior soot incident range"        />
+          <MetricCard value="Reduced" label="Oil degradation indicators"       />
+        </div>
+
+        <div className="mb-8">
+          <SubLabel>SUPPORTING TEST RECORD</SubLabel>
+          <EvidenceList items={[
+            "Multi-year diesel generator monitoring at Hokkaido Electric's Okushiri Power Station (Engine 5), compared against baseline fiscal years.",
+            "Removal/reinstatement soot incident pattern — incidents dropped to zero on introduction, resumed on withdrawal, ceased again on reintroduction.",
+            "Engine oil condition analysis — viscosity, oxidation, and sludge indicators tracked over the monitoring period.",
+          ]} />
+        </div>
+
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="industrial-1">
+            <AccordionTrigger className="text-sm font-semibold text-left">
+              <span style={{ display: "flex", flexDirection: "column", gap: 4, alignItems: "flex-start" }}>
+                <span style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                  <EvidenceChip label="Field operation" />
+                  <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 13.5, color: NAVY }}>2–6% diesel fuel reduction confirmed over two fiscal years of monitored operation</span>
+                </span>
+                <span style={{ fontFamily: MONO, fontSize: 10, color: "#A0AEC0", letterSpacing: "0.04em" }}>Hokkaido Electric, Okushiri Power Station · FY2001–FY2003</span>
+              </span>
+            </AccordionTrigger>
+            <AccordionContent className="text-sm text-muted-foreground space-y-2">
+              <p>Engine 5 at Hokkaido Electric's Okushiri Power Station was monitored over two fiscal years with OILTAC additive. Fuel consumption was compared against baseline fiscal years without the additive.</p>
+              <p>Results showed a 2–6% reduction in diesel generator fuel consumption during the monitored period. The comparison used actual operational fiscal year data — not a controlled test environment — making this a real-world performance validation.</p>
+              <p className="text-xs text-muted-foreground/70">Source: Internal Test Data — Okushiri Power Station, Hokkaido Electric, FY2001–FY2003</p>
+              <VertBarChart
+                title="Diesel Generator Fuel Consumption — Monitored Over Two Fiscal Years"
+                data={[
+                  { name: "Baseline (no additive)",    value: 100, label: "100%",          color: "#e2e2e2" },
+                  { name: "With OILTAC (FY2001–03)",   value: 96,  label: "2–6% reduction", color: "#1a2633" },
+                ]}
+                yLabel="Relative consumption %"
+                source="Two-year monitored field data. Hokkaido Electric, Okushiri Power Station, Engine 5. FY2001–2003."
+              />
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="industrial-2">
+            <AccordionTrigger className="text-sm font-semibold text-left">
+              <span style={{ display: "flex", flexDirection: "column", gap: 4, alignItems: "flex-start" }}>
+                <span style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                  <EvidenceChip label="Removal/reinstatement" />
+                  <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 13.5, color: NAVY }}>Soot incidents eliminated entirely — zero events vs. 4–12 per year before OILTAC</span>
+                </span>
+                <span style={{ fontFamily: MONO, fontSize: 10, color: "#A0AEC0", letterSpacing: "0.04em" }}>Hokkaido Electric, Okushiri Power Station · Removal/reinstatement confirmed</span>
+              </span>
+            </AccordionTrigger>
+            <AccordionContent className="text-sm text-muted-foreground space-y-2">
+              <p>Before OILTAC introduction, the station recorded 4–12 soot and smoke dispersion incidents per year from diesel generator exhaust stacks. Within 2 months of OILTAC use, incidents dropped to zero.</p>
+              <p>When the additive was subsequently removed, incidents resumed. This on/off cycle confirmed the causal relationship between OILTAC and the soot reduction, rather than attributing it to external factors.</p>
+              <p>Engine oil analysis during the same period documented viscosity increase prevention, oxidation prevention, and sludge reduction — with potential oil change interval extension observed in long-term operation.</p>
+              <p className="text-xs text-muted-foreground/70">Source: Internal Test Data — Okushiri Power Station, Hokkaido Electric, Japan</p>
+              <VertBarChart
+                title="Soot & Smoke Dispersion Incidents Per Year"
+                data={[
+                  { name: "Before OILTAC", value: 8, label: "4–12 per year", color: "#e2e2e2" },
+                  { name: "With OILTAC",   value: 0, label: "0 incidents",   color: "#1a2633" },
+                  { name: "After removal", value: 8, label: "Resumed",       color: "#f97316" },
+                ]}
+                yLabel="Incidents / year"
+                callout="Incidents dropped to zero within 2 months of introduction and resumed when the additive was removed — confirming causation."
+                source="Soot incident monitoring. Hokkaido Electric, Okushiri Power Station."
+              />
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </SectionShell>
+
+      {/* ── Rail ── */}
+      <SectionShell
+        id="rail"
+        title="Rail & Locomotives"
+        context="Field trial data from national railway operators in Bulgaria and South Korea."
+        altBg
+      >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+          <MetricCard value="1.9–4.4%"   label="Bulgarian rail fuel savings"        accent />
+          <MetricCard value="26–57.9 kg" label="Diesel saved per locomotive per day" />
+          <MetricCard value="1.1–5.4%"   label="Korean multi-route fuel savings"    />
+          <MetricCard value="No adverse" label="Oil quality impact observed"         />
+        </div>
+
+        <div className="mb-8">
+          <SubLabel>SUPPORTING TEST RECORD</SubLabel>
+          <EvidenceList items={[
+            "Bulgarian National Railways field trials — fuel consumption per locomotive measured with and without OILTAC across multiple depots (1982).",
+            "Korean National Railways multi-route testing across 4 diesel train routes, with idle condition measured separately.",
+            "Engine oil spectroscopic analysis confirming no adverse impact on oil chemistry during field operation.",
+          ]} />
+        </div>
+
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="rail-1">
+            <AccordionTrigger className="text-sm font-semibold text-left">
+              <span style={{ display: "flex", flexDirection: "column", gap: 4, alignItems: "flex-start" }}>
+                <span style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                  <EvidenceChip label="Rail trial" />
+                  <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 13.5, color: NAVY }}>1.9–4.4% fuel savings per locomotive with no adverse oil chemistry impact</span>
+                </span>
+                <span style={{ fontFamily: MONO, fontSize: 10, color: "#A0AEC0", letterSpacing: "0.04em" }}>Bulgarian National Railways · Field trial, 1982</span>
+              </span>
+            </AccordionTrigger>
+            <AccordionContent className="text-sm text-muted-foreground space-y-2">
+              <p>Field trials conducted with Bulgarian National Railways measured fuel consumption per locomotive with and without OILTAC. Results showed fuel savings of 1.9–4.4% per locomotive, equivalent to 26–57.9 kg of diesel saved per locomotive per day depending on operating conditions.</p>
+              <p>Engine oil samples analyzed spectroscopically showed no discernible quality change, indicating OILTAC did not introduce additional chemical stress to the lubricant system.</p>
+              <p className="text-xs text-muted-foreground/70">Source: Internal Test Data — Bulgarian National Railways, 1982; Bulgarian locomotive engine oil analysis</p>
+              <StatCardPair
+                card1Value="1.9–4.4% fuel savings per locomotive"
+                card2Value="26–57.9 kg diesel saved per locomotive per day"
+                sharedSubtext="Bulgarian National Railways field trials, 1982"
+                source="Bulgarian National Railways field trials, 1982."
+              />
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="rail-2">
+            <AccordionTrigger className="text-sm font-semibold text-left">
+              <span style={{ display: "flex", flexDirection: "column", gap: 4, alignItems: "flex-start" }}>
+                <span style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                  <EvidenceChip label="Rail trial" />
+                  <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 13.5, color: NAVY }}>1.1–5.4% fuel savings across 4 diesel routes, plus 1.5–2% at idle</span>
+                </span>
+                <span style={{ fontFamily: MONO, fontSize: 10, color: "#A0AEC0", letterSpacing: "0.04em" }}>Korean National Railways · Multi-route trial, 1984</span>
+              </span>
+            </AccordionTrigger>
+            <AccordionContent className="text-sm text-muted-foreground space-y-2">
+              <p>Korean National Railways conducted trials across 4 separate diesel train routes. Fuel savings ranged from 1.1% to 5.4% depending on the route and operating profile. An additional 1.5–2% improvement was observed at idle engine conditions.</p>
+              <p>Exhaust particulate and soot levels were reduced across all measured routes. The range of results across different routes reflects variation in duty cycle, load, and operating environment.</p>
+              <p className="text-xs text-muted-foreground/70">Source: Internal Test Data — Korean National Railways, 1984</p>
+              <VertBarChart
+                title="Fuel Savings — Korean National Railways Multi-Route Trial"
+                data={[
+                  { name: "Active operation", value: 3.25, label: "1.1–5.4%", color: "#1a2633" },
+                  { name: "Idle conditions",  value: 1.75, label: "1.5–2%",   color: "#1a2633" },
+                ]}
+                yLabel="% fuel savings"
+                source="Multi-route field trials across 4 diesel train routes. Korean National Railways. 1984."
+              />
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </SectionShell>
+
+      {/* ── Before & After — Engine Condition ── */}
+      <section id="condition" style={{
+        padding: "80px 0",
+        borderBottom: "1px solid #E2E8F0",
+        background: "#fff",
+        scrollMarginTop: 48,
+      }}>
+        <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 24px" }}>
+          <div style={{ width: 28, height: 3, background: ORANGE, borderRadius: 2, marginBottom: 14 }} />
+          <h2 style={{
+            fontFamily: SANS, fontWeight: 600, fontSize: 28,
+            letterSpacing: "-0.02em", color: NAVY, margin: "0 0 6px", lineHeight: 1.2,
+          }}>
+            Before &amp; After — Engine Condition
+          </h2>
+          <p style={{ fontFamily: SANS, fontSize: 14, color: "#718096", margin: "0 0 40px", lineHeight: 1.55 }}>
+            Visual documentation from controlled marine engine testing shows deposit condition and component cleanliness differences.
+          </p>
+
+          {/* Injector condition */}
+          <div className="mb-12">
+            <div style={{ fontFamily: MONO, fontSize: 10, color: "#718096", letterSpacing: "0.08em", marginBottom: 16, textTransform: "uppercase" }}>
+              Injection nozzle condition — after 200 operating hours
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="text-center">
+                <img
+                  src="/lovable-uploads/bb1c2fd7-8f99-4a4f-b75e-6676b4d8f1d6.png"
+                  alt="Injection nozzle with untreated fuel showing buildup and deposits"
+                  className="w-full h-auto rounded-lg shadow mb-3"
+                />
+                <p style={{ fontFamily: SANS, fontWeight: 600, fontSize: 13, color: NAVY }}>Without OILTAC</p>
+                <p style={{ fontFamily: SANS, fontSize: 13, color: "#718096" }}>Hard, adhesive carbon deposits — difficult to remove</p>
+              </div>
+              <div className="text-center">
+                <img
+                  src="/lovable-uploads/4db4bbe7-3f15-4c74-884e-22c85bbc6e50.png"
+                  alt="Clean injection nozzle after treatment with OILTAC"
+                  className="w-full h-auto rounded-lg shadow mb-3"
+                />
+                <p style={{ fontFamily: SANS, fontWeight: 600, fontSize: 13, color: NAVY }}>With OILTAC</p>
+                <p style={{ fontFamily: SANS, fontSize: 13, color: "#718096" }}>Softer deposits — easier maintenance, reduced buildup</p>
+              </div>
+            </div>
+            <p style={{ fontFamily: MONO, fontSize: 10.5, color: "#A0AEC0", marginTop: 12, letterSpacing: "0.02em" }}>
+              Injector tips from a long-term controlled marine engine test. Marine Technical Institute, Ministry of Transportation, Japan.
             </p>
-            <a
-              href="/#pilot-cta"
-              className="inline-block bg-[#F97316] hover:bg-[#F97316]/90 text-white font-semibold px-8 py-4 rounded-md text-lg transition-colors"
-            >
-              Request a Pilot Test
+          </div>
+
+          {/* Valve condition */}
+          <div>
+            <div style={{ fontFamily: MONO, fontSize: 10, color: "#718096", letterSpacing: "0.08em", marginBottom: 16, textTransform: "uppercase" }}>
+              Valve condition — after 200 operating hours
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="text-center">
+                <img
+                  src="/lovable-uploads/bfcdc605-dad6-4446-a1b8-2a0e64d213ac.png"
+                  alt="Exhaust valves untreated"
+                  className="w-full h-auto rounded-lg shadow mb-3"
+                />
+                <p style={{ fontFamily: SANS, fontWeight: 600, fontSize: 13, color: NAVY }}>Without OILTAC</p>
+                <p style={{ fontFamily: SANS, fontSize: 13, color: "#718096" }}>Carbon adhesion throughout test duration</p>
+              </div>
+              <div className="text-center">
+                <img
+                  src="/lovable-uploads/0bf9ee34-9b9a-4ae9-a90c-e53b874a17fc.png"
+                  alt="Exhaust valves OILTAC treated"
+                  className="w-full h-auto rounded-lg shadow mb-3"
+                />
+                <p style={{ fontFamily: SANS, fontWeight: 600, fontSize: 13, color: NAVY }}>With OILTAC</p>
+                <p style={{ fontFamily: SANS, fontSize: 13, color: "#718096" }}>Reduced carbon adhesion across the full test duration</p>
+              </div>
+            </div>
+            <p style={{ fontFamily: MONO, fontSize: 10.5, color: "#A0AEC0", marginTop: 12, letterSpacing: "0.02em" }}>
+              Exhaust and suction valve condition. Same engine, same fuel, same operating conditions. Marine Technical Institute, Ministry of Transportation, Japan.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Final CTA ── */}
+      <section style={{ padding: "64px 0", background: NAVY, color: "#fff" }}>
+        <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
+          <h2 style={{
+            fontFamily: SANS, fontWeight: 600,
+            fontSize: "clamp(24px, 4vw, 36px)",
+            letterSpacing: "-0.02em", margin: "0 0 12px",
+          }}>
+            Ready to Run the Numbers?
+          </h2>
+          <p style={{ fontFamily: SANS, fontSize: 16, color: "rgba(255,255,255,0.75)", margin: "0 auto 32px", maxWidth: 440, lineHeight: 1.55 }}>
+            The fastest way to evaluate OILTAC is to run it in your own operation.
+          </p>
+          <a
+            href="/#pilot-cta"
+            style={{
+              display: "inline-block",
+              background: ORANGE, color: "#fff",
+              fontFamily: SANS, fontWeight: 600, fontSize: 15,
+              padding: "12px 28px", borderRadius: 6, textDecoration: "none",
+            }}
+          >
+            Request a Pilot Test
+          </a>
+          <p style={{ fontFamily: SANS, fontSize: 13, color: "rgba(255,255,255,0.5)", marginTop: 16 }}>
+            Or contact us at{" "}
+            <a href="mailto:info@oiltacfuel.com" style={{ color: "rgba(255,255,255,0.7)", textDecoration: "underline" }}>
+              info@oiltacfuel.com
             </a>
-            <p className="mt-4 text-sm text-white/60">
-              Or contact us directly at{" "}
-              <a href="mailto:info@oiltacfuel.com" className="text-white underline hover:text-white/80">
-                info@oiltacfuel.com
-              </a>
-            </p>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
-  );
-};
+          </p>
+        </div>
+      </section>
+
+    </main>
+    <Footer />
+  </>
+);
 
 export default Industries;
