@@ -236,6 +236,7 @@ interface ProofInstitution {
   application: string;
   years: string;
   logo: string;
+  logoClass?: string;
 }
 
 const PROOF_INSTITUTIONS: ProofInstitution[] = [
@@ -244,7 +245,7 @@ const PROOF_INSTITUTIONS: ProofInstitution[] = [
   { name: "Innovhub / Fuel Experimental Station", country: "Italy",    application: "Heavy equipment",         years: "1982",      logo: "/logos/normalized/innovhub-stazione-sperimentale-combustibili.png" },
   { name: "Bulgarian National Railways",           country: "Bulgaria", application: "Rail",                    years: "1982",      logo: "/logos/normalized/bulgarian-national-railways.png"                 },
   { name: "Hokkaido Electric Power Co.",           country: "Japan",    application: "Power generation",        years: "2001–2005", logo: "/logos/normalized/hokkaido-electric.png"                          },
-  { name: "Japan Coast Guard Academy",             country: "Japan",    application: "Marine training vessels", years: "—",         logo: "/logos/normalized/japan-coast-guard-academy.png"                  },
+  { name: "Japan Coast Guard Academy",             country: "Japan",    application: "Marine training vessels", years: "—",         logo: "/logos/normalized/japan-coast-guard-academy.png",  logoClass: "logo-jcga" },
 ];
 
 // ─── Shared low-level building blocks ──────────────────────────────────────
@@ -828,6 +829,10 @@ const TestingInstitutionsLogoStrip = () => (
         width: auto;
         height: auto;
       }
+      .pi-tile-img img.logo-jcga {
+        transform: scale(1.8);
+        transform-origin: center;
+      }
       .pi-tile-name {
         font-family: ${SANS};
         font-size: 10.5px;
@@ -860,7 +865,7 @@ const TestingInstitutionsLogoStrip = () => (
         {PROOF_INSTITUTIONS.map(inst => (
           <div key={inst.name} className="pi-tile">
             <div className="pi-tile-img">
-              <img src={inst.logo} alt={inst.name} title={inst.name} />
+              <img src={inst.logo} alt={inst.name} title={inst.name} className={inst.logoClass ?? ""} />
             </div>
             <div className="pi-tile-name">{inst.name}</div>
           </div>

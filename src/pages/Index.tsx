@@ -204,12 +204,12 @@ function SignalStrip() {
 // ─── Testing Institutions Strip (condensed, homepage) ────────────────────────
 
 const CONDENSED_LOGOS = [
-  { name: "Japan Vehicle Inspection Association",  logo: "/logos/normalized/japan-vehicle-inspection-association.png"        },
-  { name: "National Maritime Research Institute",  logo: "/logos/normalized/ship-research-institute-nmri.png"                },
-  { name: "Innovhub / Fuel Experimental Station", logo: "/logos/normalized/innovhub-stazione-sperimentale-combustibili.png" },
-  { name: "Bulgarian National Railways",           logo: "/logos/normalized/bulgarian-national-railways.png"                 },
-  { name: "Hokkaido Electric Power Co.",           logo: "/logos/normalized/hokkaido-electric.png"                          },
-  { name: "Japan Coast Guard Academy",             logo: "/logos/normalized/japan-coast-guard-academy.png"                  },
+  { name: "Japan Vehicle Inspection Association",  logo: "/logos/normalized/japan-vehicle-inspection-association.png",        logoClass: ""          },
+  { name: "National Maritime Research Institute",  logo: "/logos/normalized/ship-research-institute-nmri.png",                logoClass: ""          },
+  { name: "Innovhub / Fuel Experimental Station", logo: "/logos/normalized/innovhub-stazione-sperimentale-combustibili.png", logoClass: ""          },
+  { name: "Bulgarian National Railways",           logo: "/logos/normalized/bulgarian-national-railways.png",                 logoClass: ""          },
+  { name: "Hokkaido Electric Power Co.",           logo: "/logos/normalized/hokkaido-electric.png",                           logoClass: ""          },
+  { name: "Japan Coast Guard Academy",             logo: "/logos/normalized/japan-coast-guard-academy.png",                   logoClass: "logo-jcga" },
 ];
 
 function TestingInstitutionsStripCondensed() {
@@ -234,11 +234,12 @@ function TestingInstitutionsStripCondensed() {
           background: #14233D;
           border: 1px solid #243A63;
           border-radius: 5px;
-          height: 64px;
+          height: 74px;
           display: flex;
           align-items: center;
           justify-content: center;
           padding: 8px 12px;
+          overflow: hidden;
         }
         .ti-slot img {
           display: block;
@@ -247,6 +248,10 @@ function TestingInstitutionsStripCondensed() {
           max-width: 180px;
           width: auto;
           height: auto;
+        }
+        .ti-slot img.logo-jcga {
+          transform: scale(1.8);
+          transform-origin: center;
         }
         .ti-cta {
           font-family: ${MONO};
@@ -283,7 +288,7 @@ function TestingInstitutionsStripCondensed() {
         <div className="ti-grid">
           {CONDENSED_LOGOS.map(inst => (
             <div key={inst.name} className="ti-slot">
-              <img src={inst.logo} alt={inst.name} title={inst.name} />
+              <img src={inst.logo} alt={inst.name} title={inst.name} className={inst.logoClass} />
             </div>
           ))}
         </div>
