@@ -588,7 +588,7 @@ function WhyNow() {
 
 function PilotCTA() {
   const [formData, setFormData] = useState({
-    name: "", company: "", role: "", region: "", industry: "", fleet_size: "", notes: "",
+    name: "", company: "", email: "", phone: "", role: "", region: "", industry: "", fleet_size: "", notes: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -609,6 +609,9 @@ function PilotCTA() {
           subject: "New Pilot Request — OILTAC",
           from_name: formData.name,
           name: formData.name,
+          email: formData.email,
+          replyto: formData.email,
+          phone: formData.phone,
           company: formData.company,
           role: formData.role,
           region: formData.region,
@@ -622,7 +625,7 @@ function PilotCTA() {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({ event: "pilot_form_submit", event_category: "engagement", event_label: "Pilot Form Submit" });
         alert("Thanks — we'll be in touch within 2 business days.");
-        setFormData({ name: "", company: "", role: "", region: "", industry: "", fleet_size: "", notes: "" });
+        setFormData({ name: "", company: "", email: "", phone: "", role: "", region: "", industry: "", fleet_size: "", notes: "" });
       } else {
         console.error("Web3Forms error:", data);
         alert("There was an error submitting your request. Please email info@oiltacfuel.com directly.");
@@ -688,6 +691,16 @@ function PilotCTA() {
                 <div>
                   <label style={labelStyle}>COMPANY *</label>
                   <input name="company" value={formData.company} onChange={handleChange} required placeholder="Fleet / company name" style={inputStyle} />
+                </div>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 14 }}>
+                <div>
+                  <label style={labelStyle}>WORK EMAIL *</label>
+                  <input name="email" type="email" value={formData.email} onChange={handleChange} required placeholder="name@company.com" style={inputStyle} />
+                </div>
+                <div>
+                  <label style={labelStyle}>PHONE</label>
+                  <input name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder="+1 555 123 4567" style={inputStyle} />
                 </div>
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 14 }}>

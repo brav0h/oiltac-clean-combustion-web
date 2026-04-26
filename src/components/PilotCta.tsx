@@ -10,6 +10,8 @@ const PilotCta = () => {
   const [formData, setFormData] = useState({
     name: "",
     company: "",
+    email: "",
+    phone: "",
     job_title: "",
     industry: "",
     fleet_size: "",
@@ -34,6 +36,9 @@ const PilotCta = () => {
           subject: "New Pilot Request — OILTAC",
           from_name: formData.name,
           name: formData.name,
+          email: formData.email,
+          replyto: formData.email,
+          phone: formData.phone,
           company: formData.company,
           job_title: formData.job_title,
           industry: formData.industry,
@@ -56,6 +61,8 @@ const PilotCta = () => {
         setFormData({
           name: "",
           company: "",
+          email: "",
+          phone: "",
           job_title: "",
           industry: "",
           fleet_size: "",
@@ -118,6 +125,34 @@ const PilotCta = () => {
                   onChange={handleChange}
                   required
                   placeholder="Company or fleet name"
+                  className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="pilot-email" className="block text-sm font-medium text-white/80 mb-1">Work email <span className="text-white/50">*</span></label>
+                <Input
+                  id="pilot-email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="name@company.com"
+                  className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
+                />
+              </div>
+              <div>
+                <label htmlFor="pilot-phone" className="block text-sm font-medium text-white/80 mb-1">Phone</label>
+                <Input
+                  id="pilot-phone"
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="+1 555 123 4567"
                   className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
                 />
               </div>
