@@ -12,6 +12,8 @@ const Navigation = () => {
 
   const scrollToContact = () => {
     setIsOpen(false);
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: "request_pilot_click", event_category: "engagement", event_label: "Navigation CTA" });
     const el = document.getElementById("pilot-cta");
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
