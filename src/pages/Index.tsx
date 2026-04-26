@@ -112,7 +112,7 @@ function HeroStatPanel() {
 
 function Hero() {
   const scrollToPilot = () => {
-    document.getElementById("pilot")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("pilot-cta")?.scrollIntoView({ behavior: "smooth" });
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: "request_pilot_click", event_category: "engagement", event_label: "Hero CTA" });
   };
