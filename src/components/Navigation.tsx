@@ -12,7 +12,12 @@ const Navigation = () => {
 
   const scrollToContact = () => {
     setIsOpen(false);
-    navigate("/#pilot-cta");
+    const el = document.getElementById("pilot-cta");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/#pilot-cta");
+    }
   };
 
   const hidden = scrollDirection === "down" && !atTop;
