@@ -201,6 +201,97 @@ function SignalStrip() {
   );
 }
 
+// ─── Testing Institutions Strip (condensed, homepage) ────────────────────────
+
+const CONDENSED_LOGOS = [
+  { name: "Japan Vehicle Inspection Association",  logo: "/logos/normalized/japan-vehicle-inspection-association.png"        },
+  { name: "National Maritime Research Institute",  logo: "/logos/normalized/ship-research-institute-nmri.png"                },
+  { name: "Innovhub / Fuel Experimental Station", logo: "/logos/normalized/innovhub-stazione-sperimentale-combustibili.png" },
+  { name: "Bulgarian National Railways",           logo: "/logos/normalized/bulgarian-national-railways.png"                 },
+  { name: "Hokkaido Electric Power Co.",           logo: "/logos/normalized/hokkaido-electric.png"                          },
+  { name: "Japan Coast Guard Academy",             logo: "/logos/normalized/japan-coast-guard-academy.png"                  },
+];
+
+function TestingInstitutionsStripCondensed() {
+  return (
+    <div style={{ background: C.bg2, borderTop: `1px solid ${C.line}`, borderBottom: `1px solid ${C.line}` }}>
+      <style>{`
+        .ti-layout {
+          display: grid;
+          grid-template-columns: 300px 1fr;
+          gap: 48px;
+          align-items: center;
+          max-width: 1240px;
+          margin: 0 auto;
+          padding: 36px 32px;
+        }
+        .ti-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 8px;
+        }
+        .ti-slot {
+          background: #14233D;
+          border: 1px solid #243A63;
+          border-radius: 5px;
+          height: 64px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 8px 12px;
+        }
+        .ti-slot img {
+          display: block;
+          object-fit: contain;
+          max-height: 48px;
+          max-width: 180px;
+          width: auto;
+          height: auto;
+        }
+        .ti-cta {
+          font-family: ${MONO};
+          font-size: 10.5px;
+          letter-spacing: 0.06em;
+          color: ${C.accent};
+          text-decoration: none;
+          white-space: nowrap;
+        }
+        .ti-cta:hover { text-decoration: underline; }
+        @media (max-width: 860px) {
+          .ti-layout { grid-template-columns: 1fr; gap: 24px; padding: 32px 24px; }
+          .ti-grid   { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 520px) {
+          .ti-layout { padding: 28px 20px; }
+          .ti-grid   { grid-template-columns: repeat(2, 1fr); }
+        }
+      `}</style>
+
+      <div className="ti-layout">
+        {/* Left: copy + CTA */}
+        <div>
+          <div style={{ fontFamily: MONO, fontSize: 9.5, color: C.verify, letterSpacing: "0.1em", marginBottom: 10 }}>
+            INDEPENDENTLY TESTED ACROSS 6 COUNTRIES
+          </div>
+          <div style={{ fontFamily: SANS, fontSize: 13, color: C.inkDim, lineHeight: 1.55, marginBottom: 14 }}>
+            Marine · Rail · Power Generation · Heavy Equipment · 1974–2005
+          </div>
+          <a href="/proof" className="ti-cta">View summary proof page →</a>
+        </div>
+
+        {/* Right: logo grid — non-interactive, dark tiles */}
+        <div className="ti-grid">
+          {CONDENSED_LOGOS.map(inst => (
+            <div key={inst.name} className="ti-slot">
+              <img src={inst.logo} alt={inst.name} title={inst.name} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Industries ───────────────────────────────────────────────────────────────
 
 const INDUSTRY_DATA = [
@@ -610,6 +701,7 @@ const Index = () => (
     <EyebrowBar />
     <Hero />
     <SignalStrip />
+    <TestingInstitutionsStripCondensed />
     <Industries />
     <Mechanism />
     <Comparison />
