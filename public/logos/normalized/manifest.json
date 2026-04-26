@@ -1,0 +1,65 @@
+{
+  "generated": "2026-04-24",
+  "logos": [
+    {
+      "original": "bulgarian-national-railways.svg",
+      "normalized": "bulgarian-national-railways.png",
+      "status": "ok",
+      "notes": ""
+    },
+    {
+      "original": "hokkaido-electric.svg",
+      "normalized": "hokkaido-electric.png",
+      "status": "ok",
+      "notes": ""
+    },
+    {
+      "original": "innovhub-stazione-sperimentale-combustibili.jpg",
+      "normalized": "innovhub-stazione-sperimentale-combustibili.png",
+      "status": "manual-review",
+      "notes": "Raster with no alpha channel — opaque background preserved; verify CSS filter renders acceptably on dark bg"
+    },
+    {
+      "original": "japan-coast-guard-academy.png",
+      "normalized": "japan-coast-guard-academy.png",
+      "status": "ok",
+      "notes": ""
+    },
+    {
+      "original": "japan-coast-guard-ensign.svg",
+      "normalized": "japan-coast-guard-ensign.png",
+      "status": "ok",
+      "notes": ""
+    },
+    {
+      "original": "japan-railways-group.svg",
+      "normalized": "japan-railways-group.png",
+      "status": "ok",
+      "notes": ""
+    },
+    {
+      "original": "japan-vehicle-inspection-association.gif",
+      "normalized": "japan-vehicle-inspection-association.png",
+      "status": "manual-review",
+      "notes": "Raster with no alpha channel — opaque background preserved; verify CSS filter renders acceptably on dark bg"
+    },
+    {
+      "original": "korean-national-railroad.svg",
+      "normalized": "korean-national-railroad.png",
+      "status": "ok",
+      "notes": ""
+    },
+    {
+      "original": "ship-research-institute-nmri.svg",
+      "normalized": "ship-research-institute-nmri.png",
+      "status": "ok",
+      "notes": ""
+    },
+    {
+      "original": "technical-university-sofia.svg",
+      "normalized": "technical-university-sofia.png",
+      "status": "ok",
+      "notes": ""
+    }
+  ]
+}

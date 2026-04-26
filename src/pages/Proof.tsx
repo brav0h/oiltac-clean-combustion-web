@@ -228,6 +228,25 @@ const INSTITUTIONS: Institution[] = [
   },
 ];
 
+// ─── Testing institution logo registry ──────────────────────────────────────
+
+interface ProofInstitution {
+  name: string;
+  country: string;
+  application: string;
+  years: string;
+  logo: string;
+}
+
+const PROOF_INSTITUTIONS: ProofInstitution[] = [
+  { name: "Japan Vehicle Inspection Association",  country: "Japan",    application: "Road emissions",          years: "1974",      logo: "/logos/normalized/japan-vehicle-inspection-association.png"        },
+  { name: "National Maritime Research Institute",  country: "Japan",    application: "Marine engines",          years: "1983–1986", logo: "/logos/normalized/ship-research-institute-nmri.png"                },
+  { name: "Innovhub / Fuel Experimental Station", country: "Italy",    application: "Heavy equipment",         years: "1982",      logo: "/logos/normalized/innovhub-stazione-sperimentale-combustibili.png" },
+  { name: "Bulgarian National Railways",           country: "Bulgaria", application: "Rail",                    years: "1982",      logo: "/logos/normalized/bulgarian-national-railways.png"                 },
+  { name: "Hokkaido Electric Power Co.",           country: "Japan",    application: "Power generation",        years: "2001–2005", logo: "/logos/normalized/hokkaido-electric.png"                          },
+  { name: "Japan Coast Guard Academy",             country: "Japan",    application: "Marine training vessels", years: "—",         logo: "/logos/normalized/japan-coast-guard-academy.png"                  },
+];
+
 // ─── Shared low-level building blocks ──────────────────────────────────────
 
 const mono = (extra?: React.CSSProperties): React.CSSProperties => ({
@@ -770,6 +789,91 @@ const InstitutionsSection = () => (
   </section>
 );
 
+// ─── TestingInstitutionsLogoStrip ────────────────────────────────────────────
+
+const TestingInstitutionsLogoStrip = () => (
+  <div style={{ borderTop: `1px solid ${C.line}` }}>
+    <style>{`
+      .pi-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+      .pi-tile {
+        background: #14233D;
+        border: 1px solid #243A63;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        height: 120px;
+        padding: 12px 16px;
+      }
+      .pi-tile-img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255,255,255,0.04);
+        border-radius: 4px;
+        padding: 8px 12px;
+        height: 60px;
+      }
+      .pi-tile-img img {
+        display: block;
+        object-fit: contain;
+        max-height: 46px;
+        max-width: 180px;
+        width: auto;
+        height: auto;
+      }
+      .pi-tile-name {
+        font-family: ${SANS};
+        font-size: 10.5px;
+        color: ${C.inkMute};
+        text-align: center;
+        line-height: 1.35;
+        max-width: 160px;
+      }
+      @media (max-width: 720px) {
+        .pi-grid { grid-template-columns: repeat(3, 1fr); }
+      }
+      @media (max-width: 480px) {
+        .pi-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+    `}</style>
+    <div style={{ maxWidth: 1240, margin: "0 auto", padding: "56px 24px 64px" }}>
+      <div style={{ marginBottom: 32 }}>
+        <div style={mono({ fontSize: 11, color: C.inkMute, letterSpacing: "0.1em", marginBottom: 10 })}>
+          TESTING ORGANIZATIONS
+        </div>
+        <h2 style={{ fontFamily: SANS, fontWeight: 600, fontSize: 30, lineHeight: 1.15, letterSpacing: "-0.02em", margin: "0 0 12px", color: C.ink }}>
+          Organizations in the OILTAC test record
+        </h2>
+        <p style={{ fontFamily: SANS, fontSize: 15, color: C.inkDim, lineHeight: 1.6, maxWidth: 620, margin: 0 }}>
+          Independent test records document OILTAC across marine, rail, power generation, and heavy equipment applications in multiple countries.
+        </p>
+      </div>
+
+      <div className="pi-grid">
+        {PROOF_INSTITUTIONS.map(inst => (
+          <div key={inst.name} className="pi-tile">
+            <div className="pi-tile-img">
+              <img src={inst.logo} alt={inst.name} title={inst.name} />
+            </div>
+            <div className="pi-tile-name">{inst.name}</div>
+          </div>
+        ))}
+      </div>
+
+      <div style={mono({ fontSize: 10.5, color: C.inkFaint, letterSpacing: "0.04em", marginTop: 20 })}>
+        Full trial details and source references are summarized in the sections below.
+      </div>
+    </div>
+  </div>
+);
+
 // ─── MechanismSchematic ───────────────────────────────────────────────────────
 
 const MechanismSchematic = () => (
@@ -1060,6 +1164,7 @@ const Proof = () => {
         <EyebrowBar />
         <Hero />
         <HeadlineStats />
+        <TestingInstitutionsLogoStrip />
 
         {/* Section 01 — Fuel savings chart */}
         <section style={{ padding: "80px 0", borderTop: `1px solid ${C.line}` }}>
