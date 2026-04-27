@@ -649,20 +649,22 @@ function PilotCTA() {
         }),
       });
 
-      const hubSpotRequest = fetch("https://api.hsforms.com/submissions/v3/integration/submit/246019149/3b81ab77-8b52-4943-9b24-319f52b10f72", {
+      const hsPortalId = import.meta.env.VITE_HUBSPOT_PORTAL_ID;
+      const hsFormId = import.meta.env.VITE_HUBSPOT_FORM_ID;
+      const hubSpotRequest = fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${hsPortalId}/${hsFormId}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           fields: [
-            { name: "full_name", value: formData.name },
-            { name: "email", value: formData.email },
-            { name: "phone", value: formData.phone },
-            { name: "company", value: formData.company },
-            { name: "jobtitle", value: formData.role },
-            { name: "country", value: formData.region },
-            { name: "industry2", value: formData.industry },
-            { name: "fleet___equipment_size", value: formData.fleet_size },
-            { name: "message", value: formData.notes || pilotDetails },
+            { objectTypeId: "0-1", name: "full_name", value: formData.name },
+            { objectTypeId: "0-1", name: "company", value: formData.company },
+            { objectTypeId: "0-1", name: "email", value: formData.email },
+            { objectTypeId: "0-1", name: "phone", value: formData.phone },
+            { objectTypeId: "0-1", name: "jobtitle", value: formData.role },
+            { objectTypeId: "0-1", name: "country", value: formData.region },
+            { objectTypeId: "0-1", name: "industry2", value: formData.industry },
+            { objectTypeId: "0-1", name: "fleet___equipment_size", value: formData.fleet_size },
+            { objectTypeId: "0-1", name: "message", value: formData.notes || pilotDetails },
           ],
           context: {
             hutk: getCookie("hubspotutk"),
