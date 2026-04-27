@@ -592,6 +592,33 @@ function PilotCTA() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const splitFullName = (name: string) => {
+    const parts = name.trim().split(/\s+/).filter(Boolean);
+    if (parts.length <= 1) return { firstname: parts[0] || "", lastname: "" };
+    return { firstname: parts.slice(0, -1).join(" "), lastname: parts[parts.length - 1] };
+  };
+
+  const getCookie = (name: string) => {
+    if (typeof document === "undefined") return "";
+    return document.cookie
+      .split("; ")
+      .find(row => row.startsWith(`${name}=`))
+      ?.split("=")[1] || "";
+  };
+
+  const buildPilotDetails = () => [
+    `Pilot request details`,
+    `Full name: ${formData.name}`,
+    `Company: ${formData.company}`,
+    `Work email: ${formData.email}`,
+    `Phone: ${formData.phone || "Not provided"}`,
+    `Role: ${formData.role || "Not provided"}`,
+    `Region: ${formData.region}`,
+    `Industry: ${formData.industry}`,
+    `Fleet / equipment size: ${formData.fleet_size || "Not provided"}`,
+    `Notes: ${formData.notes || "Not provided"}`,
+  ].join("\n");
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -607,7 +634,9 @@ function PilotCTA() {
     }
     setIsSubmitting(true);
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const { firstname, lastname } = splitFullName(formData.name);
+      const pilotDetails = buildPilotDetails();
+      const web3FormsRequest = fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -623,16 +652,51 @@ function PilotCTA() {
           industry: formData.industry,
           fleet_size: formData.fleet_size,
           notes: formData.notes,
+          message: pilotDetails,
         }),
       });
-      const data = await response.json();
-      if (response.ok && data.success) {
+
+      const hubSpotRequest = fetch("https://api.hsforms.com/submissions/v3/integration/submit/246019149/3b81ab77-8b52-4943-9b24-319f52b10f72", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fields: [
+            { name: "firstname", value: firstname },
+            { name: "lastname", value: lastname },
+            { name: "email", value: formData.email },
+            { name: "phone", value: formData.phone },
+            { name: "company", value: formData.company },
+            { name: "jobtitle", value: formData.role },
+            { name: "industry", value: formData.industry },
+            { name: "message", value: pilotDetails },
+          ],
+          context: {
+            hutk: getCookie("hubspotutk"),
+            pageUri: window.location.href,
+            pageName: document.title,
+          },
+        }),
+      });
+
+      const [web3FormsResult, hubSpotResult] = await Promise.allSettled([web3FormsRequest, hubSpotRequest]);
+
+      if (web3FormsResult.status === "rejected") {
+        throw web3FormsResult.reason;
+      }
+
+      const web3FormsData = await web3FormsResult.value.json();
+      const hubSpotFailed = hubSpotResult.status === "rejected" || !hubSpotResult.value.ok;
+
+      if (web3FormsResult.value.ok && web3FormsData.success) {
+        if (hubSpotFailed) {
+          console.error("HubSpot form submission failed:", hubSpotResult);
+        }
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({ event: "pilot_form_submit", event_category: "engagement", event_label: "Pilot Form Submit" });
         alert("Thanks — we'll be in touch within 2 business days.");
         setFormData({ name: "", company: "", email: "", phone: "", role: "", region: "", industry: "", fleet_size: "", notes: "" });
       } else {
-        console.error("Web3Forms error response:", data);
+        console.error("Web3Forms error response:", web3FormsData);
         alert("There was an error submitting your request. Please email info@oiltacfuel.com directly.");
       }
     } catch (err) {
