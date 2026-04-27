@@ -592,12 +592,6 @@ function PilotCTA() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const splitFullName = (name: string) => {
-    const parts = name.trim().split(/\s+/).filter(Boolean);
-    if (parts.length <= 1) return { firstname: parts[0] || "", lastname: "" };
-    return { firstname: parts.slice(0, -1).join(" "), lastname: parts[parts.length - 1] };
-  };
-
   const getCookie = (name: string) => {
     if (typeof document === "undefined") return "";
     return document.cookie
@@ -634,7 +628,6 @@ function PilotCTA() {
     }
     setIsSubmitting(true);
     try {
-      const { firstname, lastname } = splitFullName(formData.name);
       const pilotDetails = buildPilotDetails();
       const web3FormsRequest = fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -661,14 +654,15 @@ function PilotCTA() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           fields: [
-            { name: "firstname", value: firstname },
-            { name: "lastname", value: lastname },
+            { name: "full_name", value: formData.name },
             { name: "email", value: formData.email },
             { name: "phone", value: formData.phone },
             { name: "company", value: formData.company },
             { name: "jobtitle", value: formData.role },
-            { name: "industry", value: formData.industry },
-            { name: "message", value: pilotDetails },
+            { name: "country", value: formData.region },
+            { name: "industry2", value: formData.industry },
+            { name: "fleet___equipment_size", value: formData.fleet_size },
+            { name: "message", value: formData.notes || pilotDetails },
           ],
           context: {
             hutk: getCookie("hubspotutk"),
@@ -686,10 +680,15 @@ function PilotCTA() {
 
       const web3FormsData = await web3FormsResult.value.json();
       const hubSpotFailed = hubSpotResult.status === "rejected" || !hubSpotResult.value.ok;
+      const hubSpotError = hubSpotResult.status === "fulfilled" && !hubSpotResult.value.ok
+        ? await hubSpotResult.value.text()
+        : hubSpotResult.status === "rejected"
+          ? hubSpotResult.reason
+          : null;
 
       if (web3FormsResult.value.ok && web3FormsData.success) {
         if (hubSpotFailed) {
-          console.error("HubSpot form submission failed:", hubSpotResult);
+          console.error("HubSpot form submission failed:", hubSpotError);
         }
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({ event: "pilot_form_submit", event_category: "engagement", event_label: "Pilot Form Submit" });
