@@ -535,7 +535,7 @@ function WhyNow() {
             <div style={{ fontFamily: MONO, fontSize: 11, color: C.inkMute, letterSpacing: "0.1em", marginBottom: 10 }}>SECTION 04 · WHY NOW</div>
             <h2 style={{ fontWeight: 600, fontSize: 36, lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, maxWidth: 640 }}>Emissions rules tighten. Fleets still burn diesel.</h2>
             <div style={{ color: C.inkDim, maxWidth: 480, marginTop: 12, fontSize: 15 }}>
-              You can retrofit, replace, or find more from what you already run. OILTAC is the third option.
+              Not every emissions challenge needs a retrofit or replacement. OILTAC helps you do more with the diesel assets already in service.
             </div>
           </div>
         </div>
