@@ -241,7 +241,7 @@ function TestingInstitutionsStripCondensed() {
           display: block;
           object-fit: contain;
           max-height: 64px;
-          max-width: 180px;
+          max-width: 100%;
           width: auto;
           height: auto;
         }

@@ -825,7 +825,7 @@ const TestingInstitutionsLogoStrip = () => (
         display: block;
         object-fit: contain;
         max-height: 52px;
-        max-width: 180px;
+        max-width: 100%;
         width: auto;
         height: auto;
       }
