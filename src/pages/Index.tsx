@@ -235,13 +235,13 @@ function TestingInstitutionsStripCondensed() {
           align-items: center;
           justify-content: center;
           padding: 4px 8px;
-          overflow: hidden;
         }
         .ti-slot img {
           display: block;
           object-fit: contain;
           max-height: 64px;
           max-width: 100%;
+          min-width: 0;
           width: auto;
           height: auto;
         }
