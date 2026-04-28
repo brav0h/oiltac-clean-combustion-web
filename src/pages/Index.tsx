@@ -230,17 +230,17 @@ function TestingInstitutionsStripCondensed() {
           background: #14233D;
           border: 1px solid #243A63;
           border-radius: 5px;
-          height: 90px;
+          height: 74px;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 8px 12px;
+          padding: 4px 8px;
           overflow: hidden;
         }
         .ti-slot img {
           display: block;
           object-fit: contain;
-          max-height: 72px;
+          max-height: 64px;
           max-width: 180px;
           width: auto;
           height: auto;

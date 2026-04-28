@@ -809,7 +809,7 @@ const TestingInstitutionsLogoStrip = () => (
         align-items: center;
         justify-content: center;
         gap: 10px;
-        height: 140px;
+        height: 120px;
         padding: 12px 16px;
       }
       .pi-tile-img {
@@ -818,13 +818,13 @@ const TestingInstitutionsLogoStrip = () => (
         justify-content: center;
         background: rgba(255,255,255,0.04);
         border-radius: 4px;
-        padding: 8px 12px;
-        height: 80px;
+        padding: 4px 8px;
+        height: 60px;
       }
       .pi-tile-img img {
         display: block;
         object-fit: contain;
-        max-height: 72px;
+        max-height: 52px;
         max-width: 180px;
         width: auto;
         height: auto;
