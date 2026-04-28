@@ -230,7 +230,7 @@ function TestingInstitutionsStripCondensed() {
           background: #14233D;
           border: 1px solid #243A63;
           border-radius: 5px;
-          height: 74px;
+          height: 90px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -240,7 +240,7 @@ function TestingInstitutionsStripCondensed() {
         .ti-slot img {
           display: block;
           object-fit: contain;
-          max-height: 48px;
+          max-height: 72px;
           max-width: 180px;
           width: auto;
           height: auto;
@@ -592,13 +592,6 @@ function PilotCTA() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const getCookie = (name: string) => {
-    if (typeof document === "undefined") return "";
-    return document.cookie
-      .split("; ")
-      .find(row => row.startsWith(`${name}=`))
-      ?.split("=")[1] || "";
-  };
 
   const buildPilotDetails = () => [
     `Pilot request details`,
@@ -651,27 +644,37 @@ function PilotCTA() {
 
       const hsPortalId = import.meta.env.VITE_HUBSPOT_PORTAL_ID;
       const hsFormId = import.meta.env.VITE_HUBSPOT_FORM_ID;
-      const hubSpotRequest = fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${hsPortalId}/${hsFormId}`, {
+      const hsUrl = `https://api.hsforms.com/submissions/v3/integration/submit/${hsPortalId}/${hsFormId}`;
+      const hutkCookie = document.cookie
+        .split("; ")
+        .find(row => row.startsWith("hubspotutk="))
+        ?.split("=")[1];
+      const hsContext: Record<string, string> = {
+        pageUri: window.location.href,
+        pageName: document.title,
+      };
+      if (hutkCookie) hsContext.hutk = hutkCookie;
+
+      const hsPayload = {
+        fields: [
+          { objectTypeId: "0-1", name: "full_name", value: formData.name },
+          { objectTypeId: "0-1", name: "company", value: formData.company },
+          { objectTypeId: "0-1", name: "email", value: formData.email },
+          { objectTypeId: "0-1", name: "phone", value: formData.phone },
+          { objectTypeId: "0-1", name: "jobtitle", value: formData.role },
+          { objectTypeId: "0-1", name: "country", value: formData.region },
+          { objectTypeId: "0-1", name: "industry2", value: formData.industry },
+          { objectTypeId: "0-1", name: "fleet___equipment_size", value: formData.fleet_size },
+          { objectTypeId: "0-1", name: "message", value: formData.notes || pilotDetails },
+        ],
+        context: hsContext,
+      };
+      console.log("[HubSpot] Submitting to:", hsUrl);
+      console.log("[HubSpot] Payload:", JSON.stringify(hsPayload, null, 2));
+      const hubSpotRequest = fetch(hsUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fields: [
-            { objectTypeId: "0-1", name: "full_name", value: formData.name },
-            { objectTypeId: "0-1", name: "company", value: formData.company },
-            { objectTypeId: "0-1", name: "email", value: formData.email },
-            { objectTypeId: "0-1", name: "phone", value: formData.phone },
-            { objectTypeId: "0-1", name: "jobtitle", value: formData.role },
-            { objectTypeId: "0-1", name: "country", value: formData.region },
-            { objectTypeId: "0-1", name: "industry2", value: formData.industry },
-            { objectTypeId: "0-1", name: "fleet___equipment_size", value: formData.fleet_size },
-            { objectTypeId: "0-1", name: "message", value: formData.notes || pilotDetails },
-          ],
-          context: {
-            hutk: getCookie("hubspotutk"),
-            pageUri: window.location.href,
-            pageName: document.title,
-          },
-        }),
+        body: JSON.stringify(hsPayload),
       });
 
       const [web3FormsResult, hubSpotResult] = await Promise.allSettled([web3FormsRequest, hubSpotRequest]);
@@ -681,9 +684,17 @@ function PilotCTA() {
       }
 
       const web3FormsData = await web3FormsResult.value.json();
+
+      let hsResponseBody: string | null = null;
+      if (hubSpotResult.status === "fulfilled") {
+        hsResponseBody = await hubSpotResult.value.text();
+        console.log("[HubSpot] Response status:", hubSpotResult.value.status);
+        console.log("[HubSpot] Response body:", hsResponseBody);
+      }
+
       const hubSpotFailed = hubSpotResult.status === "rejected" || !hubSpotResult.value.ok;
       const hubSpotError = hubSpotResult.status === "fulfilled" && !hubSpotResult.value.ok
-        ? await hubSpotResult.value.text()
+        ? hsResponseBody
         : hubSpotResult.status === "rejected"
           ? hubSpotResult.reason
           : null;
