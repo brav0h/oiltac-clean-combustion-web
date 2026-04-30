@@ -27,7 +27,7 @@ This file contains detailed test data, field trial results, and technical specif
 | Specific Gravity | 0.78–0.80 |
 | Hazard Class | III |
 | Treat Rate | 1:10,000 volumetric ratio |
-| Compatibility | Diesel, gasoline, heavy fuel oil (HFO/bunker), A-type fuel oil |
+| Compatibility | Diesel, heavy fuel oil (HFO/bunker), A-type fuel oil |
 
 ---
 
@@ -41,7 +41,7 @@ Independent tests across multiple engine types and applications have consistentl
 
 **Diesel road vehicle (Italy, 1982):** At constant 60 km/h cruise, fuel consumption was reduced by approximately 6–7% following a 155 km conditioning period. Pickup performance (30–80 km/h) improved by approximately 3–4%. Test conducted by the Fuel Experimental Station, San Donato Milanese.
 
-**Diesel engine bench test — Bulgaria (1982):** A diesel engine (Д-3900) showed 1.5–2% fuel consumption reduction under medium loads. A gasoline engine (BAS-2103) showed 3–5% average fuel reduction under medium-to-high loads, with higher reductions at peak RPM ranges (5–8% at 5,000 rpm). Test conducted by V.I. Lenin Memorial Mechanical and Electrical Engineering Higher College, Sofia.
+**Diesel engine bench test — Bulgaria (1982):** A diesel engine (Д-3900) showed 1.5–2% fuel consumption reduction under medium loads. Test conducted by V.I. Lenin Memorial Mechanical and Electrical Engineering Higher College, Sofia.
 
 **Marine diesel long-term test (Japan, 1985–1986):** A 200-hour comparative test on an AVL-502 single-cylinder diesel engine running on A/C heavy oil blend (50:50 bunker A and C) documented approximately 2% fuel consumption reduction with OILTAC versus the untreated control. Conducted by the Marine Technical Institute, Ministry of Transportation, Japan.
 
@@ -55,9 +55,7 @@ Independent tests across multiple engine types and applications have consistentl
 
 ### Exhaust Emissions
 
-**Carbon monoxide (CO):** Gasoline engine testing in Bulgaria documented CO reductions averaging 5–10% across operating conditions, with peak reductions of 15–16% at 4,000 rpm. Italy-based vehicle testing using the European drive cycle showed total CO reduction of approximately 15% after a 300 km conditioning period.
-
-**Hydrocarbons (HC):** Average HC reductions of 3–5% documented in Bulgarian gasoline engine testing.
+**Carbon monoxide (CO):** Italy-based vehicle testing using the European drive cycle showed total CO reduction of approximately 15% after a 300 km conditioning period.
 
 **Smoke and particulate matter:** San Donato Italian testing showed smoke opacity reduced 8% at constant speed and 18.5% during acceleration from slow running. Bulgarian diesel engine testing showed 10–15% soot reduction on the Bosch scale. The Marine Technical Institute 200-hour test confirmed reduced exhaust particulate mass with OILTAC on heavy oil blend.
 
@@ -91,7 +89,7 @@ Japan's National Research Institute for Pollution and Resources (MITI, 1985) mea
 
 ## Applications
 
-OILTAC is effective across liquid petroleum fuels including distillate diesel (light oil), heavy fuel oil, A-type fuel oil, gasoline, and bunker fuels (HFO/bunker C and A/C blends).
+OILTAC is effective across liquid petroleum fuels including distillate diesel (light oil), heavy fuel oil, A-type fuel oil, and bunker fuels (HFO/bunker C and A/C blends).
 
 **Marine vessels:** Tugboats, port vessels, inland waterway fleets, and ocean-going vessels running on diesel or heavy fuel oil. Addresses fuel consumption, turbocharger fouling, exhaust economizer maintenance, bunker tank sludge, and injection system cleanliness.
 
@@ -111,7 +109,7 @@ OILTAC is effective across liquid petroleum fuels including distillate diesel (l
 |---|---|---|---|
 | Ship Research Institute (Ministry of Transport, Japan) | Marine Technical Institute, Tokyo | 1985–1986 | AVL-502 diesel, A/C heavy oil blend, 200-hour long-term |
 | Marine Technical Institute (Ministry of Transport, Japan) | Ship Research Institute, Mitaka | 1985–1986 | Same test — dual-source citation |
-| V.I. Lenin Memorial Engineering College, Bulgaria | Sofia | 1982 | BAS-2103 gasoline; Д-3900 diesel bench test |
+| V.I. Lenin Memorial Engineering College, Bulgaria | Sofia | 1982 | Д-3900 diesel bench test |
 | Fuel Experimental Station, San Donato Milanese, Italy | Italy | 1982 | Road diesel vehicle — constant speed and pickup |
 | Fukasawa Chemical Laboratory (manufacturer brochure) | Tokyo, Japan | Est. 1990s | JR diesel rail, bench engine, boiler, marine bunker |
 | Hokkaido Electric Power / Okushiri Power Station | Okushiri Island, Japan | 2001–2005 | Diesel generator sets, 200–1,000 kW, multi-year |
