@@ -76,15 +76,15 @@ function HeroStatPanel() {
       }}>
         <div style={{ padding: "4px 0" }}>
           <div style={{ fontFamily: MONO, fontSize: 10.5, color: C.inkMute, letterSpacing: "0.08em", marginBottom: 8 }}>FUEL CONSUMED</div>
-          <div style={{ fontSize: 38, fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1 }}>
-            2 – 6<span style={{ fontSize: 18, color: C.inkDim, marginLeft: 2 }}>%</span><span style={{ fontSize: 13, color: C.inkDim, fontWeight: 400, marginLeft: 5, letterSpacing: 0 }}>reduction</span>
+          <div style={{ fontSize: 44, fontWeight: 600, letterSpacing: "-0.02em", lineHeight: 1, color: C.accent }}>
+            2 – 6<span style={{ fontSize: 22, marginLeft: 2 }}>%</span><span style={{ fontSize: 13, color: C.inkDim, fontWeight: 400, marginLeft: 6, letterSpacing: 0 }}>reduction</span>
           </div>
           <div style={{ fontSize: 12.5, color: C.inkDim, marginTop: 8, lineHeight: 1.4 }}>Diesel / HFO · independent tests</div>
         </div>
         <div style={{ padding: "4px 0 4px 22px", borderLeft: `1px solid ${C.line}` }}>
           <div style={{ fontFamily: MONO, fontSize: 10.5, color: C.inkMute, letterSpacing: "0.08em", marginBottom: 8 }}>PARTICULATE (MARINE)</div>
-          <div style={{ fontSize: 38, fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1 }}>
-            14 – 25<span style={{ fontSize: 18, color: C.inkDim, marginLeft: 2 }}>%</span><span style={{ fontSize: 13, color: C.inkDim, fontWeight: 400, marginLeft: 5, letterSpacing: 0 }}>reduction</span>
+          <div style={{ fontSize: 44, fontWeight: 600, letterSpacing: "-0.02em", lineHeight: 1, color: C.accent }}>
+            14 – 25<span style={{ fontSize: 22, marginLeft: 2 }}>%</span><span style={{ fontSize: 13, color: C.inkDim, fontWeight: 400, marginLeft: 6, letterSpacing: 0 }}>reduction</span>
           </div>
           <div style={{ fontSize: 12.5, color: C.inkDim, marginTop: 8, lineHeight: 1.4 }}>HFO marine engine · 200 h</div>
         </div>
@@ -97,14 +97,16 @@ function HeroStatPanel() {
         <div key={row.k} style={{
           display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12,
           fontFamily: MONO, fontSize: 11, letterSpacing: "0.03em", padding: "9px 0",
-          borderBottom: `1px dashed ${C.line}`, color: C.inkDim,
+          borderBottom: `1px solid ${C.line}`, color: C.inkDim,
         }}>
           <span style={{ flex: 1, minWidth: 0 }}>{row.k}</span>
           <span style={{ color: C.accent, fontWeight: 500, whiteSpace: "nowrap" }}>{row.v}</span>
         </div>
       ))}
-      <div style={{ fontFamily: MONO, fontSize: 10.5, color: C.inkMute, marginTop: 10, letterSpacing: "0.04em" }}>
-        ALL RESULTS CITED FROM INDEPENDENT FACILITIES · SEE PROOF
+      <div style={{ fontFamily: MONO, fontSize: 10.5, marginTop: 10, letterSpacing: "0.04em" }}>
+        <a href="/proof" style={{ color: C.inkDim, textDecoration: "none" }}>
+          View full test data →
+        </a>
       </div>
     </div>
   );
@@ -132,8 +134,19 @@ function Hero() {
             Lower fuel burn. Cleaner engines.{" "}
             <em style={{ fontStyle: "normal", color: C.accent, fontWeight: 500 }}>No hardware changes.</em>
           </h1>
-          <p style={{ color: C.inkDim, fontSize: 17, lineHeight: 1.55, maxWidth: 540, margin: "0 0 28px" }}>
-            OILTAC is a combustion additive for diesel and heavy fuel oil, dosed at the tank and active during combustion to improve burn efficiency without modifying the engine. Fleet managers use it to reduce fuel consumption, soot, and bearing wear without touching the engine.
+          <p style={{ color: C.ink, fontSize: 16, lineHeight: 1.5, margin: "0 0 10px" }}>
+            Small combustion losses are already costing you.
+          </p>
+          <ul style={{ listStyle: "none", padding: 0, margin: "0 0 18px", display: "flex", flexDirection: "column", gap: 4 }}>
+            {["Higher fuel burn.", "Injector fouling.", "Carbon buildup that shows up in your maintenance budget."].map(item => (
+              <li key={item} style={{ display: "flex", gap: 10, alignItems: "center", fontSize: 15, color: C.inkDim }}>
+                <span style={{ flexShrink: 0, width: 4, height: 4, borderRadius: "50%", background: C.inkFaint, display: "inline-block" }} />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p style={{ color: C.inkDim, fontSize: 16, lineHeight: 1.6, maxWidth: 540, margin: "0 0 28px" }}>
+            OILTAC improves combustion at the point of burn. Added directly at the tank. No engine modifications. Run a pilot on one vessel, track your own data, and decide based on results.
           </p>
           <div style={{ display: "flex", gap: 10, marginBottom: 28 }}>
             <button onClick={scrollToPilot} style={{
