@@ -76,15 +76,15 @@ function HeroStatPanel() {
       }}>
         <div style={{ padding: "4px 0" }}>
           <div style={{ fontFamily: MONO, fontSize: 10.5, color: C.inkMute, letterSpacing: "0.08em", marginBottom: 8 }}>FUEL CONSUMED</div>
-          <div style={{ fontSize: 44, fontWeight: 600, letterSpacing: "-0.02em", lineHeight: 1, color: C.accent }}>
-            2 – 6<span style={{ fontSize: 22, marginLeft: 2 }}>%</span><span style={{ fontSize: 13, color: C.inkDim, fontWeight: 400, marginLeft: 6, letterSpacing: 0 }}>reduction</span>
+          <div style={{ fontSize: 38, fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1, color: C.accent }}>
+            2 – 6<span style={{ fontSize: 18, color: C.inkDim, marginLeft: 2 }}>%</span><span style={{ fontSize: 13, color: C.inkDim, fontWeight: 400, marginLeft: 5, letterSpacing: 0 }}>reduction</span>
           </div>
           <div style={{ fontSize: 12.5, color: C.inkDim, marginTop: 8, lineHeight: 1.4 }}>Diesel / HFO · independent tests</div>
         </div>
         <div style={{ padding: "4px 0 4px 22px", borderLeft: `1px solid ${C.line}` }}>
           <div style={{ fontFamily: MONO, fontSize: 10.5, color: C.inkMute, letterSpacing: "0.08em", marginBottom: 8 }}>PARTICULATE (MARINE)</div>
-          <div style={{ fontSize: 44, fontWeight: 600, letterSpacing: "-0.02em", lineHeight: 1, color: C.accent }}>
-            14 – 25<span style={{ fontSize: 22, marginLeft: 2 }}>%</span><span style={{ fontSize: 13, color: C.inkDim, fontWeight: 400, marginLeft: 6, letterSpacing: 0 }}>reduction</span>
+          <div style={{ fontSize: 38, fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1, color: C.accent }}>
+            14 – 25<span style={{ fontSize: 18, color: C.inkDim, marginLeft: 2 }}>%</span><span style={{ fontSize: 13, color: C.inkDim, fontWeight: 400, marginLeft: 5, letterSpacing: 0 }}>reduction</span>
           </div>
           <div style={{ fontSize: 12.5, color: C.inkDim, marginTop: 8, lineHeight: 1.4 }}>HFO marine engine · 200 h</div>
         </div>
