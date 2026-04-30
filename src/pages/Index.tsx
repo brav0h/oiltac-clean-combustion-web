@@ -125,7 +125,7 @@ function Hero() {
         <span style={{ width: 28, height: 1, background: C.accent, display: "inline-block" }} />
         <span>CLEAN COMBUSTION · SECTION 00</span>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "1.15fr 1fr", gap: 56, alignItems: "end" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1.15fr 1fr", gap: 56, alignItems: "start" }}>
         <div>
           <h1 style={{
             fontWeight: 600, fontSize: 60, lineHeight: 1.02, letterSpacing: "-0.025em",
