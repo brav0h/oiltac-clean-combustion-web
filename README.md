@@ -1,7 +1,7 @@
 
 # OILTAC - Clean Combustion Across Industries
 
-A professional website for OILTAC, a plant-based fuel additive that improves combustion, reduces engine sludge, and lowers emissions across various industries including maritime, rail, manufacturing, and diesel fleet operations.
+A professional website for OILTAC, an enzyme-derived fuel additive that improves combustion, reduces engine sludge, and lowers emissions across various industries including maritime, rail, manufacturing, and diesel fleet operations.
 
 ## Features
 

@@ -167,7 +167,7 @@ const AboutUs = () => {
               Run It Yourself
             </h2>
             <p className="text-[1.05rem] leading-[1.85] text-[#CBD5E1] mb-12">
-              Thirty to forty-five days. Your vessels. Your fuel records. Your baseline. Your decision.
+              Forty-five to sixty days. Your vessels. Your fuel records. Your baseline. Your decision.
             </p>
             <Button
               className="bg-oiltac-cta hover:bg-oiltac-cta/90 text-white px-10 py-6 text-lg"

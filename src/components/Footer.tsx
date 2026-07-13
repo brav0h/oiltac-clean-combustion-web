@@ -11,7 +11,7 @@ const Footer = () => {
               <span className="text-white font-bold tracking-wide">OILTAC</span>
             </a>
             <p className="mt-4 text-gray-300">
-              Plant-based fuel additive technology for cleaner, more efficient combustion.
+              Enzyme-derived fuel additive technology for cleaner, more efficient combustion.
             </p>
           </div>
           

@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { CLAIMS } from "@/content/claims";
 
 // ─── Design tokens (scoped to this page) ───────────────────────────────────
 const C = {
@@ -22,8 +23,9 @@ const C = {
 const MONO = '"IBM Plex Mono", ui-monospace, Menlo, monospace';
 const SANS = '"Inter Tight", "Inter", Helvetica, Arial, sans-serif';
 
-// ─── Real test data — all figures sourced from OILTAC_Test_Registry.md
-//     and OILTAC_RAG_Reference.md. No figures invented.
+// ─── Real test data — all figures sourced from OILTAC_Master_Reference.md
+//     (the verified corpus; supersedes the old Test Registry / RAG files).
+//     No figures invented. Any new number must be traceable to the corpus.
 // ───────────────────────────────────────────────────────────────────────────
 type Industry = "marine" | "rail" | "industrial" | "vehicle";
 
@@ -54,11 +56,11 @@ const TESTS: TestRecord[] = [
     duration: "200 h",
     sampleN: null,
     fuelSaving: 2.0,
-    particulate: -50.0,
+    particulate: null,
     bearingWear: -20.6,
     protocol: "BOSCH smoke density (5-rep avg); JIS Z-8808 exhaust particulate (20 NL / 0.6 µm glass-fibre filter)",
     date: "Nov 1985 – Mar 1986",
-    notes: "200 continuous operating hours per fuel condition. New pistons, rings, and liners fitted for each run; lubrication flushed between. Engine disassembled at 50-hr intervals to inspect deposits, wear, and oil condition. Deposits with OILTAC: soft, dry, easily scraped off. Without OILTAC: hard, adhesive, difficult to remove. TBN decline in lubricating oil substantially less with OILTAC. Piston ring wear was higher with OILTAC — cause noted as undetermined by test authors; may relate to the A/C heavy oil blend.",
+    notes: "200 continuous operating hours per fuel condition. New pistons, rings, and liners fitted for each run; lubrication flushed between. Engine disassembled at 50-hr intervals to inspect deposits, wear, and oil condition. Smoke density and exhaust particulates: consistently lower with OILTAC throughout the test (no single percentage stated in the source). Deposits with OILTAC: soft, dry, easily scraped off. Without OILTAC: hard, adhesive, difficult to remove. TBN decline in lubricating oil substantially less with OILTAC. Piston ring wear was higher with OILTAC — cause noted as undetermined by test authors; may relate to the A/C heavy oil blend.",
     cert: "OILTAC Long Term Operation on Diesel Engine — Marine Technical Institute, Ministry of Transport, Japan (1986). Source: 11_OILTAC Long Term Operation on Diesel Engine.pdf",
   },
   {
@@ -70,11 +72,11 @@ const TESTS: TestRecord[] = [
     duration: "Jul 11–28, 1983",
     sampleN: null,
     fuelSaving: 1.5,
-    particulate: null,
+    particulate: -18.0,
     bearingWear: null,
     protocol: "BOSCH smoke density; exhaust corpuscle/particulate count",
     date: "Jul 1983",
-    notes: "At 1600 rpm / 8 kg load: fuel consumption 208.9 → 205.7 g/ps·hr (1.5% saving). No measurable effect at 1200 rpm. Exhaust corpuscles/particulates decreased. Smoke density: no improvement in this test. Same research rig subsequently used for the 200-hour long-term trial (1985–86).",
+    notes: "At 1600 rpm / 8 kg load: fuel consumption 208.9 → 205.7 g/ps·hr (1.5% saving). No measurable effect at 1200 rpm. Exhaust particulates: 11.2 → 9.2 mg/10L at 1600 rpm (−18%); 13.6 → 12.3 mg/10L at 1200 rpm (−10%). Smoke density: −15% at 1600 rpm; no change at 1200 rpm. Same research rig subsequently used for the 200-hour long-term trial (1985–86).",
     cert: "Test Results — Engineering Institute of Transportation Ministry, Japan (1983-07-28). Source: 02_1983.07.28_Test Results_The Engineering Institute of Transportation Ministry, Japan.pdf",
   },
   {
@@ -104,26 +106,26 @@ const TESTS: TestRecord[] = [
     fuelSaving: 4.42,
     particulate: null,
     bearingWear: null,
-    protocol: "In-service fuel consumption vs. control locomotive 04.08 (no additive); period fuel log comparison",
+    protocol: "In-service fuel consumption vs. paired same-series locomotives on standard fuel; period fuel log comparison",
     date: "Feb – Mar 1982",
-    notes: "Loco 04.06: 3.53% saving (Feb), 4.42% saving = 79.5 kg/day (Mar). Loco 04.50: 0.48% saving (Mar). 07-series combined (07.67/07.72): 1.89% saving (Feb). Engine oil samples analysed spectroscopically every 10 days — no discernible change in oil quality.",
+    notes: "Loco 04.06: 3.53% saving (Feb), 4.42% saving (Mar). Loco 04.50: 0.48% saving (Mar). 07-series combined (07.67/07.72): 1.89% saving (Feb). Engine oil samples analysed spectroscopically every 10 days — no discernible change in oil quality. Report conclusion: additive use \"appropriate from the economic point of view.\"",
     cert: "Performance of Bulgarian National Railways Diesel Locomotives — Railway Transportation Management Research Institute (1982-03-29). Source: 07_1982.03.29_Performance of Bulgarian National Railways Diesel Locomotives.pdf",
   },
   {
-    id: "korean-railways-1974",
+    id: "korean-railways-1984",
     facility: "National Railroad of South Korea",
     country: "KR",
     industry: "rail",
-    vessel: "Diesel train sets 7160 / 7170 / 7105 / 7171 — Seoul–Pusan revenue service",
-    duration: "May 15 – Jul 25, 1974 (~10 weeks)",
-    sampleN: 4,
+    vessel: "Diesel trains No. 7160 & No. 7105 — Seoul–Pusan mainline revenue service (multiple rolling-stock cars tracked individually)",
+    duration: "May 15 – Jul 25, 1984 (~10 weeks)",
+    sampleN: 2,
     fuelSaving: 4.0,
     particulate: null,
     bearingWear: null,
-    protocol: "Comparative in-service fuel consumption — outbound and return Seoul–Pusan runs; separate idle measurement",
-    date: "May – Jul 1974",
-    notes: "Train 7160: 6.1% saving. Train 7170: 5.4% saving. Train 7171: 3.3% saving. Train 7105: 1.2% saving. Average across 4 trains: 4.0%. At idle: 1.5–2% saving measured separately. Additive supplied via Hino Shoji Ltd., Japan.",
-    cert: "Fuel Consumption Test for Diesel Trains — National Railroad of South Korea (1974). Source: 08_Fuel Consumption for Diesel Trains.pdf",
+    protocol: "Comparative in-service fuel consumption — baseline period (May 15 – Jun 5, no additive) vs. treated period (Jun 6 – Jul 25); separate idle measurement",
+    date: "May – Jul 1984",
+    notes: "Per-consist fuel savings ranged 0.6–6.1% depending on rolling stock and averaging method, with most values clustering between 1–6%; ≈4% arithmetic average shown. At idle: 1.5–2% saving measured separately. Additive supplied via Nisso Shoji Ltd., Japan.",
+    cert: "Fuel Consumption Test for Diesel Trains — National Railroad of South Korea (1984). Source: 08_Fuel Consumption for Diesel Trains.pdf",
   },
   {
     id: "hokkaido-electric-okushiri",
@@ -150,7 +152,7 @@ const TESTS: TestRecord[] = [
     duration: "Single session + 155 km conditioning",
     sampleN: null,
     fuelSaving: 6.8,
-    particulate: -18.0,
+    particulate: -18.5,
     bearingWear: null,
     protocol: "Road diesel vehicle; constant speed 60 km/h + pickup 30–80 km/h; BOSCH smoke opacity + MSA smoke measurement",
     date: "Dec 1982",
@@ -209,14 +211,14 @@ const INSTITUTIONS: Institution[] = [
     code: "BNR",
     name: "Bulgarian National Railways — Railway Transportation Management Research Institute",
     where: "Sophia · BG",
-    what: "Two-month fleet trial across 4 diesel locomotives at two depots. Fuel consumption compared against control locomotive 04.08 (no additive). Engine oil spectroscopic analysis conducted throughout.",
+    what: "Two-month fleet trial across 4 diesel locomotives at two depots. Fuel consumption compared against paired same-series locomotives running standard fuel. Engine oil spectroscopic analysis conducted throughout.",
     cert: "National railway operator",
   },
   {
     code: "NRS",
     name: "National Railroad of South Korea",
     where: "Seoul–Pusan · KR",
-    what: "Ten-week in-service trial across 4 diesel train sets on Seoul–Pusan revenue service. Fuel consumption monitored outbound and return. Idle condition measured separately.",
+    what: "Ten-week in-service trial on two diesel trains in Seoul–Pusan revenue service (1984), multiple rolling-stock cars tracked individually. Baseline period followed by treated period. Idle condition measured separately.",
     cert: "National railway operator",
   },
   {
@@ -338,7 +340,7 @@ const MiniChart = () => {
         })}
       </svg>
       <div style={mono({ fontSize: 11, color: C.inkMute, marginTop: 6 })}>
-        Range 1.5–6.8 %. No result adjusted, averaged across tests, or extrapolated.
+        Range {CLAIMS.fuelReductionAllTests} %. No cross-test averaging or extrapolation; per-trial averages shown where the source reported them.
       </div>
     </div>
   );
@@ -364,7 +366,7 @@ const Hero = () => (
         <Rule />
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, paddingTop: 20 }}>
           {[
-            { k: "DATA COVERAGE", v: "12 documented test campaigns · 5 countries · 1974–2005" },
+            { k: "DATA COVERAGE", v: `${CLAIMS.testCampaigns} documented test campaigns · ${CLAIMS.countries} countries · ${CLAIMS.yearsSpan}` },
             { k: "PROTOCOLS", v: "BOSCH smoke density · JIS Z-8808 · in-service fleet monitoring · removal/reinstatement" },
             { k: "TESTING BODIES", v: "Government agencies, national railways, and power utilities" },
           ].map(({ k, v }) => (
@@ -386,9 +388,9 @@ const HeadlineStats = () => {
   const stats = [
     {
       tag: "PARTICULATE",
-      num: "~50", unit: "%",
-      label: "Sustained PM reduction",
-      src: "Marine Technical Institute, Japan · 200 h AVL-502 bench · A/C heavy oil blend",
+      num: CLAIMS.pmReductionBench, unit: "%",
+      label: "Exhaust particulate reduction",
+      src: "Engineering Institute of Transportation Ministry, Japan · AVL-502 bench · Bunker C (1983)",
     },
     {
       tag: "FUEL",
@@ -397,10 +399,10 @@ const HeadlineStats = () => {
       src: "Yokoyama & Yoshida · bench diesel, light oil · specific fuel consumption",
     },
     {
-      tag: "BEARING WEAR",
-      num: "21", unit: "%",
-      label: "Reduction in crank pin bearing wear",
-      src: "Marine Technical Institute, Japan · 200 h comparative bench · total crank pin: 38.8 → 30.8 mg",
+      tag: "FIELD CAUSALITY",
+      num: CLAIMS.sootIncidentsCompact, unit: "",
+      label: "Soot incidents per year, eliminated",
+      src: "Hokkaido Electric, Okushiri Power Station · removal/reinstatement cycle confirmed causation",
     },
     {
       tag: "RECORD",
@@ -955,13 +957,13 @@ const MechanismSchematic = () => (
           <line x1="625" y1="102" x2="905" y2="102" stroke={C.line} />
 
           <text x="625" y="124" fill={C.inkDim} fontSize="11" fontFamily={MONO}>Fuel consumed</text>
-          <text x="905" y="124" fill={C.accent} fontSize="12" fontFamily={MONO} textAnchor="end" fontWeight="600">1.5–6.8% reduction</text>
+          <text x="905" y="124" fill={C.accent} fontSize="12" fontFamily={MONO} textAnchor="end" fontWeight="600">{CLAIMS.fuelReductionAllTests}% reduction</text>
 
           <text x="625" y="150" fill={C.inkDim} fontSize="11" fontFamily={MONO}>Smoke / PM</text>
-          <text x="905" y="150" fill={C.accent} fontSize="12" fontFamily={MONO} textAnchor="end" fontWeight="600">8–50% reduction</text>
+          <text x="905" y="150" fill={C.accent} fontSize="12" fontFamily={MONO} textAnchor="end" fontWeight="600">{CLAIMS.smokePmRangeAllTests}% reduction</text>
 
-          <text x="625" y="176" fill={C.inkDim} fontSize="11" fontFamily={MONO}>Crank pin wear (200 h)</text>
-          <text x="905" y="176" fill={C.accent} fontSize="12" fontFamily={MONO} textAnchor="end" fontWeight="600">21% reduction</text>
+          <text x="625" y="176" fill={C.inkDim} fontSize="11" fontFamily={MONO}>Deposits (200 h)</text>
+          <text x="905" y="176" fill={C.accent} fontSize="12" fontFamily={MONO} textAnchor="end" fontWeight="600">hard → soft</text>
 
           <text x="625" y="202" fill={C.inkMute} fontSize="9" fontFamily={MONO}>Ranges across documented tests — see §02 ledger.</text>
         </svg>
@@ -1136,7 +1138,7 @@ const CTASection = () => (
           Run OILTAC against your own baseline.
         </h3>
         <p style={{ fontFamily: SANS, color: C.inkDim, margin: 0, maxWidth: 480, fontSize: 15, lineHeight: 1.6 }}>
-          Pilot programmes start at three units and 45–60 days. You set the duty cycle; we provide the additive and dosing rig. Contact us to discuss how to structure a measurement protocol for your fleet.
+          Pilot programmes start at three units and {CLAIMS.pilotDays} days. You set the duty cycle; we provide the additive and dosing rig. Contact us to discuss how to structure a measurement protocol for your fleet.
         </p>
       </div>
       <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
@@ -1179,7 +1181,7 @@ const Proof = () => {
               <div>
                 <div style={mono({ fontSize: 11, color: C.inkMute, letterSpacing: "0.1em", marginBottom: 10 })}>SECTION 01 · HEADLINE RESULT</div>
                 <h2 style={{ fontFamily: SANS, fontWeight: 600, fontSize: 36, lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, color: C.ink }}>
-                  Fuel savings, every test, no averaging.
+                  Fuel savings, test by test.
                 </h2>
                 <div style={{ fontFamily: SANS, color: C.inkDim, maxWidth: 520, marginTop: 12, fontSize: 15 }}>
                   Each bar is one independent trial. Scale is linear, baseline is zero, there is no best-case extrapolation.

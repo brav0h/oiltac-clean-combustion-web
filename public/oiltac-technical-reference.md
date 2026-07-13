@@ -46,8 +46,8 @@ Independent tests across multiple engine types and applications have consistentl
 **Marine diesel long-term test (Japan, 1985–1986):** A 200-hour comparative test on an AVL-502 single-cylinder diesel engine running on A/C heavy oil blend (50:50 bunker A and C) documented approximately 2% fuel consumption reduction with OILTAC versus the untreated control. Conducted by the Marine Technical Institute, Ministry of Transportation, Japan.
 
 **Locomotive trials:**
-- Bulgarian National Railways (1982): Locomotives with OILTAC showed 1.89–4.42% lower fuel consumption versus matched controls without additive, equating to 26–79.5 kg of fuel saved per locomotive per day.
-- Korean National Railways (1984): Four diesel train routes (Seoul–Pusan) showed fuel savings of 1.1–5.4% with OILTAC. Idle fuel savings separately measured at 1.5–2%.
+- Bulgarian National Railways (1982): Four locomotives with OILTAC showed 0.5–4.4% lower fuel consumption versus paired same-series controls without additive. Spectroscopic engine-oil analysis showed no adverse impact on oil quality.
+- National Railroad of South Korea (1984): Two diesel trains in Seoul–Pusan mainline revenue service (multiple rolling-stock cars tracked individually) showed per-consist fuel savings of 0.6–6.1% with OILTAC, most values clustering between 1–6%. Idle fuel savings separately measured at 1.5–2%.
 
 **Power generation — Okushiri Island (Japan, 2001–2005):** Hokkaido Electric Power Company's Okushiri Island Power Station ran OILTAC across 200 kW, 500 kW, 750 kW, and 1,000 kW diesel generator sets. Specific fuel consumption improved consistently, with Engine 5 showing approximately 5% reduction (0.279 → 0.265 L/kW) sustained over multiple fiscal years.
 
@@ -116,7 +116,7 @@ OILTAC is effective across liquid petroleum fuels including distillate diesel (l
 | Japan Coast Guard Academy | Japan | Not specified | Light oil and heavy oil A bench diesel |
 | National Research Institute for Pollution and Resources (MITI) | Japan | 1985 | Cetane number determination — gas oil dose sweep |
 | Bulgarian National Railways | V. Markov and Kh. Stoyanov depots | 1982 | Diesel locomotives 04 and 07 series |
-| National Railroad of South Korea | Seoul–Pusan route | 1974 | Diesel rail cars, 4 routes |
+| National Railroad of South Korea | Seoul–Pusan mainline | 1984 | Diesel trains No. 7160 & 7105, cars tracked individually |
 
 ---
 

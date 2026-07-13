@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { CLAIMS } from "@/content/claims";
+import { submitPilotRequest } from "@/lib/pilotSubmit";
 
 
 const C = {
@@ -77,22 +79,22 @@ function HeroStatPanel() {
         <div style={{ padding: "4px 0" }}>
           <div style={{ fontFamily: MONO, fontSize: 10.5, color: C.inkMute, letterSpacing: "0.08em", marginBottom: 8 }}>FUEL CONSUMED</div>
           <div style={{ fontSize: 30, fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1, color: C.accent }}>
-            2 – 6<span style={{ fontSize: 18, color: C.inkDim, marginLeft: 2 }}>%</span><span style={{ fontSize: 13, color: C.inkDim, fontWeight: 400, marginLeft: 5, letterSpacing: 0 }}>reduction</span>
+            {CLAIMS.fuelReductionAllTests}<span style={{ fontSize: 18, color: C.inkDim, marginLeft: 2 }}>%</span><span style={{ fontSize: 13, color: C.inkDim, fontWeight: 400, marginLeft: 5, letterSpacing: 0 }}>reduction</span>
           </div>
-          <div style={{ fontSize: 12.5, color: C.inkDim, marginTop: 8, lineHeight: 1.4 }}>Diesel / HFO · independent tests</div>
+          <div style={{ fontSize: 12.5, color: C.inkDim, marginTop: 8, lineHeight: 1.4 }}>Diesel / HFO · range across independent tests</div>
         </div>
         <div style={{ padding: "4px 0 4px 22px", borderLeft: `1px solid ${C.line}` }}>
           <div style={{ fontFamily: MONO, fontSize: 10.5, color: C.inkMute, letterSpacing: "0.08em", marginBottom: 8 }}>PARTICULATE (MARINE)</div>
           <div style={{ fontSize: 30, fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1, color: C.accent }}>
-            14 – 25<span style={{ fontSize: 18, color: C.inkDim, marginLeft: 2 }}>%</span><span style={{ fontSize: 13, color: C.inkDim, fontWeight: 400, marginLeft: 5, letterSpacing: 0 }}>reduction</span>
+            {CLAIMS.pmReductionBench}<span style={{ fontSize: 18, color: C.inkDim, marginLeft: 2 }}>%</span><span style={{ fontSize: 13, color: C.inkDim, fontWeight: 400, marginLeft: 5, letterSpacing: 0 }}>reduction</span>
           </div>
-          <div style={{ fontSize: 12.5, color: C.inkDim, marginTop: 8, lineHeight: 1.4 }}>HFO marine engine · 200 h</div>
+          <div style={{ fontSize: 12.5, color: C.inkDim, marginTop: 8, lineHeight: 1.4 }}>Marine diesel bench · Bunker C</div>
         </div>
       </div>
       {[
-        { k: "BEARING WEAR (OFF-ROAD)", v: "21% reduction" },
+        { k: "SOOT INCIDENTS (UTILITY)", v: CLAIMS.sootIncidents },
         { k: "OIL CONTAMINATION", v: "REDUCED" },
-        { k: "COMMERCIAL SERVICE", v: "40+ yr" },
+        { k: "COMMERCIAL SERVICE", v: `${CLAIMS.commercialYears} yr` },
       ].map(row => (
         <div key={row.k} style={{
           display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12,
@@ -192,11 +194,11 @@ function Hero() {
 
 function SignalStrip() {
   const cells = [
-    { k: "PROTOCOL", v: "ISO 8178", s: "E3 · D2 STEADY-STATE" },
-    { k: "PROTOCOL", v: "UIC 624", s: "RAIL OPERATIONAL" },
-    { k: "COMPLIANCE", v: "SOLAS II-2", s: "STATEMENT OF FACT" },
-    { k: "REGISTRY", v: "REACH / SDS", s: "REV 4.1" },
-    { k: "CLASSIFICATION", v: "BV · DNV · LR", s: "WITNESSING BODIES" },
+    { k: "PROTOCOL", v: "BOSCH", s: "SMOKE DENSITY · BENCH" },
+    { k: "PROTOCOL", v: "JIS Z-8808", s: "EXHAUST PARTICULATE" },
+    { k: "COMPATIBILITY", v: "SOLAS II-2", s: "FLASH POINT > 62°C" },
+    { k: "SAFETY", v: "GHS SDS", s: "16 SECTIONS · AVAILABLE" },
+    { k: "STUDY DESIGN", v: "ON–OFF–ON", s: "CAUSALITY CONFIRMED" },
   ];
   return (
     <div style={{ ...wrap, padding: "0 32px" }}>
@@ -288,7 +290,7 @@ function TestingInstitutionsStripCondensed() {
         {/* Left: copy + CTA */}
         <div>
           <div style={{ fontFamily: MONO, fontSize: 9.5, color: C.verify, letterSpacing: "0.1em", marginBottom: 10 }}>
-            INDEPENDENTLY TESTED ACROSS 6 COUNTRIES
+            INDEPENDENTLY TESTED ACROSS {CLAIMS.countries} COUNTRIES
           </div>
           <div style={{ fontFamily: SANS, fontSize: 13, color: C.inkDim, lineHeight: 1.55, marginBottom: 14 }}>
             Marine · Rail · Power Generation · Heavy Equipment
@@ -319,7 +321,7 @@ const INDUSTRY_DATA = [
     tags: ["MARINE", "HFO"],
     title: "Marine & tugboat operations",
     desc: "Chief engineers running high-cycle 2- and 4-stroke engines where fuel is a top-three operating cost.",
-    sigs: [{ v: "1.5 – 2%", k: "FUEL REDUCTION" }, { v: "14 – 25%", k: "PARTICULATE REDUCTION" }],
+    sigs: [{ v: `${CLAIMS.fuelReductionMarine}%`, k: "FUEL REDUCTION" }, { v: `${CLAIMS.pmReductionBench}%`, k: "PARTICULATE REDUCTION" }],
   },
   {
     kind: "rail",
@@ -328,7 +330,7 @@ const INDUSTRY_DATA = [
     tags: ["RAIL", "DIESEL"],
     title: "Rail & locomotive fleets",
     desc: "Operators running high-hour V-engine locomotives across national and regional networks.",
-    sigs: [{ v: "1.9 – 4.4%", k: "FUEL REDUCTION" }, { v: "NO ADVERSE", k: "BEARING EFFECT" }],
+    sigs: [{ v: `${CLAIMS.fuelReductionBulgarianRail}%`, k: "FUEL REDUCTION" }, { v: "NO ADVERSE", k: "OIL CHEMISTRY EFFECT" }],
   },
   {
     kind: "industrial",
@@ -337,7 +339,7 @@ const INDUSTRY_DATA = [
     tags: ["POWER", "INDUSTRIAL"],
     title: "Power generation & industrial",
     desc: "Diesel gensets and stationary engines where unplanned downtime is not an option.",
-    sigs: [{ v: "2 – 6%", k: "FUEL REDUCTION" }, { v: "4–12 → 0", k: "FILTER PLUGGING" }],
+    sigs: [{ v: `${CLAIMS.fuelReductionFieldOps}%`, k: "FUEL REDUCTION" }, { v: CLAIMS.sootIncidentsCompact, k: "SOOT INCIDENTS / YR" }],
   },
   {
     kind: "offroad",
@@ -346,7 +348,7 @@ const INDUSTRY_DATA = [
     tags: ["OFF-ROAD", "MINING"],
     title: "Off-road & heavy equipment",
     desc: "High-load, high-hour fleets where margin depends on fuel cost and component life.",
-    sigs: [{ v: "Up to 6.8%", k: "FUEL REDUCTION" }, { v: "21%", k: "BEARING WEAR REDUCTION" }],
+    sigs: [{ v: `${CLAIMS.fuelReductionConstantLoad}%`, k: "FUEL REDUCTION" }, { v: `${CLAIMS.smokeOpacityAccel}%`, k: "SMOKE OPACITY REDUCTION" }],
   },
 ];
 
@@ -477,11 +479,11 @@ function Mechanism() {
             <text x="626" y="84" fill="#6F7F9E" fontSize="10" fontFamily="IBM Plex Mono" letterSpacing="0.08em">MEASURED OUTCOMES</text>
             <line x1="626" y1="94" x2="950" y2="94" stroke="#1F3358" />
             <text x="626" y="116" fill="#A7B4CC" fontSize="11" fontFamily="IBM Plex Mono">Fuel consumed</text>
-            <text x="950" y="116" fill="oklch(0.72 0.17 48)" fontSize="12" fontFamily="IBM Plex Mono" textAnchor="end" fontWeight="600">1.5 – 6.8% reduction</text>
+            <text x="950" y="116" fill="oklch(0.72 0.17 48)" fontSize="12" fontFamily="IBM Plex Mono" textAnchor="end" fontWeight="600">{CLAIMS.fuelReductionAllTests}% reduction</text>
             <text x="626" y="143" fill="#A7B4CC" fontSize="11" fontFamily="IBM Plex Mono">Particulate (PM)</text>
-            <text x="950" y="143" fill="oklch(0.72 0.17 48)" fontSize="12" fontFamily="IBM Plex Mono" textAnchor="end" fontWeight="600">14 – 25% reduction</text>
-            <text x="626" y="170" fill="#A7B4CC" fontSize="11" fontFamily="IBM Plex Mono">Bearing wear</text>
-            <text x="950" y="170" fill="oklch(0.72 0.17 48)" fontSize="12" fontFamily="IBM Plex Mono" textAnchor="end" fontWeight="600">21% reduction</text>
+            <text x="950" y="143" fill="oklch(0.72 0.17 48)" fontSize="12" fontFamily="IBM Plex Mono" textAnchor="end" fontWeight="600">{CLAIMS.pmReductionBench}% reduction</text>
+            <text x="626" y="170" fill="#A7B4CC" fontSize="11" fontFamily="IBM Plex Mono">Soot incidents (field)</text>
+            <text x="950" y="170" fill="oklch(0.72 0.17 48)" fontSize="12" fontFamily="IBM Plex Mono" textAnchor="end" fontWeight="600">{CLAIMS.sootIncidents}</text>
             <text x="626" y="221" fill="#6F7F9E" fontSize="9" fontFamily="IBM Plex Mono">Ranges across independent tests · see /proof for full data</text>
           </svg>
         </div>
@@ -499,7 +501,7 @@ function Comparison() {
     ["OEM compliance", ["warn", "Varies by product"], ["yes", "OEM-safe in tested configurations"]],
     ["Chemical residue in fuel", ["warn", "Possible"], ["yes", "None"]],
     ["Fuel compatibility", ["warn", "Often limited"], ["yes", "Diesel · gas oil · HFO (bunker A/C)"]],
-    ["Regulatory status", ["no", "Varies"], ["yes", "REACH-registered · SDS rev 4.1"]],
+    ["Safety documentation", ["no", "Varies"], ["yes", "Full 16-section GHS SDS available"]],
   ];
   const cellColor = (cls: string) => cls === "yes" ? C.accent : cls === "warn" ? "#D8A04C" : C.inkMute;
 
@@ -576,7 +578,7 @@ function WhyNow() {
                 { ref: "CAPEX", text: "No retrofit, no new injectors, no new systems" },
                 { ref: "OPEX", text: "Fuel + maintenance reductions attack the two biggest line items" },
                 { ref: "OEM", text: "Warranty-safe in tested configurations" },
-                { ref: "PILOT", text: "45–60 day trial on your equipment; your data, your decision" },
+                { ref: "PILOT", text: `${CLAIMS.pilotDays} day trial on your equipment; your data, your decision` },
               ],
             },
           ].map((cell, ci) => (
@@ -609,19 +611,6 @@ function PilotCTA() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
 
-  const buildPilotDetails = () => [
-    `Pilot request details`,
-    `Full name: ${formData.name}`,
-    `Company: ${formData.company}`,
-    `Work email: ${formData.email}`,
-    `Phone: ${formData.phone || "Not provided"}`,
-    `Role: ${formData.role || "Not provided"}`,
-    `Region: ${formData.region}`,
-    `Industry: ${formData.industry}`,
-    `Fleet / equipment size: ${formData.fleet_size || "Not provided"}`,
-    `Notes: ${formData.notes || "Not provided"}`,
-  ].join("\n");
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -629,107 +618,36 @@ function PilotCTA() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const accessKey = import.meta.env.VITE_WEB3FORMS_KEY;
-    if (!accessKey) {
-      console.error("Web3Forms: VITE_WEB3FORMS_KEY is not set in this build.");
-      alert("There was an error submitting your request. Please email info@oiltacfuel.com directly.");
-      return;
-    }
     setIsSubmitting(true);
     try {
-      const pilotDetails = buildPilotDetails();
-      const web3FormsRequest = fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          access_key: accessKey,
-          subject: "New Pilot Request — OILTAC",
-          from_name: formData.name,
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company,
-          role: formData.role,
-          region: formData.region,
-          industry: formData.industry,
-          fleet_size: formData.fleet_size,
-          notes: formData.notes,
-          message: pilotDetails,
-        }),
-      });
-
-      const hsPortalId = import.meta.env.VITE_HUBSPOT_PORTAL_ID;
-      const hsFormId = import.meta.env.VITE_HUBSPOT_FORM_ID;
-      const hsUrl = `https://api.hsforms.com/submissions/v3/integration/submit/${hsPortalId}/${hsFormId}`;
-      const hutkCookie = document.cookie
+      const hutk = document.cookie
         .split("; ")
         .find(row => row.startsWith("hubspotutk="))
         ?.split("=")[1];
-      const hsContext: Record<string, string> = {
-        pageUri: window.location.href,
-        pageName: document.title,
-      };
-      if (hutkCookie) hsContext.hutk = hutkCookie;
 
-      const hsPayload = {
-        fields: [
-          { objectTypeId: "0-1", name: "full_name", value: formData.name },
-          { objectTypeId: "0-1", name: "company", value: formData.company },
-          { objectTypeId: "0-1", name: "email", value: formData.email },
-          { objectTypeId: "0-1", name: "phone", value: formData.phone },
-          { objectTypeId: "0-1", name: "jobtitle", value: formData.role },
-          { objectTypeId: "0-1", name: "country", value: formData.region },
-          { objectTypeId: "0-1", name: "industry2", value: formData.industry },
-          { objectTypeId: "0-1", name: "fleet___equipment_size", value: formData.fleet_size },
-          { objectTypeId: "0-1", name: "message", value: formData.notes || pilotDetails },
-        ],
-        context: hsContext,
-      };
-      console.log("[HubSpot] Submitting to:", hsUrl);
-      console.log("[HubSpot] Payload:", JSON.stringify(hsPayload, null, 2));
-      const hubSpotRequest = fetch(hsUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(hsPayload),
-      });
+      const result = await submitPilotRequest(
+        formData,
+        {
+          web3formsKey: import.meta.env.VITE_WEB3FORMS_KEY,
+          hubspotPortalId: import.meta.env.VITE_HUBSPOT_PORTAL_ID,
+          hubspotFormId: import.meta.env.VITE_HUBSPOT_FORM_ID,
+        },
+        {
+          hutk,
+          pageUri: window.location.href,
+          pageName: document.title,
+          logError: (message, detail) => console.error(message, detail ?? ""),
+        },
+      );
 
-      const [web3FormsResult, hubSpotResult] = await Promise.allSettled([web3FormsRequest, hubSpotRequest]);
-
-      if (web3FormsResult.status === "rejected") {
-        throw web3FormsResult.reason;
-      }
-
-      const web3FormsData = await web3FormsResult.value.json();
-
-      let hsResponseBody: string | null = null;
-      if (hubSpotResult.status === "fulfilled") {
-        hsResponseBody = await hubSpotResult.value.text();
-        console.log("[HubSpot] Response status:", hubSpotResult.value.status);
-        console.log("[HubSpot] Response body:", hsResponseBody);
-      }
-
-      const hubSpotFailed = hubSpotResult.status === "rejected" || !hubSpotResult.value.ok;
-      const hubSpotError = hubSpotResult.status === "fulfilled" && !hubSpotResult.value.ok
-        ? hsResponseBody
-        : hubSpotResult.status === "rejected"
-          ? hubSpotResult.reason
-          : null;
-
-      if (web3FormsResult.value.ok && web3FormsData.success) {
-        if (hubSpotFailed) {
-          console.error("HubSpot form submission failed:", hubSpotError);
-        }
+      if (result.ok) {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({ event: "pilot_form_submit", event_category: "engagement", event_label: "Pilot Form Submit" });
         alert("Thanks — we'll be in touch within 2 business days.");
         setFormData({ name: "", company: "", email: "", phone: "", role: "", region: "", industry: "", fleet_size: "", notes: "" });
       } else {
-        console.error("Web3Forms error response:", web3FormsData);
         alert("There was an error submitting your request. Please email info@oiltacfuel.com directly.");
       }
-    } catch (err) {
-      console.error("Web3Forms network error:", err);
-      alert("There was an error submitting your request. Please email info@oiltacfuel.com directly.");
     } finally {
       setIsSubmitting(false);
     }
@@ -753,7 +671,7 @@ function PilotCTA() {
             <div style={{ fontFamily: MONO, fontSize: 11, color: C.inkMute, letterSpacing: "0.1em", marginBottom: 10 }}>SECTION 05 · PILOT</div>
             <h2 style={{ fontWeight: 600, fontSize: 36, lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, maxWidth: 640 }}>Run OILTAC against your own baseline.</h2>
             <div style={{ color: C.inkDim, maxWidth: 480, marginTop: 12, fontSize: 15 }}>
-              Three units. 45–60 days. We supply the additive and dosing rig; you set the duty cycle; a neutral observer can witness if you want one.
+              Three units. {CLAIMS.pilotDays} days. We supply the additive and dosing rig; you set the duty cycle; a neutral observer can witness if you want one.
             </div>
           </div>
         </div>
@@ -765,7 +683,7 @@ function PilotCTA() {
               {[
                 { n: "01", t: "Baseline", d: "Agree on measurement — fuel rail, duty cycle, date range — and establish your additive-free baseline." },
                 { n: "02", t: "Dose", d: "1 : 10,000 at tank. No dosing rig required for most installations; we supply one if you prefer." },
-                { n: "03", t: "Measure", d: "45–60 days. Same duty cycle. Compare fuel, PM, and oil condition against baseline." },
+                { n: "03", t: "Measure", d: `${CLAIMS.pilotDays} days. Same duty cycle. Compare fuel, PM, and oil condition against baseline.` },
                 { n: "04", t: "Decide", d: "Keep it, remove it, or expand. Your data, your decision — no lock-in." },
               ].map(step => (
                 <div key={step.n} style={{ padding: "18px 0", borderBottom: `1px solid ${C.line}`, display: "grid", gridTemplateColumns: "40px 1fr", gap: 20, alignItems: "start" }}>

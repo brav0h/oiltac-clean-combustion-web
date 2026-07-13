@@ -4,16 +4,16 @@
 
 ## Core Pages
 
-- [Proof](https://oiltacfuel.com/#proof): Independent test evidence from marine, rail, and power generation trials — fuel consumption, emissions, engine wear, and deposit data
-- [Industries](https://oiltacfuel.com/#industries): Target applications including maritime tugboat and port operations, inland vessel fleets, power generation, and mining
+- [Proof](https://oiltacfuel.com/proof): Independent test evidence from marine, rail, and power generation trials — fuel consumption, emissions, engine wear, and deposit data
+- [Industries](https://oiltacfuel.com/industries): Target applications including maritime tugboat and port operations, inland vessel fleets, power generation, and mining
 - [Benefits](https://oiltacfuel.com/#benefits): Operational outcomes — fuel savings, reduced lube oil consumption, cleaner injectors, lower exhaust emissions, extended maintenance intervals
-- [Calculator](https://oiltacfuel.com/#calculator): ROI and fuel savings estimator based on fleet size, fuel consumption, and treatment cost
+- [Calculator](https://oiltacfuel.com/fuel-calculator): ROI and fuel savings estimator based on fleet size, fuel consumption, and treatment cost
 - [Why Now](https://oiltacfuel.com/#why-now): Context for why OILTAC is being introduced to North American operators now, including regulatory and cost pressures
-- [Our Story](https://oiltacfuel.com/#our-story): Heritage of Fukasawa Chemical Laboratory, product lineage since 1974, and how OILTAC reached North America
+- [Our Story](https://oiltacfuel.com/about-us): Heritage of Fukasawa Chemical Laboratory, product lineage since 1974, and how OILTAC reached North America
 
 ## Key Resources
 
-- [Request a Pilot](https://oiltacfuel.com/#pilot): 45–60 day field trial program; operators test on their own equipment using their own fuel records
+- [Request a Pilot](https://oiltacfuel.com/#pilot-cta): 45–60 day field trial program; operators test on their own equipment using their own fuel records
 - [Contact / Sales](mailto:info@oiltacfuel.com): Direct inquiry and pilot request
 
 ## Product Reference
@@ -22,5 +22,5 @@
 
 ## Optional
 
-- [SDS / Safety Data Sheet](https://oiltacfuel.com/sds): Flash point 62.5°C, Hazard Class III, Specific Gravity 0.78–0.80
+- [SDS / Safety Data Sheet](https://oiltacfuel.com/msds): Flash point 62.5°C, Hazard Class III, Specific Gravity 0.78–0.80
 - [Packaging Information](https://oiltacfuel.com/oiltac.md#packaging): Available in 1L, 15L, 20L, and 200L UN-certified containers
