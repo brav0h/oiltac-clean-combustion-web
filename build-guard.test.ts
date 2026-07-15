@@ -1,8 +1,8 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import configFactory from "./vite.config";
 
 // defineConfig() returns the factory unchanged for function configs, so we can
-// exercise the production env guard directly with (command, mode) pairs.
+// exercise the production env check directly with (command, mode) pairs.
 type ConfigFn = (ctx: { command: "build" | "serve"; mode: string }) => unknown;
 const config = configFactory as unknown as ConfigFn;
 
@@ -17,40 +17,50 @@ beforeEach(() => {
 });
 
 afterEach(() => {
+  vi.restoreAllMocks();
   for (const k of REQUIRED) {
     if (saved[k] === undefined) delete process.env[k];
     else process.env[k] = saved[k];
   }
 });
 
-describe("production env guard (vite.config.ts)", () => {
-  it("blocks a production build when the form env vars are missing", () => {
-    expect(() => config({ command: "build", mode: "production" }))
-      .toThrow(/Production build blocked/);
+describe("production env check (vite.config.ts)", () => {
+  it("NEVER fails the build when env vars are missing — only warns", () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+    expect(() => config({ command: "build", mode: "production" })).not.toThrow();
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining("VITE_HUBSPOT_PORTAL_ID"));
   });
 
-  it("blocks a production build when vars hold .env.example placeholders", () => {
+  it("warns on .env.example placeholder values but still returns a config", () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
     process.env.VITE_WEB3FORMS_KEY = "your_web3forms_access_key_here";
     process.env.VITE_HUBSPOT_PORTAL_ID = "your_hubspot_portal_id_here";
     process.env.VITE_HUBSPOT_FORM_ID = "your_hubspot_form_id_here";
-    expect(() => config({ command: "build", mode: "production" }))
-      .toThrow(/Production build blocked/);
+    const result = config({ command: "build", mode: "production" });
+    expect(result).toMatchObject({ server: { port: 8080 } });
+    expect(warn).toHaveBeenCalled();
   });
 
-  it("allows a production build when all vars are set to real values", () => {
+  it("does not warn when all vars are set to real values", () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
     process.env.VITE_WEB3FORMS_KEY = "wf-live-key";
     process.env.VITE_HUBSPOT_PORTAL_ID = "12345678";
     process.env.VITE_HUBSPOT_FORM_ID = "0aa1b2c3-d4e5-f607-8899-aabbccddeeff";
     const result = config({ command: "build", mode: "production" });
     expect(result).toMatchObject({ server: { port: 8080 } });
+    expect(warn).not.toHaveBeenCalled();
   });
 
-  it("does not block `vite preview` (command serve resolves with mode production)", () => {
+  it("does not warn for `vite preview` (serve + production) even with vars missing", () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
     expect(() => config({ command: "serve", mode: "production" })).not.toThrow();
+    expect(warn).not.toHaveBeenCalled();
   });
 
-  it("does not block development builds or the dev server", () => {
-    expect(() => config({ command: "build", mode: "development" })).not.toThrow();
-    expect(() => config({ command: "serve", mode: "development" })).not.toThrow();
+  it("does not warn for development builds or the dev server", () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+    config({ command: "build", mode: "development" });
+    config({ command: "serve", mode: "development" });
+    expect(warn).not.toHaveBeenCalled();
   });
 });
